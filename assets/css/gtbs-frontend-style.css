@@ -1,0 +1,340 @@
+/*--------------------------- Arrow Style ---------------------------*/
+
+/* === Style 1 === */
+.gtbs-swiper-arrow-style1 .swiper-button-next:after,
+.gtbs-swiper-arrow-style1 .swiper-button-prev:after {
+    font-size: inherit;
+    opacity: unset;
+}
+
+/* === Style 2 === */
+.gtbs-swiper-arrow-style2 .swiper-button-next,
+.gtbs-swiper-arrow-style2 .swiper-button-prev {
+    border: 2px solid #555;
+    border-radius: inherit;
+    width: 33px;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: unset;
+}
+
+.gtbs-swiper-arrow-style2 .swiper-button-next:after, 
+.gtbs-swiper-arrow-style2 .swiper-button-prev:after {
+    font-size: inherit;
+}
+
+/* === Style 3 === */
+.gtbs-swiper-arrow-style3 {
+    position: relative;
+}
+
+.gtbs-swiper-arrow-style3 .swiper-button-prev,
+.gtbs-swiper-arrow-style3 .swiper-button-next {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    height: auto;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    z-index: 10;
+    margin: 0;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+.gtbs-swiper-arrow-style3 .swiper-button-prev {
+    left: 0;
+}
+
+.gtbs-swiper-arrow-style3 .swiper-button-next {
+    right: 0;
+}
+
+.gtbs-swiper-arrow-style3 .swiper-button-prev:after,
+.gtbs-swiper-arrow-style3 .swiper-button-next:after {
+    font-size: inherit;
+}
+
+/* === Style 4 === */
+.gtbs-swiper-arrow-style4 .swiper-button-next,
+.gtbs-swiper-arrow-style4 .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    color: #ffffff;
+    border: 2px solid #80b3d9;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: inherit;
+    line-height: 1;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gtbs-swiper-arrow-style4 .swiper-button-next::after,
+.gtbs-swiper-arrow-style4 .swiper-button-prev::after {
+    font-size: inherit;
+    content: '\27A1';
+    display: block;
+}
+
+.gtbs-swiper-arrow-style4 .swiper-button-prev::after {
+    content: '\2B05'; 
+}
+
+.gtbs-swiper-arrow-style4 .swiper-button-next:hover,
+.gtbs-swiper-arrow-style4 .swiper-button-prev:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+    transform: scale(1.05);
+}
+
+/*--------------------------- End Arrow Style ---------------------------*/ 
+
+/*--------------------------- Dot Pagination Style ---------------------------*/
+
+.gtbs-swiper *:focus {
+    outline-width: 2px;
+    outline-style: none;
+}
+
+/* === Style 1  === */
+.gtbs-swiper-dot-style1 .swiper-pagination-bullet {
+    background: transparent;
+    border: 1px solid #fff;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    opacity: 1;
+}
+.gtbs-swiper-dot-style1 .swiper-pagination-bullet-active {
+    background: #fff;
+}
+
+/* === Style 2 === */
+.gtbs-swiper-dot-style2 .swiper-pagination-bullet {
+    background: transparent;
+    border: 1px solid #fff;
+    width: 10px;
+    height: 10px;
+    border-radius: 0;
+    opacity: 1;
+}
+.gtbs-swiper-dot-style2 .swiper-pagination-bullet-active {
+    background: #fff;
+}
+
+/* === Style 3 === */
+.gtbs-swiper-dot-style3 .swiper-pagination-bullet {
+    background: #999;
+    border-radius: 0;
+    width: 20px;
+    height: 4px;
+    opacity: 0.6;
+}
+.gtbs-swiper-dot-style3 .swiper-pagination-bullet-active {
+    background: #fff;
+    opacity: 1;
+}
+
+/* === Style 4 === */
+.gtbs-swiper-dot-style4 .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 4px;
+    transition: all 0.3s ease;
+    background: transparent; 
+    border: 2px solid #fff;  
+    opacity: 0.8;
+}
+
+.gtbs-swiper-dot-style4 .swiper-pagination-bullet-active {
+    width: 28px;
+    border-radius: 999px;
+    background: #fff; 
+    opacity: 1;
+}
+
+/*--------------------------- End Dot Pagination Style ---------------------------*/
+
+/* --------------------------- Custom Pagination Style --------------------------- */
+
+.gtbs-pagination-custom.gtbs-swiper-custom-style1 .swiper-pagination-bullet {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 14px;
+    color: var(--gtbs-custom-active-text-color, #0a0607); 
+    opacity: 1;
+    background: var(--gtbs-custom-active-bg-color, #0a0607); 
+}
+.gtbs-pagination-custom.gtbs-swiper-custom-style1 .swiper-pagination-bullet-active {
+    color: var(--gtbs-custom-text-color, #ff0000); 
+    background: var(--gtbs-custom-bg-color, #007aff);
+}
+
+/*--------------------------- End Custom Pagination Style ---------------------------*/
+
+/*--------------------------- Grab Cursor ---------------------------*/
+
+.gtbs-swiper-grab-cursor {
+    cursor: grab;
+}
+.gtbs-swiper-grab-cursor:active {
+    cursor: grabbing;
+}
+
+/*--------------------------- End Grab Cursor ---------------------------*/
+
+/*--------------------------- Progress Bar ---------------------------*/
+
+.gtbs-progress-top .swiper-pagination-progressbar {
+    top: 0;
+    bottom: auto;
+    z-index: 99;
+    height: 6px;
+}
+
+.gtbs-progress-bottom .swiper-pagination-progressbar {
+    bottom: 0;
+    top: auto;
+    z-index: 99;
+    height: 6px;
+} 
+
+.gtbs-progress-left .swiper-pagination-progressbar {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: auto;
+    z-index: 99;
+    width: 6px;
+}
+
+.gtbs-progress-right .swiper-pagination-progressbar {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: auto;
+    width: 6px;
+    z-index: 99;
+}
+
+.gtbs-progressbar-fill {
+    width: 100%;
+    height: 100%;
+}
+
+/*--------------------------- End Progress Bar ---------------------------*/
+
+/*--------------------------- Slides Per View ---------------------------*/
+
+.gtbs-auto-slides .swiper-slide {
+    width: 60% !important;
+}
+
+.gtbs-auto-slides .swiper-slide:nth-child(2n) {
+    width: 40% !important;
+}
+
+.gtbs-auto-slides .swiper-slide:nth-child(3n) {
+    width: 20% !important;
+}
+
+/*--------------------------- End Slides Per View ---------------------------*/
+
+/*--------------------------- Autoplay Porgress ---------------------------*/
+
+.gtbs-swiper .autoplay-progress {
+  position: absolute;
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.gtbs-swiper .gtbs-timeleft-top-left {
+  top: 16px;
+  left: 16px;
+}
+
+.gtbs-swiper .gtbs-timeleft-top-right {
+  top: 16px;
+  right: 16px;
+}
+
+.gtbs-swiper .gtbs-timeleft-bottom-left {
+  bottom: 16px;
+  left: 16px;
+}
+
+.gtbs-swiper .gtbs-timeleft-bottom-right {
+  bottom: 16px;
+  right: 16px;
+}
+
+.gtbs-swiper .autoplay-progress svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  stroke-width: 4px;
+  fill: none;
+  stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
+  stroke-dasharray: 125.6;
+  transform: rotate(-90deg);
+}
+
+/*--------------------------- End Autoplay Porgress ---------------------------*/
+
+/*--------------------------- Effect Fraction ---------------------------*/
+
+.gtbs-swiper .gtbs-fraction-top-left {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    text-align: left;
+}
+
+.gtbs-swiper .gtbs-fraction-top-right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-align: right;
+}
+
+.gtbs-swiper .gtbs-fraction-bottom-left {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    text-align: left;
+}
+
+.gtbs-swiper .gtbs-fraction-bottom-right{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    text-align: right;
+}
+
+/*--------------------------- End Effect Fraction ---------------------------*/
+
+.gtbs-swiper .gtbs-swiper-wrapper {
+    position: relative;
+    z-index: 1;
+}

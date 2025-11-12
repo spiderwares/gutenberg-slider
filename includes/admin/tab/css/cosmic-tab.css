@@ -1,0 +1,100 @@
+/*--------------------------- Cosmic Tab ---------------------------*/
+
+.cosmic_page .card {
+    border-color: #eee;
+    max-width: 100%;
+}
+
+.cosmic_settings_page .cosmic_settings_page_nav .nav-tab-wrapper {
+    border-color: #eee;
+    /* border-left: 1px solid #dee2e6; */
+    padding-top: 0;
+}
+
+.cosmic_settings_page .cosmic_settings_page_nav .nav-tab-wrapper a.nav-tab-active{
+    border-color: #7f54b3;
+    border-bottom-color: #ffffff;
+    color: #000000 !important;
+    border-width: 2px 2px 0px 2px !important;
+    border-radius: 5px 5px 0px 0px;
+    background-color: #ffffff;
+}
+
+.cosmic_settings_page_nav .nav-tab-wrapper {
+    border-bottom: 0 !important;
+}
+
+.cosmic_settings_page .cosmic_settings_page_nav .nav-tab-wrapper a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 0px;
+    margin-right: 5px;
+    outline: none;
+    box-shadow: none;
+    border-bottom: 2px;
+    border-style: solid;
+    border-image: initial;
+    padding: 10px 20px;
+    background-color: #e6e6e6;
+    border-width: 0px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.cosmic_settings_page .cosmic_settings_page_content {
+    border-width: 0 1px 1px 1px;
+    /* border-style: solid; */
+    border-color: #eee;
+    background-color: #fff;
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+}
+
+.cosmic_settings_page .cosmic_settings_page_content table tr.heading {
+    border-bottom: 1px dashed #eeeeee;
+}
+
+.cosmic_settings_page .cosmic_settings_page_content table {
+    margin: 0;
+    padding: 0;
+    border-spacing: 0;
+    border-collapse: unset;
+}
+
+.cosmic_settings_page .cosmic_settings_page_content table tr th,
+.cosmic_settings_page .cosmic_settings_page_content table tr td {
+    padding: 15px 20px;
+    border-bottom: 1px dashed #eee;
+}
+
+.cosmic_settings_page .cosmic_settings_page_content table tr.submit p {
+    margin: 0;
+    padding: 0;
+}
+
+
+.cosmic_settings_page .cosmic_settings_page_content table .gtbs_select select,
+.cosmic_settings_page .cosmic_settings_page_content table .gtbs-text-field input[type="text"],
+.cosmic_settings_page .cosmic_settings_page_content table .gtbs_number_field input[type="number"],
+.cosmic_settings_page .cosmic_settings_page_content table .gtbs-time-input-group input[type="number"] {
+    min-width: 350px;
+    padding: 3px 10px;
+    border-radius: 2px;
+}
+
+.cosmic_settings_page .cosmic_settings_page_content table .jpwc_rep_wrapper input[type="text"],
+.cosmic_settings_page .cosmic_settings_page_content table .jpwc_rep_wrapper input[type="number"] {
+    min-width: 200px;
+    padding: 3px 10px;
+    border-radius: 2px;
+}
+
+.cosmic_settings_page .cosmic_settings_page_content table .heading th {
+    border-left: 2px solid black;
+    font-size: 16px;
+    padding: 12px 20px;
+    /* background-color: #eceafb; */
+}
+
+/*--------------------------- End Cosmic Tab ---------------------------*/
