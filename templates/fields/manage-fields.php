@@ -17,8 +17,8 @@ foreach( $fields as $field_Key => $field ) :
         <?php 
         switch( $field['field_type'] ) :
             
-            case "gtbsradio" : 
-                gtbs_get_template(
+            case "bsradio" : 
+                bs_get_template(
                     'fields/radio-field.php',
                     array(
                         'field'     => $field,
@@ -28,8 +28,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
 
-            case "gtbsswitch" : 
-                gtbs_get_template( 
+            case "bsswitch" : 
+                bs_get_template( 
                     'fields/switch-field.php',
                     array(
                         'field'     => $field,
@@ -39,8 +39,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
 
-            case "gtbsnumber":
-                gtbs_get_template( 
+            case "bsnumber":
+                bs_get_template( 
                     'fields/number-field.php', 
                     array(
                         'field'     => $field,
@@ -50,8 +50,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
                 
-            case "gtbscolor":
-                gtbs_get_template( 
+            case "bscolor":
+                bs_get_template( 
                     'fields/color-field.php', 
                     array(
                         'field'     => $field,
@@ -61,8 +61,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
 
-            case "gtbsselect":
-                gtbs_get_template( 
+            case "bsselect":
+                bs_get_template( 
                     'fields/select-field.php', 
                     array(
                         'field'     => $field,
@@ -72,8 +72,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
 
-            case "gtbsrange":
-                gtbs_get_template( 
+            case "bsrange":
+                bs_get_template( 
                     'fields/range-field.php', 
                     array(
                         'field'     => $field,
@@ -83,13 +83,24 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
 
-            case "gtbspro":
-                gtbs_get_template(
-                    'fields/pro-field.php',
+            case "bstextarea":
+                bs_get_template(
+                    'fields/textarea-field.php',
                     array(
-                        'field'      => $field,
-                        'field_Val'  => $field_Val,
-                        'field_Key'  => $field_Key
+                        'field'     => $field,
+                        'field_Val' => $field_Val,
+                        'field_Key' => $field_Key
+                    )
+                );
+                break;
+
+            case "bstext":
+                bs_get_template(
+                    'fields/text-field.php',
+                    array(
+                        'field'     => $field,
+                        'field_Val' => $field_Val,
+                        'field_Key' => $field_Key
                     )
                 );
                 break;

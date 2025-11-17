@@ -1,15 +1,15 @@
 /*--------------------------- Arrow Style ---------------------------*/
 
 /* === Style 1 === */
-.gtbs-swiper-arrow-style1 .swiper-button-next:after,
-.gtbs-swiper-arrow-style1 .swiper-button-prev:after {
+.bs-swiper-arrow-style1 .swiper-button-next:after,
+.bs-swiper-arrow-style1 .swiper-button-prev:after {
     font-size: inherit;
     opacity: unset;
 }
 
 /* === Style 2 === */
-.gtbs-swiper-arrow-style2 .swiper-button-next,
-.gtbs-swiper-arrow-style2 .swiper-button-prev {
+.bs-swiper-arrow-style2 .swiper-button-next,
+.bs-swiper-arrow-style2 .swiper-button-prev {
     border: 2px solid #555;
     border-radius: inherit;
     width: 33px;
@@ -20,18 +20,18 @@
     opacity: unset;
 }
 
-.gtbs-swiper-arrow-style2 .swiper-button-next:after, 
-.gtbs-swiper-arrow-style2 .swiper-button-prev:after {
+.bs-swiper-arrow-style2 .swiper-button-next:after, 
+.bs-swiper-arrow-style2 .swiper-button-prev:after {
     font-size: inherit;
 }
 
 /* === Style 3 === */
-.gtbs-swiper-arrow-style3 {
+.bs-swiper-arrow-style3 {
     position: relative;
 }
 
-.gtbs-swiper-arrow-style3 .swiper-button-prev,
-.gtbs-swiper-arrow-style3 .swiper-button-next {
+.bs-swiper-arrow-style3 .swiper-button-prev,
+.bs-swiper-arrow-style3 .swiper-button-next {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -49,22 +49,22 @@
     cursor: pointer;
 }
 
-.gtbs-swiper-arrow-style3 .swiper-button-prev {
+.bs-swiper-arrow-style3 .swiper-button-prev {
     left: 0;
 }
 
-.gtbs-swiper-arrow-style3 .swiper-button-next {
+.bs-swiper-arrow-style3 .swiper-button-next {
     right: 0;
 }
 
-.gtbs-swiper-arrow-style3 .swiper-button-prev:after,
-.gtbs-swiper-arrow-style3 .swiper-button-next:after {
+.bs-swiper-arrow-style3 .swiper-button-prev:after,
+.bs-swiper-arrow-style3 .swiper-button-next:after {
     font-size: inherit;
 }
 
 /* === Style 4 === */
-.gtbs-swiper-arrow-style4 .swiper-button-next,
-.gtbs-swiper-arrow-style4 .swiper-button-prev {
+.bs-swiper-arrow-style4 .swiper-button-next,
+.bs-swiper-arrow-style4 .swiper-button-prev {
     width: 40px;
     height: 40px;
     color: #ffffff;
@@ -80,19 +80,19 @@
     transition: all 0.3s ease;
 }
 
-.gtbs-swiper-arrow-style4 .swiper-button-next::after,
-.gtbs-swiper-arrow-style4 .swiper-button-prev::after {
+.bs-swiper-arrow-style4 .swiper-button-next::after,
+.bs-swiper-arrow-style4 .swiper-button-prev::after {
     font-size: inherit;
     content: '\27A1';
     display: block;
 }
 
-.gtbs-swiper-arrow-style4 .swiper-button-prev::after {
+.bs-swiper-arrow-style4 .swiper-button-prev::after {
     content: '\2B05'; 
 }
 
-.gtbs-swiper-arrow-style4 .swiper-button-next:hover,
-.gtbs-swiper-arrow-style4 .swiper-button-prev:hover {
+.bs-swiper-arrow-style4 .swiper-button-next:hover,
+.bs-swiper-arrow-style4 .swiper-button-prev:hover {
     color: #ffffff;
     border-color: #ffffff;
     transform: scale(1.05);
@@ -102,13 +102,13 @@
 
 /*--------------------------- Dot Pagination Style ---------------------------*/
 
-.gtbs-swiper *:focus {
+.bs-swiper *:focus {
     outline-width: 2px;
     outline-style: none;
 }
 
 /* === Style 1  === */
-.gtbs-swiper-dot-style1 .swiper-pagination-bullet {
+.bs-swiper-dot-style1 .swiper-pagination-bullet {
     background: transparent;
     border: 1px solid #fff;
     width: 10px;
@@ -116,12 +116,12 @@
     border-radius: 50%;
     opacity: 1;
 }
-.gtbs-swiper-dot-style1 .swiper-pagination-bullet-active {
+.bs-swiper-dot-style1 .swiper-pagination-bullet-active {
     background: #fff;
 }
 
 /* === Style 2 === */
-.gtbs-swiper-dot-style2 .swiper-pagination-bullet {
+.bs-swiper-dot-style2 .swiper-pagination-bullet {
     background: transparent;
     border: 1px solid #fff;
     width: 10px;
@@ -129,25 +129,25 @@
     border-radius: 0;
     opacity: 1;
 }
-.gtbs-swiper-dot-style2 .swiper-pagination-bullet-active {
+.bs-swiper-dot-style2 .swiper-pagination-bullet-active {
     background: #fff;
 }
 
 /* === Style 3 === */
-.gtbs-swiper-dot-style3 .swiper-pagination-bullet {
+.bs-swiper-dot-style3 .swiper-pagination-bullet {
     background: #999;
     border-radius: 0;
     width: 20px;
     height: 4px;
     opacity: 0.6;
 }
-.gtbs-swiper-dot-style3 .swiper-pagination-bullet-active {
+.bs-swiper-dot-style3 .swiper-pagination-bullet-active {
     background: #fff;
     opacity: 1;
 }
 
 /* === Style 4 === */
-.gtbs-swiper-dot-style4 .swiper-pagination-bullet {
+.bs-swiper-dot-style4 .swiper-pagination-bullet {
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -158,7 +158,7 @@
     opacity: 0.8;
 }
 
-.gtbs-swiper-dot-style4 .swiper-pagination-bullet-active {
+.bs-swiper-dot-style4 .swiper-pagination-bullet-active {
     width: 28px;
     border-radius: 999px;
     background: #fff; 
@@ -169,29 +169,29 @@
 
 /* --------------------------- Custom Pagination Style --------------------------- */
 
-.gtbs-pagination-custom.gtbs-swiper-custom-style1 .swiper-pagination-bullet {
+.bs-pagination-custom.bs-swiper-custom-style1 .swiper-pagination-bullet {
     width: 20px;
     height: 20px;
     text-align: center;
     line-height: 20px;
     font-size: 14px;
-    color: var(--gtbs-custom-active-text-color, #0a0607); 
+    color: var(--bs-custom-active-text-color, #0a0607); 
     opacity: 1;
-    background: var(--gtbs-custom-active-bg-color, #0a0607); 
+    background: var(--bs-custom-active-bg-color, #0a0607); 
 }
-.gtbs-pagination-custom.gtbs-swiper-custom-style1 .swiper-pagination-bullet-active {
-    color: var(--gtbs-custom-text-color, #ff0000); 
-    background: var(--gtbs-custom-bg-color, #007aff);
+.bs-pagination-custom.bs-swiper-custom-style1 .swiper-pagination-bullet-active {
+    color: var(--bs-custom-text-color, #ff0000); 
+    background: var(--bs-custom-bg-color, #007aff);
 }
 
 /*--------------------------- End Custom Pagination Style ---------------------------*/
 
 /*--------------------------- Grab Cursor ---------------------------*/
 
-.gtbs-swiper-grab-cursor {
+.bs-swiper-grab-cursor {
     cursor: grab;
 }
-.gtbs-swiper-grab-cursor:active {
+.bs-swiper-grab-cursor:active {
     cursor: grabbing;
 }
 
@@ -199,21 +199,21 @@
 
 /*--------------------------- Progress Bar ---------------------------*/
 
-.gtbs-progress-top .swiper-pagination-progressbar {
+.bs-progress-top .swiper-pagination-progressbar {
     top: 0;
     bottom: auto;
     z-index: 99;
     height: 6px;
 }
 
-.gtbs-progress-bottom .swiper-pagination-progressbar {
+.bs-progress-bottom .swiper-pagination-progressbar {
     bottom: 0;
     top: auto;
     z-index: 99;
     height: 6px;
 } 
 
-.gtbs-progress-left .swiper-pagination-progressbar {
+.bs-progress-left .swiper-pagination-progressbar {
     left: 0;
     top: 0;
     bottom: 0;
@@ -222,7 +222,7 @@
     width: 6px;
 }
 
-.gtbs-progress-right .swiper-pagination-progressbar {
+.bs-progress-right .swiper-pagination-progressbar {
     right: 0;
     top: 0;
     bottom: 0;
@@ -231,7 +231,7 @@
     z-index: 99;
 }
 
-.gtbs-progressbar-fill {
+.bs-progressbar-fill {
     width: 100%;
     height: 100%;
 }
@@ -240,15 +240,15 @@
 
 /*--------------------------- Slides Per View ---------------------------*/
 
-.gtbs-auto-slides .swiper-slide {
+.bs-auto-slides .swiper-slide {
     width: 60% !important;
 }
 
-.gtbs-auto-slides .swiper-slide:nth-child(2n) {
+.bs-auto-slides .swiper-slide:nth-child(2n) {
     width: 40% !important;
 }
 
-.gtbs-auto-slides .swiper-slide:nth-child(3n) {
+.bs-auto-slides .swiper-slide:nth-child(3n) {
     width: 20% !important;
 }
 
@@ -256,7 +256,7 @@
 
 /*--------------------------- Autoplay Porgress ---------------------------*/
 
-.gtbs-swiper .autoplay-progress {
+.bs-swiper .autoplay-progress {
   position: absolute;
   z-index: 10;
   width: 48px;
@@ -267,27 +267,27 @@
   font-weight: bold;
 }
 
-.gtbs-swiper .gtbs-timeleft-top-left {
+.bs-swiper .bs-timeleft-top-left {
   top: 16px;
   left: 16px;
 }
 
-.gtbs-swiper .gtbs-timeleft-top-right {
+.bs-swiper .bs-timeleft-top-right {
   top: 16px;
   right: 16px;
 }
 
-.gtbs-swiper .gtbs-timeleft-bottom-left {
+.bs-swiper .bs-timeleft-bottom-left {
   bottom: 16px;
   left: 16px;
 }
 
-.gtbs-swiper .gtbs-timeleft-bottom-right {
+.bs-swiper .bs-timeleft-bottom-right {
   bottom: 16px;
   right: 16px;
 }
 
-.gtbs-swiper .autoplay-progress svg {
+.bs-swiper .autoplay-progress svg {
   position: absolute;
   left: 0;
   top: 0;
@@ -304,28 +304,28 @@
 
 /*--------------------------- Effect Fraction ---------------------------*/
 
-.gtbs-swiper .gtbs-fraction-top-left {
+.bs-swiper .bs-fraction-top-left {
     position: absolute;
     top: 10px;
     left: 10px;
     text-align: left;
 }
 
-.gtbs-swiper .gtbs-fraction-top-right {
+.bs-swiper .bs-fraction-top-right {
     position: absolute;
     top: 10px;
     right: 10px;
     text-align: right;
 }
 
-.gtbs-swiper .gtbs-fraction-bottom-left {
+.bs-swiper .bs-fraction-bottom-left {
     position: absolute;
     bottom: 10px;
     left: 10px;
     text-align: left;
 }
 
-.gtbs-swiper .gtbs-fraction-bottom-right{
+.bs-swiper .bs-fraction-bottom-right{
     position: absolute;
     bottom: 10px;
     right: 10px;
@@ -334,7 +334,30 @@
 
 /*--------------------------- End Effect Fraction ---------------------------*/
 
-.gtbs-swiper .gtbs-swiper-wrapper {
-    position: relative;
-    z-index: 1;
+/*--------------------------- Table Styles ---------------------------*/
+
+.bs-swiper .swiper-slide table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
 }
+
+.bs-swiper .swiper-slide table,
+.bs-swiper .swiper-slide table th,
+.bs-swiper .swiper-slide table td {
+    border: 1px solid #000;
+}
+
+.bs-swiper .swiper-slide table th,
+.bs-swiper .swiper-slide table td {
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.bs-swiper .swiper-slide table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
+/*--------------------------- End Table Styles ---------------------------*/
+

@@ -4,7 +4,7 @@
  *
  * Handles the admin tab setup and related functionalities.
  *
- * @package Gutenberg_Slider
+ * @package Block_Slider
  */
 
 // Exit if accessed directly.
@@ -42,9 +42,9 @@ if ( ! class_exists( 'Cosmic_Tab' ) ) {
 			// Enqueue the Cosmic tab CSS.
 			wp_enqueue_style(
 				'cosmic-tab',
-				GTBS_URL . 'includes/admin/tab/css/cosmic-tab.css',
-				[],
-				GTBS_VERSION 
+				BS_URL . 'includes/admin/tab/css/cosmic-tab.css',
+				array(),
+				BS_VERSION 
 			);
 
 		}

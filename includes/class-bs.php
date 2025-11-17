@@ -3,27 +3,27 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! class_exists( 'GTBS' ) ) :
+if ( ! class_exists( 'BS' ) ) :
 
     /**
-     * Main GTBS Class
+     * Main BS Class
      *
-     * @class GTBS
+     * @class BS   
      * @version 1.0.0
      */
-    final class GTBS {
+    final class BS {
 
         /**
          * The single instance of the class.
          *
-         * @var GTBS
+         * @var BS
          */
         protected static $instance = null;
 
         /**
          * The public class instance.
          *
-         * @var GTBS
+         * @var BS
          */
         public $public = null;
 
@@ -43,12 +43,12 @@ if ( ! class_exists( 'GTBS' ) ) :
         }
 
         /**
-         * Main GTBS Instance.
+         * Main BS Instance.
          *
-         * Ensures only one instance of GTBS is loaded or can be loaded.
+         * Ensures only one instance of BS is loaded or can be loaded.
          *
          * @static
-         * @return GTBS - Main instance.
+         * @return BS - Main instance.
          */
         public static function instance() {
             if ( is_null( self::$instance ) ) :
@@ -58,7 +58,7 @@ if ( ! class_exists( 'GTBS' ) ) :
                  * Fire a custom action to allow dependencies
                  * after the successful plugin setup
                  */
-                do_action( 'gtbs_plugin_loaded' );
+                do_action( 'bs_plugin_loaded' );
             endif;
             return self::$instance;
         }
@@ -73,27 +73,27 @@ if ( ! class_exists( 'GTBS' ) ) :
                 $this->includes_public();
             endif;
             
-            require_once GTBS_PATH . 'includes/gtbs-core-functions.php';
-            require_once GTBS_PATH . 'includes/admin/settings/class-gtbs-cpt.php';
-            require_once GTBS_PATH . 'includes/admin/settings/class-gtbs-helper.php';
+            require_once BS_PATH . 'includes/bs-core-functions.php';
+            require_once BS_PATH . 'includes/admin/settings/class-bs-cpt.php';
+            require_once BS_PATH . 'includes/admin/settings/class-bs-helper.php';
         }
         
         /**
          * Include Admin required files.
          */
         public function includes_admin() {
-            require_once GTBS_PATH . 'includes/class-gtbs-install.php';
-            require_once GTBS_PATH . 'includes/admin/tab/class-cosmic-tab.php';
-            require_once GTBS_PATH . 'includes/admin/settings/class-gtbs-manage-metadata.php';
-            require_once GTBS_PATH . 'includes/admin/settings/class-gtbs-settings-field.php';
+            require_once BS_PATH . 'includes/class-bs-install.php';
+            require_once BS_PATH . 'includes/admin/tab/class-cosmic-tab.php';
+            require_once BS_PATH . 'includes/admin/settings/class-bs-manage-metadata.php';
+            require_once BS_PATH . 'includes/admin/settings/class-bs-settings-field.php';
         }
         
         /**
          * Include Public required files.
          */
         public function includes_public() {
-            require_once GTBS_PATH . 'includes/public/class-gtbs-public.php';
-            require_once GTBS_PATH . 'includes/public/class-gtbs-shortcode.php';
+            require_once BS_PATH . 'includes/public/class-bs-public.php';
+            require_once BS_PATH . 'includes/public/class-bs-shortcode.php';
 		}
     }
 

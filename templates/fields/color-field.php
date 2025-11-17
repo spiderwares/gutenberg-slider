@@ -8,12 +8,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
 <td>
-    <p class="gtbs-color-control <?php echo isset($field['class']) ? esc_attr($field['class']) : ''; ?>">
+    <p class="bs-color-control <?php echo isset($field['class']) ? esc_attr($field['class']) : ''; ?>">
         <label for="<?php echo esc_attr( $field_Key ); ?>">
             <input 
                 type="text" 
-                class="gtbs-color-picker" 
-                name="gtbs_slider_option[<?php echo esc_attr( $field_Key ); ?>]" 
+                class="bs-color-picker" 
+                name="bs_slider_option[<?php echo esc_attr( $field_Key ); ?>]" 
                 id="<?php echo esc_attr( $field_Key ); ?>" 
                 value="<?php echo esc_attr( $field_Val ); ?>" 
                 data-default-color="<?php echo esc_attr( isset( $field['default'] ) ? $field['default'] : '#ff0000' ); ?>" 

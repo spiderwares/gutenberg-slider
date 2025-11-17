@@ -4,18 +4,18 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( $hasSlides || $hasImages ) :
-    if ( ! empty( $gtbs_css ) ) : ?>
-        <style><?php echo esc_html( $gtbs_css ); ?></style>
+    if ( ! empty( $bs_css ) ) : ?>
+        <style><?php echo esc_html( $bs_css ); ?></style>
     <?php endif; ?>
 
-    <div class="gtbs-swiper swiper swiper-slider-wrapper <?php echo esc_attr($slideshow_main_class); ?>" 
+    <div class="bs-swiper swiper swiper-slider-wrapper <?php echo esc_attr($slideshow_main_class); ?>" 
     data-options='<?php echo esc_attr( $options );?>'
     <?php echo wp_kses_post( $wrapper_style ); ?>>
-        <div class="swiper-wrapper gtbs-swiper-wrapper">
+        <div class="swiper-wrapper">
             <?php if ( $hasSlides ) :
-                foreach ( $slides as $html ) : ?>
-                    <div class="swiper-slide">
-                        <div class="gtbs-slide-content">
+                foreach ( $slides as $slide_id => $html ) : ?>
+                    <div class="swiper-slide bs-slide-<?php echo esc_attr( $slide_id ); ?>">
+                        <div class="bs-slide-content">
                             <?php echo wp_kses_post( $html ); ?>
                         </div>
                     </div>
@@ -52,7 +52,7 @@ if ( $hasSlides || $hasImages ) :
 
         <!-- Scrollbar --->
         <?php
-             $scrollbar = apply_filters( 'gtbs_pro_scrollbar', '', array(
+             $scrollbar = apply_filters( 'bs_pro_scrollbar', '', array(
                 'image_ids' => $hasImages ? $imageIDs : array(),
                 'options'   => $options,
                 'class'     => $slideshow_main_class,
@@ -76,16 +76,22 @@ if ( $hasSlides || $hasImages ) :
         </div>
     </div>
 
-   <!-- Swiper Thumbs Gallery -->
+    <!-- Swiper Thumbs Gallery -->
     <?php
-    if ( ! empty( $thumb_gallery ) && $hasImages ) :
-        $thumb_gallery = apply_filters( 'gtbs_pro_thumb_gallery', '', array(
-            'image_ids'      => $imageIDs,
+    if ( ! empty( $thumb_gallery ) && ( $hasSlides || $hasImages ) ) :
+        $thumb_gallery = apply_filters( 'bs_pro_thumb_gallery', '', array(
+            'image_ids'      => $hasImages ? $imageIDs : array(),
+            'slides'         => $hasSlides ? $slides : array(),
             'thumb_width'    => $thumb_width,
             'thumb_height'   => $thumb_height,
             'main_class'     => $slideshow_main_class,
+            'hasSlides'      => $hasSlides,
+            'hasImages'      => $hasImages,
         ) );
-        echo wp_kses_post( $thumb_gallery );
+        
+        if ( ! empty( $thumb_gallery ) ) :
+            echo wp_kses_post( $thumb_gallery );
+        endif;
     endif;
     ?>
 

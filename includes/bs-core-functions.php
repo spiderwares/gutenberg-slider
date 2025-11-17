@@ -8,7 +8,7 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( !function_exists( 'gtbs_get_template' ) ) :
+if( !function_exists( 'bs_get_template' ) ) :
     /**
      * Loads a template from the version template directory.
      *
@@ -19,9 +19,9 @@ if( !function_exists( 'gtbs_get_template' ) ) :
      * @return void|WP_Error
      */ 
    
-    function gtbs_get_template( $template_name, $args = array(), $template_path = '' ) {
+    function bs_get_template( $template_name, $args = array(), $template_path = '' ) {
         if( empty( $template_path ) ) :
-            $template_path = GTBS_PATH . 'templates/';
+            $template_path = BS_PATH . 'templates/';
         endif;        
         
         $template = $template_path . $template_name;
@@ -30,20 +30,20 @@ if( !function_exists( 'gtbs_get_template' ) ) :
                 'error', 
                 sprintf( 
                     // translators: %s: The full path to the missing template file.
-                    esc_html__( '%s does not exist.', 'gutenberg-slider' ), 
+                    esc_html__( '%s does not exist.', 'block-slider' ), 
                     '<code>' . esc_html( $template ). '</code>' 
                 ) 
             );
         endif;
 
-        do_action( 'gtbs_before_template_part', $template, $args, $template_path );
+        do_action( 'bs_before_template_part', $template, $args, $template_path );
 
         if ( ! empty( $args ) && is_array( $args ) ) :
             extract( $args );
         endif;
         include $template;
 
-        do_action( 'gtbs_after_template_part', $template, $args, $template_path );
+        do_action( 'bs_after_template_part', $template, $args, $template_path );
     }
 
 endif;

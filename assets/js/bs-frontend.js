@@ -2,7 +2,7 @@
 
 jQuery(function ($) {
 
-    class GTBS_Frontend {
+    class BS_Frontend {
 
         constructor() {
             this.init();
@@ -13,7 +13,7 @@ jQuery(function ($) {
         }
 
         initializeSliders() {
-            $('.gtbs-swiper').each((index, element) => {
+            $('.bs-swiper').each((index, element) => {
                 const slider = $(element),
                     rawOptions = slider.attr('data-options');
 
@@ -23,13 +23,13 @@ jQuery(function ($) {
                 if (!options) return;
 
                 if (options.slide_control_view_auto == '1' || options.slide_control_view_auto === true) {
-                    slider.addClass('gtbs-auto-slides');
+                    slider.addClass('bs-auto-slides');
                 }
 
                 // Thumbs gallery
                 let thumbsSwiper = null;
                 if (options.thumb_gallery == '1' || options.thumb_gallery === true) {
-                    const thumbsGallery = slider.parent().find('.gtbs-swiper-thumbs-gallery');
+                    const thumbsGallery = slider.parent().find('.bs-swiper-thumbs-gallery');
                     if (thumbsGallery.length) {
                         thumbsSwiper = new Swiper(thumbsGallery[0], {
                             loop:            options.thumb_gallery_loop === '1',
@@ -75,12 +75,14 @@ jQuery(function ($) {
                     delay: parseInt(options.autoplay_timing, 10) || 3000,
                     disableOnInteraction: false,
                 } : false,
+                rewind:         options.control_rewind == '1' || options.control_rewind === true,
+                spaceBetween:   parseInt(options.control_slide_space, 10) || 10,
                 pagination:     paginationType !== 'none' ? {
                     el:         '.swiper-pagination',
                     clickable:  true,
                     renderBullet: function (index, className) {
                         if (paginationType === 'custom') {
-                            return `<span class="${className} gtbs-swiper-custom-${customStyle}">${index + 1}</span>`;
+                            return `<span class="${className} bs-swiper-custom-${customStyle}">${index + 1}</span>`;
                         }
                         return `<span class="${className}"></span>`;
                     },
@@ -96,8 +98,9 @@ jQuery(function ($) {
 
                 on: {
                     init: function () {
-                        if (options.control_autoplay_progress == '1' && options.pagination_type == 'progressbar' && options.progress_bar_color) {
-                            const progressbar = slider.find('.swiper-pagination-progressbar-fill').addClass('gtbs-progressbar-fill');
+
+                        if (options.control_progress_bar == '1' && options.pagination_type == 'progressbar' && options.progress_bar_color) {
+                            const progressbar = slider.find('.swiper-pagination-progressbar-fill').addClass('bs-progressbar-fill');
                             progressbar.css({ background: options.progress_bar_color });
                         }
 
@@ -112,17 +115,17 @@ jQuery(function ($) {
 
                             if (options.fraction_position) {
                                 fraction
-                                    .removeClass('gtbs-fraction-top-left gtbs-fraction-top-right gtbs-fraction-bottom-left gtbs-fraction-bottom-right gtbs-fraction-center')
-                                    .addClass(`gtbs-fraction-${options.fraction_position}`);
+                                    .removeClass('bs-fraction-top-left bs-fraction-top-right bs-fraction-bottom-left bs-fraction-bottom-right bs-fraction-center')
+                                    .addClass(`bs-fraction-${options.fraction_position}`);
                             }
                         }
 
                         if (paginationType === 'custom') {
                             slider.find('.swiper-pagination').css({
-                                '--gtbs-custom-text-color': customTextColor,
-                                '--gtbs-custom-bg-color': customBackgroundColor,
-                                '--gtbs-custom-active-text-color': customActiveTextColor,
-                                '--gtbs-custom-active-bg-color': customActiveBgColor
+                                '--bs-custom-text-color': customTextColor,
+                                '--bs-custom-bg-color': customBackgroundColor,
+                                '--bs-custom-active-text-color': customActiveTextColor,
+                                '--bs-custom-active-bg-color': customActiveBgColor
                             });
                         }
 
@@ -145,7 +148,7 @@ jQuery(function ($) {
             };
 
             if (options.animation === 'cards' && options.cards_border) {
-                slider.find('.swiper-slide').css('border-radius', `${parseInt(options.cards_border, 10)}px`);
+                slider.find('.swiper-slide').css('border-radius', `${parseInt(options.cards_border, 10)}%`);
             }
 
             if (options.animation === 'cube') {
@@ -153,7 +156,7 @@ jQuery(function ($) {
                     shadow: options.cube_shadows === '1' || options.cube_shadows === true,
                     slideShadows: options.cube_slide_shadows === '1' || options.cube_slide_shadows === true,
                     shadowOffset: parseInt(options.cube_shadowoffset) || 20,
-                    shadowScale: parseFloat(options.cube_shadowScale) || 0.94,
+                    shadowScale: parseFloat(options.cube_shadowScale) || 1,
                 };
             }
 
@@ -184,6 +187,6 @@ jQuery(function ($) {
 
     }
 
-    new GTBS_Frontend();
+    new BS_Frontend();
 
 });

@@ -5,13 +5,12 @@
     max-width: 100%;
 }
 
-.cosmic_settings_page .cosmic_settings_page_nav .nav-tab-wrapper {
+.cosmic_settings_page .cosmic_settings_page_nav .bs-tab-wrapper {
     border-color: #eee;
-    /* border-left: 1px solid #dee2e6; */
     padding-top: 0;
 }
 
-.cosmic_settings_page .cosmic_settings_page_nav .nav-tab-wrapper a.nav-tab-active{
+.cosmic_settings_page .cosmic_settings_page_nav .bs-tab-wrapper a.bs-tab-active {
     border-color: #7f54b3;
     border-bottom-color: #ffffff;
     color: #000000 !important;
@@ -20,14 +19,14 @@
     background-color: #ffffff;
 }
 
-.cosmic_settings_page_nav .nav-tab-wrapper {
+.cosmic_settings_page_nav .bs-tab-wrapper {
     border-bottom: 0 !important;
 }
 
-.cosmic_settings_page .cosmic_settings_page_nav .nav-tab-wrapper a {
+.cosmic_settings_page .cosmic_settings_page_nav .bs-tab-wrapper a {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
     margin-left: 0px;
     margin-right: 5px;
     outline: none;
@@ -41,9 +40,32 @@
     border-radius: 5px 5px 0px 0px;
 }
 
+.bs-tab-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0;
+    margin: 0 0 15px 0;
+    border: none !important;
+    font-weight: 600;
+}
+
+.bs-tab-wrapper .bs-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+
 .cosmic_settings_page .cosmic_settings_page_content {
     border-width: 0 1px 1px 1px;
-    /* border-style: solid; */
     border-color: #eee;
     background-color: #fff;
     display: inline-block;
@@ -74,18 +96,11 @@
 }
 
 
-.cosmic_settings_page .cosmic_settings_page_content table .gtbs_select select,
-.cosmic_settings_page .cosmic_settings_page_content table .gtbs-text-field input[type="text"],
-.cosmic_settings_page .cosmic_settings_page_content table .gtbs_number_field input[type="number"],
-.cosmic_settings_page .cosmic_settings_page_content table .gtbs-time-input-group input[type="number"] {
+.cosmic_settings_page .cosmic_settings_page_content table .bs_select select,
+.cosmic_settings_page .cosmic_settings_page_content table .bs-text-field input[type="text"],
+.cosmic_settings_page .cosmic_settings_page_content table .bs_number_field input[type="number"],
+.cosmic_settings_page .cosmic_settings_page_content table .bs-time-input-group input[type="number"] {
     min-width: 350px;
-    padding: 3px 10px;
-    border-radius: 2px;
-}
-
-.cosmic_settings_page .cosmic_settings_page_content table .jpwc_rep_wrapper input[type="text"],
-.cosmic_settings_page .cosmic_settings_page_content table .jpwc_rep_wrapper input[type="number"] {
-    min-width: 200px;
     padding: 3px 10px;
     border-radius: 2px;
 }
@@ -94,7 +109,6 @@
     border-left: 2px solid black;
     font-size: 16px;
     padding: 12px 20px;
-    /* background-color: #eceafb; */
 }
 
 /*--------------------------- End Cosmic Tab ---------------------------*/

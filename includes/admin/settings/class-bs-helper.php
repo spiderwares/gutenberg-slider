@@ -6,13 +6,13 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( ! class_exists( 'GTBS_Helper' ) ) :
+if( ! class_exists( 'BS_Helper' ) ) :
 
     /**
-     * Class GTBS_Helper
+     * Class BS_Helper
      *
      */
-    class GTBS_Helper {
+    class BS_Helper {
 
         /**
          * Get slide preview data
@@ -23,7 +23,7 @@ if( ! class_exists( 'GTBS_Helper' ) ) :
             $preview = ['type' => 'text', 'thumb' => null];
 
             if ($thumb_id = get_post_thumbnail_id($post->ID)) :
-                if ($url = wp_get_attachment_image_url($thumb_id, 'gtbs_slideshow_thumbnail')) :        
+                if ($url = wp_get_attachment_image_url($thumb_id, 'bs_slideshow_thumbnail')) :        
                     return ['type' => 'image', 'thumb' => $url];
                 endif;
             endif;
@@ -54,7 +54,7 @@ if( ! class_exists( 'GTBS_Helper' ) ) :
                 $attrs  = isset($block['attrs']) ? $block['attrs'] : [];
                 $img_id = isset($attrs['id']) ? $attrs['id'] : (isset($attrs['mediaId']) ? $attrs['mediaId'] : (isset($attrs['ids'][0]) ? $attrs['ids'][0] : 0));
         
-                if ($img_id && ($url = wp_get_attachment_image_url((int) $img_id, 'gtbs_slideshow_thumbnail'))) :
+                if ($img_id && ($url = wp_get_attachment_image_url((int) $img_id, 'bs_slideshow_thumbnail'))) :
                     return ['type' => 'image', 'thumb' => $url];
                 endif;
         
@@ -72,6 +72,37 @@ if( ! class_exists( 'GTBS_Helper' ) ) :
             endif;
         
             return $preview;
+        }
+
+        public static function bs_get_background_settings( $post_id ) {
+            if ( empty( $post_id ) ) return array();
+    
+            $background_size     = get_post_meta( $post_id, 'bs_background_size', true );
+            $background_position = get_post_meta( $post_id, 'bs_background_position', true );
+            $background_repeat   = get_post_meta( $post_id, 'bs_background_repeat', true );
+            $background_color    = get_post_meta( $post_id, 'bs_background_color', true );
+    
+            // Get featured image URL
+            $background_id   = get_post_thumbnail_id( $post_id );
+            $background_url  = $background_id ? wp_get_attachment_image_url( $background_id, 'full' ) : '';
+    
+            // Default values
+            $background_size     = $background_size ?: 'cover';
+            $background_position = $background_position ?: 'center';
+            $background_repeat   = $background_repeat ?: 'no-repeat';
+    
+            if ( $background_size === 'original' ) :
+                $background_size = 'auto';
+            endif;
+    
+            return array(
+                'background_size'     => $background_size,
+                'background_position' => $background_position,
+                'background_repeat'   => $background_repeat,
+                'background_color'    => $background_color,
+                'background_url'      => $background_url,
+                'background_id'       => $background_id,
+            );
         }
     }
 

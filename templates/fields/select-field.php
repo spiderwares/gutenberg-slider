@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
 <td>
-    <select name="gtbs_slider_option[<?php echo esc_attr($field_Key); ?>]"
-            class="gtbs_select gtbs_select_field"
+    <select name="bs_slider_option[<?php echo esc_attr($field_Key); ?>]"
+            class="bs_select bs_select_field"
             <?php if (!empty($field['data_hide'])) : ?>
                 data-hide="<?php echo esc_attr($field['data_hide']); ?>"
             <?php endif; ?>>

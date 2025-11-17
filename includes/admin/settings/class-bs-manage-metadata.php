@@ -3,14 +3,14 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( ! class_exists( 'GTBS_Manage_Metadata' ) ) :
+if( ! class_exists( 'BS_Manage_Metadata' ) ) :
 
     /**
-     * Class GTBS_Manage_Metadata
+     * Class BS_Manage_Metadata
      *
      * Handles the registration of the Spin Metabox.
      */
-    class GTBS_Manage_Metadata {
+    class BS_Manage_Metadata {
 
          /**
          * Constructor for the class.
@@ -33,28 +33,31 @@ if( ! class_exists( 'GTBS_Manage_Metadata' ) ) :
         public function add_meta_boxes() {
 
             add_meta_box(
-                'gtbs_slides',
-                esc_html__( 'Manage Slides', 'gutenberg-slider' ),
+                'bs_slides',
+                esc_html__( 'Manage Slides', 'block-slider' ),
                 array( $this, 'genrate_slideshow_metabox' ),
-                'gtbs_slider',
+                'bs_slider',
                 'normal',
                 'high'
             );
 
             add_meta_box(
-                'gtbs_slider_options',
-                esc_html__( 'Slider Options', 'gutenberg-slider' ),
-                array( $this, 'render_gtbs_options' ),
-                'gtbs_slider',
+                'bs_slider_options',
+                esc_html__( 'Slider Options', 'block-slider' ),
+                array( $this, 'render_bs_options' ),
+                'bs_slider',
                 'normal',
                 'high'
             );
         }
 
+        /**
+         * Enqueue scripts and styles.
+         */
         public function enqueue_scripts() {
 
             $screen = get_current_screen();
-            if ( in_array( $screen->post_type, ['gtbs_slider', 'gtbs_slide'], true ) ) :
+            if ( in_array( $screen->post_type, ['bs_slider', 'bs_slide'], true ) ) :
                 wp_enqueue_script( 'jquery-ui-core' );
                 wp_enqueue_script( 'jquery-ui-widget' );
                 wp_enqueue_script( 'jquery-ui-sortable' );
@@ -63,53 +66,41 @@ if( ! class_exists( 'GTBS_Manage_Metadata' ) ) :
 
                 wp_enqueue_script( 
                     'wp-color-picker-alpha', 
-                    GTBS_URL . 'assets/lib/wp-color-picker-alpha.js', 
+                    BS_URL . 'assets/lib/wp-color-picker-alpha.js', 
                     array( 'jquery', 'wp-color-picker' ), 
-                    GTBS_VERSION,
+                    BS_VERSION,
                     true
                 );
                 
                 wp_enqueue_script( 
-                    'gtbs-admin', 
-                    GTBS_URL . 'assets/js/gtbs-admin.js', 
+                    'bs-admin', 
+                    BS_URL . 'assets/js/bs-admin.js', 
                     array( 'jquery', 'wp-color-picker-alpha' ), 
-                    GTBS_VERSION, 
+                    BS_VERSION, 
                     true 
                 );
 
                 wp_enqueue_style( 
-                    'gtbs-admin-style', 
-                    GTBS_URL . 'assets/css/gtbs-admin-style.css', 
+                    'bs-admin-style', 
+                    BS_URL . 'assets/css/bs-admin-style.css', 
                     array(), 
-                    GTBS_VERSION 
+                    BS_VERSION 
                 );
             endif;
         }
 
+        /**
+         * Generate slideshow metabox.
+         *
+         * @param object $post Post object.
+         */
         public function genrate_slideshow_metabox( $post ) {
-            $imageIDs = get_post_meta( $post->ID, 'gtbs_slider_image_ids', true );
-            
-            // if ($imageIDs && ($decoded = json_decode($imageIDs, true)) && is_array($decoded)) {
-            //     $imageIDs = $decoded;
-            // } elseif (!is_array($imageIDs)) {
-            //     $imageIDs = [];
-            // }            
-
-            // $image_slide = [];
-            // $decoded = json_decode(get_post_meta($post->ID, 'gtbs_slide_images', true), true);
-
-            // if (is_array($decoded)) {
-            //     foreach ($decoded as $sid => $imgs) {
-            //         foreach ((array) $imgs as $id) {
-            //             $image_slide[$id] = (int) $sid;
-            //         }
-            //     }
-            // }
+            $imageIDs = get_post_meta( $post->ID, 'bs_slider_image_ids', true );
 
             $slides_query = get_children( 
                 array(
                     'post_parent' => $post->ID,
-                    'post_type'   => 'gtbs_slide',
+                    'post_type'   => 'bs_slide',
                     'numberposts' => -1,
                     'orderby'     => 'menu_order',
                     'order'       => 'ASC',
@@ -119,7 +110,7 @@ if( ! class_exists( 'GTBS_Manage_Metadata' ) ) :
             $slides_data = array();
             if ( $slides_query ) {
                 foreach ( $slides_query as $slide ) {
-                    $preview = GTBS_Helper::get_slide_preview_data( $slide );
+                    $preview = BS_Helper::get_slide_preview_data( $slide );
                     $slides_data[] = array(
                         'id'     => $slide->ID,
                         'title'  => get_the_title( $slide ),
@@ -132,7 +123,7 @@ if( ! class_exists( 'GTBS_Manage_Metadata' ) ) :
             
             $url = add_query_arg( 
                 array(    
-                    'post_type' => 'gtbs_slide',
+                    'post_type' => 'bs_slide',
                     'parent_slider' => $post->ID
                 ),
                 admin_url( 'post-new.php' ) 
@@ -142,13 +133,12 @@ if( ! class_exists( 'GTBS_Manage_Metadata' ) ) :
             $is_saved      = isset( $post->ID ) && $post->ID > 0 && $post->post_status !== 'auto-draft' ? true : false;
             $add_slide_url = isset( $add_slide_url ) ? $add_slide_url : '#';
     
-            gtbs_get_template( 
+            bs_get_template( 
                 'metabox/slides.php', 
                 array(
-                    'metaKey'       => 'gtbs_slider_image_ids',
+                    'metaKey'       => 'bs_slider_image_ids',
                     'slider_id'     => $post->ID,
                     'imageIDs'      => $imageIDs,
-                    // 'imageSlide'    => $image_slide,
                     'slidesData'    => $slides_data,
                     'is_saved'      => $is_saved,
                     'add_slide_url' => esc_url( $url )
@@ -156,18 +146,23 @@ if( ! class_exists( 'GTBS_Manage_Metadata' ) ) :
             );
         }
 
-        public function render_gtbs_options( $post ) {
-			$settings = get_post_meta( $post->ID, 'gtbs', true );
+        /**
+         * Render slider options metabox.
+         *
+         * @param object $post Post object.
+         */
+        public function render_bs_options( $post ) {
+			$settings = get_post_meta( $post->ID, 'bs', true );
 			
 			// Ensure settings is an array with default values
 			if ( ! is_array( $settings ) ) :
 				$settings = array();
             endif;
 
-			require_once GTBS_PATH . 'includes/admin/settings/views/gtbs-option.php';
+			require_once BS_PATH . 'includes/admin/settings/views/bs-option.php';
 		}
 
     }
 
-    new GTBS_Manage_Metadata();
+    new BS_Manage_Metadata();
 endif;

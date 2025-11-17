@@ -25,17 +25,22 @@ $bullets_hover_bg_color = isset( $settings['bullets_hover_bg_color'] ) ? $settin
 $bullets_border_color   = isset( $settings['bullets_border_color'] ) ? $settings['bullets_border_color'] : '#ffffff';
 $bullets_style          = isset( $settings['bullets_navigation_style'] ) ? $settings['bullets_navigation_style'] : 'style1';
 
-$unit         = isset( $settings['arrow_position_unit'] ) ? $settings['arrow_position_unit'] : 'px';
-$arrow_top    = isset( $settings['arrow_position_top'] ) ? intval( $settings['arrow_position_top'] ) . $unit : 'auto';
-$arrow_bottom = isset( $settings['arrow_position_bottom'] ) ? intval( $settings['arrow_position_bottom'] ) . $unit : 'auto';
-$arrow_left   = isset( $settings['arrow_position_left'] ) ? intval( $settings['arrow_position_left'] ) . $unit : 'auto';
-$arrow_right  = isset( $settings['arrow_position_right'] ) ? intval( $settings['arrow_position_right'] ) . $unit : 'auto';
+$unit                   = isset( $settings['arrow_position_unit'] ) ? $settings['arrow_position_unit'] : 'px';
+$arrow_top              = isset( $settings['arrow_position_top'] ) ? intval( $settings['arrow_position_top'] ) . $unit : 'auto';
+$arrow_bottom           = isset( $settings['arrow_position_bottom'] ) ? intval( $settings['arrow_position_bottom'] ) . $unit : 'auto';
+$arrow_left             = isset( $settings['arrow_position_left'] ) ? intval( $settings['arrow_position_left'] ) . $unit : 'auto';
+$arrow_right            = isset( $settings['arrow_position_right'] ) ? intval( $settings['arrow_position_right'] ) . $unit : 'auto';
+
+$border_radius_image      = isset( $settings['border_radius_image'] ) ? $settings['border_radius_image'] . '%' : '0%';
+$height_image              = isset( $settings['height_image'] ) ? $settings['height_image'] : '';
+$image_unit                = isset( $settings['image_unit'] ) ? $settings['image_unit'] : 'px';
+$control_enable_responsive = isset( $settings['control_enable_responsive'] ) && ( $settings['control_enable_responsive'] == '1' || $settings['control_enable_responsive'] === true );
 ?>
 
 
 /* --------------------------- Dynamic Arrow Style --------------------------- */
-.gtbs_slider--<?php echo esc_attr($slider_id); ?>.gtbs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-next,
-.gtbs_slider--<?php echo esc_attr($slider_id); ?>.gtbs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-prev {
+.bs_slider--<?php echo esc_attr($slider_id); ?>.bs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-next,
+.bs_slider--<?php echo esc_attr($slider_id); ?>.bs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-prev {
     color: <?php echo esc_html( $arrow_color ); ?>;
     <?php if ( $arrow_style !== 'style1' && $arrow_style !== 'custom' && $arrow_style !== 'style5' ) : ?>
     background-color: <?php echo esc_html( $arrow_bg_color ); ?>;
@@ -45,8 +50,8 @@ $arrow_right  = isset( $settings['arrow_position_right'] ) ? intval( $settings['
     <?php endif; ?>
 }
 
-.gtbs_slider--<?php echo esc_attr($slider_id); ?>.gtbs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-next:hover,
-.gtbs_slider--<?php echo esc_attr($slider_id); ?>.gtbs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-prev:hover {
+.bs_slider--<?php echo esc_attr($slider_id); ?>.bs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-next:hover,
+.bs_slider--<?php echo esc_attr($slider_id); ?>.bs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-prev:hover {
     color: <?php echo esc_html( $arrow_hover_color ); ?>;
     <?php if ( $arrow_style !== 'style1' && $arrow_style !== 'custom' && $arrow_style !== 'style5'  ) : ?>
     background-color: <?php echo esc_html( $arrow_hover_bg_color ); ?>;
@@ -56,8 +61,8 @@ $arrow_right  = isset( $settings['arrow_position_right'] ) ? intval( $settings['
     <?php endif; ?>
 }
 
-.gtbs_slider--<?php echo esc_attr($slider_id); ?>.gtbs-swiper-arrow-<?php echo esc_attr($arrow_style); ?> .swiper-button-next,
-.gtbs_slider--<?php echo esc_attr($slider_id); ?>.gtbs-swiper-arrow-<?php echo esc_attr($arrow_style); ?> .swiper-button-prev {
+.bs_slider--<?php echo esc_attr($slider_id); ?>.bs-swiper-arrow-<?php echo esc_attr($arrow_style); ?> .swiper-button-next,
+.bs_slider--<?php echo esc_attr($slider_id); ?>.bs-swiper-arrow-<?php echo esc_attr($arrow_style); ?> .swiper-button-prev {
     font-size: <?php echo esc_html( $arrow_font_size ); ?> !important;
     <?php if ( $arrow_style !== 'style3' ) : ?>
     border-radius: <?php echo esc_html( $arrow_border_radius ); ?> !important;
@@ -65,7 +70,7 @@ $arrow_right  = isset( $settings['arrow_position_right'] ) ? intval( $settings['
 }
 
 <?php if ( $arrow_style === 'custom' ) : ?>
-    .gtbs_slider--<?php echo esc_attr( $slider_id ); ?>.gtbs-swiper-arrow-custom .swiper-button-prev {
+    .bs_slider--<?php echo esc_attr( $slider_id ); ?>.bs-swiper-arrow-custom .swiper-button-prev {
         <?php if ( $settings['arrow_position_top'] !== '' ) : ?>
             top: <?php echo esc_html( $arrow_top ); ?>;
             bottom: auto;
@@ -78,7 +83,7 @@ $arrow_right  = isset( $settings['arrow_position_right'] ) ? intval( $settings['
         right: auto;
     }
 
-    .gtbs_slider--<?php echo esc_attr( $slider_id ); ?>.gtbs-swiper-arrow-custom .swiper-button-next {
+    .bs_slider--<?php echo esc_attr( $slider_id ); ?>.bs-swiper-arrow-custom .swiper-button-next {
         <?php if ( $settings['arrow_position_top'] !== '' ) : ?>
             top: <?php echo esc_html( $arrow_top ); ?>;
             bottom: auto;
@@ -93,8 +98,8 @@ $arrow_right  = isset( $settings['arrow_position_right'] ) ? intval( $settings['
 <?php endif;
 
 if ( $arrow_style === 'style4' ) : ?>
-.gtbs_slider--<?php echo esc_attr($slider_id); ?>.gtbs-swiper-arrow-style4 .swiper-button-next,
-.gtbs_slider--<?php echo esc_attr($slider_id); ?>.gtbs-swiper-arrow-style4 .swiper-button-prev {
+.bs_slider--<?php echo esc_attr($slider_id); ?>.bs-swiper-arrow-style4 .swiper-button-next,
+.bs_slider--<?php echo esc_attr($slider_id); ?>.bs-swiper-arrow-style4 .swiper-button-prev {
     color: <?php echo esc_html( $arrow_color ); ?>;
     background-color: <?php echo esc_html( $arrow_bg_color ); ?>;
     border-color: <?php echo esc_html( $arrow_border_color ); ?>;
@@ -102,8 +107,8 @@ if ( $arrow_style === 'style4' ) : ?>
     border-radius: <?php echo esc_html( $arrow_border_radius ); ?>;
 }
 
-.gtbs_slider--<?php echo esc_attr($slider_id); ?>.gtbs-swiper-arrow-style4 .swiper-button-next:hover,
-.gtbs_slider--<?php echo esc_attr($slider_id); ?>.gtbs-swiper-arrow-style4 .swiper-button-prev:hover {
+.bs_slider--<?php echo esc_attr($slider_id); ?>.bs-swiper-arrow-style4 .swiper-button-next:hover,
+.bs_slider--<?php echo esc_attr($slider_id); ?>.bs-swiper-arrow-style4 .swiper-button-prev:hover {
     color: <?php echo esc_html( $arrow_hover_color ); ?>;
     background-color: <?php echo esc_html( $arrow_hover_bg_color ); ?>;
     border-color: <?php echo esc_html( $arrow_border_color ); ?>;
@@ -111,14 +116,14 @@ if ( $arrow_style === 'style4' ) : ?>
 <?php endif; 
 
 if ( $arrow_style === 'style5' ) : ?>
-.gtbs_slider--<?php echo esc_attr( $slider_id ); ?>.gtbs-swiper-arrow-style5 .swiper-button-next,
-.gtbs_slider--<?php echo esc_attr( $slider_id ); ?>.gtbs-swiper-arrow-style5 .swiper-button-prev {
+.bs_slider--<?php echo esc_attr( $slider_id ); ?>.bs-swiper-arrow-style5 .swiper-button-next,
+.bs_slider--<?php echo esc_attr( $slider_id ); ?>.bs-swiper-arrow-style5 .swiper-button-prev {
     color: <?php echo esc_html( $arrow_color ); ?>;
     font-size: <?php echo esc_html( $arrow_font_size ); ?>;
 }
 
-.gtbs_slider--<?php echo esc_attr( $slider_id ); ?>.gtbs-swiper-arrow-style5 .swiper-button-next:hover,
-.gtbs_slider--<?php echo esc_attr( $slider_id ); ?>.gtbs-swiper-arrow-style5 .swiper-button-prev:hover {
+.bs_slider--<?php echo esc_attr( $slider_id ); ?>.bs-swiper-arrow-style5 .swiper-button-next:hover,
+.bs_slider--<?php echo esc_attr( $slider_id ); ?>.bs-swiper-arrow-style5 .swiper-button-prev:hover {
     color: <?php echo esc_html( $arrow_hover_color ); ?>;
 }
 <?php endif; ?>
@@ -128,42 +133,124 @@ if ( $arrow_style === 'style5' ) : ?>
 
 /*--------------------------- Dynamic Dot Style ---------------------------*/
 
-.gtbs_slider--<?php echo esc_attr($slider_id); ?>.gtbs-swiper-dot-<?php echo esc_attr( $bullets_style ); ?> .swiper-pagination-bullet {
+.bs_slider--<?php echo esc_attr($slider_id); ?>.bs-swiper-dot-<?php echo esc_attr( $bullets_style ); ?> .swiper-pagination-bullet {
     background-color: <?php echo esc_html( $bullets_bg_color ); ?>;
     background-color: <?php echo esc_html( $bullets_bg_color ); ?>;
     border: 2px solid <?php echo esc_html( $bullets_border_color ); ?>;
 }
 
-.gtbs_slider--<?php echo esc_attr($slider_id); ?>.gtbs-swiper-dot-<?php echo esc_attr( $bullets_style ); ?> .swiper-pagination-bullet-active,
-.gtbs_slider--<?php echo esc_attr($slider_id); ?>.gtbs-swiper-dot-<?php echo esc_attr( $bullets_style ); ?> .swiper-pagination-bullet:hover {
+.bs_slider--<?php echo esc_attr($slider_id); ?>.bs-swiper-dot-<?php echo esc_attr( $bullets_style ); ?> .swiper-pagination-bullet-active,
+.bs_slider--<?php echo esc_attr($slider_id); ?>.bs-swiper-dot-<?php echo esc_attr( $bullets_style ); ?> .swiper-pagination-bullet:hover {
     background-color: <?php echo esc_html( $bullets_hover_bg_color ); ?>;
     border: 2px solid <?php echo esc_html( $bullets_border_color ); ?>;
 }
 
 /* --------------------------- End Dynamic Dot Style --------------------------- */
 
+/*--------------------------- Dynamic Image Style ---------------------------*/
+
+.bs_slider--<?php echo esc_attr($slider_id); ?> {
+    border-radius: <?php echo esc_html( $border_radius_image ); ?>;
+}
+
+/* --------------------------- End Dynamic Image Style --------------------------- */
+
 /*--------------------------- Background Settings Style ---------------------------*/
 
 <?php
-if ( ! empty( $background_url ) || ! empty( $background_color ) || ! empty( $background_size ) || ! empty( $background_position ) || ! empty( $background_repeat ) ) :
-?>
+if ( ! function_exists( 'bs_generate_background_css' ) ) {
+    function bs_generate_background_css( $selector, $bg_settings ) {
 
-.gtbs_slider--<?php echo esc_attr( $slider_id ); ?>.gtbs-swiper {
-    <?php if ( ! empty( $background_color ) ) : ?>
-    background-color: <?php echo esc_html( $background_color ); ?>;
-    <?php endif; ?>
-    
-    <?php if ( ! empty( $background_url ) ) : ?>
-    background-image: url(<?php echo esc_url( $background_url ); ?>);
-    background-size: <?php echo esc_html( $background_size ); ?>;
-    background-position: <?php echo esc_html( $background_position ); ?>;
-    background-repeat: <?php echo esc_html( $background_repeat ); ?>;
-    <?php endif; ?>
-    
-    <?php if ( ! empty( $background_url ) || ! empty( $background_color ) ) : ?>
-    position: relative;
-    <?php endif; ?>
+        $background_url = '';
+        if ( ! empty( $bg_settings['background_id'] ) ) :
+            $background_url = wp_get_attachment_image_url( $bg_settings['background_id'], 'full' );
+        elseif ( ! empty( $bg_settings['background_url'] ) ) :
+            $background_url = $bg_settings['background_url'];
+        endif;
+
+        $background_size     = $bg_settings['background_size'] ?? 'cover';
+        $background_position = $bg_settings['background_position'] ?? 'center';
+        $background_repeat   = $bg_settings['background_repeat'] ?? 'no-repeat';
+        $background_color    = $bg_settings['background_color'] ?? '';
+
+        if ( $background_size === 'original' ) :    
+            $background_size = 'auto';
+        endif;
+
+        if ( ! empty( $background_url ) || ! empty( $background_color ) ) :
+            echo esc_attr( $selector ) . " {\n";
+            if ( ! empty( $background_color ) ) :
+                echo "    background-color: " . esc_html( $background_color ) . ";\n";
+            endif;
+            if ( ! empty( $background_url ) ) :
+                echo "    background-image: url(" . esc_url( $background_url ) . ");\n";
+            endif;
+            echo "    background-size: " . esc_html( $background_size ) . ";\n";
+            echo "    background-position: " . esc_html( $background_position ) . ";\n";
+            echo "    background-repeat: " . esc_html( $background_repeat ) . ";\n";
+            echo "}\n";
+        endif;
+    }
 }
-<?php endif; ?>
+
+// Slider background CSS
+bs_generate_background_css(
+    '.bs_slider--' . esc_attr( $slider_id ) . '.bs-swiper',
+    array(
+        'background_url'      => $background_url,
+        'background_size'     => $background_size,
+        'background_position' => $background_position,
+        'background_repeat'   => $background_repeat,
+        'background_color'    => $background_color,
+    )
+);
+
+// Slide-specific CSS
+if ( ! empty( $slides_background_settings ) && is_array( $slides_background_settings ) ) :
+    foreach ( $slides_background_settings as $slide_id => $slide_bg_settings ) :
+        bs_generate_background_css(
+            '.bs_slider--' . esc_attr( $slider_id ) . ' .bs-slide-' . esc_attr( $slide_id ),
+            $slide_bg_settings
+        );
+    endforeach;
+endif;
+
 
 /* --------------------------- End Background Settings Style --------------------------- */
+
+/*--------------------------- Dynamic Image Style ---------------------------*/
+
+if ( ! empty( $height_image ) ) : ?>
+    <?php if ( $control_enable_responsive ) : ?>
+        /* Responsive enabled: flexible width, fixed height */
+        .bs_slider--<?php echo esc_attr( $slider_id ); ?> .swiper-slide img {
+            height: <?php echo esc_html( $height_image . $image_unit ); ?>;
+            width: 100%;
+            max-width: 100%;
+        }
+        .bs_slider--<?php echo esc_attr( $slider_id ); ?> .swiper-slide {
+            height: auto;
+        }
+    <?php else : ?>
+        /* Responsive disabled: fixed height */
+        .bs_slider--<?php echo esc_attr( $slider_id ); ?> .swiper-slide img {
+            height: <?php echo esc_html( $height_image . $image_unit ); ?>;
+        }
+    <?php endif; ?>
+<?php endif; ?>
+
+/* --------------------------- End Dynamic Image Style --------------------------- */
+
+/*--------------------------- Custom CSS ---------------------------*/
+
+<?php
+$custom_css = isset( $settings['custom_css'] ) ? $settings['custom_css'] : '';
+if ( ! empty( $custom_css ) ) :
+    // Output custom CSS wrapped in slider-specific selector for scoping
+    echo "\n/* Custom CSS for Slider ID: " . esc_attr( $slider_id ) . " */\n";
+    echo wp_kses_post( $custom_css );
+    echo "\n";
+endif;
+?>
+
+/* --------------------------- End Custom CSS --------------------------- */

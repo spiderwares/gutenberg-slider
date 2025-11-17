@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     <?php endif; ?>
     <tr>
     <?php
-        gtbs_get_template(
+        bs_get_template(
             'fields/manage-fields.php',
             array(
                 'fields'  => $fields,
