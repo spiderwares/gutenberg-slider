@@ -1,26 +1,26 @@
 <?php
 /**
- * Cosmic Dashboard Class
+ * WPSBS Tab Class
  *
  * Handles the admin tab setup and related functionalities.
  *
- * @package Block_Slider
+ * @package Smart_Block_Slider
  */
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! class_exists( 'Cosmic_Tab' ) ) {
+if ( ! class_exists( 'WPSBS_Tab' ) ) {
 
 	/**
-	 * Class Cosmic_Tab
+	 * Class WPSBS_Tab
 	 *
-	 * Initializes the admin tab for Cosmic.
+	 * Initializes the admin tab for WPSBS.
 	 */
-	class Cosmic_Tab {
+	class WPSBS_Tab {
 
 		/**
-		 * Constructor for Cosmic_Tab class.
+		 * Constructor for WPSBS_Tab class.
 		 * Initializes the event handler.
 		 */
 		public function __construct() {
@@ -39,18 +39,18 @@ if ( ! class_exists( 'Cosmic_Tab' ) ) {
 		 */
 		public function enqueue_scripts() {
 			
-			// Enqueue the Cosmic tab CSS.
+			// Enqueue the WPSBS tab CSS.
 			wp_enqueue_style(
-				'cosmic-tab',
-				BS_URL . 'includes/admin/tab/css/cosmic-tab.css',
+				'wpsbs-tab',
+				WPSBS_URL . 'includes/admin/tab/css/wpsbs-tab.css',
 				array(),
-				BS_VERSION 
+				WPSBS_VERSION 
 			);
 
 		}
 
 	}
 
-	// Instantiate the Cosmic_Tab class.
-	new Cosmic_Tab();
+	// Instantiate the WPSBS_Tab class.
+	new WPSBS_Tab();
 }

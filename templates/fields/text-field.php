@@ -11,9 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     <input 
         type="text"
         id="<?php echo esc_attr( $field_Key ); ?>"
-        name="bs_slider_option[<?php echo esc_attr( $field_Key ); ?>]"
+        name="wpsbs_slider_option[<?php echo esc_attr( $field_Key ); ?>]"
         value="<?php echo esc_attr( $field_Val ); ?>"
-        class="bs_input"
+        class="wpsbs_input"
         placeholder="<?php echo isset( $field['placeholder'] ) ? esc_attr( $field['placeholder'] ) : ''; ?>"
     />
     <p><?php echo isset( $field['desc'] ) ? wp_kses_post( $field['desc'] ) : ''; ?></p>

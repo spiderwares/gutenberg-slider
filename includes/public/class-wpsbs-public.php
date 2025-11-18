@@ -3,13 +3,13 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( ! class_exists( 'BS_Public' ) ) :
+if( ! class_exists( 'WPSBS_Public' ) ) :
 
     /**
-     * Class BS_Public
+     * Class WPSBS_Public
      *
      */
-    class BS_Public {
+    class WPSBS_Public {
 
         /**
          * Settings array.
@@ -46,38 +46,38 @@ if( ! class_exists( 'BS_Public' ) ) :
             
             wp_enqueue_script( 
                 'swiper-bundle.min--js', 
-                BS_URL . 'assets/lib/swiper-bundle.min.js', 
+                WPSBS_URL . 'assets/lib/swiper-bundle.min.js', 
                 array(), 
-                BS_VERSION, 
+                WPSBS_VERSION, 
                 true 
             );
 
             wp_enqueue_style( 
                 'swiper-bundle.min--css', 
-                BS_URL . 'assets/lib/swiper-bundle.min.css', 
+                WPSBS_URL . 'assets/lib/swiper-bundle.min.css', 
                 array(), 
-                BS_VERSION
+                WPSBS_VERSION
             );
 
             wp_enqueue_script(
-                'bs-frontend',
-                BS_URL . 'assets/js/bs-frontend.js',
+                'wpsbs-frontend',
+                WPSBS_URL . 'assets/js/wpsbs-frontend.js',
                 array( 'jquery' ),
-                BS_VERSION,
+                WPSBS_VERSION,
                 true
             );
 
             wp_enqueue_style(
-                'bs-frontend-style',
-                BS_URL . 'assets/css/bs-frontend-style.css',
+                'wpsbs-frontend-style',
+                WPSBS_URL . 'assets/css/wpsbs-frontend-style.css',
                 array(),    
-                BS_VERSION
+                WPSBS_VERSION
             );
 
-            $bs_css = $this->bs_css( $this->settings, $this->slider_ID );
+            $wpsbs_css = $this->wpsbs_css( $this->settings, $this->slider_ID );
 
-            if ( ! empty( $bs_css ) ) :
-                wp_add_inline_style( 'bs-frontend-style', $bs_css );
+            if ( ! empty( $wpsbs_css ) ) :
+                wp_add_inline_style( 'wpsbs-frontend-style', $wpsbs_css );
             endif;
         }
 
@@ -85,7 +85,7 @@ if( ! class_exists( 'BS_Public' ) ) :
          * Generate CSS for the slider.
          *
          */
-        public static function bs_css( $settings, $slider_ID, $background_settings = array() ) {
+        public static function wpsbs_css( $settings, $slider_ID, $background_settings = array() ) {
             ob_start();
 
             $background_size     = isset( $background_settings['background_size'] ) ? $background_settings['background_size'] : '';
@@ -95,7 +95,7 @@ if( ! class_exists( 'BS_Public' ) ) :
             $background_url      = isset( $background_settings['background_url'] ) ? $background_settings['background_url'] : '';
             $slides_background_settings = isset( $background_settings['slides_background_settings'] ) ? $background_settings['slides_background_settings'] : array();
 
-            bs_get_template(
+            wpsbs_get_template(
                 'fields/dynamic-style.php',
                 array(
                     'settings'                => $settings,
@@ -114,5 +114,5 @@ if( ! class_exists( 'BS_Public' ) ) :
 
     }
 
-    new BS_Public();
+    new WPSBS_Public();
 endif;

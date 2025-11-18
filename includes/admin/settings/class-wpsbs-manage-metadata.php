@@ -3,14 +3,14 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( ! class_exists( 'BS_Manage_Metadata' ) ) :
+if( ! class_exists( 'WPSBS_Manage_Metadata' ) ) :
 
     /**
-     * Class BS_Manage_Metadata
+     * Class WPSBS_Manage_Metadata
      *
      * Handles the registration of the Spin Metabox.
      */
-    class BS_Manage_Metadata {
+    class WPSBS_Manage_Metadata {
 
          /**
          * Constructor for the class.
@@ -33,19 +33,19 @@ if( ! class_exists( 'BS_Manage_Metadata' ) ) :
         public function add_meta_boxes() {
 
             add_meta_box(
-                'bs_slides',
-                esc_html__( 'Manage Slides', 'block-slider' ),
+                'wpsbs_slides',
+                esc_html__( 'Manage Slides', 'smart-block-slider' ),
                 array( $this, 'genrate_slideshow_metabox' ),
-                'bs_slider',
+                'wpsbs_slider',
                 'normal',
                 'high'
             );
 
             add_meta_box(
-                'bs_slider_options',
-                esc_html__( 'Slider Options', 'block-slider' ),
-                array( $this, 'render_bs_options' ),
-                'bs_slider',
+                'wpsbs_slider_options',
+                esc_html__( 'Slider Options', 'smart-block-slider' ),
+                array( $this, 'render_wpsbs_options' ),
+                'wpsbs_slider',
                 'normal',
                 'high'
             );
@@ -57,7 +57,7 @@ if( ! class_exists( 'BS_Manage_Metadata' ) ) :
         public function enqueue_scripts() {
 
             $screen = get_current_screen();
-            if ( in_array( $screen->post_type, ['bs_slider', 'bs_slide'], true ) ) :
+            if ( in_array( $screen->post_type, ['wpsbs_slider', 'wpsbs_slide'], true ) ) :
                 wp_enqueue_script( 'jquery-ui-core' );
                 wp_enqueue_script( 'jquery-ui-widget' );
                 wp_enqueue_script( 'jquery-ui-sortable' );
@@ -66,25 +66,25 @@ if( ! class_exists( 'BS_Manage_Metadata' ) ) :
 
                 wp_enqueue_script( 
                     'wp-color-picker-alpha', 
-                    BS_URL . 'assets/lib/wp-color-picker-alpha.js', 
+                    WPSBS_URL . 'assets/lib/wp-color-picker-alpha.js', 
                     array( 'jquery', 'wp-color-picker' ), 
-                    BS_VERSION,
+                    WPSBS_VERSION,
                     true
                 );
                 
                 wp_enqueue_script( 
-                    'bs-admin', 
-                    BS_URL . 'assets/js/bs-admin.js', 
+                    'wpsbs-admin', 
+                    WPSBS_URL . 'assets/js/wpsbs-admin.js', 
                     array( 'jquery', 'wp-color-picker-alpha' ), 
-                    BS_VERSION, 
+                    WPSBS_VERSION, 
                     true 
                 );
 
                 wp_enqueue_style( 
-                    'bs-admin-style', 
-                    BS_URL . 'assets/css/bs-admin-style.css', 
+                    'wpsbs-admin-style', 
+                    WPSBS_URL . 'assets/css/wpsbs-admin-style.css', 
                     array(), 
-                    BS_VERSION 
+                    WPSBS_VERSION 
                 );
             endif;
         }
@@ -95,12 +95,12 @@ if( ! class_exists( 'BS_Manage_Metadata' ) ) :
          * @param object $post Post object.
          */
         public function genrate_slideshow_metabox( $post ) {
-            $imageIDs = get_post_meta( $post->ID, 'bs_slider_image_ids', true );
+            $imageIDs = get_post_meta( $post->ID, 'wpsbs_slider_image_ids', true );
 
             $slides_query = get_children( 
                 array(
                     'post_parent' => $post->ID,
-                    'post_type'   => 'bs_slide',
+                    'post_type'   => 'wpsbs_slide',
                     'numberposts' => -1,
                     'orderby'     => 'menu_order',
                     'order'       => 'ASC',
@@ -110,7 +110,7 @@ if( ! class_exists( 'BS_Manage_Metadata' ) ) :
             $slides_data = array();
             if ( $slides_query ) {
                 foreach ( $slides_query as $slide ) {
-                    $preview = BS_Helper::get_slide_preview_data( $slide );
+                    $preview = WPSBS_Helper::get_slide_preview_data( $slide );
                     $slides_data[] = array(
                         'id'     => $slide->ID,
                         'title'  => get_the_title( $slide ),
@@ -123,7 +123,7 @@ if( ! class_exists( 'BS_Manage_Metadata' ) ) :
             
             $url = add_query_arg( 
                 array(    
-                    'post_type' => 'bs_slide',
+                    'post_type' => 'wpsbs_slide',
                     'parent_slider' => $post->ID
                 ),
                 admin_url( 'post-new.php' ) 
@@ -133,10 +133,10 @@ if( ! class_exists( 'BS_Manage_Metadata' ) ) :
             $is_saved      = isset( $post->ID ) && $post->ID > 0 && $post->post_status !== 'auto-draft' ? true : false;
             $add_slide_url = isset( $add_slide_url ) ? $add_slide_url : '#';
     
-            bs_get_template( 
+            wpsbs_get_template( 
                 'metabox/slides.php', 
                 array(
-                    'metaKey'       => 'bs_slider_image_ids',
+                    'metaKey'       => 'wpsbs_slider_image_ids',
                     'slider_id'     => $post->ID,
                     'imageIDs'      => $imageIDs,
                     'slidesData'    => $slides_data,
@@ -151,18 +151,18 @@ if( ! class_exists( 'BS_Manage_Metadata' ) ) :
          *
          * @param object $post Post object.
          */
-        public function render_bs_options( $post ) {
-			$settings = get_post_meta( $post->ID, 'bs', true );
+        public function render_wpsbs_options( $post ) {
+			$settings = get_post_meta( $post->ID, 'wpsbs', true );
 			
 			// Ensure settings is an array with default values
 			if ( ! is_array( $settings ) ) :
 				$settings = array();
             endif;
 
-			require_once BS_PATH . 'includes/admin/settings/views/bs-option.php';
+			require_once WPSBS_PATH . 'includes/admin/settings/views/wpsbs-option.php';
 		}
 
     }
 
-    new BS_Manage_Metadata();
+    new WPSBS_Manage_Metadata();
 endif;

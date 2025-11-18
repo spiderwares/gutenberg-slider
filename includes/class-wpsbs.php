@@ -3,27 +3,27 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! class_exists( 'BS' ) ) :
+if ( ! class_exists( 'WPSBS' ) ) :
 
     /**
-     * Main BS Class
+     * Main WPSBS Class
      *
-     * @class BS   
+     * @class WPSBS   
      * @version 1.0.0
      */
-    final class BS {
+    final class WPSBS {
 
         /**
          * The single instance of the class.
          *
-         * @var BS
+         * @var WPSBS
          */
         protected static $instance = null;
 
         /**
          * The public class instance.
          *
-         * @var BS
+         * @var WPSBS
          */
         public $public = null;
 
@@ -43,12 +43,12 @@ if ( ! class_exists( 'BS' ) ) :
         }
 
         /**
-         * Main BS Instance.
+         * Main WPSBS Instance.
          *
-         * Ensures only one instance of BS is loaded or can be loaded.
+         * Ensures only one instance of WPSBS is loaded or can be loaded.
          *
          * @static
-         * @return BS - Main instance.
+         * @return WPSBS - Main instance.
          */
         public static function instance() {
             if ( is_null( self::$instance ) ) :
@@ -58,7 +58,7 @@ if ( ! class_exists( 'BS' ) ) :
                  * Fire a custom action to allow dependencies
                  * after the successful plugin setup
                  */
-                do_action( 'bs_plugin_loaded' );
+                do_action( 'wpsbs_plugin_loaded' );
             endif;
             return self::$instance;
         }
@@ -73,27 +73,27 @@ if ( ! class_exists( 'BS' ) ) :
                 $this->includes_public();
             endif;
             
-            require_once BS_PATH . 'includes/bs-core-functions.php';
-            require_once BS_PATH . 'includes/admin/settings/class-bs-cpt.php';
-            require_once BS_PATH . 'includes/admin/settings/class-bs-helper.php';
+            require_once WPSBS_PATH . 'includes/wpsbs-core-functions.php';
+            require_once WPSBS_PATH . 'includes/admin/settings/class-wpsbs-cpt.php';
+            require_once WPSBS_PATH . 'includes/admin/settings/class-wpsbs-helper.php';
         }
         
         /**
          * Include Admin required files.
          */
         public function includes_admin() {
-            require_once BS_PATH . 'includes/class-bs-install.php';
-            require_once BS_PATH . 'includes/admin/tab/class-cosmic-tab.php';
-            require_once BS_PATH . 'includes/admin/settings/class-bs-manage-metadata.php';
-            require_once BS_PATH . 'includes/admin/settings/class-bs-settings-field.php';
+            require_once WPSBS_PATH . 'includes/class-wpsbs-install.php';
+            require_once WPSBS_PATH . 'includes/admin/tab/class-wpsbs-tab.php';
+            require_once WPSBS_PATH . 'includes/admin/settings/class-wpsbs-manage-metadata.php';
+            require_once WPSBS_PATH . 'includes/admin/settings/class-wpsbs-settings-field.php';
         }
         
         /**
          * Include Public required files.
          */
         public function includes_public() {
-            require_once BS_PATH . 'includes/public/class-bs-public.php';
-            require_once BS_PATH . 'includes/public/class-bs-shortcode.php';
+            require_once WPSBS_PATH . 'includes/public/class-wpsbs-public.php';
+            require_once WPSBS_PATH . 'includes/public/class-wpsbs-shortcode.php';
 		}
     }
 

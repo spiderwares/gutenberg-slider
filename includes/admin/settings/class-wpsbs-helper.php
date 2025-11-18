@@ -6,13 +6,13 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( ! class_exists( 'BS_Helper' ) ) :
+if( ! class_exists( 'WPSBS_Helper' ) ) :
 
     /**
-     * Class BS_Helper
+     * Class WPSBS_Helper
      *
      */
-    class BS_Helper {
+    class WPSBS_Helper {
 
         /**
          * Get slide preview data
@@ -23,7 +23,7 @@ if( ! class_exists( 'BS_Helper' ) ) :
             $preview = ['type' => 'text', 'thumb' => null];
 
             if ($thumb_id = get_post_thumbnail_id($post->ID)) :
-                if ($url = wp_get_attachment_image_url($thumb_id, 'bs_slideshow_thumbnail')) :        
+                if ($url = wp_get_attachment_image_url($thumb_id, 'wpsbs_slideshow_thumbnail')) :        
                     return ['type' => 'image', 'thumb' => $url];
                 endif;
             endif;
@@ -54,7 +54,7 @@ if( ! class_exists( 'BS_Helper' ) ) :
                 $attrs  = isset($block['attrs']) ? $block['attrs'] : [];
                 $img_id = isset($attrs['id']) ? $attrs['id'] : (isset($attrs['mediaId']) ? $attrs['mediaId'] : (isset($attrs['ids'][0]) ? $attrs['ids'][0] : 0));
         
-                if ($img_id && ($url = wp_get_attachment_image_url((int) $img_id, 'bs_slideshow_thumbnail'))) :
+                if ($img_id && ($url = wp_get_attachment_image_url((int) $img_id, 'wpsbs_slideshow_thumbnail'))) :
                     return ['type' => 'image', 'thumb' => $url];
                 endif;
         
@@ -74,13 +74,13 @@ if( ! class_exists( 'BS_Helper' ) ) :
             return $preview;
         }
 
-        public static function bs_get_background_settings( $post_id ) {
+        public static function wpsbs_get_background_settings( $post_id ) {
             if ( empty( $post_id ) ) return array();
     
-            $background_size     = get_post_meta( $post_id, 'bs_background_size', true );
-            $background_position = get_post_meta( $post_id, 'bs_background_position', true );
-            $background_repeat   = get_post_meta( $post_id, 'bs_background_repeat', true );
-            $background_color    = get_post_meta( $post_id, 'bs_background_color', true );
+            $background_size     = get_post_meta( $post_id, 'wpsbs_background_size', true );
+            $background_position = get_post_meta( $post_id, 'wpsbs_background_position', true );
+            $background_repeat   = get_post_meta( $post_id, 'wpsbs_background_repeat', true );
+            $background_color    = get_post_meta( $post_id, 'wpsbs_background_color', true );
     
             // Get featured image URL
             $background_id   = get_post_thumbnail_id( $post_id );

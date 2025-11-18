@@ -8,33 +8,33 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
 <td>
-    <div class="bs_number_field">
-        <div class="bs_number_wrap">
+    <div class="wpsbs_number_field">
+        <div class="wpsbs_number_wrap">
             <input 
                 type="number" 
                 id="<?php echo esc_attr( $field_Key ); ?>"
-                name="bs_slider_option[<?php echo esc_attr( $field_Key ); ?>]" 
+                name="wpsbs_slider_option[<?php echo esc_attr( $field_Key ); ?>]" 
                 value="<?php echo esc_attr( $field_Val ); ?>"
                 min="<?php echo isset( $field['min'] ) ? esc_attr( $field['min'] ) : '0'; ?>"
                 max="<?php echo isset( $field['max'] ) ? esc_attr( $field['max'] ) : ''; ?>"
                 step="<?php echo isset( $field['step'] ) ? esc_attr( $field['step'] ) : '1'; ?>"
-                class="bs_input"
+                class="wpsbs_input"
             >
 
             <?php if ( isset( $field['unit'] ) && is_array( $field['unit'] ) ) : ?>
                 <?php if ( isset( $field['unit_disabled'] ) && $field['unit_disabled'] ) : ?>
-                    <span class="bs_unit_text">
+                    <span class="wpsbs_unit_text">
                         <?php echo esc_html( $field['unit'][ $field['unit_selected'] ] ); ?>
                     </span>
                 <?php else : ?>
                     <?php
                     // Load saved options (if needed)
-                    $options = get_option( 'bs_slider_option', array() );
+                    $options = get_option( 'wpsbs_slider_option', array() );
                     $selected_unit = isset( $options[ $field_Key . '_unit' ] ) 
                         ? $options[ $field_Key . '_unit' ] 
                         : ( $field['unit_selected'] ?? '' );
                     ?>
-                    <select name="bs_slider_option[<?php echo esc_attr( $field_Key . '_unit' ); ?>]">
+                    <select name="wpsbs_slider_option[<?php echo esc_attr( $field_Key . '_unit' ); ?>]">
                         <?php foreach ( $field['unit'] as $key => $label ) : ?>
                             <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $selected_unit, $key ); ?>>
                                 <?php echo esc_html( $label ); ?>
