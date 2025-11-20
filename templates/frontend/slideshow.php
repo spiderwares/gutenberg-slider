@@ -4,18 +4,18 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( $hasSlides || $hasImages ) :
-    if ( ! empty( $wpsbs_css ) ) : ?>
-        <style><?php echo esc_html( $wpsbs_css ); ?></style>
+    if ( ! empty( $wpbs_css ) ) : ?>
+        <style><?php echo esc_html( $wpbs_css ); ?></style>
     <?php endif; ?>
 
-    <div class="wpsbs-swiper swiper swiper-slider-wrapper <?php echo esc_attr($slideshow_main_class); ?>" 
+    <div class="wpbs-swiper swiper swiper-slider-wrapper <?php echo esc_attr($slideshow_main_class); ?>" 
     data-options='<?php echo esc_attr( $options );?>'
     <?php echo wp_kses_post( $wrapper_style ); ?>>
         <div class="swiper-wrapper">
             <?php if ( $hasSlides ) :
                 foreach ( $slides as $slide_id => $html ) : ?>
-                    <div class="swiper-slide wpsbs-slide-<?php echo esc_attr( $slide_id ); ?>">
-                        <div class="wpsbs-slide-content">
+                    <div class="swiper-slide wpbs-slide-<?php echo esc_attr( $slide_id ); ?>">
+                        <div class="wpbs-slide-content">
                             <?php echo wp_kses_post( $html ); ?>
                         </div>
                     </div>
@@ -51,16 +51,7 @@ if ( $hasSlides || $hasImages ) :
         <?php endif; ?>
 
         <!-- Scrollbar --->
-        <?php
-             $scrollbar = apply_filters( 'wpsbs_pro_scrollbar', '', array(
-                'image_ids' => $hasImages ? $imageIDs : array(),
-                'options'   => $options,
-                'class'     => $slideshow_main_class,
-            ) );
-
-            // Proper escaping for filter output
-            echo wp_kses_post( $scrollbar ); 
-        ?>
+        <div class="swiper-scrollbar"></div>
 
         <!-- Next & Prev Button -->
         <?php if( $arrow_style != 'none' ): ?>
@@ -78,21 +69,64 @@ if ( $hasSlides || $hasImages ) :
 
     <!-- Swiper Thumbs Gallery -->
     <?php
-    if ( ! empty( $thumb_gallery ) && ( $hasSlides || $hasImages ) ) :
-        $thumb_gallery = apply_filters( 'wpsbs_pro_thumb_gallery', '', array(
-            'image_ids'      => $hasImages ? $imageIDs : array(),
-            'slides'         => $hasSlides ? $slides : array(),
-            'thumb_width'    => $thumb_width,
-            'thumb_height'   => $thumb_height,
-            'main_class'     => $slideshow_main_class,
-            'hasSlides'      => $hasSlides,
-            'hasImages'      => $hasImages,
-        ) );
-        
-        if ( ! empty( $thumb_gallery ) ) :
-            echo wp_kses_post( $thumb_gallery );
+        // If thumbnail gallery is enabled and slides/images exist
+        if ( ! empty( $thumb_gallery ) && ( $hasSlides || $hasImages ) ) :
+
+            ?>
+            <div class="wpbs-swiper-thumbs-gallery swiper">
+                <div class="swiper-wrapper">
+
+                    <?php if ( $hasSlides ) : ?>
+
+                        <?php foreach ( $slides as $slide_id => $html ) : ?>
+                            <?php
+                            $thumb_image_id = get_post_thumbnail_id( $slide_id );
+                            $thumb_url = $thumb_image_id ? wp_get_attachment_image_url( $thumb_image_id, array( $thumb_width, $thumb_height ) ) : '';
+
+                            // If no featured image → check slide blocks
+                            if ( ! $thumb_url ) :
+                                $blocks = parse_blocks( $html );
+                                foreach ( $blocks as $block ) :
+                                    if ( isset( $block['attrs']['id'] ) ) :
+                                        $thumb_url = wp_get_attachment_image_url( $block['attrs']['id'], array( $thumb_width, $thumb_height ) );
+                                        if ( $thumb_url ) break;
+                                    endif;
+                                endforeach;
+                            endif;
+                            ?>
+
+                            <?php if ( $thumb_url ) : ?>
+                                <div class="swiper-slide">
+                                    <img src="<?php echo esc_url( $thumb_url ); ?>" 
+                                        alt="" 
+                                        style="width: <?php echo esc_attr( $thumb_width ); ?>px; 
+                                                height: <?php echo esc_attr( $thumb_height ); ?>px; 
+                                                object-fit: cover;">
+                                </div>
+                            <?php endif; ?>
+
+                        <?php endforeach; ?>
+
+                    <?php elseif ( $hasImages ) : ?>
+
+                        <?php foreach ( $imageIDs as $imageID ) : ?>
+                            <div class="swiper-slide">
+                                <img src="<?php echo esc_url( wp_get_attachment_image_url( $imageID, array( $thumb_width, $thumb_height ) ) ); ?>" 
+                                    alt="" 
+                                    style="width: <?php echo esc_attr( $thumb_width ); ?>px; 
+                                            height: <?php echo esc_attr( $thumb_height ); ?>px; 
+                                            object-fit: cover;">
+                            </div>
+                        <?php endforeach; ?>
+
+                    <?php endif; ?>
+
+                </div>
+            </div>
+            <?php
+
         endif;
-    endif;
-    ?>
+        ?>
+
 
 <?php endif; ?> 

@@ -1,0 +1,501 @@
+/*--------------------------- Arrow Style ---------------------------*/
+
+/* === Style 1 === */
+.wpbs-swiper-arrow-style1 .swiper-button-next:after,
+.wpbs-swiper-arrow-style1 .swiper-button-prev:after {
+    font-size: inherit;
+    opacity: unset;
+}
+
+/* === Style 2 === */
+.wpbs-swiper-arrow-style2 .swiper-button-next,
+.wpbs-swiper-arrow-style2 .swiper-button-prev {
+    border: 2px solid #555;
+    border-radius: inherit;
+    width: 33px;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: unset;
+}
+
+.wpbs-swiper-arrow-style2 .swiper-button-next:after, 
+.wpbs-swiper-arrow-style2 .swiper-button-prev:after {
+    font-size: inherit;
+}
+
+/* === Style 3 === */
+.wpbs-swiper-arrow-style3 {
+    position: relative;
+}
+
+.wpbs-swiper-arrow-style3 .swiper-button-prev,
+.wpbs-swiper-arrow-style3 .swiper-button-next {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    height: auto;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    z-index: 10;
+    margin: 0;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+.wpbs-swiper-arrow-style3 .swiper-button-prev {
+    left: 0;
+}
+
+.wpbs-swiper-arrow-style3 .swiper-button-next {
+    right: 0;
+}
+
+.wpbs-swiper-arrow-style3 .swiper-button-prev:after,
+.wpbs-swiper-arrow-style3 .swiper-button-next:after {
+    font-size: inherit;
+}
+
+/* === Style 4 === */
+.wpbs-swiper-arrow-style4 .swiper-button-next,
+.wpbs-swiper-arrow-style4 .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    color: #ffffff;
+    border: 2px solid #80b3d9;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: inherit;
+    line-height: 1;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.wpbs-swiper-arrow-style4 .swiper-button-next::after,
+.wpbs-swiper-arrow-style4 .swiper-button-prev::after {
+    font-size: inherit;
+    content: '\27A1';
+    display: block;
+}
+
+.wpbs-swiper-arrow-style4 .swiper-button-prev::after {
+    content: '\2B05'; 
+}
+
+.wpbs-swiper-arrow-style4 .swiper-button-next:hover,
+.wpbs-swiper-arrow-style4 .swiper-button-prev:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* === Style 5 === */
+.wpbs-swiper-arrow-style5 .swiper-button-next,
+.wpbs-swiper-arrow-style5 .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    font-size: inherit; 
+    color: #000;
+    opacity: 1;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.wpbs-swiper-arrow-style5 .swiper-button-prev::after,
+.wpbs-swiper-arrow-style5 .swiper-button-next::after {
+    font-weight: bold;
+    font-size: inherit;
+}
+
+.wpbs-swiper-arrow-style5 .swiper-button-prev::after {
+    content: '←';
+}
+
+.wpbs-swiper-arrow-style5 .swiper-button-next::after {
+    content: '→';
+}
+
+.wpbs-swiper-arrow-style5 .swiper-button-prev:hover,
+.wpbs-swiper-arrow-style5 .swiper-button-next:hover {
+    color: #333;
+}
+
+/* === Custom Arrow === */
+.wpbs-swiper-arrow-custom .swiper-button-next,
+.wpbs-swiper-arrow-custom .swiper-button-prev {
+    border: 2px solid #fff;
+    border-radius: inherit;
+    width: 33px;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wpbs-swiper-arrow-custom .swiper-button-next:after, 
+.wpbs-swiper-arrow-custom .swiper-button-prev:after {
+    font-size: inherit;
+}
+
+/*--------------------------- End Arrow Style ---------------------------*/ 
+
+/*--------------------------- Dot Pagination Style ---------------------------*/
+
+.wpbs-swiper *:focus {
+    outline-width: 2px;
+    outline-style: none;
+}
+
+/* === Style 1  === */
+.wpbs-swiper-dot-style1 .swiper-pagination-bullet {
+    background: transparent;
+    border: 1px solid #fff;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    opacity: 1;
+}
+.wpbs-swiper-dot-style1 .swiper-pagination-bullet-active {
+    background: #fff;
+}
+
+/* === Style 2 === */
+.wpbs-swiper-dot-style2 .swiper-pagination-bullet {
+    background: transparent;
+    border: 1px solid #fff;
+    width: 10px;
+    height: 10px;
+    border-radius: 0;
+    opacity: 1;
+}
+.wpbs-swiper-dot-style2 .swiper-pagination-bullet-active {
+    background: #fff;
+}
+
+/* === Style 3 === */
+.wpbs-swiper-dot-style3 .swiper-pagination-bullet {
+    background: #999;
+    border-radius: 0;
+    width: 20px;
+    height: 4px;
+    opacity: 0.6;
+}
+.wpbs-swiper-dot-style3 .swiper-pagination-bullet-active {
+    background: #fff;
+    opacity: 1;
+}
+
+/* === Style 4 === */
+.wpbs-swiper-dot-style4 .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 4px;
+    transition: all 0.3s ease;
+    background: transparent; 
+    border: 2px solid #fff;  
+    opacity: 0.8;
+}
+
+.wpbs-swiper-dot-style4 .swiper-pagination-bullet-active {
+    width: 28px;
+    border-radius: 999px;
+    background: #fff; 
+    opacity: 1;
+}
+
+/*--------------------------- End Dot Pagination Style ---------------------------*/
+
+/*--------------------------- Grab Cursor ---------------------------*/
+
+.wpbs-swiper-grab-cursor {
+    cursor: grab;
+}
+.wpbs-swiper-grab-cursor:active {
+    cursor: grabbing;
+}
+
+/*--------------------------- End Grab Cursor ---------------------------*/
+
+/*--------------------------- Progress Bar ---------------------------*/
+
+.wpbs-progress-top .swiper-pagination-progressbar {
+    top: 0;
+    bottom: auto !important;
+    z-index: 99;
+    height: 6px !important;
+}
+
+.wpbs-progress-bottom .swiper-pagination-progressbar {
+    bottom: 0;
+    top: auto !important;
+    z-index: 99;
+    height: 6px !important;
+} 
+
+.wpbs-progress-left .swiper-pagination-progressbar {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: auto;
+    z-index: 99;
+    width: 6px;
+}
+
+.wpbs-progress-right .swiper-pagination-progressbar {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: auto;
+    width: 6px;
+    z-index: 99;
+}
+
+.wpbs-progressbar-fill {
+    width: 100%;
+    height: 100%;
+}
+
+/*--------------------------- End Progress Bar ---------------------------*/
+
+/*--------------------------- Autoplay Porgress ---------------------------*/
+
+.wpbs-swiper .autoplay-progress {
+  position: absolute;
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.wpbs-swiper .wpbs-timeleft-top-left {
+  top: 16px;
+  left: 16px;
+}
+
+.wpbs-swiper .wpbs-timeleft-top-right {
+  top: 16px;
+  right: 16px;
+}
+
+.wpbs-swiper .wpbs-timeleft-bottom-left {
+  bottom: 16px;
+  left: 16px;
+}
+
+.wpbs-swiper .wpbs-timeleft-bottom-right {
+  bottom: 16px;
+  right: 16px;
+}
+
+.wpbs-swiper .autoplay-progress svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  stroke-width: 4px;
+  fill: none;
+  stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
+  stroke-dasharray: 125.6;
+  transform: rotate(-90deg);
+}
+
+/*--------------------------- End Autoplay Porgress ---------------------------*/
+
+/*--------------------------- Scrollbar Control ---------------------------*/
+
+.wpbs-scrollbar.swiper-scrollbar {
+    background-color: #fff;
+    height: 8px;
+    border-radius: 4px;
+}
+
+.wpbs-scrollbar-drag.swiper-scrollbar-drag {
+    background: #999999; 
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.wpbs-scrollbar-wrapper {
+    margin-top: 10px;
+}
+
+.wpbs-scrollbar-top .swiper-scrollbar {
+    top: 0 !important;
+    bottom: auto !important;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.wpbs-scrollbar-left .swiper-scrollbar {
+    left: 0 !important;
+    right: auto !important;
+    width: 8px;
+    height: 100%;
+    position: absolute;
+}
+
+.wpbs-scrollbar-right .swiper-scrollbar {
+    right: 0 !important;
+    left: auto !important;
+    width: 8px;
+    height: 100%;
+    position: absolute;
+}
+
+.wpbs-scrollbar-left .swiper-scrollbar-drag,
+.wpbs-scrollbar-right .swiper-scrollbar-drag {
+    width: 100%;
+}
+
+/*--------------------------- End Scrollbar Control ---------------------------*/
+
+/*--------------------------- RTL ---------------------------*/
+
+.wpbs-swiper[dir="rtl"] .swiper-button-next {
+    left: 0;
+    right: auto;
+}
+
+.wpbs-swiper[dir="rtl"] .swiper-button-prev {
+    right: 0;
+    left: auto;
+}
+/*--------------------------- End RTL ---------------------------*/
+
+/*--------------------------- Thumbs Gallery ---------------------------*/
+
+.wpbs-swiper-thumbs-gallery {
+    overflow: hidden;
+}
+
+.wpbs-swiper-thumbs-gallery .swiper-wrapper {
+    display: flex;
+    align-items: center; 
+    width: 100%;
+    margin: 0;
+}
+
+.wpbs-swiper-thumbs-gallery .swiper-slide {
+    opacity: 0.5;
+    border: 2px solid transparent;
+    width: auto !important;
+    height: auto !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border 0.2s, opacity 0.2s;
+    box-sizing: border-box;
+}
+
+.wpbs-swiper-thumbs-gallery .swiper-slide-thumb-active {
+    opacity: 1;
+}
+
+.wpbs-swiper-thumbs-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/*--------------------------- End Thumbs Gallery ---------------------------*/
+
+/*--------------------------- Effect Fraction ---------------------------*/
+
+.wpbs-swiper .wpbs-fraction-top-left {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    text-align: left;
+}
+
+.wpbs-swiper .wpbs-fraction-top-right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-align: right;
+}
+
+.wpbs-swiper .wpbs-fraction-bottom-left {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    text-align: left;
+}
+
+.wpbs-swiper .wpbs-fraction-bottom-right{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    text-align: right;
+}
+
+/*--------------------------- End Effect Fraction ---------------------------*/
+
+/* --------------------------- Custom Pagination Style --------------------------- */
+
+.wpbs-pagination-custom.wpbs-swiper-custom-style1 .swiper-pagination-bullet {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 14px;
+    color: var(--wpbs-custom-active-text-color, #0a0607); 
+    opacity: 1;
+    background: var(--wpbs-custom-active-bg-color, #0a0607); 
+}
+.wpbs-pagination-custom.wpbs-swiper-custom-style1 .swiper-pagination-bullet-active {
+    color: var(--wpbs-custom-text-color, #ff0000); 
+    background: var(--wpbs-custom-bg-color, #007aff);
+}
+
+/*--------------------------- End Custom Pagination Style ---------------------------*/
+
+/*--------------------------- Table Styles ---------------------------*/
+
+.wpbs-swiper .swiper-slide table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+}
+
+.wpbs-swiper .swiper-slide table,
+.wpbs-swiper .swiper-slide table th,
+.wpbs-swiper .swiper-slide table td {
+    border: 1px solid #000;
+}
+
+.wpbs-swiper .swiper-slide table th,
+.wpbs-swiper .swiper-slide table td {
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.wpbs-swiper .swiper-slide table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
+/*--------------------------- End Table Styles ---------------------------*/
+
+
+

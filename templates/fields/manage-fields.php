@@ -17,8 +17,8 @@ foreach( $fields as $field_Key => $field ) :
         <?php 
         switch( $field['field_type'] ) :
             
-            case "wpsbsradio" : 
-                wpsbs_get_template(
+            case "wpbsradio" : 
+                wpbs_get_template(
                     'fields/radio-field.php',
                     array(
                         'field'     => $field,
@@ -28,8 +28,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
 
-            case "wpsbsswitch" : 
-                wpsbs_get_template( 
+            case "wpbsswitch" : 
+                wpbs_get_template( 
                     'fields/switch-field.php',
                     array(
                         'field'     => $field,
@@ -39,8 +39,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
 
-            case "wpsbsnumber":
-                wpsbs_get_template( 
+            case "wpbsnumber":
+                wpbs_get_template( 
                     'fields/number-field.php', 
                     array(
                         'field'     => $field,
@@ -50,8 +50,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
                 
-            case "wpsbscolor":
-                wpsbs_get_template( 
+            case "wpbscolor":
+                wpbs_get_template( 
                     'fields/color-field.php', 
                     array(
                         'field'     => $field,
@@ -61,8 +61,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
 
-            case "wpsbsselect":
-                wpsbs_get_template( 
+            case "wpbsselect":
+                wpbs_get_template( 
                     'fields/select-field.php', 
                     array(
                         'field'     => $field,
@@ -72,8 +72,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
 
-            case "wpsbsrange":
-                wpsbs_get_template( 
+            case "wpbsrange":
+                wpbs_get_template( 
                     'fields/range-field.php', 
                     array(
                         'field'     => $field,
@@ -83,8 +83,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
 
-            case "wpswpsbstextarea":
-                wpsbs_get_template(
+            case "wpswpbstextarea":
+                wpbs_get_template(
                     'fields/textarea-field.php',
                     array(
                         'field'     => $field,
@@ -94,8 +94,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
 
-            case "wpsbstext":
-                wpsbs_get_template(
+            case "wpbstext":
+                wpbs_get_template(
                     'fields/text-field.php',
                     array(
                         'field'     => $field,

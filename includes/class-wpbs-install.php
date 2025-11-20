@@ -7,21 +7,21 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Installation related functions and actions.
  */
 
-if ( ! class_exists( 'WPSBS_Install' ) ) :
+if ( ! class_exists( 'WPBS_Install' ) ) :
 
     /**
-     * WPSBS_Install Class
+     * WPBS_Install Class
      *
      * Handles installation processes like creating database tables,
      * setting up roles, and creating necessary pages on plugin activation.
      */
-    class WPSBS_Install {
+    class WPBS_Install {
 
         /**
          * Hook into WordPress actions and filters.
          */
         public static function init() {
-            add_filter( 'plugin_action_links_' . plugin_basename( WPSBS_FILE ), array( __CLASS__, 'plugin_action_links' ) );
+            add_filter( 'plugin_action_links_' . plugin_basename( WPBS_FILE ), array( __CLASS__, 'plugin_action_links' ) );
             add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
         }
 
@@ -42,8 +42,8 @@ if ( ! class_exists( 'WPSBS_Install' ) ) :
          * @return array Modified array of action links.
          */
         public static function plugin_row_meta( $links, $file ) {
-            if ( plugin_basename( WPSBS_FILE ) === $file ) :
-                $doc_url   = esc_url( 'https://documentation.cosmicinfosoftware.com/smart-block-slider/documents/getting-started/introduction/' );
+            if ( plugin_basename( WPBS_FILE ) === $file ) :
+                $doc_url   = esc_url( 'https://documentation.cosmicinfosoftware.com/blocksy-slider/documents/getting-started/introduction/' );
                 $doc_label = esc_html( 'Documentation' );
         
                 $new_links = array(
@@ -66,15 +66,15 @@ if ( ! class_exists( 'WPSBS_Install' ) ) :
             $action_links = array(
                 'manage_sldier' => sprintf(
                     '<a href="%s" aria-label="%s">%s</a>',
-                    admin_url( 'edit.php?post_type=wpsbs_slider' ),
-                    esc_attr__( 'Manage Sliders', 'smart-block-slider' ),
-                    esc_html__( 'Manage Sliders', 'smart-block-slider' )
+                    admin_url( 'edit.php?post_type=wpbs_slider' ),
+                    esc_attr__( 'Manage Sliders', 'blocksy-slider' ),
+                    esc_html__( 'Manage Sliders', 'blocksy-slider' )
                 ),
             );
             return array_merge( $action_links, $links );
         }
     }
 
-    WPSBS_Install::init();
+    WPBS_Install::init();
 
 endif;

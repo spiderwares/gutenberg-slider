@@ -35,15 +35,17 @@ $border_radius_image      = isset( $settings['border_radius_image'] ) ? $setting
 $width_image              = isset( $settings['width_image'] ) ? $settings['width_image'] : '';
 $height_image             = isset( $settings['height_image'] ) ? $settings['height_image'] : '';
 $image_unit               = isset( $settings['image_unit'] ) ? $settings['image_unit'] : 'px';
-$control_enable_responsive = isset( $settings['control_enable_responsive'] ) && ( $settings['control_enable_responsive'] == '1' || $settings['control_enable_responsive'] === true );
 
-$autoplay_timeleft_font_size = isset( $settings['control_autoplay_time_font_size'] ) ? intval( $settings['control_autoplay_time_font_size'] ) : 20;
+$control_enable_responsive    = isset( $settings['control_enable_responsive'] ) && ( $settings['control_enable_responsive'] == '1' || $settings['control_enable_responsive'] === true );
+$autoplay_timeleft_font_size  = isset( $settings['control_autoplay_timeleft_font_size'] ) ? intval( $settings['control_autoplay_timeleft_font_size'] ) : 20;
+$slide_control_view_auto      = isset( $settings['slide_control_view_auto'] ) && ( $settings['slide_control_view_auto'] == '1' || $settings['slide_control_view_auto'] === true );
+
 ?>
 
 
 /* --------------------------- Dynamic Arrow Style --------------------------- */
-.wpsbs_slider--<?php echo esc_attr($slider_id); ?>.wpsbs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-next,
-.wpsbs_slider--<?php echo esc_attr($slider_id); ?>.wpsbs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-prev {
+.wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-next,
+.wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-prev {
     color: <?php echo esc_html( $arrow_color ); ?>;
     <?php if ( $arrow_style !== 'style1' && $arrow_style !== 'custom' && $arrow_style !== 'style5' ) : ?>
     background-color: <?php echo esc_html( $arrow_bg_color ); ?>;
@@ -53,8 +55,8 @@ $autoplay_timeleft_font_size = isset( $settings['control_autoplay_time_font_size
     <?php endif; ?>
 }
 
-.wpsbs_slider--<?php echo esc_attr($slider_id); ?>.wpsbs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-next:hover,
-.wpsbs_slider--<?php echo esc_attr($slider_id); ?>.wpsbs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-prev:hover {
+.wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-next:hover,
+.wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-prev:hover {
     color: <?php echo esc_html( $arrow_hover_color ); ?>;
     <?php if ( $arrow_style !== 'style1' && $arrow_style !== 'custom' && $arrow_style !== 'style5'  ) : ?>
     background-color: <?php echo esc_html( $arrow_hover_bg_color ); ?>;
@@ -64,8 +66,8 @@ $autoplay_timeleft_font_size = isset( $settings['control_autoplay_time_font_size
     <?php endif; ?>
 }
 
-.wpsbs_slider--<?php echo esc_attr($slider_id); ?>.wpsbs-swiper-arrow-<?php echo esc_attr($arrow_style); ?> .swiper-button-next,
-.wpsbs_slider--<?php echo esc_attr($slider_id); ?>.wpsbs-swiper-arrow-<?php echo esc_attr($arrow_style); ?> .swiper-button-prev {
+.wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper-arrow-<?php echo esc_attr($arrow_style); ?> .swiper-button-next,
+.wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper-arrow-<?php echo esc_attr($arrow_style); ?> .swiper-button-prev {
     font-size: <?php echo esc_html( $arrow_font_size ); ?> !important;
     <?php if ( $arrow_style !== 'style3' ) : ?>
     border-radius: <?php echo esc_html( $arrow_border_radius ); ?> !important;
@@ -73,7 +75,7 @@ $autoplay_timeleft_font_size = isset( $settings['control_autoplay_time_font_size
 }
 
 <?php if ( $arrow_style === 'custom' ) : ?>
-    .wpsbs_slider--<?php echo esc_attr( $slider_id ); ?>.wpsbs-swiper-arrow-custom .swiper-button-prev {
+    .wpbs_slider--<?php echo esc_attr( $slider_id ); ?>.wpbs-swiper-arrow-custom .swiper-button-prev {
         <?php if ( $settings['arrow_position_top'] !== '' ) : ?>
             top: <?php echo esc_html( $arrow_top ); ?>;
             bottom: auto;
@@ -86,7 +88,7 @@ $autoplay_timeleft_font_size = isset( $settings['control_autoplay_time_font_size
         right: auto;
     }
 
-    .wpsbs_slider--<?php echo esc_attr( $slider_id ); ?>.wpsbs-swiper-arrow-custom .swiper-button-next {
+    .wpbs_slider--<?php echo esc_attr( $slider_id ); ?>.wpbs-swiper-arrow-custom .swiper-button-next {
         <?php if ( $settings['arrow_position_top'] !== '' ) : ?>
             top: <?php echo esc_html( $arrow_top ); ?>;
             bottom: auto;
@@ -101,8 +103,8 @@ $autoplay_timeleft_font_size = isset( $settings['control_autoplay_time_font_size
 <?php endif;
 
 if ( $arrow_style === 'style4' ) : ?>
-.wpsbs_slider--<?php echo esc_attr($slider_id); ?>.wpsbs-swiper-arrow-style4 .swiper-button-next,
-.wpsbs_slider--<?php echo esc_attr($slider_id); ?>.wpsbs-swiper-arrow-style4 .swiper-button-prev {
+.wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper-arrow-style4 .swiper-button-next,
+.wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper-arrow-style4 .swiper-button-prev {
     color: <?php echo esc_html( $arrow_color ); ?>;
     background-color: <?php echo esc_html( $arrow_bg_color ); ?>;
     border-color: <?php echo esc_html( $arrow_border_color ); ?>;
@@ -110,8 +112,8 @@ if ( $arrow_style === 'style4' ) : ?>
     border-radius: <?php echo esc_html( $arrow_border_radius ); ?>;
 }
 
-.wpsbs_slider--<?php echo esc_attr($slider_id); ?>.wpsbs-swiper-arrow-style4 .swiper-button-next:hover,
-.wpsbs_slider--<?php echo esc_attr($slider_id); ?>.wpsbs-swiper-arrow-style4 .swiper-button-prev:hover {
+.wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper-arrow-style4 .swiper-button-next:hover,
+.wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper-arrow-style4 .swiper-button-prev:hover {
     color: <?php echo esc_html( $arrow_hover_color ); ?>;
     background-color: <?php echo esc_html( $arrow_hover_bg_color ); ?>;
     border-color: <?php echo esc_html( $arrow_border_color ); ?>;
@@ -119,14 +121,14 @@ if ( $arrow_style === 'style4' ) : ?>
 <?php endif; 
 
 if ( $arrow_style === 'style5' ) : ?>
-.wpsbs_slider--<?php echo esc_attr( $slider_id ); ?>.wpsbs-swiper-arrow-style5 .swiper-button-next,
-.wpsbs_slider--<?php echo esc_attr( $slider_id ); ?>.wpsbs-swiper-arrow-style5 .swiper-button-prev {
+.wpbs_slider--<?php echo esc_attr( $slider_id ); ?>.wpbs-swiper-arrow-style5 .swiper-button-next,
+.wpbs_slider--<?php echo esc_attr( $slider_id ); ?>.wpbs-swiper-arrow-style5 .swiper-button-prev {
     color: <?php echo esc_html( $arrow_color ); ?>;
     font-size: <?php echo esc_html( $arrow_font_size ); ?>;
 }
 
-.wpsbs_slider--<?php echo esc_attr( $slider_id ); ?>.wpsbs-swiper-arrow-style5 .swiper-button-next:hover,
-.wpsbs_slider--<?php echo esc_attr( $slider_id ); ?>.wpsbs-swiper-arrow-style5 .swiper-button-prev:hover {
+.wpbs_slider--<?php echo esc_attr( $slider_id ); ?>.wpbs-swiper-arrow-style5 .swiper-button-next:hover,
+.wpbs_slider--<?php echo esc_attr( $slider_id ); ?>.wpbs-swiper-arrow-style5 .swiper-button-prev:hover {
     color: <?php echo esc_html( $arrow_hover_color ); ?>;
 }
 <?php endif; ?>
@@ -136,14 +138,14 @@ if ( $arrow_style === 'style5' ) : ?>
 
 /*--------------------------- Dynamic Dot Style ---------------------------*/
 
-.wpsbs_slider--<?php echo esc_attr($slider_id); ?>.wpsbs-swiper-dot-<?php echo esc_attr( $bullets_style ); ?> .swiper-pagination-bullet {
+.wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper-dot-<?php echo esc_attr( $bullets_style ); ?> .swiper-pagination-bullet {
     background-color: <?php echo esc_html( $bullets_bg_color ); ?>;
     background-color: <?php echo esc_html( $bullets_bg_color ); ?>;
     border: 2px solid <?php echo esc_html( $bullets_border_color ); ?>;
 }
 
-.wpsbs_slider--<?php echo esc_attr($slider_id); ?>.wpsbs-swiper-dot-<?php echo esc_attr( $bullets_style ); ?> .swiper-pagination-bullet-active,
-.wpsbs_slider--<?php echo esc_attr($slider_id); ?>.wpsbs-swiper-dot-<?php echo esc_attr( $bullets_style ); ?> .swiper-pagination-bullet:hover {
+.wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper-dot-<?php echo esc_attr( $bullets_style ); ?> .swiper-pagination-bullet-active,
+.wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper-dot-<?php echo esc_attr( $bullets_style ); ?> .swiper-pagination-bullet:hover {
     background-color: <?php echo esc_html( $bullets_hover_bg_color ); ?>;
     border: 2px solid <?php echo esc_html( $bullets_border_color ); ?>;
 }
@@ -152,7 +154,7 @@ if ( $arrow_style === 'style5' ) : ?>
 
 /*--------------------------- Dynamic Image Style ---------------------------*/
 
-.wpsbs_slider--<?php echo esc_attr($slider_id); ?> {
+.wpbs_slider--<?php echo esc_attr($slider_id); ?> {
     border-radius: <?php echo esc_html( $border_radius_image ); ?>;
 }
 
@@ -161,8 +163,8 @@ if ( $arrow_style === 'style5' ) : ?>
 /*--------------------------- Background Settings Style ---------------------------*/
 
 <?php
-if ( ! function_exists( 'wpsbs_generate_background_css' ) ) {
-    function wpsbs_generate_background_css( $selector, $bg_settings ) {
+if ( ! function_exists( 'wpbs_generate_background_css' ) ) {
+    function wpbs_generate_background_css( $selector, $bg_settings ) {
 
         $background_url = '';
         if ( ! empty( $bg_settings['background_id'] ) ) :
@@ -197,8 +199,8 @@ if ( ! function_exists( 'wpsbs_generate_background_css' ) ) {
 }
 
 // Slider background CSS
-wpsbs_generate_background_css(
-    '.wpsbs_slider--' . esc_attr( $slider_id ) . '.wpsbs-swiper',
+wpbs_generate_background_css(
+    '.wpbs_slider--' . esc_attr( $slider_id ) . '.wpbs-swiper',
     array(
         'background_url'      => $background_url,
         'background_size'     => $background_size,
@@ -211,8 +213,8 @@ wpsbs_generate_background_css(
 // Slide-specific CSS
 if ( ! empty( $slides_background_settings ) && is_array( $slides_background_settings ) ) :
     foreach ( $slides_background_settings as $slide_id => $slide_bg_settings ) :
-        wpsbs_generate_background_css(
-            '.wpsbs_slider--' . esc_attr( $slider_id ) . ' .wpsbs-slide-' . esc_attr( $slide_id ),
+        wpbs_generate_background_css(
+            '.wpbs_slider--' . esc_attr( $slider_id ) . ' .wpbs-slide-' . esc_attr( $slide_id ),
             $slide_bg_settings
         );
     endforeach;
@@ -226,19 +228,19 @@ endif;  ?>
 <?php if ( ! empty( $width_image ) || ! empty( $height_image ) ) : ?>
     <?php if ( $control_enable_responsive ) : ?>
         /* Responsive enabled: flexible width, fixed height */
-        .wpsbs_slider--<?php echo esc_attr( $slider_id ); ?> .swiper-slide img {
+        .wpbs_slider--<?php echo esc_attr( $slider_id ); ?> .swiper-slide img {
             <?php if ( ! empty( $height_image ) ) : ?>
             height: <?php echo esc_html( $height_image . $image_unit ); ?>;
             <?php endif; ?>
             width: 100%;
             max-width: 100%;
         }
-        .wpsbs_slider--<?php echo esc_attr( $slider_id ); ?> .swiper-slide {
+        .wpbs_slider--<?php echo esc_attr( $slider_id ); ?> .swiper-slide {
             height: auto;
         }
     <?php else : ?>
         /* Responsive disabled: fixed width and height */
-        .wpsbs_slider--<?php echo esc_attr( $slider_id ); ?> .swiper-slide img {
+        .wpbs_slider--<?php echo esc_attr( $slider_id ); ?> .swiper-slide img {
             <?php if ( ! empty( $width_image ) ) : ?>
             width: <?php echo esc_html( $width_image . $image_unit ); ?>;
             <?php endif; ?>
@@ -256,16 +258,38 @@ endif; ?>
 <?php if ( ! empty( $autoplay_timeleft_font_size ) ) :
     $progress_container_size = round( $autoplay_timeleft_font_size * 2.2 );
 ?>
-    .wpsbs_slider--<?php echo esc_attr( $slider_id ); ?> .autoplay-progress {
+    .wpbs_slider--<?php echo esc_attr( $slider_id ); ?> .autoplay-progress {
         width: <?php echo esc_html( $progress_container_size ); ?>px;
         height: <?php echo esc_html( $progress_container_size ); ?>px;
     }
-    .wpsbs_slider--<?php echo esc_attr( $slider_id ); ?> .autoplay-progress span {
+    .wpbs_slider--<?php echo esc_attr( $slider_id ); ?> .autoplay-progress span {
         font-size: <?php echo esc_html( $autoplay_timeleft_font_size ); ?>px;
     }
 <?php endif; ?>
 
 /* --------------------------- End Dynamic Autoplay Progress Style --------------------------- */
+
+/*--------------------------- Dynamic Auto Slides ---------------------------*/
+
+<?php if ( $slide_control_view_auto ) :
+    $auto_slide_width_default = isset( $settings['auto_slide_width_default'] ) ? floatval( $settings['auto_slide_width_default'] ) : 60;
+    $auto_slide_width_2n = isset( $settings['auto_slide_width_2n'] ) ? floatval( $settings['auto_slide_width_2n'] ) : 40;
+    $auto_slide_width_3n = isset( $settings['auto_slide_width_3n'] ) ? floatval( $settings['auto_slide_width_3n'] ) : 20;
+?>
+    .wpbs_slider--<?php echo esc_attr( $slider_id ); ?>.wpbs-auto-slides .swiper-slide {
+        width: <?php echo esc_html( $auto_slide_width_default ); ?>% !important;
+    }
+
+    .wpbs_slider--<?php echo esc_attr( $slider_id ); ?>.wpbs-auto-slides .swiper-slide:nth-child(2n) {
+        width: <?php echo esc_html( $auto_slide_width_2n ); ?>% !important;
+    }
+
+    .wpbs_slider--<?php echo esc_attr( $slider_id ); ?>.wpbs-auto-slides .swiper-slide:nth-child(3n) {
+        width: <?php echo esc_html( $auto_slide_width_3n ); ?>% !important;
+    }
+<?php endif; ?>
+
+/* --------------------------- End Dynamic Auto Slides --------------------------- */
 
 /*--------------------------- Custom CSS ---------------------------*/
 

@@ -1,16 +1,16 @@
-/*--------------------------- WPSBS Tab ---------------------------*/
+/*--------------------------- WPBS Tab ---------------------------*/
 
-.wpsbs_page .card {
+.wpbs_page .card {
     border-color: #eee;
     max-width: 100%;
 }
 
-.wpsbs_settings_page .wpsbs_settings_page_nav .wpsbs-tab-wrapper {
+.wpbs_settings_page .wpbs_settings_page_nav .wpbs-tab-wrapper {
     border-color: #eee;
     padding-top: 0;
 }
 
-.wpsbs_settings_page .wpsbs_settings_page_nav .wpsbs-tab-wrapper a.wpsbs-tab-active {
+.wpbs_settings_page .wpbs_settings_page_nav .wpbs-tab-wrapper a.wpbs-tab-active {
     border-color: #7f54b3;
     border-bottom-color: #ffffff;
     color: #000000 !important;
@@ -19,11 +19,11 @@
     background-color: #ffffff;
 }
 
-.wpsbs_settings_page_nav .wpsbs-tab-wrapper {
+.wpbs_settings_page_nav .wpbs-tab-wrapper {
     border-bottom: 0 !important;
 }
 
-.wpsbs_settings_page .wpsbs_settings_page_nav .wpsbs-tab-wrapper a {
+.wpbs_settings_page .wpbs_settings_page_nav .wpbs-tab-wrapper a {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -40,8 +40,9 @@
     border-radius: 5px 5px 0px 0px;
 }
 
-.wpsbs-tab-wrapper {
+.wpbs-tab-wrapper {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 5px;
     padding: 0;
@@ -50,7 +51,7 @@
     font-weight: 600;
 }
 
-.wpsbs-tab-wrapper .wpsbs-tab {
+.wpbs-tab-wrapper .wpbs-tab {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -64,7 +65,7 @@
     cursor: pointer;
 }
 
-.wpsbs_settings_page .wpsbs_settings_page_content {
+.wpbs_settings_page .wpbs_settings_page_content {
     border-width: 0 1px 1px 1px;
     border-color: #eee;
     background-color: #fff;
@@ -73,40 +74,40 @@
     margin: 0;
 }
 
-.wpsbs_settings_page .wpsbs_settings_page_content table tr.heading {
+.wpbs_settings_page .wpbs_settings_page_content table tr.heading {
     border-bottom: 1px dashed #eeeeee;
 }
 
-.wpsbs_settings_page .wpsbs_settings_page_content table {
+.wpbs_settings_page .wpbs_settings_page_content table {
     margin: 0;
     padding: 0;
     border-spacing: 0;
     border-collapse: unset;
 }
 
-.wpsbs_settings_page .wpsbs_settings_page_content table tr th,
-.wpsbs_settings_page .wpsbs_settings_page_content table tr td {
+.wpbs_settings_page .wpbs_settings_page_content table tr th,
+.wpbs_settings_page .wpbs_settings_page_content table tr td {
     padding: 15px 20px;
     border-bottom: 1px dashed #eee;
 }
 
-.wpsbs_settings_page .wpsbs_settings_page_content table tr.submit p {
+.wpbs_settings_page .wpbs_settings_page_content table tr.submit p {
     margin: 0;
     padding: 0;
 }
 
 
-.wpsbs_settings_page .wpsbs_settings_page_content table .wpsbs_select select,
-.wpsbs_settings_page .wpsbs_settings_page_content table .wpsbs_number_field input[type="number"] {
+.wpbs_settings_page .wpbs_settings_page_content table .wpbs_select select,
+.wpbs_settings_page .wpbs_settings_page_content table .wpbs_number_field input[type="number"] {
     min-width: 350px;
     padding: 3px 10px;
     border-radius: 2px;
 }
 
-.wpsbs_settings_page .wpsbs_settings_page_content table .heading th {
+.wpbs_settings_page .wpbs_settings_page_content table .heading th {
     border-left: 2px solid black;
     font-size: 16px;
     padding: 12px 20px;
 }
 
-/*--------------------------- End WPSBS Tab ---------------------------*/
+/*--------------------------- End WPBS Tab ---------------------------*/
