@@ -45,7 +45,8 @@ foreach( $fields as $field_Key => $field ) :
                     array(
                         'field'     => $field,
                         'field_Val' => $field_Val,
-                        'field_Key' => $field_Key 
+                        'field_Key' => $field_Key,
+                        'options'   => $options
                     ) 
                 );
                 break;

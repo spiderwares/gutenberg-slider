@@ -390,6 +390,7 @@
 .wpbs-swiper-thumbs-gallery .swiper-wrapper {
     display: flex;
     align-items: center; 
+    justify-content: center;
     width: 100%;
     margin: 0;
 }
@@ -414,7 +415,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    
     display: block;
+    margin-top: 10px;
 }
 
 /*--------------------------- End Thumbs Gallery ---------------------------*/
@@ -458,7 +461,7 @@
     height: 20px;
     text-align: center;
     line-height: 20px;
-    font-size: 14px;
+    font-size: var(--wpbs-custom-font-size, 14px);
     color: var(--wpbs-custom-active-text-color, #0a0607); 
     opacity: 1;
     background: var(--wpbs-custom-active-bg-color, #0a0607); 
@@ -470,32 +473,16 @@
 
 /*--------------------------- End Custom Pagination Style ---------------------------*/
 
-/*--------------------------- Table Styles ---------------------------*/
+/*--------------------------- Slide Content Layout ---------------------------*/
 
-.wpbs-swiper .swiper-slide table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 1em 0;
+.wpbs-swiper .swiper-zoom-container {
+    width: auto !important;
+    height: auto !important;
+    display: block !important;
+    justify-content: unset !important;
+    align-items: unset !important;
+    text-align: left !important;
+    flex-direction: unset !important;
 }
 
-.wpbs-swiper .swiper-slide table,
-.wpbs-swiper .swiper-slide table th,
-.wpbs-swiper .swiper-slide table td {
-    border: 1px solid #000;
-}
-
-.wpbs-swiper .swiper-slide table th,
-.wpbs-swiper .swiper-slide table td {
-    padding: 8px 12px;
-    text-align: left;
-}
-
-.wpbs-swiper .swiper-slide table th {
-    background-color: #f5f5f5;
-    font-weight: 600;
-}
-
-/*--------------------------- End Table Styles ---------------------------*/
-
-
-
+/*--------------------------- End Slide Content Layout ---------------------------*/

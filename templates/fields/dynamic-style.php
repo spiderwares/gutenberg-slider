@@ -16,6 +16,7 @@ $arrow_bg_color        = isset( $settings['arrow_bg_color'] ) ? $settings['arrow
 $arrow_hover_color     = isset( $settings['arrow_hover_color'] ) ? $settings['arrow_hover_color'] : '#ffffff';
 $arrow_hover_bg_color  = isset( $settings['arrow_hover_bg_color'] ) ? $settings['arrow_hover_bg_color'] : '#333333';
 $arrow_border_color    = isset( $settings['arrow_border_color'] ) ? $settings['arrow_border_color'] : '#ffffff';
+$arrow_hover_border_color = isset( $settings['arrow_hover_border_color'] ) ? $settings['arrow_hover_border_color'] : $arrow_border_color;
 $arrow_style           = isset( $settings['navigation_arrow_style'] ) ? $settings['navigation_arrow_style'] : 'style1';
 $arrow_font_size       = isset( $settings['arrow_font_size'] ) ? intval( $settings['arrow_font_size'] ) . 'px' : '30px';
 $arrow_border_radius   = isset( $settings['arrow_border_radius'] ) ? intval( $settings['arrow_border_radius'] ) . '%' : '50%';
@@ -24,7 +25,6 @@ $bullets_bg_color       = isset( $settings['bullets_bg_color'] ) ? $settings['bu
 $bullets_hover_bg_color = isset( $settings['bullets_hover_bg_color'] ) ? $settings['bullets_hover_bg_color'] : '#ffffff';
 $bullets_border_color   = isset( $settings['bullets_border_color'] ) ? $settings['bullets_border_color'] : '#ffffff';
 $bullets_style          = isset( $settings['bullets_navigation_style'] ) ? $settings['bullets_navigation_style'] : 'style1';
-
 $unit                   = isset( $settings['arrow_position_unit'] ) ? $settings['arrow_position_unit'] : 'px';
 $arrow_top              = isset( $settings['arrow_position_top'] ) ? intval( $settings['arrow_position_top'] ) . $unit : 'auto';
 $arrow_bottom           = isset( $settings['arrow_position_bottom'] ) ? intval( $settings['arrow_position_bottom'] ) . $unit : 'auto';
@@ -35,13 +35,18 @@ $border_radius_image      = isset( $settings['border_radius_image'] ) ? $setting
 $width_image              = isset( $settings['width_image'] ) ? $settings['width_image'] : '';
 $height_image             = isset( $settings['height_image'] ) ? $settings['height_image'] : '';
 $image_unit               = isset( $settings['image_unit'] ) ? $settings['image_unit'] : 'px';
+$width_image_value        = !empty($width_image) ? $width_image : 500;
+$height_image_value       = !empty($height_image) ? $height_image : 500;
+$is_vertical              = isset($settings['control_slider_vertical']) && ($settings['control_slider_vertical'] == '1' || $settings['control_slider_vertical'] === true);
+$enable_grid_layout       = isset($settings['enable_grid_layout']) && ($settings['enable_grid_layout'] == '1' || $settings['enable_grid_layout'] === true);
+$grid_layout_axis         = isset($settings['grid_layout_axis']) ? $settings['grid_layout_axis'] : 'row';
+$grid_count               = !empty($settings['grid_count']) ? (int)$settings['grid_count'] : 2;
 
 $control_enable_responsive    = isset( $settings['control_enable_responsive'] ) && ( $settings['control_enable_responsive'] == '1' || $settings['control_enable_responsive'] === true );
 $autoplay_timeleft_font_size  = isset( $settings['control_autoplay_timeleft_font_size'] ) ? intval( $settings['control_autoplay_timeleft_font_size'] ) : 20;
 $slide_control_view_auto      = isset( $settings['slide_control_view_auto'] ) && ( $settings['slide_control_view_auto'] == '1' || $settings['slide_control_view_auto'] === true );
 
 ?>
-
 
 /* --------------------------- Dynamic Arrow Style --------------------------- */
 .wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper-arrow-<?php echo esc_attr( $arrow_style ); ?> .swiper-button-next,
@@ -62,7 +67,7 @@ $slide_control_view_auto      = isset( $settings['slide_control_view_auto'] ) &&
     background-color: <?php echo esc_html( $arrow_hover_bg_color ); ?>;
     <?php endif; ?>
     <?php if ( $arrow_style !== 'style1' && $arrow_style !== 'none' && $arrow_style !== 'style5' ) : ?>
-    border-color: <?php echo esc_html( $arrow_border_color ); ?>;
+    border-color: <?php echo esc_html( $arrow_hover_border_color ); ?>;
     <?php endif; ?>
 }
 
@@ -116,7 +121,7 @@ if ( $arrow_style === 'style4' ) : ?>
 .wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper-arrow-style4 .swiper-button-prev:hover {
     color: <?php echo esc_html( $arrow_hover_color ); ?>;
     background-color: <?php echo esc_html( $arrow_hover_bg_color ); ?>;
-    border-color: <?php echo esc_html( $arrow_border_color ); ?>;
+    border-color: <?php echo esc_html( $arrow_hover_border_color ); ?>;
 }
 <?php endif; 
 
@@ -159,6 +164,39 @@ if ( $arrow_style === 'style5' ) : ?>
 }
 
 /* --------------------------- End Dynamic Image Style --------------------------- */
+
+/*--------------------------- Dynamic Wrapper Style ---------------------------*/
+
+<?php
+$width_image_with_unit = $width_image_value . $image_unit;
+$height_image_with_unit = $height_image_value . $image_unit;
+
+if ( $is_vertical ) :
+?>
+    .wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper {
+        max-width: <?php echo esc_html( $width_image_with_unit ); ?>;
+    }
+<?php
+elseif ( $enable_grid_layout && $grid_layout_axis === 'row' ) :
+    $total_height = $height_image_value * $grid_count;
+?>
+    .wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper {
+        max-width: <?php echo esc_html( $width_image_with_unit ); ?>;
+        height: <?php echo esc_html( $total_height . $image_unit ); ?>;
+    }
+<?php
+else :
+?>
+    .wpbs_slider--<?php echo esc_attr($slider_id); ?>.wpbs-swiper {
+        max-width: <?php echo esc_html( $width_image_with_unit ); ?>;
+        height: <?php echo esc_html( $height_image_with_unit ); ?>;
+    }
+<?php
+endif;
+?>
+
+/* --------------------------- End Dynamic Wrapper Style --------------------------- */
+
 
 /*--------------------------- Background Settings Style ---------------------------*/
 
@@ -290,6 +328,19 @@ endif; ?>
 <?php endif; ?>
 
 /* --------------------------- End Dynamic Auto Slides --------------------------- */
+
+/*--------------------------- Dynamic Thumbnail Gallery Border Radius ---------------------------*/
+
+<?php
+$thumb_gallery_border_radius = isset( $settings['thumb_gallery_border_radius'] ) ? intval( $settings['thumb_gallery_border_radius'] ) : 0;
+if ( $thumb_gallery_border_radius > 0 ) :
+?>
+    .wpbs-swiper-thumbs-gallery img {
+        border-radius: <?php echo esc_html( $thumb_gallery_border_radius ); ?>px;
+    }
+<?php endif; ?>
+
+/* --------------------------- End Dynamic Thumbnail Gallery Border Radius --------------------------- */
 
 /*--------------------------- Custom CSS ---------------------------*/
 

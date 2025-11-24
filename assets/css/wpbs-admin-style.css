@@ -148,13 +148,6 @@
 .wpbs_number_field {
     display: flex;
 }
-  
-.wpbs_input-with-unit select:disabled {
-    background-color: #f3f4f6;
-    color: #9ca3af;
-    cursor: not-allowed;
-    opacity: 0.6;
-}
 
 .wpbs_unit_text {
     background-color: #f3f4f6;
@@ -167,8 +160,11 @@
     text-align: center;
     font-weight: 700;
     border-radius: 0 5px 5px 0;
-  
 } 
+
+.wpbs_number_field .wpbs_number_wrap select{ 
+    width: 70px;
+}
 
 /*--------------------------- End Number Field ---------------------------*/
 

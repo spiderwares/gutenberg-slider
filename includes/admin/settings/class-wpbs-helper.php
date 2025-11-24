@@ -104,6 +104,34 @@ if( ! class_exists( 'WPBS_Helper' ) ) :
                 'background_id'       => $background_id,
             );
         }
+
+        /**
+         * Add lazy loading attributes to images in HTML content
+         *
+         */
+        public static function wpbs_lazy_load_images( $html ) {
+
+            return preg_replace_callback('/<img(.*?)>/i', function($m){
+
+                $attrs = $m[1];
+        
+                // loading="lazy"
+                if (!strpos($attrs, 'loading=')) :
+                    $attrs .= ' loading="lazy"';
+                endif;
+        
+                // swiper-lazy class
+                if (strpos($attrs, 'class=') !== false) :
+                    $attrs = preg_replace('/class=["\']([^"\']*)["\']/', 'class="$1 swiper-lazy"', $attrs);
+                else :
+                    $attrs .= ' class="swiper-lazy"';
+                endif;
+        
+                return "<img$attrs><div class=\"swiper-lazy-preloader swiper-lazy-preloader-white\"></div>";
+
+            }, $html);
+        }
+        
     }
 
 endif;

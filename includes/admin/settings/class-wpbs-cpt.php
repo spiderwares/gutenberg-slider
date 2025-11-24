@@ -386,11 +386,43 @@ if( ! class_exists( 'WPBS_CPT' ) ) :
             endif;
 
             if ( isset( $_POST['wpbs_background_color'] ) ) :
-                $background_color = sanitize_hex_color( wp_unslash( $_POST['wpbs_background_color'] ) );
+                $background_color = $this->sanitize_color_value( wp_unslash( $_POST['wpbs_background_color'] ) );
                 if ( $background_color ) :
                     update_post_meta( $post_id, 'wpbs_background_color', $background_color );
                 endif;
             endif;
+        }
+
+        /**
+         * Sanitize color value (supports hex and RGBA)
+         *
+         * @param string $color Color value to sanitize.
+         * @return string|false Sanitized color value or false on failure.
+         */
+        private function sanitize_color_value( $color ) {
+
+            if ( empty( $color ) ) return false;
+        
+            $color = trim( $color );
+        
+            if ( preg_match('/^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/', $color ) ) :
+                return sanitize_hex_color( $color );
+            endif;
+        
+            if ( preg_match('/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)$/', $color, $m ) ) :
+                $r = min(255, max(0, (int)$m[1]));
+                $g = min(255, max(0, (int)$m[2]));
+                $b = min(255, max(0, (int)$m[3]));
+                $a = isset($m[4]) ? floatval($m[4]) : 1;
+        
+                if ( $a < 0 || $a > 1 ) return false;
+        
+                return ($a < 1)
+                    ? "rgba($r, $g, $b, $a)"
+                    : "rgb($r, $g, $b)";
+            endif;
+        
+            return false;
         }
 
     }

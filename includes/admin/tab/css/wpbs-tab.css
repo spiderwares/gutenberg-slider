@@ -98,7 +98,8 @@
 
 
 .wpbs_settings_page .wpbs_settings_page_content table .wpbs_select select,
-.wpbs_settings_page .wpbs_settings_page_content table .wpbs_number_field input[type="number"] {
+.wpbs_settings_page .wpbs_settings_page_content table .wpbs_number_field input[type="number"],
+.wpbs_settings_page .wpbs_settings_page_content table .wpbs_text_field input[type="text"] {
     min-width: 350px;
     padding: 3px 10px;
     border-radius: 2px;

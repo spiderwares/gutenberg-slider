@@ -87,5 +87,5 @@ wp_nonce_field( 'wpbs_slideshow_metabox_data', 'wpbs_slideshow_metabox_nonce' );
         <?php echo esc_html__( 'Background Color', 'blocksy-slider' ); ?>
     </label><br>
 
-    <input type="text" class="wpbs-color-picker" name="wpbs_background_color" id="wpbs_background_color" value="<?php echo esc_attr( $background_color ); ?>" data-default-color="#ffffff">
+    <input type="text" class="wpbs-color-picker" name="wpbs_background_color" id="wpbs_background_color" value="<?php echo esc_attr( $background_color ); ?>" data-default-color="#ffffff" data-alpha-enabled="true">
 </p>

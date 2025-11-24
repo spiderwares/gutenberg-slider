@@ -18,8 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                 
                 <li data-slide-id="<?php echo esc_attr( $slide_id ); ?>">
 
-                    <?php if ( $has_thumb ) : ?>
-                        <?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- Static plugin asset, not a WordPress media library attachment. ?>
+                    <?php if ( $has_thumb ) :
+                        // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- Static plugin asset, not a WordPress media library attachment. ?>
                         <img width="250" src="<?php echo esc_url( $slide['thumb'] ); ?>" alt="Slide Image" />
 
                     <?php else : 

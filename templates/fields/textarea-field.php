@@ -19,6 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             placeholder="<?php echo isset( $field['placeholder'] ) ? esc_attr( $field['placeholder'] ) : ''; ?>"
         ><?php echo esc_textarea( $field_Val ); ?></textarea>
     </div>
+    
     <p><?php echo isset( $field['desc'] ) ? wp_kses_post( $field['desc'] ) : ''; ?></p>
 </td>
 

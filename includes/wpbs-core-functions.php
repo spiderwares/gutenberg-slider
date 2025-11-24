@@ -45,5 +45,5 @@ if( !function_exists( 'wpbs_get_template' ) ) :
 
         do_action( 'wpbs_after_template_part', $template, $args, $template_path );
     }
-
+    
 endif;

@@ -110,26 +110,14 @@ if( ! class_exists( 'WPBS_Shortcode' ) ) :
             $image_unit                     = !empty($wpbsOptions['image_unit']) ? $wpbsOptions['image_unit'] : 'px';
             $width_image                    = $width_image_value . $image_unit;
             $height_image                   = $height_image_value . $image_unit;
-
-            $enable_grid_layout             = isset($wpbsOptions['enable_grid_layout']) && ($wpbsOptions['enable_grid_layout'] == '1' || $wpbsOptions['enable_grid_layout'] === true);
-            $grid_layout_axis               = isset($wpbsOptions['grid_layout_axis']) ? $wpbsOptions['grid_layout_axis'] : 'row';
-            $grid_count                     = !empty($wpbsOptions['grid_count']) ? (int)$wpbsOptions['grid_count'] : 2;
             
-            if ( $is_vertical ) :
-                $wrapper_style = '';
-            elseif ( $enable_grid_layout && $grid_layout_axis === 'row' ) :
-                $total_height = $height_image_value * $grid_count;
-                $wrapper_style = 'style="max-width:' . esc_attr($width_image) . '; height:' . esc_attr($total_height . $image_unit) . ';"';
-            else :
-                $wrapper_style = 'style="max-width:' . esc_attr($width_image) . '; height:' . esc_attr($height_image) . ';"';
-            endif;
-            
-            $control_autoplay           = !empty($wpbsOptions['control_autoplay']) && $wpbsOptions['control_autoplay'] == '1';
+            $control_autoplay               = !empty($wpbsOptions['control_autoplay']) && $wpbsOptions['control_autoplay'] == '1';
             $control_autoplay_timeleft      = !empty($wpbsOptions['control_autoplay_timeleft']) && $wpbsOptions['control_autoplay_timeleft'] == '1';
-            $timeleft_position          = isset($wpbsOptions['control_autoplay_timeleft_position']) ? $wpbsOptions['control_autoplay_timeleft_position'] : 'bottom-right';
+            $zoom_enabled                   = !empty( $wpbsOptions['zoom_images'] ) && in_array( $wpbsOptions['zoom_images'], array( '1', 1, true, 'true', 'yes' ), true );
+            $timeleft_position              = isset($wpbsOptions['control_autoplay_timeleft_position']) ? $wpbsOptions['control_autoplay_timeleft_position'] : 'bottom-right';
             $autoplay_timeleft_font_size    = isset($wpbsOptions['control_autoplay_timeleft_font_size']) ? (int)$wpbsOptions['control_autoplay_timeleft_font_size'] : 5;
     
-            $timeleft_class     = 'wpbs-timeleft-' . esc_attr($timeleft_position);
+            $timeleft_class = 'wpbs-timeleft-' . esc_attr($timeleft_position);
             $hasSlides      = !empty($slides) && is_array($slides);
             $hasImages      = !empty($imageIDs) && is_array($imageIDs);
     
@@ -169,9 +157,6 @@ if( ! class_exists( 'WPBS_Shortcode' ) ) :
                     'arrow_style'                   => $arrow_style,
                     'lazy_load'                     => $lazy_load,
                     'pagination_type'               => $pagination_type,
-                    'width_image'                   => $width_image,
-                    'height_image'                  => $height_image,
-                    'wrapper_style'                 => $wrapper_style,
                     'thumb_gallery'                 => $thumb_gallery,
                     'thumb_width'                   => $thumb_width,
                     'thumb_height'                  => $thumb_height,
@@ -182,6 +167,7 @@ if( ! class_exists( 'WPBS_Shortcode' ) ) :
                     'control_autoplay_timeleft'     => $control_autoplay_timeleft,
                     'hasSlides'                     => $hasSlides,
                     'hasImages'                     => $hasImages,
+                    'zoom_enabled'                  => $zoom_enabled,
                     'wpbs_css'                      => $wpbs_css,
                     'options'                       => json_encode($wpbsOptions),
     

@@ -14,7 +14,7 @@ jQuery(function ($) {
 
         initializeSliders() {
             $('.wpbs-swiper').each((index, element) => {
-                const slider = $(element),
+                const slider   = $(element),
                     rawOptions = slider.attr('data-options');
 
                 if (!rawOptions) return;
@@ -25,9 +25,6 @@ jQuery(function ($) {
                 if (options.slide_control_view_auto == '1' || options.slide_control_view_auto === true) {
                     slider.addClass('wpbs-auto-slides');
                 }
-
-                // Extend options with pro features
-                options = this.extendSliderOptions(slider, options);
 
                 // Thumbs gallery
                 let thumbsSwiper = null;
@@ -68,24 +65,20 @@ jQuery(function ($) {
                 customBackgroundColor   = options.custom_background_color || '#007aff',
                 customActiveTextColor   = options.custom_active_text_color || '#0a0607',
                 customActiveBgColor     = options.custom_active_background_color || '#0a0607',
-                vertical = options.control_slider_vertical == '1' || options.control_slider_vertical === true,
-                rtl      = options.control_rtl_slider === '1' || options.control_rtl_slider === true;
+                vertical                = options.control_slider_vertical == '1' || options.control_slider_vertical === true,
+                rtl                     = options.control_rtl_slider === '1' || options.control_rtl_slider === true;
 
-                
             const baseOptions = {
                 effect:         options.animation || 'slide',
-                mousewheel:     options.control_mousewheel == '1' || options.control_mousewheel === true ? {
-                    invert: true,
-                } : false,
                 grabCursor:     options.control_grab_cursor == '1',
+                lazy:           options.control_lazyload_images == '1' || options.control_lazyload_images === true,
+                rewind:         options.control_rewind == '1' || options.control_rewind === true,
                 slidesPerView: (options.animation === 'cube') ? 1 : (options.slide_control_view_auto == '1' || 
                     options.slide_control_view_auto === true) ? 'auto' : (responsive ? (parseInt(options.items_in_desktop) || 1) : 1),
                 autoplay:       options.control_autoplay == '1' ? {
                     delay: parseInt(options.autoplay_timing, 10) || 3000,
                     disableOnInteraction: false,
                 } : false,
-                rewind:         options.control_rewind == '1' || options.control_rewind === true,
-                spaceBetween:   parseInt(options.control_slide_space, 10) || 10,
                 pagination:     paginationType !== 'none' ? {
                     el:         '.swiper-pagination',
                     clickable:  true,
@@ -103,25 +96,25 @@ jQuery(function ($) {
                     nextEl: slider.find('.swiper-button-next')[0],
                     prevEl: slider.find('.swiper-button-prev')[0],
                 },
-                lazy: options.control_lazyload_images == '1' || options.control_lazyload_images === true,
-                direction:      vertical ? 'vertical' : 'horizontal',
-                centeredSlides: options.slide_control_center == '1' || options.slide_control_center === true,
+                loop: options.control_loop_slider == '1' || options.control_loop_slider === true,
+                speed: parseInt(options.control_slide_speed, 10) || 400,
+                spaceBetween: parseInt(options.control_slide_space, 10) || 10,
+                slidesPerGroup: (options.enable_slides_group == '1' || options.enable_slides_group === true) ? parseInt(options.slides_per_group, 10) || 1 : 1,
+                zoom: options.zoom_images == '1' || options.zoom_images === true,
                 keyboard: {
-                    enabled:    options.control_keyboard == '1' || options.control_keyboard === true,
+                    enabled: options.control_keyboard == '1' || options.control_keyboard === true,
                 },
+                mousewheel: options.control_mousewheel == '1' || options.control_mousewheel === true,
                 scrollbar: {
-                    el:         '.swiper-scrollbar',
-                    enabled:    options.control_scrollbar == '1' || options.control_scrollbar === true,
-                    draggable:  true,
+                    el: '.swiper-scrollbar',
+                    enabled: options.control_scrollbar == '1' || options.control_scrollbar === true,
+                    draggable: true,
                 },
-                zoom:           options.zoom_images == '1' || options.zoom_images === true,
-                loop:           options.control_loop_slider == '1' || options.control_loop_slider === true,
-                speed:          parseInt(options.control_slide_speed, 10) || 400,
-                slidesPerGroup: (options.enable_slides_group == '1' || options.enable_slides_group === true) ? (parseInt(options.slides_per_group, 10) || 1) : 1,
+                direction: vertical ? 'vertical' : 'horizontal',
+                centeredSlides: options.slide_control_center == '1' || options.slide_control_center === true,
 
                 on: {
                     init: function () {
-
                         if (options.control_progress_bar == '1' && options.pagination_type == 'progressbar' && options.progress_bar_color) {
                             const progressbar = slider.find('.swiper-pagination-progressbar-fill').addClass('wpbs-progressbar-fill');
                             progressbar.css({ background: options.progress_bar_color });
@@ -138,11 +131,11 @@ jQuery(function ($) {
 
                             if (options.fraction_position) {
                                 fraction
-                                    .removeClass('wpss-fraction-top-left wpss-fraction-top-right wpss-fraction-bottom-left wpss-fraction-bottom-right wpss-fraction-center')
-                                    .addClass(`wpss-fraction-${options.fraction_position}`);
+                                    .removeClass('wpbs-fraction-top-left wpbs-fraction-top-right wpbs-fraction-bottom-left wpbs-fraction-bottom-right wpbs-fraction-center')
+                                    .addClass(`wpbs-fraction-${options.fraction_position}`);
                             }
                         }
-                        
+
                         if (paginationType === 'custom') {
                             slider.find('.swiper-pagination').css({
                                 '--wpbs-custom-text-color': customTextColor,
@@ -151,15 +144,13 @@ jQuery(function ($) {
                                 '--wpbs-custom-active-bg-color': customActiveBgColor
                             });
                         }
-                        
+
                         if (options.control_autoplay_timeleft == '1' && options.control_autoplay_timeleft_color) {
                             const progress_time = slider.find('.autoplay-progress');
                             progress_time.find('svg').css('stroke', options.control_autoplay_timeleft_color);
                             progress_time.find('span').css('color', options.control_autoplay_timeleft_color);
                         }
                     },
-                    
-                    
                     autoplayTimeLeft(swiper, time, progress) {
                         if (options.control_autoplay_timeleft == '1') {
                             const progress_time = slider.find('.autoplay-progress');
@@ -172,12 +163,16 @@ jQuery(function ($) {
                 },
             };
 
+            // RTL handling
+            if (rtl && !vertical) {
+                slider.attr('dir', 'rtl');
+            }
 
-
-            // Cards effect configuration
+            // Cards border radius
             if (options.animation === 'cards') {
-                baseOptions.initialSlide = parseInt(options.cards_initial_slide, 10) || 2;
-                baseOptions.loopAdditionalSlides = parseInt(options.cards_loop_additional_slides, 10) || 2;
+                baseOptions.rotate = true,
+                baseOptions.initialSlide = parseInt(options.cards_initial_slide, 10) || 0;
+                baseOptions.loopAdditionalSlides = parseInt(options.cards_loop_additional_slides, 10) || 0;
                 
                 // Set border radius if specified
                 if (options.cards_border) {
@@ -185,6 +180,7 @@ jQuery(function ($) {
                 }
             }
 
+            // Cube effect
             if (options.animation === 'cube') {
                 baseOptions.cubeEffect = {
                     shadow: options.cube_shadows === '1' || options.cube_shadows === true,
@@ -194,7 +190,7 @@ jQuery(function ($) {
                 };
             }
 
-            // Coverflow effect configuration
+            // Coverflow effect
             if (options.animation === 'coverflow') {
                 baseOptions.coverflowEffect = {
                     rotate: parseInt(options.coverflow_rotate) || 50,
@@ -203,149 +199,237 @@ jQuery(function ($) {
                     modifier: parseFloat(options.coverflow_modifier) || 1,
                     slideShadows: options.coverflow_shadows === '1' || options.coverflow_shadows === true
                 };
-                // For coverflow, set slidesPerView to auto and centeredSlides
-                baseOptions.slidesPerView = 'auto';
-                baseOptions.centeredSlides = true;
-                // For proper loop functionality with coverflow
-                if (options.control_rewind == '1' || options.control_rewind === true || options.control_loop_slider == '1' || options.control_loop_slider === true) {
-                    baseOptions.loop = true;
-                    baseOptions.rewind = false;
-                    baseOptions.loopAdditionalSlides = 2;
-                }
             }
 
-            // Grid layout - override slidesPerView if grid is enabled
-            if (options.grid) {
-                baseOptions.grid = options.grid;
-                baseOptions.slidesPerView = options.slidesPerView || 1;
-            }
-
-            // Creative effect - already set in extendSliderOptions, just ensure it's applied
-            if (options.creativeEffect) {
-                baseOptions.creativeEffect = options.creativeEffect;
-            }
-
-            if (responsive && options.animation !== 'cube' && options.animation !== 'coverflow' && !options.grid && !(options.slide_control_view_auto == '1' || options.slide_control_view_auto === true)) {
-                baseOptions.breakpoints = this.getResponsiveBreakpoints(options);
-            }
-
-            return $.extend({}, baseOptions, options);
-        }
-
-        extendSliderOptions(slider, options) {
-            const vertical = options.control_slider_vertical == '1' || options.control_slider_vertical === true,
-                rtl = options.control_rtl_slider === '1' || options.control_rtl_slider === true;
-
-            // RTL handling
-            if (rtl && !vertical) {
-                slider.attr('dir', 'rtl');
-            }
-
-            // Grid layout handling
+            // Grid layout
             if (options.enable_grid_layout == '1' || options.enable_grid_layout === true) {
                 const rowType = options.grid_layout_axis || 'row',
                     count = parseInt(options.grid_count, 10) || 2;
-                
-                options.grid = {
+
+                baseOptions.grid = {
                     rows: rowType === 'row' ? count : 1,
                     fill: rowType === 'column' ? 'column' : 'row'
                 };
-                options.slidesPerView = rowType === 'column' ? count : 1;
+
+                baseOptions.slidesPerView = rowType === 'column' ? count : 1;
             }
 
-            // Scrollbar positioning and styling
-            if (options.control_scrollbar == '1' || options.control_scrollbar === true) {
-                const scrollbar = slider.find('.swiper-scrollbar');
-                
-                if (options.scrollbar_color) {
-                    scrollbar.css('background-color', options.scrollbar_color);
-                    scrollbar.find('.swiper-scrollbar-drag').css('background-color', options.scrollbar_color);
-                }
-
-                slider.removeClass('wpbs-scrollbar-top wpbs-scrollbar-left wpbs-scrollbar-right');
-                
-                if (options.scrollbar_position === 'top') {
-                    scrollbar.prependTo(slider);
-                    slider.addClass('wpbs-scrollbar-top');
-                } else if (options.scrollbar_position === 'left' && vertical) {
-                    scrollbar.appendTo(slider);
-                    slider.addClass('wpbs-scrollbar-left');
-                } else if (options.scrollbar_position === 'right' && vertical) {
-                    scrollbar.appendTo(slider);
-                    slider.addClass('wpbs-scrollbar-right');
-                }
+            // Scrollbar color
+            if (options.scrollbar_color) {
+                slider.find('.swiper-scrollbar').css('background-color', options.scrollbar_color);
+                slider.find('.swiper-scrollbar-drag').css('background-color', options.scrollbar_color);
             }
 
-            // Vertical slider height handling
-            if (vertical) {
-                const height = options.height_image;
-                if (height) {
-                    slider.css({
-                        'height': `${height}px`,
-                        'overflow': 'hidden'
-                    });
-                }
+            // Scrollbar position
+            const scrollbar = slider.find('.swiper-scrollbar');
+            slider.removeClass('wpbs-scrollbar-top wpbs-scrollbar-left wpbs-scrollbar-right');
+
+            if (options.scrollbar_position === 'top') {
+                scrollbar.prependTo(slider);
+                slider.addClass('wpbs-scrollbar-top');
+            } else if (options.scrollbar_position === 'left' && baseOptions.direction === 'vertical') {
+                scrollbar.appendTo(slider);
+                slider.addClass('wpbs-scrollbar-left');
+            } else if (options.scrollbar_position === 'right' && baseOptions.direction === 'vertical') {
+                scrollbar.appendTo(slider);
+                slider.addClass('wpbs-scrollbar-right');
             }
 
-            // Creative effects handling
+            // Vertical direction height and width
+            if (baseOptions.direction === 'vertical') {
+                const height = options.height_image || 800;
+                const width  = options.width_image || 500;
+                const unit   = options.image_unit || 'px';    
+                slider.css({
+                    'height': `${height}${unit}`,
+                    'max-width': `${width}${unit}`,
+                });
+            }
+
+            // Creative effects
             if (['shadow push', 'zoom split', 'slide flow', 'flip deck', 'twist flow', 'mirror'].includes(options.animation)) {
-                options.effect = 'creative';
-                
+                baseOptions.effect = 'creative';
+
+                // Helper function to format translate values with units
+                const formatTranslateValue = (value, fieldKey, defaultUnit = 'px') => {
+                    const numValue = parseInt(value, 10) || 0;
+                    const unit = options[fieldKey + '_unit'] || defaultUnit;
+                    if (unit === 'percent') {
+                        return `${numValue}%`;
+                    }
+                    return numValue;
+                };
+
                 switch (options.animation) {
                     case 'shadow push':
-                        options.creativeEffect = {
-                            prev: { shadow: true, translate: [0, 0, -400] },
-                            next: { translate: ['100%', 0, 0] },
+                        const shadowPushPrevShadow  = options.creative_shadow_push_prev_shadow === '1' || options.creative_shadow_push_prev_shadow === true,
+                            shadowPushPrevX         = formatTranslateValue(options.creative_shadow_push_prev_x, 'creative_shadow_push_prev_x', 'px'),
+                            shadowPushPrevY         = formatTranslateValue(options.creative_shadow_push_prev_y, 'creative_shadow_push_prev_y', 'px'),
+                            shadowPushPrevZ         = formatTranslateValue(options.creative_shadow_push_prev_z, 'creative_shadow_push_prev_z', 'px'),
+                            shadowPushNextX         = formatTranslateValue(options.creative_shadow_push_next_x, 'creative_shadow_push_next_x', 'percent'),
+                            shadowPushNextY         = formatTranslateValue(options.creative_shadow_push_next_y, 'creative_shadow_push_next_y', 'px'),
+                            shadowPushNextZ         = formatTranslateValue(options.creative_shadow_push_next_z, 'creative_shadow_push_next_z', 'px');
+                        
+                        baseOptions.creativeEffect = {
+                            prev: { 
+                                shadow: shadowPushPrevShadow,
+                                translate: [shadowPushPrevX, shadowPushPrevY, shadowPushPrevZ]
+                            },
+                            next: { 
+                                translate: [shadowPushNextX, shadowPushNextY, shadowPushNextZ]
+                            },
                         };
                         break;
+
+
                     case 'zoom split':
-                        options.creativeEffect = {
-                            prev: { shadow: true, translate: ['-120%', 0, -500] },
-                            next: { shadow: true, translate: ['120%', 0, -500] },
+                        const zoomSplitPrevShadow = options.creative_zoom_split_prev_shadow === '1' || options.creative_zoom_split_prev_shadow === true,
+                            zoomSplitNextShadow   = options.creative_zoom_split_next_shadow === '1' || options.creative_zoom_split_next_shadow === true,
+                            zoomSplitPrevX        = formatTranslateValue(options.creative_zoom_split_prev_x, 'creative_zoom_split_prev_x', 'percent'),
+                            zoomSplitNextX        = formatTranslateValue(options.creative_zoom_split_next_x, 'creative_zoom_split_next_x', 'percent'),
+                            zoomSplitPrevY        = formatTranslateValue(options.creative_zoom_split_prev_y, 'creative_zoom_split_prev_y', 'px'),
+                            zoomSplitNextY        = formatTranslateValue(options.creative_zoom_split_next_y, 'creative_zoom_split_next_y', 'px'),
+                            zoomSplitPrevZ        = formatTranslateValue(options.creative_zoom_split_prev_z, 'creative_zoom_split_prev_z', 'px'),
+                            zoomSplitNextZ        = formatTranslateValue(options.creative_zoom_split_next_z, 'creative_zoom_split_next_z', 'px');
+                        
+                        baseOptions.creativeEffect = {
+                            prev: { 
+                                shadow: zoomSplitPrevShadow,
+                                translate: [zoomSplitPrevX, zoomSplitPrevY, zoomSplitPrevZ] 
+                            },
+                            next: { 
+                                shadow: zoomSplitNextShadow,
+                                translate: [zoomSplitNextX, zoomSplitNextY, zoomSplitNextZ] 
+                            },
                         };
                         break;
+
                     case 'slide flow':
-                        options.creativeEffect = {
-                            prev: { shadow: true, translate: ['-20%', 0, -1] },
-                            next: { translate: ['100%', 0, 0] },
+                        const slideFlowPrevShadow = options.creative_slide_flow_prev_shadow === '1' || options.creative_slide_flow_prev_shadow === true,
+                            slideFlowPrevX        = formatTranslateValue(options.creative_slide_flow_prev_x, 'creative_slide_flow_prev_x', 'percent'),
+                            slideFlowNextX        = formatTranslateValue(options.creative_slide_flow_next_x, 'creative_slide_flow_next_x', 'percent'),
+                            slideFlowPrevY        = formatTranslateValue(options.creative_slide_flow_prev_y, 'creative_slide_flow_prev_y', 'px'),
+                            slideFlowNextY        = formatTranslateValue(options.creative_slide_flow_next_y, 'creative_slide_flow_next_y', 'px'),
+                            slideFlowPrevZ        = formatTranslateValue(options.creative_slide_flow_prev_z, 'creative_slide_flow_prev_z', 'px'),
+                            slideFlowNextZ        = formatTranslateValue(options.creative_slide_flow_next_z, 'creative_slide_flow_next_z', 'px');
+                        
+                        baseOptions.creativeEffect = {
+                            prev: { 
+                                shadow: slideFlowPrevShadow,
+                                translate: [slideFlowPrevX, slideFlowPrevY, slideFlowPrevZ] 
+                            },
+                            next: { 
+                                translate: [slideFlowNextX, slideFlowNextY, slideFlowNextZ] 
+                            },
                         };
                         break;
+
                     case 'flip deck':
-                        options.creativeEffect = {
-                            prev: { shadow: true, translate: [0, 0, -800], rotate: [180, 0, 0] },
-                            next: { shadow: true, translate: [0, 0, -800], rotate: [-180, 0, 0] },
+                        const flipDeckPrevShadow = options.creative_flip_deck_prev_shadow === '1' || options.creative_flip_deck_prev_shadow === true,
+                            flipDeckNextShadow   = options.creative_flip_deck_next_shadow === '1' || options.creative_flip_deck_next_shadow === true,
+                            flipDeckPrevX        = formatTranslateValue(options.creative_flip_deck_prev_x, 'creative_flip_deck_prev_x', 'px'),
+                            flipDeckPrevY        = formatTranslateValue(options.creative_flip_deck_prev_y, 'creative_flip_deck_prev_y', 'px'),
+                            flipDeckPrevZ        = formatTranslateValue(options.creative_flip_deck_prev_z, 'creative_flip_deck_prev_z', 'px'),
+                            flipDeckNextX        = formatTranslateValue(options.creative_flip_deck_next_x, 'creative_flip_deck_next_x', 'px'),
+                            flipDeckNextY        = formatTranslateValue(options.creative_flip_deck_next_y, 'creative_flip_deck_next_y', 'px'),
+                            flipDeckNextZ        = formatTranslateValue(options.creative_flip_deck_next_z, 'creative_flip_deck_next_z', 'px'),
+                            flipDeckPrevRotateX  = parseInt(options.creative_flip_deck_prev_rotate_x, 10) || 180,
+                            flipDeckPrevRotateY  = parseInt(options.creative_flip_deck_prev_rotate_y, 10) || 0,
+                            flipDeckPrevRotateZ  = parseInt(options.creative_flip_deck_prev_rotate_z, 10) || 0,
+                            flipDeckNextRotateX  = parseInt(options.creative_flip_deck_next_rotate_x, 10) || -180,
+                            flipDeckNextRotateY  = parseInt(options.creative_flip_deck_next_rotate_y, 10) || 0,
+                            flipDeckNextRotateZ  = parseInt(options.creative_flip_deck_next_rotate_z, 10) || 0;
+                        
+                        baseOptions.creativeEffect = {
+                            prev: { 
+                                shadow: flipDeckPrevShadow,
+                                translate: [ flipDeckPrevX, flipDeckPrevY, flipDeckPrevZ ], 
+                                rotate: [ flipDeckPrevRotateX, flipDeckPrevRotateY, flipDeckPrevRotateZ ] 
+                            },
+                            next: { 
+                                shadow: flipDeckNextShadow,
+                                translate: [ flipDeckNextX, flipDeckNextY, flipDeckNextZ ], 
+                                rotate: [ flipDeckNextRotateX, flipDeckNextRotateY, flipDeckNextRotateZ ] 
+                            },
                         };
                         break;
+
                     case 'twist flow':
-                        options.creativeEffect = {
-                            prev: { shadow: true, translate: ['-125%', 0, -800], rotate: [0, 0, -90] },
-                            next: { shadow: true, translate: ['125%', 0, -800], rotate: [0, 0, 90] },
+                        const twistFlowPrevShadow = options.creative_twist_flow_prev_shadow === '1' || options.creative_twist_flow_prev_shadow === true,
+                            twistFlowNextShadow   = options.creative_twist_flow_next_shadow === '1' || options.creative_twist_flow_next_shadow === true,
+                            twistFlowPrevX        = formatTranslateValue(options.creative_twist_flow_prev_x, 'creative_twist_flow_prev_x', 'percent'),
+                            twistFlowNextX        = formatTranslateValue(options.creative_twist_flow_next_x, 'creative_twist_flow_next_x', 'percent'),
+                            twistFlowPrevY        = formatTranslateValue(options.creative_twist_flow_prev_y, 'creative_twist_flow_prev_y', 'px'),
+                            twistFlowNextY        = formatTranslateValue(options.creative_twist_flow_next_y, 'creative_twist_flow_next_y', 'px'),
+                            twistFlowPrevZ        = formatTranslateValue(options.creative_twist_flow_prev_z, 'creative_twist_flow_prev_z', 'px'),
+                            twistFlowNextZ        = formatTranslateValue(options.creative_twist_flow_next_z, 'creative_twist_flow_next_z', 'px'),
+                            twistFlowPrevRotateX  = parseInt(options.creative_twist_flow_prev_rotate_x, 10) || 0,
+                            twistFlowPrevRotateY  = parseInt(options.creative_twist_flow_prev_rotate_y, 10) || 0,
+                            twistFlowPrevRotateZ  = parseInt(options.creative_twist_flow_prev_rotate_z, 10) || -90,
+                            twistFlowNextRotateX  = parseInt(options.creative_twist_flow_next_rotate_x, 10) || 0,
+                            twistFlowNextRotateY  = parseInt(options.creative_twist_flow_next_rotate_y, 10) || 0,
+                            twistFlowNextRotateZ  = parseInt(options.creative_twist_flow_next_rotate_z, 10) || 90;
+                        
+                        baseOptions.creativeEffect = {
+                            prev: { 
+                                shadow: twistFlowPrevShadow,
+                                translate: [ twistFlowPrevX, twistFlowPrevY, twistFlowPrevZ ], 
+                                rotate: [ twistFlowPrevRotateX, twistFlowPrevRotateY, twistFlowPrevRotateZ ] 
+                            },
+                            next: { 
+                                shadow: twistFlowNextShadow,
+                                translate: [ twistFlowNextX, twistFlowNextY, twistFlowNextZ ], 
+                                rotate: [ twistFlowNextRotateX, twistFlowNextRotateY, twistFlowNextRotateZ ] 
+                            },
                         };
                         break;
+
                     case 'mirror':
-                        options.creativeEffect = {
+                        const mirrorPrevShadow = options.creative_mirror_prev_shadow === '1' || options.creative_mirror_prev_shadow === true,
+                            mirrorPrevOrigin   = options.creative_mirror_prev_origin || 'left center',
+                            mirrorPrevX        = formatTranslateValue(options.creative_mirror_prev_x, 'creative_mirror_prev_x', 'percent'),
+                            mirrorPrevY        = formatTranslateValue(options.creative_mirror_prev_y, 'creative_mirror_prev_y', 'px'),
+                            mirrorPrevZ        = formatTranslateValue(options.creative_mirror_prev_z, 'creative_mirror_prev_z', 'px'),
+                            mirrorPrevRotateX  = parseInt(options.creative_mirror_prev_rotate_x, 10) || 0,
+                            mirrorPrevRotateY  = parseInt(options.creative_mirror_prev_rotate_y, 10) || 100,
+                            mirrorPrevRotateZ  = parseInt(options.creative_mirror_prev_rotate_z, 10) || 0,
+                            mirrorNextOrigin   = options.creative_mirror_next_origin || 'right center',
+                            mirrorNextX        = formatTranslateValue(options.creative_mirror_next_x, 'creative_mirror_next_x', 'percent'),
+                            mirrorNextY        = formatTranslateValue(options.creative_mirror_next_y, 'creative_mirror_next_y', 'px'),
+                            mirrorNextZ        = formatTranslateValue(options.creative_mirror_next_z, 'creative_mirror_next_z', 'px'),
+                            mirrorNextRotateX  = parseInt(options.creative_mirror_next_rotate_x, 10) || 0,
+                            mirrorNextRotateY  = parseInt(options.creative_mirror_next_rotate_y, 10) || -100,
+                            mirrorNextRotateZ  = parseInt(options.creative_mirror_next_rotate_z, 10) || 0;
+                        
+                        baseOptions.creativeEffect = {
                             prev: {
-                                shadow: true,
-                                origin: "left center",
-                                translate: ['-5%', 0, -200],
-                                rotate: [0, 100, 0],
+                                shadow: mirrorPrevShadow,
+                                origin: mirrorPrevOrigin,
+                                translate: [ mirrorPrevX, mirrorPrevY, mirrorPrevZ ],
+                                rotate: [ mirrorPrevRotateX, mirrorPrevRotateY, mirrorPrevRotateZ ],
                             },
                             next: {
-                                origin: "right center",
-                                translate: ['5%', 0, -200],
-                                rotate: [0, -100, 0],
+                                origin: mirrorNextOrigin,
+                                translate: [ mirrorNextX, mirrorNextY, mirrorNextZ ],
+                                rotate: [ mirrorNextRotateX, mirrorNextRotateY, mirrorNextRotateZ ],
                             },
                         };
                         break;
+
                     default:
-                        options.creativeEffect = {
+                        baseOptions.creativeEffect = {
                             prev: { translate: ['-20%', 0, -1] },
                             next: { translate: ['100%', 0, 0] },
                         };
                 }
             }
 
-            return options;
+            // Responsive breakpoints
+            if (responsive && options.animation !== 'cube' && !(options.slide_control_view_auto == '1' || options.slide_control_view_auto === true)) {
+                baseOptions.breakpoints = this.getResponsiveBreakpoints(options);
+            }
+            
+            return $.extend({}, baseOptions, options);
         }
 
         getResponsiveBreakpoints(options) {
@@ -369,5 +453,5 @@ jQuery(function ($) {
     }
 
     new WPBS_Frontend();
-
+    
 });

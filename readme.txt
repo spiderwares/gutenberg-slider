@@ -6,13 +6,13 @@ Requires PHP: 7.4
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Tags: slider, image slider, block editor, gallery, responsive slider
+Tags: slider, image slider, block editor, block slider, responsive slider
 
 Create stunning, fully responsive sliders using the Gutenberg block editor with customizable navigation, autoplay, and animation effects.
 
 == Description ==
 
-**Blocksy Slider** is a powerful and feature-rich WordPress slider plugin powered by [Swiper.js](https://swiperjs.com/), the most modern mobile touch slider library. This plugin seamlessly integrates with the WordPress Gutenberg block editor, allowing you to create beautiful, responsive sliders with rich content using blocks.
+Blocksy Slider is a powerful and feature-rich WordPress slider plugin powered by [Swiper.js](https://swiperjs.com/), the most modern mobile touch slider library. This plugin seamlessly integrates with the WordPress Gutenberg block editor, allowing you to create beautiful, responsive sliders with rich content using blocks.
 
 Unlike traditional image-only sliders, Blocksy Slider lets you build slides using the full power of Gutenberg blocks - add images, text, headings, videos, galleries, and any other block content to create engaging, interactive sliders.
 
@@ -20,37 +20,29 @@ Unlike traditional image-only sliders, Blocksy Slider lets you build slides usin
 
 This plugin includes the following open-source libraries:
 
-1. **[Swiper.js](https://swiperjs.com/)**
+1. [Swiper.js](https://swiperjs.com/)
    A modern mobile touch slider library used to power the slider functionality.
-   **License:** MIT
+   License: MIT
 
-2. **wp-color-picker-alpha**
+2. wp-color-picker-alpha
    An extension script for WordPress Color Picker that adds support for RGBA colors with transparency.
-   **License:** GPL-2.0+
+   License: GPL-2.0+
 
 == Features ==
 
 ⭐ Powered by [Swiper.js](https://swiperjs.com/) – the most modern mobile slider library
-⭐ **Gutenberg Block Editor Integration** – Create slides using any Gutenberg blocks (images, text, videos, galleries, etc.)
+⭐ Gutenberg Block Editor Integration – Create slides using any Gutenberg blocks (images, text, videos, etc.)
 ⭐ Easy to use admin interface with tabbed settings
-⭐ Multiple transition effects: Slide, Fade, Flip, and Cube
+⭐ 10+ Transition Effects – Choose from slide, fade, flip, cube, cards effects etc.
 ⭐ Customizable navigation arrows with multiple style options
-⭐ Flexible pagination options: Bullets and Progress Bar
+⭐ Flexible pagination options: Bullets, Progress Bar and etc.
 ⭐ Autoplay functionality with customizable delay and time indicator
-⭐ Fully responsive and mobile-friendly with touch gestures
 ⭐ Background settings for both slider container and individual slides
 ⭐ Lazy loading images for better performance
 ⭐ Drag & drop to reorder slides
 ⭐ Shortcode support: `[wpbs_slider id="123"]`
 ⭐ Grid layout support with customizable rows and columns
-⭐ Rewind functionality
 ⭐ Compatible with all major themes and page builders
-⭐ Developer-friendly with extendable actions & filters
-
-== Pro Features ==
-
-⭐ 10+ Animation Effects – Choose from slide, fade, flip, cube, cards, coverflow, shadow push, zoom split, slide flow, flip deck, twist flow, and mirror effects
-⭐ Advanced Navigation – Multiple arrow styles (5 built-in styles + custom option) with full customization
 ⭐ Thumbnail Gallery – Display thumbnail gallery below the main slider with customizable size and spacing
 ⭐ Scrollbar Navigation – Customizable scrollbar with position options (top, bottom, left, right) and color control
 ⭐ Vertical Slider – Create vertical sliders with full height control
@@ -62,16 +54,15 @@ This plugin includes the following open-source libraries:
 ⭐ Slides Grouping – Control how many slides advance at once
 ⭐ Coverflow Options – Advanced coverflow settings (rotate, stretch, depth, modifier, shadows)
 ⭐ Centered Slides – Center slides for better visual presentation
-⭐ Slides Per View Auto – Automatic slides per view calculation
-⭐ Fully Responsive – Mobile-first design that works on all devices
-⭐ Gutenberg Block Editor – Native integration with WordPress block editor
+⭐ Slides View Auto – Automatic slides per view calculation
+⭐ Fully responsive and mobile-friendly with touch gestures
 ⭐ Developer-Friendly – Extensible with filters and actions for customization
 
 == Installation ==
 
-1. Upload the plugin to the `/wp-content/plugins/blocksy-slider/` directory or install it via **Plugins > Add New**.
-2. Activate the plugin through the **Plugins** menu in WordPress.
-3. Navigate to **Blocksy Slider** in the WordPress admin menu to create a new slider.
+1. Upload the plugin to the `/wp-content/plugins/blocksy-slider/` directory or install it via Plugins > Add New.
+2. Activate the plugin through the Plugins menu in WordPress.
+3. Navigate to Blocksy Slider in the WordPress admin menu to create a new slider.
 4. Add slides using the Gutenberg block editor - each slide can contain any combination of blocks (images, text, videos, etc.).
 5. Configure slider options in the settings tabs: Transition, Navigation, Pagination, Autoplay, Responsive, and Other Options.
 6. Use the shortcode `[wpbs_slider id="SLIDER_ID"]` to display the slider anywhere on your site, where `SLIDER_ID` is the ID of your slider.

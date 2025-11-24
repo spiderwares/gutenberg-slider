@@ -24,7 +24,7 @@ $options = get_post_meta( $post->ID, 'wpbs_slider_option', true );
 ?>
 
 <div id="transition-tab" class="wpbs-tab-content">
-    <?php 
+    <?php
     wpbs_get_template( 
         'fields/settings-forms.php', 
         array(

@@ -108,8 +108,8 @@ if( ! class_exists( 'WPBS_Manage_Metadata' ) ) :
             );
 
             $slides_data = array();
-            if ( $slides_query ) {
-                foreach ( $slides_query as $slide ) {
+            if ( $slides_query ) :
+                foreach ( $slides_query as $slide ) :
                     $preview = WPBS_Helper::get_slide_preview_data( $slide );
                     $slides_data[] = array(
                         'id'     => $slide->ID,
@@ -118,8 +118,8 @@ if( ! class_exists( 'WPBS_Manage_Metadata' ) ) :
                         'thumb'  => $preview['thumb'],
                         'edit'   => admin_url( 'post.php?post=' . $slide->ID . '&action=edit' ),
                     );
-                }
-            }
+                endforeach;
+            endif;
             
             $url = add_query_arg( 
                 array(    
