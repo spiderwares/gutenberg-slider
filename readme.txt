@@ -1,5 +1,5 @@
 === Blocksy Slider ===
-Contributors: cosmic
+Contributors: cosmicinfosoftware
 Requires at least: 5.2
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -27,6 +27,10 @@ This plugin includes the following open-source libraries:
 2. wp-color-picker-alpha
    An extension script for WordPress Color Picker that adds support for RGBA colors with transparency.
    License: GPL-2.0+
+
+== Presentation ==
+
+[**Demo**](https://plugins.cosmicinfosoftware.com/blocksy-slider/) | [**Documentation**]https://documentation.cosmicinfosoftware.com/blocksy-slider/documents/getting-started/introduction/
 
 == Features ==
 
@@ -122,5 +126,3 @@ The plugin includes four transition effects: Slide, Fade, Flip, and Cube. You ca
 = 1.0.0 =
 First release. More customization options and advanced controls coming soon in future updates.
 
-For complete documentation, user guides, and video tutorials, visit:
-https://documentation.cosmicinfosoftware.com/blocksy-slider/documents/getting-started/introduction/
