@@ -96,7 +96,7 @@ if( ! class_exists( 'WPBS_Public' ) ) :
             $background_repeat   = isset( $background_settings['background_repeat'] ) ? $background_settings['background_repeat'] : '';
             $background_color    = isset( $background_settings['background_color'] ) ? $background_settings['background_color'] : '';
             $background_url      = isset( $background_settings['background_url'] ) ? $background_settings['background_url'] : '';
-            $slides_background_settings = isset( $background_settings['slides_background_settings'] ) ? $background_settings['slides_background_settings'] : array();
+            $background_settings = isset( $background_settings['background_settings'] ) ? $background_settings['background_settings'] : array();
 
             wpbs_get_template(
                 'fields/dynamic-style.php',
@@ -108,7 +108,7 @@ if( ! class_exists( 'WPBS_Public' ) ) :
                     'background_repeat'       => $background_repeat,
                     'background_color'        => $background_color,
                     'background_url'          => $background_url,
-                    'slides_background_settings' => $slides_background_settings,
+                    'background_settings'     => $background_settings,
                 )
             );
 

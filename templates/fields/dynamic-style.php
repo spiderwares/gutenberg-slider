@@ -249,8 +249,8 @@ wpbs_generate_background_css(
 );
 
 // Slide-specific CSS
-if ( ! empty( $slides_background_settings ) && is_array( $slides_background_settings ) ) :
-    foreach ( $slides_background_settings as $slide_id => $slide_bg_settings ) :
+if ( ! empty( $background_settings ) && is_array( $background_settings ) ) :
+    foreach ( $background_settings as $slide_id => $slide_bg_settings ) :
         wpbs_generate_background_css(
             '.wpbs_slider--' . esc_attr( $slider_id ) . ' .wpbs-slide-' . esc_attr( $slide_id ),
             $slide_bg_settings
@@ -336,7 +336,7 @@ $thumb_gallery_border_radius = isset( $settings['thumb_gallery_border_radius'] )
 if ( $thumb_gallery_border_radius > 0 ) :
 ?>
     .wpbs-swiper-thumbs-gallery img {
-        border-radius: <?php echo esc_html( $thumb_gallery_border_radius ); ?>px;
+        border-radius: <?php echo esc_html( $thumb_gallery_border_radius ); ?>%;
     }
 <?php endif; ?>
 

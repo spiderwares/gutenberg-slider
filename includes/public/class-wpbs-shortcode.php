@@ -63,7 +63,7 @@ if( ! class_exists( 'WPBS_Shortcode' ) ) :
                 foreach ( $child_slides as $slide ) :
                     // Store slide content with slide ID as key
                     $slides[ $slide->ID ] = $slide->post_content;
-                    $slides_background_settings[ $slide->ID ] = WPBS_Helper::wpbs_get_background_settings( $slide->ID );
+                    $background_settings[ $slide->ID ] = WPBS_Helper::wpbs_get_background_settings( $slide->ID );
                 endforeach;
             endif;
     
@@ -110,7 +110,6 @@ if( ! class_exists( 'WPBS_Shortcode' ) ) :
             $image_unit                     = !empty($wpbsOptions['image_unit']) ? $wpbsOptions['image_unit'] : 'px';
             $width_image                    = $width_image_value . $image_unit;
             $height_image                   = $height_image_value . $image_unit;
-            
             $control_autoplay               = !empty($wpbsOptions['control_autoplay']) && $wpbsOptions['control_autoplay'] == '1';
             $control_autoplay_timeleft      = !empty($wpbsOptions['control_autoplay_timeleft']) && $wpbsOptions['control_autoplay_timeleft'] == '1';
             $zoom_enabled                   = !empty( $wpbsOptions['zoom_images'] ) && in_array( $wpbsOptions['zoom_images'], array( '1', 1, true, 'true', 'yes' ), true );
@@ -140,7 +139,7 @@ if( ! class_exists( 'WPBS_Shortcode' ) ) :
             $wpbs_css = WPBS_Public::dynamic_wpbs_css($wpbsOptions, $wpbs_slideshow_ID,
                 array_merge(
                     $slider_background_settings,
-                    array( 'slides_background_settings' => $slides_background_settings )
+                    array( 'background_settings' => $background_settings )
                 )
             );
     

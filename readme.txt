@@ -35,8 +35,7 @@ This plugin includes the following open-source libraries:
 == Features ==
 
 ⭐ Powered by [Swiper.js](https://swiperjs.com/) – the most modern mobile slider library
-⭐ Gutenberg Block Editor Integration – Create slides using any Gutenberg blocks (images, text, videos, etc.)
-⭐ Easy to use admin interface with tabbed settings
+⭐ Gutenberg Block Editor Integration – Create slides using any Gutenberg blocks (images, text, videos etc.)
 ⭐ 10+ Transition Effects – Choose from slide, fade, flip, cube, cards effects etc.
 ⭐ Customizable navigation arrows with multiple style options
 ⭐ Flexible pagination options: Bullets, Progress Bar and etc.
@@ -93,17 +92,19 @@ The plugin includes four transition effects: Slide, Fade, Flip, and Cube. You ca
 
 == Screenshots ==
 
-1. Transition effects selection
-2. Navigation Arrow Style 
-3. Pagination Style
-4. Responsive design
-5. Autoplay settings
-6. Other Options
-7. Custom CSS
-8. Slide editor with Gutenberg blocks (images, text, videos, etc.)
-9. Background settings for slider and individual slides
-10. Shortcode usage in page editor
-11. Frontend responsive slider with navigation arrows and pagination
+1. Frontend
+2. Transition effects
+3. Navigation Arrow Style 
+4. Pagination Style
+5. Responsive design
+6. Autoplay settings
+7. Thumbnail Gallery
+8. Scrollbar Control
+9. Other Options
+10. Custom CSS
+11. Slide editor with Gutenberg blocks (images, text, videos, etc.)
+12. Background settings for slider and individual slides
+13. Shortcode usage in page editor
 
 == Changelog ==
 
@@ -125,4 +126,3 @@ The plugin includes four transition effects: Slide, Fade, Flip, and Cube. You ca
 
 = 1.0.0 =
 First release. More customization options and advanced controls coming soon in future updates.
-

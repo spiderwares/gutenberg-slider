@@ -1345,9 +1345,9 @@ if ( ! class_exists( 'WPBS_Settings_Fields' ) ) :
                     'field_type'  => 'wpbsrange',
                     'default'     => 0,
                     'unit'        => array(
-                        'px'      => esc_html__( 'PX', 'blocksy-slider' ),
+                        'percent'      => esc_html__( '%', 'blocksy-slider' ),
                     ),
-                    'unit_selected' => 'px',
+                    'unit_selected' => 'percent',
                     'unit_disabled' => 'yes',
                     'desc'          => esc_html__( 'Set border radius of thumbnail images.', 'blocksy-slider' ),
                     'extra_class'   => 'wpbs_thumb_gallery',
