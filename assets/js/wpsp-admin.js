@@ -91,8 +91,8 @@ jQuery(function ($) {
         handleUploadSlide(e) { 
             e.preventDefault();
 
-            const addSlideUrl = (typeof bsAdmin !== 'undefined' && bsAdmin.add_slide_url) 
-                ? bsAdmin.add_slide_url 
+            const addSlideUrl = (typeof spAdmin !== 'undefined' && spAdmin.add_slide_url) 
+                ? spAdmin.add_slide_url 
                 : $(e.currentTarget).attr('href'); 
             
             if (!addSlideUrl || addSlideUrl === '#' || !addSlideUrl.includes('parent_slider=')) { 
