@@ -3,13 +3,13 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( ! class_exists( 'WPBS_Public' ) ) :
+if( ! class_exists( 'WPSP_Public' ) ) :
 
     /**
-     * Class WPBS_Public
+     * Class WPSP_Public
      *
      */
-    class WPBS_Public {
+    class WPSP_Public {
 
         /**
          * Settings array.
@@ -46,41 +46,41 @@ if( ! class_exists( 'WPBS_Public' ) ) :
             
             wp_enqueue_script( 
                 'swiper-bundle.min--js', 
-                WPBS_URL . 'assets/lib/swiper-bundle.min.js', 
+                WPSP_URL . 'assets/lib/swiper-bundle.min.js', 
                 array(), 
-                WPBS_VERSION, 
+                WPSP_VERSION, 
                 true 
             );
 
             wp_enqueue_style( 
                 'swiper-bundle.min--css', 
-                WPBS_URL . 'assets/lib/swiper-bundle.min.css', 
+                WPSP_URL . 'assets/lib/swiper-bundle.min.css', 
                 array(), 
-                WPBS_VERSION
+                WPSP_VERSION
             );
 
             // Enqueue WordPress hooks library for frontend
             wp_enqueue_script( 'wp-hooks' );
             
             wp_enqueue_script(
-                'wpbs-frontend',
-                WPBS_URL . 'assets/js/wpbs-frontend.js',
+                'wpsp-frontend',
+                WPSP_URL . 'assets/js/wpsp-frontend.js',
                 array( 'jquery' , 'wp-hooks' ),
-                WPBS_VERSION,
+                WPSP_VERSION,
                 true
             );
 
             wp_enqueue_style(
-                'wpbs-frontend-style',
-                WPBS_URL . 'assets/css/wpbs-frontend-style.css',
+                'wpsp-frontend-style',
+                WPSP_URL . 'assets/css/wpsp-frontend-style.css',
                 array(),    
-                WPBS_VERSION,
+                WPSP_VERSION,
             );
 
-            $wpbs_css = $this->dynamic_wpbs_css( $this->settings, $this->slider_ID );
+            $wpsp_css = $this->dynamic_wpsp_css( $this->settings, $this->slider_ID );
 
-            if ( ! empty( $wpbs_css ) ) :
-                wp_add_inline_style( 'wpbs-frontend-style', $wpbs_css );
+            if ( ! empty( $wpsp_css ) ) :
+                wp_add_inline_style( 'wpsp-frontend-style', $wpsp_css );
             endif;
         }
 
@@ -88,7 +88,7 @@ if( ! class_exists( 'WPBS_Public' ) ) :
          * Generate CSS for the slider.
          *
          */
-        public static function dynamic_wpbs_css( $settings, $slider_ID, $background_settings = array() ) {
+        public static function dynamic_wpsp_css( $settings, $slider_ID, $background_settings = array() ) {
             ob_start();
 
             $background_size     = isset( $background_settings['background_size'] ) ? $background_settings['background_size'] : '';
@@ -98,7 +98,7 @@ if( ! class_exists( 'WPBS_Public' ) ) :
             $background_url      = isset( $background_settings['background_url'] ) ? $background_settings['background_url'] : '';
             $background_settings = isset( $background_settings['background_settings'] ) ? $background_settings['background_settings'] : array();
 
-            wpbs_get_template(
+            wpsp_get_template(
                 'fields/dynamic-style.php',
                 array(
                     'settings'                => $settings,
@@ -117,5 +117,5 @@ if( ! class_exists( 'WPBS_Public' ) ) :
 
     }
 
-    new WPBS_Public();
+    new WPSP_Public();
 endif;

@@ -11,9 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 ?>
 
-<div id="features-tab" class="wpbs-tab-content">
+<div id="features-tab" class="wpsp-tab-content">
     <?php
-    wpbs_get_template(
+    wpsp_get_template(
         'fields/features.php',
         array(),
     );

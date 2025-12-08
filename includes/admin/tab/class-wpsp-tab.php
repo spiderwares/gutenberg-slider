@@ -1,26 +1,26 @@
 <?php
 /**
- * WPBS Tab Class
+ * WPSP Tab Class
  *
  * Handles the admin tab setup and related functionalities.
  *
- * @package Blocksy_Slider
+ * @package Slider|_Press
  */
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! class_exists( 'WPBS_Tab' ) ) {
+if ( ! class_exists( 'WPSP_Tab' ) ) {
 
 	/**
-	 * Class WPBS_Tab
+	 * Class WPSP_Tab
 	 *
-	 * Initializes the admin tab for WPBS.
+	 * Initializes the admin tab for WPSP.
 	 */
-	class WPBS_Tab {
+	class WPSP_Tab {
 
 		/**
-		 * Constructor for WPBS_Tab class.
+		 * Constructor for WPSP_Tab class.
 		 * Initializes the event handler.
 		 */
 		public function __construct() {
@@ -39,18 +39,18 @@ if ( ! class_exists( 'WPBS_Tab' ) ) {
 		 */
 		public function enqueue_scripts() {
 			
-			// Enqueue the WPBS tab CSS.
+			// Enqueue the WPSP tab CSS.
 			wp_enqueue_style(
-				'wpbs-tab',
-				WPBS_URL . 'includes/admin/tab/css/wpbs-tab.css',
+				'wpsp-tab',
+				WPSP_URL . 'includes/admin/tab/css/wpsp-tab.css',
 				array(),
-				WPBS_VERSION 
+				WPSP_VERSION 
 			);
 
 		}
 
 	}
 
-	// Instantiate the WPBS_Tab class.
-	new WPBS_Tab();
+	// Instantiate the WPSP_Tab class.
+	new WPSP_Tab();
 }

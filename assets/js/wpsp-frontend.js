@@ -2,7 +2,7 @@
 
 jQuery(function ($) {
 
-    class WPBS_Frontend {
+    class WPSP_Frontend {
 
         constructor() {
             this.init();
@@ -13,7 +13,7 @@ jQuery(function ($) {
         }
 
         initializeSliders() {
-            $('.wpbs-swiper').each((index, element) => {
+            $('.wpsp-swiper').each((index, element) => {
                 const slider   = $(element),
                     rawOptions = slider.attr('data-options');
 
@@ -23,18 +23,18 @@ jQuery(function ($) {
                 if (!options) return;
 
                 if (options.slide_control_view_auto == '1' || options.slide_control_view_auto === true) {
-                    slider.addClass('wpbs-auto-slides');
+                    slider.addClass('wpsp-auto-slides');
                 }
 
                 // Thumbs gallery
                 let thumbsSwiper = null;
                 if (options.thumb_gallery == '1' || options.thumb_gallery === true) {
-                    const thumbsGallery = slider.parent().find('.wpbs-swiper-thumbs-gallery');
+                    const thumbsGallery = slider.parent().find('.wpsp-swiper-thumbs-gallery');
                     if (thumbsGallery.length) {
                         thumbsSwiper = new Swiper(thumbsGallery[0], {
-                            loop:            options.thumb_gallery_loop === '1',
-                            spaceBetween:    parseInt(options.thumb_gallery_space, 10) || 10,
-                            slidesPerView:   4,
+                            loop:           options.thumb_gallery_loop === '1',
+                            spaceBetween:   parseInt(options.thumb_gallery_space, 10) || 10,
+                            slidesPerView:  4,
                             watchSlidesProgress: true,
                         });
                     }
@@ -69,54 +69,55 @@ jQuery(function ($) {
                 rtl                     = options.control_rtl_slider === '1' || options.control_rtl_slider === true;
 
             const baseOptions = {
-                effect:         options.animation || 'slide',
-                grabCursor:     options.control_grab_cursor == '1',
-                lazy:           options.control_lazyload_images == '1' || options.control_lazyload_images === true,
-                rewind:         options.control_rewind == '1' || options.control_rewind === true,
-                slidesPerView: (options.animation === 'cube') ? 1 : (options.slide_control_view_auto == '1' || 
+                effect:     options.animation || 'slide',
+                grabCursor: options.control_grab_cursor == '1',
+                lazy:       options.control_lazyload_images == '1' || options.control_lazyload_images === true,
+                rewind:     options.control_rewind == '1' || options.control_rewind === true,
+                slidesPerView: (options.animation === 'cube') ? 1 : (options.slide_control_view_auto == '1' ||
                     options.slide_control_view_auto === true) ? 'auto' : (responsive ? (parseInt(options.items_in_desktop) || 1) : 1),
-                autoplay:       options.control_autoplay == '1' ? {
+                autoplay:   options.control_autoplay == '1' ? {
                     delay: parseInt(options.autoplay_timing, 10) || 3000,
                     disableOnInteraction: false,
                 } : false,
-                pagination:     paginationType !== 'none' ? {
-                    el:         '.swiper-pagination',
-                    clickable:  true,
+                pagination: paginationType !== 'none' ? {
+                    el: '.swiper-pagination',
+                    clickable: options.bullets_click == '1' || options.bullets_click === true,
+                    dynamicBullets: options.dynamic_bullets == '1' || options.dynamic_bullets === true,
                     renderBullet: function (index, className) {
                         if (paginationType === 'custom') {
-                            return `<span class="${className} wpbs-swiper-custom-${customStyle}">${index + 1}</span>`;
+                            return `<span class="${className} wpsp-swiper-custom-${customStyle}">${index + 1}</span>`;
                         }
                         return `<span class="${className}"></span>`;
                     },
                     type: paginationType === 'progressbar' ? 'progressbar' :
                         paginationType === 'fraction' ? 'fraction' :
-                        'bullets',
+                            'bullets',
                 } : undefined,
                 navigation: {
-                    nextEl: slider.find('.swiper-button-next')[0],
-                    prevEl: slider.find('.swiper-button-prev')[0],
+                    nextEl:     slider.find('.swiper-button-next')[0],
+                    prevEl:     slider.find('.swiper-button-prev')[0],
                 },
-                loop: options.control_loop_slider == '1' || options.control_loop_slider === true,
-                speed: parseInt(options.control_slide_speed, 10) || 400,
-                spaceBetween: parseInt(options.control_slide_space, 10) || 10,
+                loop:           options.control_loop_slider == '1' || options.control_loop_slider === true,
+                speed:          parseInt(options.control_slide_speed, 10) || 400,
+                spaceBetween:   parseInt(options.control_slide_space, 10) || 0,
                 slidesPerGroup: (options.enable_slides_group == '1' || options.enable_slides_group === true) ? parseInt(options.slides_per_group, 10) || 1 : 1,
-                zoom: options.zoom_images == '1' || options.zoom_images === true,
+                zoom:           options.zoom_images == '1' || options.zoom_images === true,
                 keyboard: {
-                    enabled: options.control_keyboard == '1' || options.control_keyboard === true,
+                    enabled:    options.control_keyboard == '1' || options.control_keyboard === true,
                 },
-                mousewheel: options.control_mousewheel == '1' || options.control_mousewheel === true,
+                mousewheel:     options.control_mousewheel == '1' || options.control_mousewheel === true,
                 scrollbar: {
                     el: '.swiper-scrollbar',
                     enabled: options.control_scrollbar == '1' || options.control_scrollbar === true,
-                    draggable: true,
+                    draggable: options.scrollbar_draggable == '1' || options.scrollbar_draggable === true,
                 },
-                direction: vertical ? 'vertical' : 'horizontal',
+                direction:      vertical ? 'vertical' : 'horizontal',
                 centeredSlides: options.slide_control_center == '1' || options.slide_control_center === true,
 
                 on: {
                     init: function () {
                         if (options.control_progress_bar == '1' && options.pagination_type == 'progressbar' && options.progress_bar_color) {
-                            const progressbar = slider.find('.swiper-pagination-progressbar-fill').addClass('wpbs-progressbar-fill');
+                            const progressbar = slider.find('.swiper-pagination-progressbar-fill').addClass('wpsp-progressbar-fill');
                             progressbar.css({ background: options.progress_bar_color });
                         }
 
@@ -130,18 +131,17 @@ jQuery(function ($) {
                             }
 
                             if (options.fraction_position) {
-                                fraction
-                                    .removeClass('wpbs-fraction-top-left wpbs-fraction-top-right wpbs-fraction-bottom-left wpbs-fraction-bottom-right wpbs-fraction-center')
-                                    .addClass(`wpbs-fraction-${options.fraction_position}`);
+                                fraction.removeClass('wpsp-fraction-top-left wpsp-fraction-top-right wpsp-fraction-bottom-left wpsp-fraction-bottom-right wpsp-fraction-center')
+                                    .addClass(`wpsp-fraction-${options.fraction_position}`);
                             }
                         }
 
                         if (paginationType === 'custom') {
                             slider.find('.swiper-pagination').css({
-                                '--wpbs-custom-text-color': customTextColor,
-                                '--wpbs-custom-bg-color': customBackgroundColor,
-                                '--wpbs-custom-active-text-color': customActiveTextColor,
-                                '--wpbs-custom-active-bg-color': customActiveBgColor
+                                '--wpsp-custom-text-color': customTextColor,
+                                '--wpsp-custom-bg-color': customBackgroundColor,
+                                '--wpsp-custom-active-text-color': customActiveTextColor,
+                                '--wpsp-custom-active-bg-color': customActiveBgColor
                             });
                         }
 
@@ -171,9 +171,9 @@ jQuery(function ($) {
             // Cards border radius
             if (options.animation === 'cards') {
                 baseOptions.rotate = true,
-                baseOptions.initialSlide = parseInt(options.cards_initial_slide, 10) || 0;
+                    baseOptions.initialSlide = parseInt(options.cards_initial_slide, 10) || 0;
                 baseOptions.loopAdditionalSlides = parseInt(options.cards_loop_additional_slides, 10) || 0;
-                
+
                 // Set border radius if specified
                 if (options.cards_border) {
                     slider.find('.swiper-slide').css('border-radius', `${parseInt(options.cards_border, 10)}%`);
@@ -186,17 +186,17 @@ jQuery(function ($) {
                     shadow: options.cube_shadows === '1' || options.cube_shadows === true,
                     slideShadows: options.cube_slide_shadows === '1' || options.cube_slide_shadows === true,
                     shadowOffset: parseInt(options.cube_shadowoffset) || 20,
-                    shadowScale: parseFloat(options.cube_shadowScale) || 1,
+                    shadowScale:  parseFloat(options.cube_shadowScale) || 1,
                 };
             }
 
             // Coverflow effect
             if (options.animation === 'coverflow') {
                 baseOptions.coverflowEffect = {
-                    rotate: parseInt(options.coverflow_rotate) || 50,
-                    stretch: parseInt(options.coverflow_stretch) || 0,
-                    depth: parseInt(options.coverflow_depth) || 100,
-                    modifier: parseFloat(options.coverflow_modifier) || 1,
+                    rotate:       parseInt(options.coverflow_rotate) || 50,
+                    stretch:      parseInt(options.coverflow_stretch) || 0,
+                    depth:        parseInt(options.coverflow_depth) || 100,
+                    modifier:     parseFloat(options.coverflow_modifier) || 1,
                     slideShadows: options.coverflow_shadows === '1' || options.coverflow_shadows === true
                 };
             }
@@ -204,7 +204,7 @@ jQuery(function ($) {
             // Grid layout
             if (options.enable_grid_layout == '1' || options.enable_grid_layout === true) {
                 const rowType = options.grid_layout_axis || 'row',
-                    count = parseInt(options.grid_count, 10) || 2;
+                    count     = parseInt(options.grid_count, 10) || 2;
 
                 baseOptions.grid = {
                     rows: rowType === 'row' ? count : 1,
@@ -222,24 +222,24 @@ jQuery(function ($) {
 
             // Scrollbar position
             const scrollbar = slider.find('.swiper-scrollbar');
-            slider.removeClass('wpbs-scrollbar-top wpbs-scrollbar-left wpbs-scrollbar-right');
+            slider.removeClass('wpsp-scrollbar-top wpsp-scrollbar-left wpsp-scrollbar-right');
 
             if (options.scrollbar_position === 'top') {
                 scrollbar.prependTo(slider);
-                slider.addClass('wpbs-scrollbar-top');
+                slider.addClass('wpsp-scrollbar-top');
             } else if (options.scrollbar_position === 'left' && baseOptions.direction === 'vertical') {
                 scrollbar.appendTo(slider);
-                slider.addClass('wpbs-scrollbar-left');
+                slider.addClass('wpsp-scrollbar-left');
             } else if (options.scrollbar_position === 'right' && baseOptions.direction === 'vertical') {
                 scrollbar.appendTo(slider);
-                slider.addClass('wpbs-scrollbar-right');
+                slider.addClass('wpsp-scrollbar-right');
             }
 
             // Vertical direction height and width
             if (baseOptions.direction === 'vertical') {
-                const height = options.height_image || 800;
-                const width  = options.width_image || 500;
-                const unit   = options.image_unit || 'px';    
+                const height = options.height_image || 800,
+                    width    = options.width_image || 500,
+                    unit     = options.image_unit || 'px';
                 slider.css({
                     'height': `${height}${unit}`,
                     'max-width': `${width}${unit}`,
@@ -252,8 +252,8 @@ jQuery(function ($) {
 
                 // Helper function to format translate values with units
                 const formatTranslateValue = (value, fieldKey, defaultUnit = 'px') => {
-                    const numValue = parseInt(value, 10) || 0;
-                    const unit = options[fieldKey + '_unit'] || defaultUnit;
+                    const numValue = parseInt(value, 10) || 0,
+                        unit       = options[fieldKey + '_unit'] || defaultUnit;
                     if (unit === 'percent') {
                         return `${numValue}%`;
                     }
@@ -262,20 +262,20 @@ jQuery(function ($) {
 
                 switch (options.animation) {
                     case 'shadow push':
-                        const shadowPushPrevShadow  = options.creative_shadow_push_prev_shadow === '1' || options.creative_shadow_push_prev_shadow === true,
-                            shadowPushPrevX         = formatTranslateValue(options.creative_shadow_push_prev_x, 'creative_shadow_push_prev_x', 'px'),
-                            shadowPushPrevY         = formatTranslateValue(options.creative_shadow_push_prev_y, 'creative_shadow_push_prev_y', 'px'),
-                            shadowPushPrevZ         = formatTranslateValue(options.creative_shadow_push_prev_z, 'creative_shadow_push_prev_z', 'px'),
-                            shadowPushNextX         = formatTranslateValue(options.creative_shadow_push_next_x, 'creative_shadow_push_next_x', 'percent'),
-                            shadowPushNextY         = formatTranslateValue(options.creative_shadow_push_next_y, 'creative_shadow_push_next_y', 'px'),
-                            shadowPushNextZ         = formatTranslateValue(options.creative_shadow_push_next_z, 'creative_shadow_push_next_z', 'px');
-                        
+                        const shadowPushPrevShadow = options.creative_shadow_push_prev_shadow === '1' || options.creative_shadow_push_prev_shadow === true,
+                            shadowPushPrevX        = formatTranslateValue(options.creative_shadow_push_prev_x, 'creative_shadow_push_prev_x', 'px'),
+                            shadowPushPrevY        = formatTranslateValue(options.creative_shadow_push_prev_y, 'creative_shadow_push_prev_y', 'px'),
+                            shadowPushPrevZ        = formatTranslateValue(options.creative_shadow_push_prev_z, 'creative_shadow_push_prev_z', 'px'),
+                            shadowPushNextX        = formatTranslateValue(options.creative_shadow_push_next_x, 'creative_shadow_push_next_x', 'percent'),
+                            shadowPushNextY        = formatTranslateValue(options.creative_shadow_push_next_y, 'creative_shadow_push_next_y', 'px'),
+                            shadowPushNextZ        = formatTranslateValue(options.creative_shadow_push_next_z, 'creative_shadow_push_next_z', 'px');
+
                         baseOptions.creativeEffect = {
-                            prev: { 
+                            prev: {
                                 shadow: shadowPushPrevShadow,
                                 translate: [shadowPushPrevX, shadowPushPrevY, shadowPushPrevZ]
                             },
-                            next: { 
+                            next: {
                                 translate: [shadowPushNextX, shadowPushNextY, shadowPushNextZ]
                             },
                         };
@@ -291,15 +291,15 @@ jQuery(function ($) {
                             zoomSplitNextY        = formatTranslateValue(options.creative_zoom_split_next_y, 'creative_zoom_split_next_y', 'px'),
                             zoomSplitPrevZ        = formatTranslateValue(options.creative_zoom_split_prev_z, 'creative_zoom_split_prev_z', 'px'),
                             zoomSplitNextZ        = formatTranslateValue(options.creative_zoom_split_next_z, 'creative_zoom_split_next_z', 'px');
-                        
+
                         baseOptions.creativeEffect = {
-                            prev: { 
+                            prev: {
                                 shadow: zoomSplitPrevShadow,
-                                translate: [zoomSplitPrevX, zoomSplitPrevY, zoomSplitPrevZ] 
+                                translate: [zoomSplitPrevX, zoomSplitPrevY, zoomSplitPrevZ]
                             },
-                            next: { 
+                            next: {
                                 shadow: zoomSplitNextShadow,
-                                translate: [zoomSplitNextX, zoomSplitNextY, zoomSplitNextZ] 
+                                translate: [zoomSplitNextX, zoomSplitNextY, zoomSplitNextZ]
                             },
                         };
                         break;
@@ -312,14 +312,14 @@ jQuery(function ($) {
                             slideFlowNextY        = formatTranslateValue(options.creative_slide_flow_next_y, 'creative_slide_flow_next_y', 'px'),
                             slideFlowPrevZ        = formatTranslateValue(options.creative_slide_flow_prev_z, 'creative_slide_flow_prev_z', 'px'),
                             slideFlowNextZ        = formatTranslateValue(options.creative_slide_flow_next_z, 'creative_slide_flow_next_z', 'px');
-                        
+
                         baseOptions.creativeEffect = {
-                            prev: { 
+                            prev: {
                                 shadow: slideFlowPrevShadow,
-                                translate: [slideFlowPrevX, slideFlowPrevY, slideFlowPrevZ] 
+                                translate: [slideFlowPrevX, slideFlowPrevY, slideFlowPrevZ]
                             },
-                            next: { 
-                                translate: [slideFlowNextX, slideFlowNextY, slideFlowNextZ] 
+                            next: {
+                                translate: [slideFlowNextX, slideFlowNextY, slideFlowNextZ]
                             },
                         };
                         break;
@@ -339,17 +339,17 @@ jQuery(function ($) {
                             flipDeckNextRotateX  = parseInt(options.creative_flip_deck_next_rotate_x, 10) || -180,
                             flipDeckNextRotateY  = parseInt(options.creative_flip_deck_next_rotate_y, 10) || 0,
                             flipDeckNextRotateZ  = parseInt(options.creative_flip_deck_next_rotate_z, 10) || 0;
-                        
+
                         baseOptions.creativeEffect = {
-                            prev: { 
+                            prev: {
                                 shadow: flipDeckPrevShadow,
-                                translate: [ flipDeckPrevX, flipDeckPrevY, flipDeckPrevZ ], 
-                                rotate: [ flipDeckPrevRotateX, flipDeckPrevRotateY, flipDeckPrevRotateZ ] 
+                                translate: [flipDeckPrevX, flipDeckPrevY, flipDeckPrevZ],
+                                rotate: [flipDeckPrevRotateX, flipDeckPrevRotateY, flipDeckPrevRotateZ]
                             },
-                            next: { 
+                            next: {
                                 shadow: flipDeckNextShadow,
-                                translate: [ flipDeckNextX, flipDeckNextY, flipDeckNextZ ], 
-                                rotate: [ flipDeckNextRotateX, flipDeckNextRotateY, flipDeckNextRotateZ ] 
+                                translate: [flipDeckNextX, flipDeckNextY, flipDeckNextZ],
+                                rotate: [flipDeckNextRotateX, flipDeckNextRotateY, flipDeckNextRotateZ]
                             },
                         };
                         break;
@@ -369,17 +369,17 @@ jQuery(function ($) {
                             twistFlowNextRotateX  = parseInt(options.creative_twist_flow_next_rotate_x, 10) || 0,
                             twistFlowNextRotateY  = parseInt(options.creative_twist_flow_next_rotate_y, 10) || 0,
                             twistFlowNextRotateZ  = parseInt(options.creative_twist_flow_next_rotate_z, 10) || 90;
-                        
+
                         baseOptions.creativeEffect = {
-                            prev: { 
+                            prev: {
                                 shadow: twistFlowPrevShadow,
-                                translate: [ twistFlowPrevX, twistFlowPrevY, twistFlowPrevZ ], 
-                                rotate: [ twistFlowPrevRotateX, twistFlowPrevRotateY, twistFlowPrevRotateZ ] 
+                                translate: [twistFlowPrevX, twistFlowPrevY, twistFlowPrevZ],
+                                rotate: [twistFlowPrevRotateX, twistFlowPrevRotateY, twistFlowPrevRotateZ]
                             },
-                            next: { 
+                            next: {
                                 shadow: twistFlowNextShadow,
-                                translate: [ twistFlowNextX, twistFlowNextY, twistFlowNextZ ], 
-                                rotate: [ twistFlowNextRotateX, twistFlowNextRotateY, twistFlowNextRotateZ ] 
+                                translate: [twistFlowNextX, twistFlowNextY, twistFlowNextZ],
+                                rotate: [twistFlowNextRotateX, twistFlowNextRotateY, twistFlowNextRotateZ]
                             },
                         };
                         break;
@@ -400,18 +400,18 @@ jQuery(function ($) {
                             mirrorNextRotateX  = parseInt(options.creative_mirror_next_rotate_x, 10) || 0,
                             mirrorNextRotateY  = parseInt(options.creative_mirror_next_rotate_y, 10) || -100,
                             mirrorNextRotateZ  = parseInt(options.creative_mirror_next_rotate_z, 10) || 0;
-                        
+
                         baseOptions.creativeEffect = {
                             prev: {
                                 shadow: mirrorPrevShadow,
                                 origin: mirrorPrevOrigin,
-                                translate: [ mirrorPrevX, mirrorPrevY, mirrorPrevZ ],
-                                rotate: [ mirrorPrevRotateX, mirrorPrevRotateY, mirrorPrevRotateZ ],
+                                translate: [mirrorPrevX, mirrorPrevY, mirrorPrevZ],
+                                rotate: [mirrorPrevRotateX, mirrorPrevRotateY, mirrorPrevRotateZ],
                             },
                             next: {
                                 origin: mirrorNextOrigin,
-                                translate: [ mirrorNextX, mirrorNextY, mirrorNextZ ],
-                                rotate: [ mirrorNextRotateX, mirrorNextRotateY, mirrorNextRotateZ ],
+                                translate: [mirrorNextX, mirrorNextY, mirrorNextZ],
+                                rotate: [mirrorNextRotateX, mirrorNextRotateY, mirrorNextRotateZ],
                             },
                         };
                         break;
@@ -428,7 +428,7 @@ jQuery(function ($) {
             if (responsive && options.animation !== 'cube' && !(options.slide_control_view_auto == '1' || options.slide_control_view_auto === true)) {
                 baseOptions.breakpoints = this.getResponsiveBreakpoints(options);
             }
-            
+
             return $.extend({}, baseOptions, options);
         }
 
@@ -452,6 +452,6 @@ jQuery(function ($) {
 
     }
 
-    new WPBS_Frontend();
-    
+    new WPSP_Frontend();
+
 });

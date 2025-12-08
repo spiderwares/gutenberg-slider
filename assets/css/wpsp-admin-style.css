@@ -1,6 +1,6 @@
 /*--------------------------- Switch Field ---------------------------*/
 
-.wpbs_switch_field {
+.wpsp_switch_field {
     display: inline-flex;
     align-items: center;
     position: relative;
@@ -8,14 +8,14 @@
     height: 24px;
 }
   
-.wpbs_switch_field input[type="checkbox"] {
+.wpsp_switch_field input[type="checkbox"] {
     opacity: 0;
     width: 0;
     height: 0;
     position: absolute;
 }
 
-.wpbs_switch_field label {
+.wpsp_switch_field label {
     background-color: #e2e8f0;
     border-radius: 30px;
     display: inline-block;
@@ -26,7 +26,7 @@
     position: relative;
 }
   
-.wpbs_switch_icon {
+.wpsp_switch_icon {
     position: absolute;
     top: 2px;
     left: 2px;
@@ -41,39 +41,39 @@
     z-index: 2;
 }
   
-.wpbs_switch_icon svg {
+.wpsp_switch_icon svg {
     width: 12px;
     height: 12px;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
   
-.wpbs_switch_icon .wpbs_icon_on {
+.wpsp_switch_icon .wpsp_icon_on {
     display: none;
 }
   
-.wpbs_switch_icon .wpbs_icon_off {
+.wpsp_switch_icon .wpsp_icon_off {
     display: block;
     fill: #64748b;
     stroke-width: 2px;
     stroke: #64748b;
 }
   
-.wpbs_switch_field input[type="checkbox"]:checked+label {
+.wpsp_switch_field input[type="checkbox"]:checked+label {
     background-color: #570fdc;
 }
   
-.wpbs_switch_field input[type="checkbox"]:checked+label .wpbs_switch_icon {
+.wpsp_switch_field input[type="checkbox"]:checked+label .wpsp_switch_icon {
     left: 22px;
 }
   
-.wpbs_switch_field input[type="checkbox"]:checked+label .wpbs_icon_on {
+.wpsp_switch_field input[type="checkbox"]:checked+label .wpsp_icon_on {
     display: block;
     fill: #570fdc;
     stroke-width: 2px;
     stroke: #570fdc;
 }
   
-.wpbs_switch_field input[type="checkbox"]:checked+label .wpbs_icon_off {
+.wpsp_switch_field input[type="checkbox"]:checked+label .wpsp_icon_off {
     display: none;
 }
   
@@ -81,26 +81,26 @@
 
 /*--------------------------- Radio Field ---------------------------*/
 
-.wpbs_radio_field table tr th ,
-.wpbs_radio_field table tr td{
+.wpsp_radio_field table tr th ,
+.wpsp_radio_field table tr td{
     border-bottom: 1px dashed #eee;
 }
 
-.wpbs_radio_field table th small{
+.wpsp_radio_field table th small{
     display: block;
     font-weight: normal;
     color: #9e9e9e;
 }
 
-.wpbs_radio_field .wpbs_image_control {
+.wpsp_radio_field .wpsp_image_control {
     display: inline-block;
 }
 
-.wpbs_radio_field .wpbs_image_control input {
+.wpsp_radio_field .wpsp_image_control input {
     display: none;
 }
 
-.wpbs_radio_field .wpbs_image_control label {
+.wpsp_radio_field .wpsp_image_control label {
     position: relative;
     display: inline-block;
     border: 2px solid #e5e5e5;
@@ -117,12 +117,12 @@
     font-weight: 600;
 }
 
-.wpbs_radio_field .wpbs_image_control label img {
+.wpsp_radio_field .wpsp_image_control label img {
     display: block;
     margin-bottom: 3px;
 }
 
-.wpbs_radio_field .wpbs_image_control input:checked + label {
+.wpsp_radio_field .wpsp_image_control input:checked + label {
     border: 2px solid #5480b3;
     box-shadow: 0 0 5px rgb(0 57 84 / 60%);
 }
@@ -131,12 +131,12 @@
 
 /*--------------------------- Number Field ---------------------------*/
 
-.wpbs_number_field .wpbs_number_wrap {
+.wpsp_number_field .wpsp_number_wrap {
     display: flex;
     align-items: center;
 }
 
-.wpbs_input, .wpbs_select{
+.wpsp_input, .wpsp_select{
     width: 350px;
     height: 35px;
     padding: 5px 10px;
@@ -145,11 +145,11 @@
     font-size: 14px;
 }
 
-.wpbs_number_field {
+.wpsp_number_field {
     display: flex;
 }
 
-.wpbs_unit_text {
+.wpsp_unit_text {
     background-color: #f3f4f6;
     color: #6b7280;
     padding: 8px 12px;
@@ -162,7 +162,7 @@
     border-radius: 0 5px 5px 0;
 } 
 
-.wpbs_number_field .wpbs_number_wrap select{ 
+.wpsp_number_field .wpsp_number_wrap select{ 
     width: 70px;
 }
 
@@ -170,7 +170,7 @@
 
 /*--------------------------- Textarea Field ---------------------------*/  
 
-.wpbs-textarea-wrapper {
+.wpsp-textarea-wrapper {
     position: relative;
     display: flex;
     background: #ffffff;
@@ -181,7 +181,7 @@
     width: 60%;
 }
 
-.wpbs-line-numbers {
+.wpsp-line-numbers {
     width: 25px;
     background: #f8f8f8;
     border-right: 1px solid #e0e0e0;
@@ -195,12 +195,12 @@
     flex-shrink: 0;
 }
 
-.wpbs-line-numbers span {
+.wpsp-line-numbers span {
     display: block;
     min-height: 19.5px;
 }
 
-.wpbs_custom_textarea {
+.wpsp_custom_textarea {
     width: 100%;
     height: 40%;
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
@@ -217,7 +217,7 @@
     box-shadow: none;
 }
 
-.wpbs_custom_textarea:focus {
+.wpsp_custom_textarea:focus {
     outline: none;
     outline-offset: none;
     border: none;
@@ -229,7 +229,7 @@
 
 /*--------------------------- Pro Version ---------------------------*/
 
-.wpbs_pro_message {
+.wpsp_pro_message {
     color: #c9356e;
 }
   
@@ -237,12 +237,12 @@
 
 /*--------------------------- Slides Field ---------------------------*/
 
-ul.wpbs_slides {
+ul.wpsp_slides {
     display: flex;
     flex-wrap: wrap;
 }
 
-ul.wpbs_slides li {
+ul.wpsp_slides li {
     position: relative;
     display: inline-block;
     border: 2px solid #e5e5e5;
@@ -253,12 +253,12 @@ ul.wpbs_slides li {
     overflow: hidden;
 }
 
-ul.wpbs_slides li img {
+ul.wpsp_slides li img {
     height: 250px;
     object-fit: cover;
 }
 
-ul.wpbs_slides li:before {
+ul.wpsp_slides li:before {
     content: '';
     display: block;
     top: 0;
@@ -269,7 +269,7 @@ ul.wpbs_slides li:before {
     position: absolute;
 }
 
-li.wpbs_slide_actions {
+li.wpsp_slide_actions {
     position: absolute;
     left: 5px;
     right: 5px;
@@ -283,7 +283,7 @@ li.wpbs_slide_actions {
     transition: all ease 0.3s;
 }
 
-ul.wpbs_slides li .wpbs_slide_actions {
+ul.wpsp_slides li .wpsp_slide_actions {
     position: absolute;
     left: 5px;
     right: 5px;
@@ -302,28 +302,28 @@ ul.wpbs_slides li .wpbs_slide_actions {
     gap: 5px;
 }
 
-ul.wpbs_slides li:hover .wpbs_slide_actions, ul.wpbs_slides li .wpbs_slide_actions a:hover span {
+ul.wpsp_slides li:hover .wpsp_slide_actions, ul.wpsp_slides li .wpsp_slide_actions a:hover span {
     opacity: 1;
     visibility: visible;
 }
 
-.wpbs_slide_actions a {
+.wpsp_slide_actions a {
     text-decoration: none;
 }
 
-.wpbs_slide_actions a i {
+.wpsp_slide_actions a i {
     color: white;
     font-size: 2.2em;
     padding: 0px 10px;
 }
 
-ul.wpbs_slides li .wpbs_slide_actions a {
+ul.wpsp_slides li .wpsp_slide_actions a {
     display: inline-block;
     margin: 5px 10px;
     position: relative;
 }
 
-ul.wpbs_slides li .wpbs_slide_actions a span {
+ul.wpsp_slides li .wpsp_slide_actions a span {
     position: absolute;
     color: #ffffff;
     text-transform: uppercase;
@@ -340,7 +340,7 @@ ul.wpbs_slides li .wpbs_slide_actions a span {
     transition: all ease 0.3s;
 }
 
-ul.wpbs_slides li .wpbs_slide_actions a span:before {
+ul.wpsp_slides li .wpsp_slide_actions a span:before {
     content: '';
     display: block;
     width: 0;
@@ -359,7 +359,7 @@ ul.wpbs_slides li .wpbs_slide_actions a span:before {
 
 /*--------------------------- Slider Settings ---------------------------*/
 
-.wpbs_slide_placeholder {
+.wpsp_slide_placeholder {
     width:250px;
     height:250px;
     display:flex;
@@ -369,11 +369,11 @@ ul.wpbs_slides li .wpbs_slide_actions a span:before {
     color:#555;
 }
 
-.wpbs_slide_placeholder span {
+.wpsp_slide_placeholder span {
     font-size: 28px;
 }
 
-.wpbs_add_slide_message {
+.wpsp_add_slide_message {
     padding: 15px; 
     background:rgb(231, 205, 255); 
     border-left: 4px solid rgb(81, 7, 255); 
@@ -385,14 +385,14 @@ ul.wpbs_slides li .wpbs_slide_actions a span:before {
 
 /*--------------------------- Features Comparison ---------------------------*/
 
-.wpbs-features-table {
+.wpsp-features-table {
     width: 100%;
     border-collapse: collapse;
     background: #fff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 } 
   
-.wpbs-features-table .wpbs-free-version {
+.wpsp-features-table .wpsp-free-version {
     background: #cff5d2;
     color: #000000;
     padding: 15px;
@@ -401,7 +401,7 @@ ul.wpbs_slides li .wpbs_slide_actions a span:before {
     font-size: 18px;
 }
   
-.wpbs-features-table .wpbs-pro-version {
+.wpsp-features-table .wpsp-pro-version {
     background: #2E7D32;
     color: #fff;
     padding: 15px;
@@ -410,7 +410,7 @@ ul.wpbs_slides li .wpbs_slide_actions a span:before {
     font-size: 18px;
 }
   
-.wpbs-features-table .wpbs-feature {
+.wpsp-features-table .wpsp-feature {
     background: #F5F5F5;
     color: #1d2327;
     text-align: left;
@@ -419,38 +419,38 @@ ul.wpbs_slides li .wpbs_slide_actions a span:before {
     font-size: 18px;
 }
   
-.wpbs-features-table td:first-child{
+.wpsp-features-table td:first-child{
     text-align: left;
 }
   
-.wpbs-features-table td {
+.wpsp-features-table td {
     padding: 12px 15px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
   
-.wpbs-features-header {
+.wpsp-features-header {
     padding: 20px;
     background: #fff;
     border-left: 2px solid #000000;
 }
 
-.wpbs-features-header h2 {
+.wpsp-features-header h2 {
     margin: 0 0 10px 0;
     color: #1d2327;
 }
 
-.wpbs-features-header p {
+.wpsp-features-header p {
     margin: 0;
     color: #646970;
 }
 
-.wpbs-features-table tbody tr td {
+.wpsp-features-table tbody tr td {
     font-size: 14px;
     font-weight: 600;
 }
 
-.wpbs-message { 
+.wpsp-message { 
     margin-top: 20px;
     padding: 20px; 
     background: #fff3cd; 

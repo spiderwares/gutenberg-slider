@@ -3,27 +3,27 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! class_exists( 'WPBS' ) ) :
+if ( ! class_exists( 'WPSP' ) ) :
 
     /**
-     * Main WPBS Class
+     * Main WPSP Class
      *
-     * @class WPBS   
+     * @class WPSP   
      * @version 1.0.0
      */
-    final class WPBS {
+    final class WPSP {
 
         /**
          * The single instance of the class.
          *
-         * @var WPBS
+         * @var WPSP
          */
         protected static $instance = null;
 
         /**
          * The public class instance.
          *
-         * @var WPBS
+         * @var WPSP
          */
         public $public = null;
 
@@ -43,12 +43,12 @@ if ( ! class_exists( 'WPBS' ) ) :
         }
 
         /**
-         * Main WPBS Instance.
+         * Main WPSP Instance.
          *
-         * Ensures only one instance of WPBS is loaded or can be loaded.
+         * Ensures only one instance of WPSP is loaded or can be loaded.
          *
          * @static
-         * @return WPBS - Main instance.
+         * @return WPSP - Main instance.
          */
         public static function instance() {
             if ( is_null( self::$instance ) ) :
@@ -58,7 +58,7 @@ if ( ! class_exists( 'WPBS' ) ) :
                  * Fire a custom action to allow dependencies
                  * after the successful plugin setup
                  */
-                do_action( 'wpbs_plugin_loaded' );
+                do_action( 'wpsp_plugin_loaded' );
             endif;
             return self::$instance;
         }
@@ -73,27 +73,27 @@ if ( ! class_exists( 'WPBS' ) ) :
                 $this->includes_public();
             endif;
             
-            require_once WPBS_PATH . 'includes/wpbs-core-functions.php';
-            require_once WPBS_PATH . 'includes/admin/settings/class-wpbs-cpt.php';
-            require_once WPBS_PATH . 'includes/admin/settings/class-wpbs-helper.php';
+            require_once WPSP_PATH . 'includes/wpsp-core-functions.php';
+            require_once WPSP_PATH . 'includes/admin/settings/class-wpsp-cpt.php';
+            require_once WPSP_PATH . 'includes/admin/settings/class-wpsp-helper.php';
         }
         
         /**
          * Include Admin required files.
          */
         public function includes_admin() {
-            require_once WPBS_PATH . 'includes/class-wpbs-install.php';
-            require_once WPBS_PATH . 'includes/admin/tab/class-wpbs-tab.php';
-            require_once WPBS_PATH . 'includes/admin/settings/class-wpbs-manage-metadata.php';
-            require_once WPBS_PATH . 'includes/admin/settings/class-wpbs-settings-field.php';
+            require_once WPSP_PATH . 'includes/class-wpsp-install.php';
+            require_once WPSP_PATH . 'includes/admin/tab/class-wpsp-tab.php';
+            require_once WPSP_PATH . 'includes/admin/settings/class-wpsp-manage-metadata.php';
+            require_once WPSP_PATH . 'includes/admin/settings/class-wpsp-settings-field.php';
         }
         
         /**
          * Include Public required files.
          */
         public function includes_public() {
-            require_once WPBS_PATH . 'includes/public/class-wpbs-public.php';
-            require_once WPBS_PATH . 'includes/public/class-wpbs-shortcode.php';
+            require_once WPSP_PATH . 'includes/public/class-wpsp-public.php';
+            require_once WPSP_PATH . 'includes/public/class-wpsp-shortcode.php';
 		}
     }
 

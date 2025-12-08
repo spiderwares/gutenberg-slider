@@ -4,8 +4,8 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
-<div class="wpbs_slides_wrap">
-    <ul class="wpbs_slides">
+<div class="wpsp_slides_wrap">
+    <ul class="wpsp_slides">
         <?php
         if ( isset( $slidesData ) && is_array( $slidesData ) && ! empty( $slidesData ) ) :
 
@@ -28,29 +28,29 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                         if ( $slide_type === 'video' ) $icon = 'dashicons-video-alt3';
                         if ( $slide_type === 'list' )  $icon = 'dashicons-editor-ul';
                     ?>
-                        <div class="wpbs_slide_placeholder">
+                        <div class="wpsp_slide_placeholder">
                             <span class="dashicons <?php echo esc_attr( $icon ); ?>"></span>
                         </div>
                     <?php endif; ?>
 
-                    <div class="wpbs_slide_actions">
-                        <a href="<?php echo esc_url( $edit_url ); ?>" class="wpbs_slide_edit" target="_blank">
-                            <span class="tooltip"><?php echo esc_html__( 'Edit', 'blocksy-slider' ); ?></span>
+                    <div class="wpsp_slide_actions">
+                        <a href="<?php echo esc_url( $edit_url ); ?>" class="wpsp_slide_edit" target="_blank">
+                            <span class="tooltip"><?php echo esc_html__( 'Edit', 'slider-press' ); ?></span>
                             <i class="dashicons dashicons-edit"></i>
                         </a>
 
-                        <a href="#" class="wpbs_slide_move">
-                            <span class="tooltip"><?php echo esc_html__( 'Drag & Sort', 'blocksy-slider' ); ?></span>
+                        <a href="#" class="wpsp_slide_move">
+                            <span class="tooltip"><?php echo esc_html__( 'Drag & Sort', 'slider-press' ); ?></span>
                             <i class="dashicons dashicons-move"></i>
                         </a>
 
-                        <a href="#" class="wpbs_slide_remove">
-                            <span class="tooltip"><?php echo esc_html__( 'Delete', 'blocksy-slider' ); ?></span>
+                        <a href="#" class="wpsp_slide_remove">
+                            <span class="tooltip"><?php echo esc_html__( 'Delete', 'slider-press' ); ?></span>
                             <i class="dashicons dashicons-trash"></i>
                         </a>
                     </div>
 
-                    <input type="hidden" name="wpbs_slide_ids[]" value="<?php echo esc_attr( $slide_id ); ?>" />
+                    <input type="hidden" name="wpsp_slide_ids[]" value="<?php echo esc_attr( $slide_id ); ?>" />
                 </li>
             <?php
             endforeach;
@@ -61,7 +61,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         elseif ( isset( $imageIDs ) && ! empty( $imageIDs ) && is_array( $imageIDs ) ) :
 
             foreach ( $imageIDs as $imageID ) :
-                $image_src = wp_get_attachment_image_src( $imageID, 'wpbs_slideshow_thumbnail' )[0] ?? '';
+                $image_src = wp_get_attachment_image_src( $imageID, 'wpsp_slideshow_thumbnail' )[0] ?? '';
                 $slide_id  = isset( $imageSlide[ $imageID ] ) ? absint( $imageSlide[ $imageID ] ) : 0;
 
                 if ( $slide_id ) :
@@ -70,7 +70,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                     $slider_id = isset( $slider_id ) ? $slider_id : get_the_ID();
                     $edit_url  = add_query_arg(
                         array(
-                            'post_type'     => 'wpbs_slide',
+                            'post_type'     => 'wpsp_slide',
                             'parent_slider' => $slider_id,
                         ),
                         admin_url( 'post-new.php' )
@@ -82,24 +82,24 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                     <?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- Static plugin asset, not a WordPress media library attachment. ?>
                     <img width="250" src="<?php echo esc_url( $image_src ); ?>" alt="Slide Thumbnail" />
 
-                    <div class="wpbs_slide_actions">
-                        <a href="<?php echo esc_url( $edit_url ); ?>" class="wpbs_slide_edit" target="_blank">
-                            <span class="tooltip"><?php echo esc_html__( 'Edit', 'blocksy-slider' ); ?></span>
+                    <div class="wpsp_slide_actions">
+                        <a href="<?php echo esc_url( $edit_url ); ?>" class="wpsp_slide_edit" target="_blank">
+                            <span class="tooltip"><?php echo esc_html__( 'Edit', 'slider-press' ); ?></span>
                             <i class="dashicons dashicons-edit"></i>
                         </a>
 
-                        <a href="#" class="wpbs_slide_move">
-                            <span class="tooltip"><?php echo esc_html__( 'Drag & Sort', 'blocksy-slider' ); ?></span>
+                        <a href="#" class="wpsp_slide_move">
+                            <span class="tooltip"><?php echo esc_html__( 'Drag & Sort', 'slider-press' ); ?></span>
                             <i class="dashicons dashicons-move"></i>
                         </a>
 
-                        <a href="#" class="wpbs_slide_remove">
-                            <span class="tooltip"><?php echo esc_html__( 'Delete', 'blocksy-slider' ); ?></span>
+                        <a href="#" class="wpsp_slide_remove">
+                            <span class="tooltip"><?php echo esc_html__( 'Delete', 'slider-press' ); ?></span>
                             <i class="dashicons dashicons-trash"></i>
                         </a>
                     </div>
 
-                    <input type="hidden" name="wpbs_slider_image_ids[]" value="<?php echo esc_attr( $imageID ); ?>" />
+                    <input type="hidden" name="wpsp_slider_image_ids[]" value="<?php echo esc_attr( $imageID ); ?>" />
                 </li>
             <?php
             endforeach;
@@ -112,15 +112,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
     <?php
     // Nonce field for security
-    wp_nonce_field( 'wpbs_slideshow_metabox_data', 'wpbs_slideshow_metabox_nonce' );
+    wp_nonce_field( 'wpsp_slideshow_metabox_data', 'wpsp_slideshow_metabox_nonce' );
     
     if ( $is_saved ) : ?>
-        <a href="<?php echo esc_url( $add_slide_url ); ?>" class="button wpbs_upload_slide">
-            <?php echo esc_html__( 'Add New Slide', 'blocksy-slider' ); ?>
+        <a href="<?php echo esc_url( $add_slide_url ); ?>" class="button wpsp_upload_slide">
+            <?php echo esc_html__( 'Add New Slide', 'slider-press' ); ?>
         </a>
     <?php else : ?>
-        <p class="wpbs_add_slide_message">
-            <?php echo esc_html__( 'Save your slider with a title to begin adding slides.', 'blocksy-slider' ); ?>
+        <p class="wpsp_add_slide_message">
+            <?php echo esc_html__( 'Save your slider with a title to begin adding slides.', 'slider-press' ); ?>
         </p>
     <?php endif; ?>
 </div>

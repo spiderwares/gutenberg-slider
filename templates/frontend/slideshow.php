@@ -4,21 +4,21 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( $hasSlides || $hasImages ) :
-    if ( ! empty( $wpbs_css ) ) : ?>
-        <style><?php echo esc_html( $wpbs_css ); ?></style>
+    if ( ! empty( $wpsp_css ) ) : ?>
+        <style><?php echo esc_html( $wpsp_css ); ?></style>
     <?php endif; ?>
 
-    <div class="wpbs-swiper swiper swiper-slider-wrapper <?php echo esc_attr($slideshow_main_class); ?>"
+    <div class="wpsp-swiper swiper swiper-slider-wrapper <?php echo esc_attr($slideshow_main_class); ?>"
     data-options='<?php echo esc_attr( $options );?>'>
         <div class="swiper-wrapper">
             <?php if ( $hasSlides ) :
                 foreach ( $slides as $slide_id => $html ) : ?>
-                    <div class="swiper-slide wpbs-slide-<?php echo esc_attr( $slide_id ); ?>">
-                        <div class="wpbs-slide-content">
+                    <div class="swiper-slide wpsp-slide-<?php echo esc_attr( $slide_id ); ?>">
+                        <div class="wpsp-slide-content">
                             <?php 
                             $rendered_html = function_exists( 'do_blocks' ) ? do_blocks( $html ) : $html;
                             $slide_content = ( ! empty( $lazy_load ) && ( $lazy_load == '1' || $lazy_load === true ) ) 
-                                ? WPBS_Helper::wpbs_lazy_load_images( $rendered_html ) 
+                                ? WPSP_Helper::wpsp_lazy_load_images( $rendered_html ) 
                                 : $rendered_html;
                         
                             if ( ! empty( $zoom_enabled ) ) : ?>
@@ -58,7 +58,7 @@ if ( $hasSlides || $hasImages ) :
 
     <!-- Swiper Thumbs Gallery -->
     <?php if ( ! empty( $thumb_gallery ) && ( $hasSlides || $hasImages ) ) : ?>
-        <div class="wpbs-swiper-thumbs-gallery swiper">
+        <div class="wpsp-swiper-thumbs-gallery swiper">
             <div class="swiper-wrapper">
 
                 <?php if ( $hasSlides ) :

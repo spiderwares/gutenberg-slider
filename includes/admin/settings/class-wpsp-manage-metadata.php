@@ -3,14 +3,14 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( ! class_exists( 'WPBS_Manage_Metadata' ) ) :
+if( ! class_exists( 'WPSP_Manage_Metadata' ) ) :
 
     /**
-     * Class WPBS_Manage_Metadata
+     * Class WPSP_Manage_Metadata
      *
      * Handles the registration of the Spin Metabox.
      */
-    class WPBS_Manage_Metadata {
+    class WPSP_Manage_Metadata {
 
          /**
          * Constructor for the class.
@@ -33,19 +33,19 @@ if( ! class_exists( 'WPBS_Manage_Metadata' ) ) :
         public function add_meta_boxes() {
 
             add_meta_box(
-                'wpbs_slides',
-                esc_html__( 'Manage Slides', 'blocksy-slider' ),
+                'wpsp_slides',
+                esc_html__( 'Manage Slides', 'slider-press' ),
                 array( $this, 'genrate_slideshow_metabox' ),
-                'wpbs_slider',
+                'wpsp_slider',
                 'normal',
                 'high'
             );
 
             add_meta_box(
-                'wpbs_slider_options',
-                esc_html__( 'Slider Options', 'blocksy-slider' ),
-                array( $this, 'render_wpbs_options' ),
-                'wpbs_slider',
+                'wpsp_slider_options',
+                esc_html__( 'Slider Options', 'slider-press' ),
+                array( $this, 'render_wpsp_options' ),
+                'wpsp_slider',
                 'normal',
                 'high'
             );
@@ -57,7 +57,7 @@ if( ! class_exists( 'WPBS_Manage_Metadata' ) ) :
         public function enqueue_scripts() {
 
             $screen = get_current_screen();
-            if ( in_array( $screen->post_type, ['wpbs_slider', 'wpbs_slide'], true ) ) :
+            if ( in_array( $screen->post_type, ['wpsp_slider', 'wpsp_slide'], true ) ) :
                 wp_enqueue_script( 'jquery-ui-core' );
                 wp_enqueue_script( 'jquery-ui-widget' );
                 wp_enqueue_script( 'jquery-ui-sortable' );
@@ -66,25 +66,25 @@ if( ! class_exists( 'WPBS_Manage_Metadata' ) ) :
 
                 wp_enqueue_script( 
                     'wp-color-picker-alpha', 
-                    WPBS_URL . 'assets/lib/wp-color-picker-alpha.js', 
+                    WPSP_URL . 'assets/lib/wp-color-picker-alpha.js', 
                     array( 'jquery', 'wp-color-picker' ), 
-                    WPBS_VERSION,
+                    WPSP_VERSION,
                     true
                 );
                 
                 wp_enqueue_script( 
-                    'wpbs-admin', 
-                    WPBS_URL . 'assets/js/wpbs-admin.js', 
+                    'wpsp-admin', 
+                    WPSP_URL . 'assets/js/wpsp-admin.js', 
                     array( 'jquery', 'wp-color-picker-alpha' ), 
-                    WPBS_VERSION, 
+                    WPSP_VERSION, 
                     true 
                 );
 
                 wp_enqueue_style( 
-                    'wpbs-admin-style', 
-                    WPBS_URL . 'assets/css/wpbs-admin-style.css', 
+                    'wpsp-admin-style', 
+                    WPSP_URL . 'assets/css/wpsp-admin-style.css', 
                     array(), 
-                    WPBS_VERSION 
+                    WPSP_VERSION 
                 );
             endif;
         }
@@ -95,12 +95,12 @@ if( ! class_exists( 'WPBS_Manage_Metadata' ) ) :
          * @param object $post Post object.
          */
         public function genrate_slideshow_metabox( $post ) {
-            $imageIDs = get_post_meta( $post->ID, 'wpbs_slider_image_ids', true );
+            $imageIDs = get_post_meta( $post->ID, 'wpsp_slider_image_ids', true );
 
             $slides_query = get_children( 
                 array(
                     'post_parent' => $post->ID,
-                    'post_type'   => 'wpbs_slide',
+                    'post_type'   => 'wpsp_slide',
                     'numberposts' => -1,
                     'orderby'     => 'menu_order',
                     'order'       => 'ASC',
@@ -110,7 +110,7 @@ if( ! class_exists( 'WPBS_Manage_Metadata' ) ) :
             $slides_data = array();
             if ( $slides_query ) :
                 foreach ( $slides_query as $slide ) :
-                    $preview = WPBS_Helper::get_slide_preview_data( $slide );
+                    $preview = WPSP_Helper::get_slide_preview_data( $slide );
                     $slides_data[] = array(
                         'id'     => $slide->ID,
                         'title'  => get_the_title( $slide ),
@@ -123,7 +123,7 @@ if( ! class_exists( 'WPBS_Manage_Metadata' ) ) :
             
             $url = add_query_arg( 
                 array(    
-                    'post_type' => 'wpbs_slide',
+                    'post_type' => 'wpsp_slide',
                     'parent_slider' => $post->ID
                 ),
                 admin_url( 'post-new.php' ) 
@@ -133,10 +133,10 @@ if( ! class_exists( 'WPBS_Manage_Metadata' ) ) :
             $is_saved      = isset( $post->ID ) && $post->ID > 0 && $post->post_status !== 'auto-draft' ? true : false;
             $add_slide_url = isset( $add_slide_url ) ? $add_slide_url : '#';
     
-            wpbs_get_template( 
+            wpsp_get_template( 
                 'metabox/slides.php', 
                 array(
-                    'metaKey'       => 'wpbs_slider_image_ids',
+                    'metaKey'       => 'wpsp_slider_image_ids',
                     'slider_id'     => $post->ID,
                     'imageIDs'      => $imageIDs,
                     'slidesData'    => $slides_data,
@@ -151,18 +151,18 @@ if( ! class_exists( 'WPBS_Manage_Metadata' ) ) :
          *
          * @param object $post Post object.
          */
-        public function render_wpbs_options( $post ) {
-			$settings = get_post_meta( $post->ID, 'wpbs', true );
+        public function render_wpsp_options( $post ) {
+			$settings = get_post_meta( $post->ID, 'wpsp', true );
 			
 			// Ensure settings is an array with default values
 			if ( ! is_array( $settings ) ) :
 				$settings = array();
             endif;
 
-			require_once WPBS_PATH . 'includes/admin/settings/views/wpbs-option.php';
+			require_once WPSP_PATH . 'includes/admin/settings/views/wpsp-option.php';
 		}
 
     }
 
-    new WPBS_Manage_Metadata();
+    new WPSP_Manage_Metadata();
 endif;

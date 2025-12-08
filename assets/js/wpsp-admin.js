@@ -2,7 +2,7 @@
 
 jQuery(function ($) {
 
-    class WPBS_Admin {
+    class WPSP_Admin {
 
         constructor(){
             this.init();
@@ -16,28 +16,28 @@ jQuery(function ($) {
             this.initLineNumbers();
             this.bindEvents();
 
-            $('.wpbs_switch_field input[type="checkbox"]:checked, .wpbs_select_field, .wpbs_radio_field input[type="radio"]:checked').each((i, el) => {
+            $('.wpsp_switch_field input[type="checkbox"]:checked, .wpsp_select_field, .wpsp_radio_field input[type="radio"]:checked').each((i, el) => {
                 this.toggleVisibility({ currentTarget: el });
             });
         }
 
         cacheSelectors() {
-            this.$slideContainer = $('.wpbs_slides');
+            this.$slideContainer = $('.wpsp_slides');
         }
 
         bindEvents(){
-            $(document.body).on( 'click', '.wpbs-tab-wrapper a', this.changeTab.bind(this));
-            $(document.body).on( 'click', '.wpbs_upload_slide ', this.handleUploadSlide.bind(this));
-            $(document.body).on( 'click', '.wpbs_slide_remove ', this.handleRemoveSlide.bind(this));
-            $(document.body).on( 'change', '.wpbs_switch_field input[type="checkbox"], .wpbs_select_field, .wpbs_radio_field input[type="radio"] ', this.toggleVisibility.bind(this) );
+            $(document.body).on( 'click', '.wpsp-tab-wrapper a', this.changeTab.bind(this));
+            $(document.body).on( 'click', '.wpsp_upload_slide ', this.handleUploadSlide.bind(this));
+            $(document.body).on( 'click', '.wpsp_slide_remove ', this.handleRemoveSlide.bind(this));
+            $(document.body).on( 'change', '.wpsp_switch_field input[type="checkbox"], .wpsp_select_field, .wpsp_radio_field input[type="radio"] ', this.toggleVisibility.bind(this) );
         }
 
         setInitialState() {
-            $('.wpbs-tab-content').hide();
-            const active = $('.wpbs-tab.wpbs-tab-active'),
-                target = active.attr('href') || $('.wpbs-tab-content').first().show().attr('id');
+            $('.wpsp-tab-content').hide();
+            const active = $('.wpsp-tab.wpsp-tab-active'),
+                target   = active.attr('href') || $('.wpsp-tab-content').first().show().attr('id');
         
-            if (!active.length) $('.wpbs-tab').first().addClass('wpbs-tab-active');
+            if (!active.length) $('.wpsp-tab').first().addClass('wpsp-tab-active');
             $(target).show();
         }
         
@@ -45,10 +45,10 @@ jQuery(function ($) {
             e.preventDefault();
             var __this = $(e.currentTarget);
         
-            $('.wpbs-tab').removeClass('wpbs-tab-active');
-            $('.wpbs-tab-content').hide();
+            $('.wpsp-tab').removeClass('wpsp-tab-active');
+            $('.wpsp-tab-content').hide();
         
-            __this.addClass('wpbs-tab-active');
+            __this.addClass('wpsp-tab-active');
             $(__this.attr('href')).show();
         }
 
@@ -61,21 +61,21 @@ jQuery(function ($) {
                 $(document.body).find(hideElement).hide();
                 $(document.body).find(target).show();
 
-                if (__this.is('[name="wpbs_slider_option[pagination_type]"]')) {
+                if (__this.is('[name="wpsp_slider_option[pagination_type]"]')) {
                     const progressbar         = __this.val() === 'progressbar',
-                          autoplayProgress    = $('[name="wpbs_slider_option[control_progress_bar]"]').is(':checked');
-                    $(document.body).find('.wpbs_progress_bar').toggle(progressbar && autoplayProgress);
+                          autoplayProgress    = $('[name="wpsp_slider_option[control_progress_bar]"]').is(':checked');
+                    $(document.body).find('.wpsp_progress_bar').toggle(progressbar && autoplayProgress);
                 }
             } else if (__this.is('input[type="checkbox"]')) {
                 const target        = __this.data('show'),
-                      progressbar   = $('[name="wpbs_slider_option[pagination_type]"]').val() === 'progressbar';
-                if (target === '.wpbs_progress_bar') {
+                      progressbar   = $('[name="wpsp_slider_option[pagination_type]"]').val() === 'progressbar';
+                if (target === '.wpsp_progress_bar') {
                     $(document.body).find(target).toggle(__this.is(':checked') && progressbar);
                 } else {
                     $(document.body).find(target).toggle(__this.is(':checked'));
                 }
             } else if (__this.is('input[type="radio"]')) {
-                const radio     = __this.closest('.wpbs_radio_field'),
+                const radio     = __this.closest('.wpsp_radio_field'),
                     target      = __this.data('show'),
                     hideElement = radio.data('hide');
                      
@@ -111,7 +111,7 @@ jQuery(function ($) {
         initSortable() {
             this.$slideContainer.sortable({
                 items: 'li',
-                handle: '.wpbs_slide_move',
+                handle: '.wpsp_slide_move',
                 cursor: '-webkit-grabbing',
                 stop: (event, ui) => {
                     ui.item.removeAttr('style');
@@ -121,13 +121,13 @@ jQuery(function ($) {
 
         initColorPickers() {
             if ($.fn.wpColorPicker) {
-                $('.wpbs-color-picker').wpColorPicker();
+                $('.wpsp-color-picker').wpColorPicker();
             }
         }
 
         initLineNumbers() {
-            $('.wpbs_custom_textarea').each(function () {
-                const textarea = $(this), lineNumber = textarea.siblings('.wpbs-line-numbers');
+            $('.wpsp_custom_textarea').each(function () {
+                const textarea = $(this), lineNumber = textarea.siblings('.wpsp-line-numbers');
                 
                 const updateNumber = () => {
                     const count = textarea.val().split('\n').length;
@@ -141,5 +141,5 @@ jQuery(function ($) {
         
     }
 
-    new WPBS_Admin();
+    new WPSP_Admin();
 });

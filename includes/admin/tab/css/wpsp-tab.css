@@ -1,16 +1,16 @@
-/*--------------------------- WPBS Tab ---------------------------*/
+/*--------------------------- WPSP Tab ---------------------------*/
 
-.wpbs_page .card {
+.wpsp_page .card {
     border-color: #eee;
     max-width: 100%;
 }
 
-.wpbs_settings_page .wpbs_settings_page_nav .wpbs-tab-wrapper {
+.wpsp_settings_page .wpsp_settings_page_nav .wpsp-tab-wrapper {
     border-color: #eee;
     padding-top: 0;
 }
 
-.wpbs_settings_page .wpbs_settings_page_nav .wpbs-tab-wrapper a.wpbs-tab-active {
+.wpsp_settings_page .wpsp_settings_page_nav .wpsp-tab-wrapper a.wpsp-tab-active {
     border-color: #7f54b3;
     border-bottom-color: #ffffff;
     color: #000000 !important;
@@ -19,11 +19,11 @@
     background-color: #ffffff;
 }
 
-.wpbs_settings_page_nav .wpbs-tab-wrapper {
+.wpsp_settings_page_nav .wpsp-tab-wrapper {
     border-bottom: 0 !important;
 }
 
-.wpbs_settings_page .wpbs_settings_page_nav .wpbs-tab-wrapper a {
+.wpsp_settings_page .wpsp_settings_page_nav .wpsp-tab-wrapper a {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -40,7 +40,7 @@
     border-radius: 5px 5px 0px 0px;
 }
 
-.wpbs-tab-wrapper {
+.wpsp-tab-wrapper {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -51,7 +51,7 @@
     font-weight: 600;
 }
 
-.wpbs-tab-wrapper .wpbs-tab {
+.wpsp-tab-wrapper .wpsp-tab {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -65,7 +65,7 @@
     cursor: pointer;
 }
 
-.wpbs_settings_page .wpbs_settings_page_content {
+.wpsp_settings_page .wpsp_settings_page_content {
     border-width: 0 1px 1px 1px;
     border-color: #eee;
     background-color: #fff;
@@ -74,41 +74,41 @@
     margin: 0;
 }
 
-.wpbs_settings_page .wpbs_settings_page_content table tr.heading {
+.wpsp_settings_page .wpsp_settings_page_content table tr.heading {
     border-bottom: 1px dashed #eeeeee;
 }
 
-.wpbs_settings_page .wpbs_settings_page_content table {
+.wpsp_settings_page .wpsp_settings_page_content table {
     margin: 0;
     padding: 0;
     border-spacing: 0;
     border-collapse: unset;
 }
 
-.wpbs_settings_page .wpbs_settings_page_content table tr th,
-.wpbs_settings_page .wpbs_settings_page_content table tr td {
+.wpsp_settings_page .wpsp_settings_page_content table tr th,
+.wpsp_settings_page .wpsp_settings_page_content table tr td {
     padding: 15px 20px;
     border-bottom: 1px dashed #eee;
 }
 
-.wpbs_settings_page .wpbs_settings_page_content table tr.submit p {
+.wpsp_settings_page .wpsp_settings_page_content table tr.submit p {
     margin: 0;
     padding: 0;
 }
 
 
-.wpbs_settings_page .wpbs_settings_page_content table .wpbs_select select,
-.wpbs_settings_page .wpbs_settings_page_content table .wpbs_number_field input[type="number"],
-.wpbs_settings_page .wpbs_settings_page_content table .wpbs_text_field input[type="text"] {
+.wpsp_settings_page .wpsp_settings_page_content table .wpsp_select select,
+.wpsp_settings_page .wpsp_settings_page_content table .wpsp_number_field input[type="number"],
+.wpsp_settings_page .wpsp_settings_page_content table .wpsp_text_field input[type="text"] {
     min-width: 350px;
     padding: 3px 10px;
     border-radius: 2px;
 }
 
-.wpbs_settings_page .wpbs_settings_page_content table .heading th {
+.wpsp_settings_page .wpsp_settings_page_content table .heading th {
     border-left: 2px solid black;
     font-size: 16px;
     padding: 12px 20px;
 }
 
-/*--------------------------- End WPBS Tab ---------------------------*/
+/*--------------------------- End WPSP Tab ---------------------------*/

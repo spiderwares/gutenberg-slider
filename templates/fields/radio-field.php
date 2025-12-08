@@ -9,12 +9,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <td>
     <?php if ( isset( $field['options'] ) ) : ?>
-        <div class="wpbs_radio_field" <?php echo isset( $field['data_hide'] ) ? 'data-hide="' . esc_attr( $field['data_hide'] ) . '"' : ''; ?>>
+        <div class="wpsp_radio_field" <?php echo isset( $field['data_hide'] ) ? 'data-hide="' . esc_attr( $field['data_hide'] ) . '"' : ''; ?>>
             <?php foreach ( $field['options'] as $optionKey => $optionImg ) : ?>
-                <p class="wpbs_image_control <?php echo in_array( $optionKey, $field['disabled_options'] ?? array() ) ? 'wpbs_disabled_option' : ''; ?>">
+                <p class="wpsp_image_control <?php echo in_array( $optionKey, $field['disabled_options'] ?? array() ) ? 'wpsp_disabled_option' : ''; ?>">
                     <input 
                         type="radio" 
-                        name="wpbs_slider_option[<?php echo esc_attr( $field_Key ); ?>]"
+                        name="wpsp_slider_option[<?php echo esc_attr( $field_Key ); ?>]"
                         value="<?php echo esc_attr( $optionKey ); ?>"
                         id="<?php echo esc_attr( $field_Key . '_' . $optionKey ); ?>"
                         <?php checked( $optionKey, $field_Val ); ?>
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                     <label for="<?php echo esc_attr( $field_Key . '_' . $optionKey ); ?>">
                         <img 
                             width="150" 
-                            src="<?php echo esc_url( WPBS_URL . 'assets/images/options/' . $optionImg ); ?>" 
+                            src="<?php echo esc_url( WPSP_URL . 'assets/images/options/' . $optionImg ); ?>" 
                             alt="<?php echo esc_attr( $optionKey ); ?>"
                             style="<?php echo in_array( $optionKey, $field['disabled_options'] ?? array() ) ? 'opacity: 0.5; cursor: not-allowed;' : ''; ?>"
                         >
