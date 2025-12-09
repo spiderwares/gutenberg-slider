@@ -35,17 +35,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
                     <div class="wpsp_slide_actions">
                         <a href="<?php echo esc_url( $edit_url ); ?>" class="wpsp_slide_edit" target="_blank">
-                            <span class="tooltip"><?php echo esc_html__( 'Edit', 'slider-press' ); ?></span>
+                            <span class="tooltip"><?php echo esc_html__( 'Edit', 'sliderpress' ); ?></span>
                             <i class="dashicons dashicons-edit"></i>
                         </a>
 
                         <a href="#" class="wpsp_slide_move">
-                            <span class="tooltip"><?php echo esc_html__( 'Drag & Sort', 'slider-press' ); ?></span>
+                            <span class="tooltip"><?php echo esc_html__( 'Drag & Sort', 'sliderpress' ); ?></span>
                             <i class="dashicons dashicons-move"></i>
                         </a>
 
                         <a href="#" class="wpsp_slide_remove">
-                            <span class="tooltip"><?php echo esc_html__( 'Delete', 'slider-press' ); ?></span>
+                            <span class="tooltip"><?php echo esc_html__( 'Delete', 'sliderpress' ); ?></span>
                             <i class="dashicons dashicons-trash"></i>
                         </a>
                     </div>
@@ -84,17 +84,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
                     <div class="wpsp_slide_actions">
                         <a href="<?php echo esc_url( $edit_url ); ?>" class="wpsp_slide_edit" target="_blank">
-                            <span class="tooltip"><?php echo esc_html__( 'Edit', 'slider-press' ); ?></span>
+                            <span class="tooltip"><?php echo esc_html__( 'Edit', 'sliderpress' ); ?></span>
                             <i class="dashicons dashicons-edit"></i>
                         </a>
 
                         <a href="#" class="wpsp_slide_move">
-                            <span class="tooltip"><?php echo esc_html__( 'Drag & Sort', 'slider-press' ); ?></span>
+                            <span class="tooltip"><?php echo esc_html__( 'Drag & Sort', 'sliderpress' ); ?></span>
                             <i class="dashicons dashicons-move"></i>
                         </a>
 
                         <a href="#" class="wpsp_slide_remove">
-                            <span class="tooltip"><?php echo esc_html__( 'Delete', 'slider-press' ); ?></span>
+                            <span class="tooltip"><?php echo esc_html__( 'Delete', 'sliderpress' ); ?></span>
                             <i class="dashicons dashicons-trash"></i>
                         </a>
                     </div>
@@ -116,11 +116,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     
     if ( $is_saved ) : ?>
         <a href="<?php echo esc_url( $add_slide_url ); ?>" class="button wpsp_upload_slide">
-            <?php echo esc_html__( 'Add New Slide', 'slider-press' ); ?>
+            <?php echo esc_html__( 'Add New Slide', 'sliderpress' ); ?>
         </a>
     <?php else : ?>
         <p class="wpsp_add_slide_message">
-            <?php echo esc_html__( 'Save your slider with a title to begin adding slides.', 'slider-press' ); ?>
+            <?php echo esc_html__( 'Save your slider with a title to begin adding slides.', 'sliderpress' ); ?>
         </p>
     <?php endif; ?>
 </div>

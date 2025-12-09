@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Slider Press
+ * Plugin Name:       Sliderpress
  * Description:       Create stunning, fully responsive sliders using the Gutenberg block editor with customizable navigation, autoplay, and animation effects.
  * Version:           1.0.0
  * Requires at least: 5.2
@@ -9,9 +9,9 @@
  * Author URI:        https://cosmicinfosoftware.com/
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       slider-press
+ * Text Domain:       sliderpress
  *
- * @package Slider|_Press
+ * @package Slider_Press
  */
 
  if ( ! defined( 'ABSPATH' ) ) exit;

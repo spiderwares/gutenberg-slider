@@ -15,56 +15,56 @@ if ( ! defined( 'ABSPATH' ) ) exit; ?>
         <div class="wpsp-tab-wrapper">
             <a href="#transition-tab" class="wpsp-tab wpsp-tab-active">
                 <?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- Static plugin asset, not a WordPress media library attachment. ?>
-                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/transition.svg'); ?>" alt="<?php echo esc_attr__( 'Transition', 'slider-press' ); ?>" />
-                <?php echo esc_html__( 'Transition', 'slider-press' ); ?>
+                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/transition.svg'); ?>" alt="<?php echo esc_attr__( 'Transition', 'sliderpress' ); ?>" />
+                <?php echo esc_html__( 'Transition', 'sliderpress' ); ?>
             </a>
 
             <a href="#navigation-tab" class="wpsp-tab">
                 <?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- Static plugin asset, not a WordPress media library attachment. ?>
-                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/navigation.svg'); ?>" alt="<?php echo esc_attr__( 'Navigation', 'slider-press' ); ?>" />
-                <?php echo esc_html__( 'Navigation', 'slider-press' ); ?>
+                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/navigation.svg'); ?>" alt="<?php echo esc_attr__( 'Navigation', 'sliderpress' ); ?>" />
+                <?php echo esc_html__( 'Navigation', 'sliderpress' ); ?>
             </a>
 
             <a href="#pagination-tab" class="wpsp-tab">
                 <?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- Static plugin asset, not a WordPress media library attachment. ?>
-                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/pagination.svg'); ?>" alt="<?php echo esc_attr__( 'Pagination', 'slider-press' ); ?>" />
-                <?php echo esc_html__( 'Pagination', 'slider-press' ); ?>
+                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/pagination.svg'); ?>" alt="<?php echo esc_attr__( 'Pagination', 'sliderpress' ); ?>" />
+                <?php echo esc_html__( 'Pagination', 'sliderpress' ); ?>
             </a>
 
             <a href="#responsive-tab" class="wpsp-tab">
                 <?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- Static plugin asset, not a WordPress media library attachment. ?>
-                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/responsive.svg'); ?>" alt="<?php echo esc_attr__( 'Responsive', 'slider-press' ); ?>" />
-                <?php echo esc_html__( 'Responsive', 'slider-press' ); ?>
+                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/responsive.svg'); ?>" alt="<?php echo esc_attr__( 'Responsive', 'sliderpress' ); ?>" />
+                <?php echo esc_html__( 'Responsive', 'sliderpress' ); ?>
             </a>
 
             <a href="#autoplay-tab" class="wpsp-tab">
                 <?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- Static plugin asset, not a WordPress media library attachment. ?>
-                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/autoplay.svg'); ?>" alt="<?php echo esc_attr__( 'Autoplay', 'slider-press' ); ?>" />
-                <?php echo esc_html__( 'Autoplay', 'slider-press' ); ?>
+                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/autoplay.svg'); ?>" alt="<?php echo esc_attr__( 'Autoplay', 'sliderpress' ); ?>" />
+                <?php echo esc_html__( 'Autoplay', 'sliderpress' ); ?>
             </a>
 
             <a href="#thumbnail-gallery-tab" class="wpsp-tab">
                 <?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- Static plugin asset, not a WordPress media library attachment. ?>
-                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/thumbnail-gallery.svg'); ?>" alt="<?php echo esc_attr__( 'Thumbnail Gallery', 'slider-press' ); ?>" />
-                <?php echo esc_html__( 'Thumbnail Gallery', 'slider-press' ); ?>
+                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/thumbnail-gallery.svg'); ?>" alt="<?php echo esc_attr__( 'Thumbnail Gallery', 'sliderpress' ); ?>" />
+                <?php echo esc_html__( 'Thumbnail Gallery', 'sliderpress' ); ?>
             </a>
 
             <a href="#scrollbar-tab" class="wpsp-tab">
                 <?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- Static plugin asset, not a WordPress media library attachment. ?>
-                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/scrollbar.svg'); ?>" alt="<?php echo esc_attr__( 'Scrollbar', 'slider-press' ); ?>" />
-                <?php echo esc_html__( 'Scrollbar', 'slider-press' ); ?>
+                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/scrollbar.svg'); ?>" alt="<?php echo esc_attr__( 'Scrollbar', 'sliderpress' ); ?>" />
+                <?php echo esc_html__( 'Scrollbar', 'sliderpress' ); ?>
             </a>
 
             <a href="#other-options-tab" class="wpsp-tab">
                 <?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- Static plugin asset, not a WordPress media library attachment. ?>
-                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/other-options.svg'); ?>" alt="<?php echo esc_attr__( 'Other Options', 'slider-press' ); ?>" />
-                <?php echo esc_html__( 'Other Options', 'slider-press' ); ?>
+                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/other-options.svg'); ?>" alt="<?php echo esc_attr__( 'Other Options', 'sliderpress' ); ?>" />
+                <?php echo esc_html__( 'Other Options', 'sliderpress' ); ?>
             </a>
 
             <a href="#custom-class-tab" class="wpsp-tab">
                 <?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- Static plugin asset, not a WordPress media library attachment. ?>
-                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/custom-css.svg'); ?>" alt="<?php echo esc_attr__( 'Custom CSS', 'slider-press' ); ?>" />
-                <?php echo esc_html__( 'Custom CSS', 'slider-press' ); ?>
+                <img src="<?php echo esc_url( WPSP_URL . 'assets/images/custom-css.svg'); ?>" alt="<?php echo esc_attr__( 'Custom CSS', 'sliderpress' ); ?>" />
+                <?php echo esc_html__( 'Custom CSS', 'sliderpress' ); ?>
             </a>
 
         </div>

@@ -4,7 +4,7 @@
  *
  * Handles the admin tab setup and related functionalities.
  *
- * @package Slider|_Press
+ * @package Slider_Press
  */
 
 // Exit if accessed directly.

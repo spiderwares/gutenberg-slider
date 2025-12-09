@@ -43,7 +43,7 @@ if ( ! class_exists( 'WPSP_Install' ) ) :
          */
         public static function plugin_row_meta( $links, $file ) {
             if ( plugin_basename( WPSP_FILE ) === $file ) :
-                $doc_url   = esc_url( 'https://documentation.cosmicinfosoftware.com/slider-press/documents/getting-started/introduction/' );
+                $doc_url   = esc_url( 'https://documentation.cosmicinfosoftware.com/sliderpress/documents/getting-started/introduction/' );
                 $doc_label = esc_html( 'Documentation' );
         
                 $new_links = array(
@@ -67,8 +67,8 @@ if ( ! class_exists( 'WPSP_Install' ) ) :
                 'manage_sldier' => sprintf(
                     '<a href="%s" aria-label="%s">%s</a>',
                     admin_url( 'edit.php?post_type=wpsp_slider' ),
-                    esc_attr__( 'Manage Sliders', 'slider-press' ),
-                    esc_html__( 'Manage Sliders', 'slider-press' )
+                    esc_attr__( 'Manage Sliders', 'sliderpress' ),
+                    esc_html__( 'Manage Sliders', 'sliderpress' )
                 ),
             );
             return array_merge( $action_links, $links );

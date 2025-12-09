@@ -39,7 +39,7 @@ if( ! class_exists( 'WPSP_Shortcode' ) ) :
             $this->slider_ID   = $wpsp_slideshow_ID;
     
             if ( empty( $wpsp_slideshow_ID ) ) :
-                return '<p>' . esc_html__( "Error: Slideshow ID not found!", 'slider-press' ) . '</p>';
+                return '<p>' . esc_html__( "Error: Slideshow ID not found!", 'sliderpress' ) . '</p>';
             endif;
     
             $imageIDs      = json_decode( get_post_meta( $wpsp_slideshow_ID, 'wpsp_slider_image_ids', true ), true );
@@ -55,7 +55,7 @@ if( ! class_exists( 'WPSP_Shortcode' ) ) :
             ) );
 
             if ( empty( $wpsp_slideshow_ID ) || ! is_numeric( $wpsp_slideshow_ID ) ) :
-                return '<p>' . esc_html__( "No slides are available. Please add at least one image to proceed.", 'slider-press' ) . '</p>';
+                return '<p>' . esc_html__( "No slides are available. Please add at least one image to proceed.", 'sliderpress' ) . '</p>';
             endif;
 
             $slides = array();

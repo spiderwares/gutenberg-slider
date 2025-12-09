@@ -43,7 +43,7 @@ if( ! class_exists( 'WPSP_CPT' ) ) :
 
             add_meta_box(
                 'wpsp_slider_shortcode',
-                esc_html__( 'WPSP Slider Shortcode', 'slider-press' ),
+                esc_html__( 'WPSP Slider Shortcode', 'sliderpress' ),
                 [ $this, 'render_slider_shortcode_metabox' ],
                 'wpsp_slider',
                 'side',
@@ -52,7 +52,7 @@ if( ! class_exists( 'WPSP_CPT' ) ) :
 
             add_meta_box(
 				'wpsp_slider_background_settings',
-				esc_html__( 'Background Settings', 'slider-press' ),
+				esc_html__( 'Background Settings', 'sliderpress' ),
 				array( $this, 'render_wpsp_background_settings' ),
 				'wpsp_slider',
 				'side',
@@ -61,7 +61,7 @@ if( ! class_exists( 'WPSP_CPT' ) ) :
 
             add_meta_box(
                 'wpsp_background_settings',
-                esc_html__( 'Background settings', 'slider-press' ),
+                esc_html__( 'Background settings', 'sliderpress' ),
                 array( $this, 'render_wpsp_background_settings' ),
                 'wpsp_slide',
                 'side',
@@ -70,7 +70,7 @@ if( ! class_exists( 'WPSP_CPT' ) ) :
 
             add_meta_box(
                 'wpsp_parent_slider',
-                esc_html__( 'Parent slider', 'slider-press' ),
+                esc_html__( 'Parent slider', 'sliderpress' ),
                 array( $this, 'render_wpsp_parent_slider' ),
                 'wpsp_slide',
                 'side',
@@ -85,7 +85,7 @@ if( ! class_exists( 'WPSP_CPT' ) ) :
         public function render_slider_shortcode_metabox( $post ) {
             printf( 
                 '<p>%s</p><hr><code>[wpsp_slider id="%d"]</code>', 
-                esc_html__( 'Use the shortcode below to display the slider.', 'slider-press' ), 
+                esc_html__( 'Use the shortcode below to display the slider.', 'sliderpress' ), 
                 esc_attr( $post->ID ) 
             );
         }
@@ -137,7 +137,7 @@ if( ! class_exists( 'WPSP_CPT' ) ) :
                 $new_columns[ $key ] = $value;
 
                 if ( $key === 'title' ) :
-                    $new_columns['WPSP_Shortcode'] = esc_html__( 'Shortcode', 'slider-press' );
+                    $new_columns['WPSP_Shortcode'] = esc_html__( 'Shortcode', 'sliderpress' );
                 endif;
             endforeach;
 
@@ -157,27 +157,27 @@ if( ! class_exists( 'WPSP_CPT' ) ) :
          */
         public static function wpsp_register_post_type() {
             $labels = array(
-				'name'               => esc_html__( 'Slider Press', 'slider-press' ),
-				'singular_name'      => esc_html__( 'Slider Press', 'slider-press' ),
-				'menu_name'          => esc_html__( 'Slider Press', 'slider-press' ),
-				'name_admin_bar'     => esc_html__( 'Slider Press', 'slider-press' ),
-				'add_new_item'       => esc_html__( 'Add New Slider', 'slider-press' ),
-				'new_item'           => esc_html__( 'New Slider', 'slider-press' ),
-				'edit_item'          => esc_html__( 'Edit Slider', 'slider-press' ),
-				'view_item'          => esc_html__( 'View Slider', 'slider-press' ),
-				'all_items'          => esc_html__( 'Slider Press', 'slider-press' ),
-				'search_items'       => esc_html__( 'Search Slider', 'slider-press' ),
-				'parent_item_colon'  => esc_html__( 'Parent Slider:', 'slider-press' ),
-				'not_found'          => esc_html__( 'No sliders found.', 'slider-press' ),
-				'not_found_in_trash' => esc_html__( 'No sliders found in Trash.', 'slider-press' ),
-                'featured_image'        => esc_html__( 'Slider background image', 'slider-press' ),
-                'set_featured_image'    => esc_html__( 'Set background image', 'slider-press' ),
-                'remove_featured_image' => esc_html__( 'Remove background image', 'slider-press' ),
-                'use_featured_image'    => esc_html__( 'Use as background image', 'slider-press' ),
+				'name'               => esc_html__( 'Slider Press', 'sliderpress' ),
+				'singular_name'      => esc_html__( 'Slider Press', 'sliderpress' ),
+				'menu_name'          => esc_html__( 'Slider Press', 'sliderpress' ),
+				'name_admin_bar'     => esc_html__( 'Slider Press', 'sliderpress' ),
+				'add_new_item'       => esc_html__( 'Add New Slider', 'sliderpress' ),
+				'new_item'           => esc_html__( 'New Slider', 'sliderpress' ),
+				'edit_item'          => esc_html__( 'Edit Slider', 'sliderpress' ),
+				'view_item'          => esc_html__( 'View Slider', 'sliderpress' ),
+				'all_items'          => esc_html__( 'Slider Press', 'sliderpress' ),
+				'search_items'       => esc_html__( 'Search Slider', 'sliderpress' ),
+				'parent_item_colon'  => esc_html__( 'Parent Slider:', 'sliderpress' ),
+				'not_found'          => esc_html__( 'No sliders found.', 'sliderpress' ),
+				'not_found_in_trash' => esc_html__( 'No sliders found in Trash.', 'sliderpress' ),
+                'featured_image'        => esc_html__( 'Slider background image', 'sliderpress' ),
+                'set_featured_image'    => esc_html__( 'Set background image', 'sliderpress' ),
+                'remove_featured_image' => esc_html__( 'Remove background image', 'sliderpress' ),
+                'use_featured_image'    => esc_html__( 'Use as background image', 'sliderpress' ),
             );
 
             $args = array(
-				'label'               => esc_html__( 'Sliders', 'slider-press' ),
+				'label'               => esc_html__( 'Sliders', 'sliderpress' ),
                 'labels'              => $labels,
                 'supports'            => array( 'title' , 'thumbnail' ),
                 'hierarchical'        => true,
@@ -205,28 +205,28 @@ if( ! class_exists( 'WPSP_CPT' ) ) :
         public static function wpsp_register_slide_post_type() {
 
             $labels = array(
-                'name'               => esc_html__( 'Slider Press', 'slider-press' ),
-                'singular_name'      => esc_html__( 'Slider Press', 'slider-press' ),
-                'menu_name'          => esc_html__( 'Slider Press', 'slider-press' ),
-                'name_admin_bar'     => esc_html__( 'Slider Press', 'slider-press' ),
-                'add_new_item'       => esc_html__( 'Add New Slide', 'slider-press' ),
-                'new_item'           => esc_html__( 'New Slide', 'slider-press' ),
-                'edit_item'          => esc_html__( 'Edit Slide', 'slider-press' ),
-                'view_item'          => esc_html__( 'View Slide', 'slider-press' ),
-                'all_items'          => esc_html__( 'Slider Press Slides', 'slider-press' ),
-                'search_items'       => esc_html__( 'Search Slides', 'slider-press' ),
-                'parent_item_colon'  => esc_html__( 'Parent Slider:', 'slider-press' ),
-                'not_found'          => esc_html__( 'No slides found.', 'slider-press' ),
-                'not_found_in_trash' => esc_html__( 'No slides found in Trash.', 'slider-press' ),
-                'featured_image'        => esc_html__( 'Slider background image', 'slider-press' ),
-                'set_featured_image'    => esc_html__( 'Set background image', 'slider-press' ),
-                'remove_featured_image' => esc_html__( 'Remove background image', 'slider-press' ),
-                'use_featured_image'    => esc_html__( 'Use as background image', 'slider-press' ),
+                'name'               => esc_html__( 'Slider Press', 'sliderpress' ),
+                'singular_name'      => esc_html__( 'Slider Press', 'sliderpress' ),
+                'menu_name'          => esc_html__( 'Slider Press', 'sliderpress' ),
+                'name_admin_bar'     => esc_html__( 'Slider Press', 'sliderpress' ),
+                'add_new_item'       => esc_html__( 'Add New Slide', 'sliderpress' ),
+                'new_item'           => esc_html__( 'New Slide', 'sliderpress' ),
+                'edit_item'          => esc_html__( 'Edit Slide', 'sliderpress' ),
+                'view_item'          => esc_html__( 'View Slide', 'sliderpress' ),
+                'all_items'          => esc_html__( 'Slider Press Slides', 'sliderpress' ),
+                'search_items'       => esc_html__( 'Search Slides', 'sliderpress' ),
+                'parent_item_colon'  => esc_html__( 'Parent Slider:', 'sliderpress' ),
+                'not_found'          => esc_html__( 'No slides found.', 'sliderpress' ),
+                'not_found_in_trash' => esc_html__( 'No slides found in Trash.', 'sliderpress' ),
+                'featured_image'        => esc_html__( 'Slider background image', 'sliderpress' ),
+                'set_featured_image'    => esc_html__( 'Set background image', 'sliderpress' ),
+                'remove_featured_image' => esc_html__( 'Remove background image', 'sliderpress' ),
+                'use_featured_image'    => esc_html__( 'Use as background image', 'sliderpress' ),
             );
 
             $args   = array(
-                'label'               => esc_html__( 'Slide', 'slider-press' ),
-                'description'         => esc_html__( 'Slide post type', 'slider-press' ),
+                'label'               => esc_html__( 'Slide', 'sliderpress' ),
+                'description'         => esc_html__( 'Slide post type', 'sliderpress' ),
                 'labels'              => $labels,
                 'show_in_rest'        => true,
                 'supports'            => array( 'editor', 'thumbnail' ),
@@ -386,9 +386,9 @@ if( ! class_exists( 'WPSP_CPT' ) ) :
             endif;
 
             if ( isset( $_POST['wpsp_background_color'] ) ) :
-                $background_color = $this->sanitize_color_value( wp_unslash( $_POST['wpsp_background_color'] ) );
-                if ( $background_color ) :
-                    update_post_meta( $post_id, 'wpsp_background_color', $background_color );
+                $color = $this->sanitize_color_value( sanitize_text_field( wp_unslash( $_POST['wpsp_background_color'] ) ) );
+                if ( $color ) :
+                    update_post_meta( $post_id, 'wpsp_background_color', $color );
                 endif;
             endif;
         }

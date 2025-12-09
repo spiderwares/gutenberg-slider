@@ -1,4 +1,4 @@
-=== Slider Press ===
+=== Sliderpress ===
 Contributors: cosmicinfosoftware
 Requires at least: 5.2
 Tested up to: 6.8
@@ -12,9 +12,9 @@ Create stunning, fully responsive sliders using the Gutenberg block editor with 
 
 == Description ==
 
-Slider Press is a powerful and feature-rich WordPress slider plugin powered by [Swiper.js](https://swiperjs.com/), the most modern mobile touch slider library. This plugin seamlessly integrates with the WordPress Gutenberg block editor, allowing you to create beautiful, responsive sliders with rich content using blocks.
+Sliderpress is a powerful and feature-rich WordPress slider plugin powered by [Swiper.js](https://swiperjs.com/), the most modern mobile touch slider library. This plugin seamlessly integrates with the WordPress Gutenberg block editor, allowing you to create beautiful, responsive sliders with rich content using blocks.
 
-Unlike traditional image-only sliders, Slider Press lets you build slides using the full power of Gutenberg blocks - add images, text, headings, videos, galleries, and any other block content to create engaging, interactive sliders.
+Unlike traditional image-only sliders, Sliderpress lets you build slides using the full power of Gutenberg blocks - add images, text, headings, videos, galleries, and any other block content to create engaging, interactive sliders.
 
 == External Services ==
 
@@ -63,9 +63,9 @@ This plugin includes the following open-source libraries:
 
 == Installation ==
 
-1. Upload the plugin to the `/wp-content/plugins/slider-press/` directory or install it via Plugins > Add New.
+1. Upload the plugin to the `/wp-content/plugins/sliderpress/` directory or install it via Plugins > Add New.
 2. Activate the plugin through the Plugins menu in WordPress.
-3. Navigate to Slider Press in the WordPress admin menu to create a new slider.
+3. Navigate to Sliderpress in the WordPress admin menu to create a new slider.
 4. Add slides using the Gutenberg block editor - each slide can contain any combination of blocks (images, text, videos, etc.).
 5. Configure slider options in the settings tabs: Transition, Navigation, Pagination, Autoplay, Responsive, and Other Options.
 6. Use the shortcode `[wpsp_slider id="SLIDER_ID"]` to display the slider anywhere on your site, where `SLIDER_ID` is the ID of your slider.

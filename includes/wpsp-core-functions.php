@@ -30,7 +30,7 @@ if( !function_exists( 'wpsp_get_template' ) ) :
                 'error', 
                 sprintf( 
                     // translators: %s: The full path to the missing template file.
-                    esc_html__( '%s does not exist.', 'slider-press' ), 
+                    esc_html__( '%s does not exist.', 'sliderpress' ), 
                     '<code>' . esc_html( $template ). '</code>' 
                 ) 
             );

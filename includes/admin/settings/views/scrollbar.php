@@ -2,7 +2,7 @@
 /**
  * Slides Options Metabox Scrollbar Setting.
  *
- * @package Slider|_Press
+ * @package Slider_Press
  */
 
 // Exit if accessed directly.

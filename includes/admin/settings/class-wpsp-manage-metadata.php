@@ -34,7 +34,7 @@ if( ! class_exists( 'WPSP_Manage_Metadata' ) ) :
 
             add_meta_box(
                 'wpsp_slides',
-                esc_html__( 'Manage Slides', 'slider-press' ),
+                esc_html__( 'Manage Slides', 'sliderpress' ),
                 array( $this, 'genrate_slideshow_metabox' ),
                 'wpsp_slider',
                 'normal',
@@ -43,7 +43,7 @@ if( ! class_exists( 'WPSP_Manage_Metadata' ) ) :
 
             add_meta_box(
                 'wpsp_slider_options',
-                esc_html__( 'Slider Options', 'slider-press' ),
+                esc_html__( 'Slider Options', 'sliderpress' ),
                 array( $this, 'render_wpsp_options' ),
                 'wpsp_slider',
                 'normal',

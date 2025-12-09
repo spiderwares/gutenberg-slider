@@ -2,7 +2,7 @@
 /**
  * Slides Options Metabox Navigation Setting.
  *
- * @package Slider|_Press
+ * @package Slider_Press
  */
 
 // Exit if accessed directly.
