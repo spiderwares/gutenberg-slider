@@ -14,7 +14,7 @@
  * @package Slider_Press
  */
 
- if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( ! defined( 'WPSP_FILE' ) ) :
     define( 'WPSP_FILE', __FILE__ ); // Define the plugin file path.
@@ -25,7 +25,7 @@ if ( ! defined( 'WPSP_BASENAME' ) ) :
 endif;
 
 if ( ! defined( 'WPSP_VERSION' ) ) :
-    define( 'WPSP_VERSION', time() ); // Define the plugin version.
+    define( 'WPSP_VERSION', '1.0.0' ); // Define the plugin version.
 endif;
 
 if ( ! defined( 'WPSP_PATH' ) ) :
