@@ -14,7 +14,7 @@ jQuery(function ($) {
 
         initializeSliders() {
             $('.wpsp-swiper').each((index, element) => {
-                const slider   = $(element),
+                const slider = $(element),
                     rawOptions = slider.attr('data-options');
 
                 if (!rawOptions) return;
@@ -29,13 +29,18 @@ jQuery(function ($) {
                 // Thumbs gallery
                 let thumbsSwiper = null;
                 if (options.thumb_gallery == '1' || options.thumb_gallery === true) {
-                    const thumbsGallery = slider.parent().find('.wpsp-swiper-thumbs-gallery');
+                    const thumbsGallery = slider.siblings('.wpsp-swiper-thumbs-gallery');
                     if (thumbsGallery.length) {
+                        if (thumbsGallery[0].swiper) {
+                            thumbsGallery[0].swiper.destroy(true, true);
+                        }
+
                         thumbsSwiper = new Swiper(thumbsGallery[0], {
-                            loop:           options.thumb_gallery_loop === '1',
-                            spaceBetween:   parseInt(options.thumb_gallery_space, 10) || 10,
-                            slidesPerView:  4,
+                            loop: options.thumb_gallery_loop === '1',
+                            spaceBetween: parseInt(options.thumb_gallery_space, 10) || 10,
+                            slidesPerView: 4,
                             watchSlidesProgress: true,
+                            freeMode: true,
                         });
                     }
                 }
@@ -58,29 +63,29 @@ jQuery(function ($) {
         }
 
         swiperOptions(slider, options) {
-            const responsive            = options.control_enable_responsive == '1' || options.control_enable_responsive === 1,
-                paginationType          = options.pagination_type || 'bullets',
-                customStyle             = options.custom_navigation_style || 'style1',
-                customTextColor         = options.custom_text_color || '#ff0000',
-                customBackgroundColor   = options.custom_background_color || '#007aff',
-                customActiveTextColor   = options.custom_active_text_color || '#0a0607',
-                customActiveBgColor     = options.custom_active_background_color || '#0a0607',
-                vertical                = options.control_slider_vertical == '1' || options.control_slider_vertical === true,
-                rtl                     = options.control_rtl_slider === '1' || options.control_rtl_slider === true;
+            const responsive = options.control_enable_responsive == '1' || options.control_enable_responsive === 1,
+                paginationType = options.pagination_type || 'bullets',
+                customStyle = options.custom_navigation_style || 'style1',
+                customTextColor = options.custom_text_color || '#ff0000',
+                customBackgroundColor = options.custom_background_color || '#007aff',
+                customActiveTextColor = options.custom_active_text_color || '#0a0607',
+                customActiveBgColor = options.custom_active_background_color || '#0a0607',
+                vertical = options.control_slider_vertical == '1' || options.control_slider_vertical === true,
+                rtl = options.control_rtl_slider === '1' || options.control_rtl_slider === true;
 
             const baseOptions = {
-                effect:     options.animation || 'slide',
+                effect: options.animation || 'slide',
                 grabCursor: options.control_grab_cursor == '1',
-                lazy:       options.control_lazyload_images == '1' || options.control_lazyload_images === true,
-                rewind:     options.control_rewind == '1' || options.control_rewind === true,
+                lazy: options.control_lazyload_images == '1' || options.control_lazyload_images === true,
+                rewind: options.control_rewind == '1' || options.control_rewind === true,
                 slidesPerView: (options.animation === 'cube') ? 1 : (options.slide_control_view_auto == '1' ||
                     options.slide_control_view_auto === true) ? 'auto' : (responsive ? (parseInt(options.items_in_desktop) || 1) : 1),
-                autoplay:   options.control_autoplay == '1' ? {
+                autoplay: options.control_autoplay == '1' ? {
                     delay: parseInt(options.autoplay_timing, 10) || 3000,
                     disableOnInteraction: false,
                 } : false,
                 pagination: paginationType !== 'none' ? {
-                    el: '.swiper-pagination',
+                    el: slider.find('.swiper-pagination')[0],
                     clickable: options.bullets_click == '1' || options.bullets_click === true,
                     dynamicBullets: options.dynamic_bullets == '1' || options.dynamic_bullets === true,
                     renderBullet: function (index, className) {
@@ -94,24 +99,24 @@ jQuery(function ($) {
                             'bullets',
                 } : undefined,
                 navigation: {
-                    nextEl:     slider.find('.swiper-button-next')[0],
-                    prevEl:     slider.find('.swiper-button-prev')[0],
+                    nextEl: slider.find('.swiper-button-next')[0],
+                    prevEl: slider.find('.swiper-button-prev')[0],
                 },
-                loop:           options.control_loop_slider == '1' || options.control_loop_slider === true,
-                speed:          parseInt(options.control_slide_speed, 10) || 400,
-                spaceBetween:   parseInt(options.control_slide_space, 10) || 0,
+                loop: options.control_loop_slider == '1' || options.control_loop_slider === true,
+                speed: parseInt(options.control_slide_speed, 10) || 400,
+                spaceBetween: parseInt(options.control_slide_space, 10) || 0,
                 slidesPerGroup: (options.enable_slides_group == '1' || options.enable_slides_group === true) ? parseInt(options.slides_per_group, 10) || 1 : 1,
-                zoom:           options.zoom_images == '1' || options.zoom_images === true,
+                zoom: options.zoom_images == '1' || options.zoom_images === true,
                 keyboard: {
-                    enabled:    options.control_keyboard == '1' || options.control_keyboard === true,
+                    enabled: options.control_keyboard == '1' || options.control_keyboard === true,
                 },
-                mousewheel:     options.control_mousewheel == '1' || options.control_mousewheel === true,
+                mousewheel: options.control_mousewheel == '1' || options.control_mousewheel === true,
                 scrollbar: {
-                    el: '.swiper-scrollbar',
+                    el: slider.find('.swiper-scrollbar')[0],
                     enabled: options.control_scrollbar == '1' || options.control_scrollbar === true,
                     draggable: options.scrollbar_draggable == '1' || options.scrollbar_draggable === true,
                 },
-                direction:      vertical ? 'vertical' : 'horizontal',
+                direction: vertical ? 'vertical' : 'horizontal',
                 centeredSlides: options.slide_control_center == '1' || options.slide_control_center === true,
 
                 on: {
@@ -186,17 +191,17 @@ jQuery(function ($) {
                     shadow: options.cube_shadows === '1' || options.cube_shadows === true,
                     slideShadows: options.cube_slide_shadows === '1' || options.cube_slide_shadows === true,
                     shadowOffset: parseInt(options.cube_shadowoffset) || 20,
-                    shadowScale:  parseFloat(options.cube_shadowScale) || 1,
+                    shadowScale: parseFloat(options.cube_shadowScale) || 1,
                 };
             }
 
             // Coverflow effect
             if (options.animation === 'coverflow') {
                 baseOptions.coverflowEffect = {
-                    rotate:       parseInt(options.coverflow_rotate) || 50,
-                    stretch:      parseInt(options.coverflow_stretch) || 0,
-                    depth:        parseInt(options.coverflow_depth) || 100,
-                    modifier:     parseFloat(options.coverflow_modifier) || 1,
+                    rotate: parseInt(options.coverflow_rotate) || 50,
+                    stretch: parseInt(options.coverflow_stretch) || 0,
+                    depth: parseInt(options.coverflow_depth) || 100,
+                    modifier: parseFloat(options.coverflow_modifier) || 1,
                     slideShadows: options.coverflow_shadows === '1' || options.coverflow_shadows === true
                 };
             }
@@ -204,7 +209,7 @@ jQuery(function ($) {
             // Grid layout
             if (options.enable_grid_layout == '1' || options.enable_grid_layout === true) {
                 const rowType = options.grid_layout_axis || 'row',
-                    count     = parseInt(options.grid_count, 10) || 2;
+                    count = parseInt(options.grid_count, 10) || 2;
 
                 baseOptions.grid = {
                     rows: rowType === 'row' ? count : 1,
@@ -238,8 +243,8 @@ jQuery(function ($) {
             // Vertical direction height and width
             if (baseOptions.direction === 'vertical') {
                 const height = options.height_image || 800,
-                    width    = options.width_image || 500,
-                    unit     = options.image_unit || 'px';
+                    width = options.width_image || 500,
+                    unit = options.image_unit || 'px';
                 slider.css({
                     'height': `${height}${unit}`,
                     'max-width': `${width}${unit}`,
@@ -253,7 +258,7 @@ jQuery(function ($) {
                 // Helper function to format translate values with units
                 const formatTranslateValue = (value, fieldKey, defaultUnit = 'px') => {
                     const numValue = parseInt(value, 10) || 0,
-                        unit       = options[fieldKey + '_unit'] || defaultUnit;
+                        unit = options[fieldKey + '_unit'] || defaultUnit;
                     if (unit === 'percent') {
                         return `${numValue}%`;
                     }
@@ -263,12 +268,12 @@ jQuery(function ($) {
                 switch (options.animation) {
                     case 'shadow push':
                         const shadowPushPrevShadow = options.creative_shadow_push_prev_shadow === '1' || options.creative_shadow_push_prev_shadow === true,
-                            shadowPushPrevX        = formatTranslateValue(options.creative_shadow_push_prev_x, 'creative_shadow_push_prev_x', 'px'),
-                            shadowPushPrevY        = formatTranslateValue(options.creative_shadow_push_prev_y, 'creative_shadow_push_prev_y', 'px'),
-                            shadowPushPrevZ        = formatTranslateValue(options.creative_shadow_push_prev_z, 'creative_shadow_push_prev_z', 'px'),
-                            shadowPushNextX        = formatTranslateValue(options.creative_shadow_push_next_x, 'creative_shadow_push_next_x', 'percent'),
-                            shadowPushNextY        = formatTranslateValue(options.creative_shadow_push_next_y, 'creative_shadow_push_next_y', 'px'),
-                            shadowPushNextZ        = formatTranslateValue(options.creative_shadow_push_next_z, 'creative_shadow_push_next_z', 'px');
+                            shadowPushPrevX = formatTranslateValue(options.creative_shadow_push_prev_x, 'creative_shadow_push_prev_x', 'px'),
+                            shadowPushPrevY = formatTranslateValue(options.creative_shadow_push_prev_y, 'creative_shadow_push_prev_y', 'px'),
+                            shadowPushPrevZ = formatTranslateValue(options.creative_shadow_push_prev_z, 'creative_shadow_push_prev_z', 'px'),
+                            shadowPushNextX = formatTranslateValue(options.creative_shadow_push_next_x, 'creative_shadow_push_next_x', 'percent'),
+                            shadowPushNextY = formatTranslateValue(options.creative_shadow_push_next_y, 'creative_shadow_push_next_y', 'px'),
+                            shadowPushNextZ = formatTranslateValue(options.creative_shadow_push_next_z, 'creative_shadow_push_next_z', 'px');
 
                         baseOptions.creativeEffect = {
                             prev: {
@@ -284,13 +289,13 @@ jQuery(function ($) {
 
                     case 'zoom split':
                         const zoomSplitPrevShadow = options.creative_zoom_split_prev_shadow === '1' || options.creative_zoom_split_prev_shadow === true,
-                            zoomSplitNextShadow   = options.creative_zoom_split_next_shadow === '1' || options.creative_zoom_split_next_shadow === true,
-                            zoomSplitPrevX        = formatTranslateValue(options.creative_zoom_split_prev_x, 'creative_zoom_split_prev_x', 'percent'),
-                            zoomSplitNextX        = formatTranslateValue(options.creative_zoom_split_next_x, 'creative_zoom_split_next_x', 'percent'),
-                            zoomSplitPrevY        = formatTranslateValue(options.creative_zoom_split_prev_y, 'creative_zoom_split_prev_y', 'px'),
-                            zoomSplitNextY        = formatTranslateValue(options.creative_zoom_split_next_y, 'creative_zoom_split_next_y', 'px'),
-                            zoomSplitPrevZ        = formatTranslateValue(options.creative_zoom_split_prev_z, 'creative_zoom_split_prev_z', 'px'),
-                            zoomSplitNextZ        = formatTranslateValue(options.creative_zoom_split_next_z, 'creative_zoom_split_next_z', 'px');
+                            zoomSplitNextShadow = options.creative_zoom_split_next_shadow === '1' || options.creative_zoom_split_next_shadow === true,
+                            zoomSplitPrevX = formatTranslateValue(options.creative_zoom_split_prev_x, 'creative_zoom_split_prev_x', 'percent'),
+                            zoomSplitNextX = formatTranslateValue(options.creative_zoom_split_next_x, 'creative_zoom_split_next_x', 'percent'),
+                            zoomSplitPrevY = formatTranslateValue(options.creative_zoom_split_prev_y, 'creative_zoom_split_prev_y', 'px'),
+                            zoomSplitNextY = formatTranslateValue(options.creative_zoom_split_next_y, 'creative_zoom_split_next_y', 'px'),
+                            zoomSplitPrevZ = formatTranslateValue(options.creative_zoom_split_prev_z, 'creative_zoom_split_prev_z', 'px'),
+                            zoomSplitNextZ = formatTranslateValue(options.creative_zoom_split_next_z, 'creative_zoom_split_next_z', 'px');
 
                         baseOptions.creativeEffect = {
                             prev: {
@@ -306,12 +311,12 @@ jQuery(function ($) {
 
                     case 'slide flow':
                         const slideFlowPrevShadow = options.creative_slide_flow_prev_shadow === '1' || options.creative_slide_flow_prev_shadow === true,
-                            slideFlowPrevX        = formatTranslateValue(options.creative_slide_flow_prev_x, 'creative_slide_flow_prev_x', 'percent'),
-                            slideFlowNextX        = formatTranslateValue(options.creative_slide_flow_next_x, 'creative_slide_flow_next_x', 'percent'),
-                            slideFlowPrevY        = formatTranslateValue(options.creative_slide_flow_prev_y, 'creative_slide_flow_prev_y', 'px'),
-                            slideFlowNextY        = formatTranslateValue(options.creative_slide_flow_next_y, 'creative_slide_flow_next_y', 'px'),
-                            slideFlowPrevZ        = formatTranslateValue(options.creative_slide_flow_prev_z, 'creative_slide_flow_prev_z', 'px'),
-                            slideFlowNextZ        = formatTranslateValue(options.creative_slide_flow_next_z, 'creative_slide_flow_next_z', 'px');
+                            slideFlowPrevX = formatTranslateValue(options.creative_slide_flow_prev_x, 'creative_slide_flow_prev_x', 'percent'),
+                            slideFlowNextX = formatTranslateValue(options.creative_slide_flow_next_x, 'creative_slide_flow_next_x', 'percent'),
+                            slideFlowPrevY = formatTranslateValue(options.creative_slide_flow_prev_y, 'creative_slide_flow_prev_y', 'px'),
+                            slideFlowNextY = formatTranslateValue(options.creative_slide_flow_next_y, 'creative_slide_flow_next_y', 'px'),
+                            slideFlowPrevZ = formatTranslateValue(options.creative_slide_flow_prev_z, 'creative_slide_flow_prev_z', 'px'),
+                            slideFlowNextZ = formatTranslateValue(options.creative_slide_flow_next_z, 'creative_slide_flow_next_z', 'px');
 
                         baseOptions.creativeEffect = {
                             prev: {
@@ -326,19 +331,19 @@ jQuery(function ($) {
 
                     case 'flip deck':
                         const flipDeckPrevShadow = options.creative_flip_deck_prev_shadow === '1' || options.creative_flip_deck_prev_shadow === true,
-                            flipDeckNextShadow   = options.creative_flip_deck_next_shadow === '1' || options.creative_flip_deck_next_shadow === true,
-                            flipDeckPrevX        = formatTranslateValue(options.creative_flip_deck_prev_x, 'creative_flip_deck_prev_x', 'px'),
-                            flipDeckPrevY        = formatTranslateValue(options.creative_flip_deck_prev_y, 'creative_flip_deck_prev_y', 'px'),
-                            flipDeckPrevZ        = formatTranslateValue(options.creative_flip_deck_prev_z, 'creative_flip_deck_prev_z', 'px'),
-                            flipDeckNextX        = formatTranslateValue(options.creative_flip_deck_next_x, 'creative_flip_deck_next_x', 'px'),
-                            flipDeckNextY        = formatTranslateValue(options.creative_flip_deck_next_y, 'creative_flip_deck_next_y', 'px'),
-                            flipDeckNextZ        = formatTranslateValue(options.creative_flip_deck_next_z, 'creative_flip_deck_next_z', 'px'),
-                            flipDeckPrevRotateX  = parseInt(options.creative_flip_deck_prev_rotate_x, 10) || 180,
-                            flipDeckPrevRotateY  = parseInt(options.creative_flip_deck_prev_rotate_y, 10) || 0,
-                            flipDeckPrevRotateZ  = parseInt(options.creative_flip_deck_prev_rotate_z, 10) || 0,
-                            flipDeckNextRotateX  = parseInt(options.creative_flip_deck_next_rotate_x, 10) || -180,
-                            flipDeckNextRotateY  = parseInt(options.creative_flip_deck_next_rotate_y, 10) || 0,
-                            flipDeckNextRotateZ  = parseInt(options.creative_flip_deck_next_rotate_z, 10) || 0;
+                            flipDeckNextShadow = options.creative_flip_deck_next_shadow === '1' || options.creative_flip_deck_next_shadow === true,
+                            flipDeckPrevX = formatTranslateValue(options.creative_flip_deck_prev_x, 'creative_flip_deck_prev_x', 'px'),
+                            flipDeckPrevY = formatTranslateValue(options.creative_flip_deck_prev_y, 'creative_flip_deck_prev_y', 'px'),
+                            flipDeckPrevZ = formatTranslateValue(options.creative_flip_deck_prev_z, 'creative_flip_deck_prev_z', 'px'),
+                            flipDeckNextX = formatTranslateValue(options.creative_flip_deck_next_x, 'creative_flip_deck_next_x', 'px'),
+                            flipDeckNextY = formatTranslateValue(options.creative_flip_deck_next_y, 'creative_flip_deck_next_y', 'px'),
+                            flipDeckNextZ = formatTranslateValue(options.creative_flip_deck_next_z, 'creative_flip_deck_next_z', 'px'),
+                            flipDeckPrevRotateX = parseInt(options.creative_flip_deck_prev_rotate_x, 10) || 180,
+                            flipDeckPrevRotateY = parseInt(options.creative_flip_deck_prev_rotate_y, 10) || 0,
+                            flipDeckPrevRotateZ = parseInt(options.creative_flip_deck_prev_rotate_z, 10) || 0,
+                            flipDeckNextRotateX = parseInt(options.creative_flip_deck_next_rotate_x, 10) || -180,
+                            flipDeckNextRotateY = parseInt(options.creative_flip_deck_next_rotate_y, 10) || 0,
+                            flipDeckNextRotateZ = parseInt(options.creative_flip_deck_next_rotate_z, 10) || 0;
 
                         baseOptions.creativeEffect = {
                             prev: {
@@ -356,19 +361,19 @@ jQuery(function ($) {
 
                     case 'twist flow':
                         const twistFlowPrevShadow = options.creative_twist_flow_prev_shadow === '1' || options.creative_twist_flow_prev_shadow === true,
-                            twistFlowNextShadow   = options.creative_twist_flow_next_shadow === '1' || options.creative_twist_flow_next_shadow === true,
-                            twistFlowPrevX        = formatTranslateValue(options.creative_twist_flow_prev_x, 'creative_twist_flow_prev_x', 'percent'),
-                            twistFlowNextX        = formatTranslateValue(options.creative_twist_flow_next_x, 'creative_twist_flow_next_x', 'percent'),
-                            twistFlowPrevY        = formatTranslateValue(options.creative_twist_flow_prev_y, 'creative_twist_flow_prev_y', 'px'),
-                            twistFlowNextY        = formatTranslateValue(options.creative_twist_flow_next_y, 'creative_twist_flow_next_y', 'px'),
-                            twistFlowPrevZ        = formatTranslateValue(options.creative_twist_flow_prev_z, 'creative_twist_flow_prev_z', 'px'),
-                            twistFlowNextZ        = formatTranslateValue(options.creative_twist_flow_next_z, 'creative_twist_flow_next_z', 'px'),
-                            twistFlowPrevRotateX  = parseInt(options.creative_twist_flow_prev_rotate_x, 10) || 0,
-                            twistFlowPrevRotateY  = parseInt(options.creative_twist_flow_prev_rotate_y, 10) || 0,
-                            twistFlowPrevRotateZ  = parseInt(options.creative_twist_flow_prev_rotate_z, 10) || -90,
-                            twistFlowNextRotateX  = parseInt(options.creative_twist_flow_next_rotate_x, 10) || 0,
-                            twistFlowNextRotateY  = parseInt(options.creative_twist_flow_next_rotate_y, 10) || 0,
-                            twistFlowNextRotateZ  = parseInt(options.creative_twist_flow_next_rotate_z, 10) || 90;
+                            twistFlowNextShadow = options.creative_twist_flow_next_shadow === '1' || options.creative_twist_flow_next_shadow === true,
+                            twistFlowPrevX = formatTranslateValue(options.creative_twist_flow_prev_x, 'creative_twist_flow_prev_x', 'percent'),
+                            twistFlowNextX = formatTranslateValue(options.creative_twist_flow_next_x, 'creative_twist_flow_next_x', 'percent'),
+                            twistFlowPrevY = formatTranslateValue(options.creative_twist_flow_prev_y, 'creative_twist_flow_prev_y', 'px'),
+                            twistFlowNextY = formatTranslateValue(options.creative_twist_flow_next_y, 'creative_twist_flow_next_y', 'px'),
+                            twistFlowPrevZ = formatTranslateValue(options.creative_twist_flow_prev_z, 'creative_twist_flow_prev_z', 'px'),
+                            twistFlowNextZ = formatTranslateValue(options.creative_twist_flow_next_z, 'creative_twist_flow_next_z', 'px'),
+                            twistFlowPrevRotateX = parseInt(options.creative_twist_flow_prev_rotate_x, 10) || 0,
+                            twistFlowPrevRotateY = parseInt(options.creative_twist_flow_prev_rotate_y, 10) || 0,
+                            twistFlowPrevRotateZ = parseInt(options.creative_twist_flow_prev_rotate_z, 10) || -90,
+                            twistFlowNextRotateX = parseInt(options.creative_twist_flow_next_rotate_x, 10) || 0,
+                            twistFlowNextRotateY = parseInt(options.creative_twist_flow_next_rotate_y, 10) || 0,
+                            twistFlowNextRotateZ = parseInt(options.creative_twist_flow_next_rotate_z, 10) || 90;
 
                         baseOptions.creativeEffect = {
                             prev: {
@@ -386,20 +391,20 @@ jQuery(function ($) {
 
                     case 'mirror':
                         const mirrorPrevShadow = options.creative_mirror_prev_shadow === '1' || options.creative_mirror_prev_shadow === true,
-                            mirrorPrevOrigin   = options.creative_mirror_prev_origin || 'left center',
-                            mirrorPrevX        = formatTranslateValue(options.creative_mirror_prev_x, 'creative_mirror_prev_x', 'percent'),
-                            mirrorPrevY        = formatTranslateValue(options.creative_mirror_prev_y, 'creative_mirror_prev_y', 'px'),
-                            mirrorPrevZ        = formatTranslateValue(options.creative_mirror_prev_z, 'creative_mirror_prev_z', 'px'),
-                            mirrorPrevRotateX  = parseInt(options.creative_mirror_prev_rotate_x, 10) || 0,
-                            mirrorPrevRotateY  = parseInt(options.creative_mirror_prev_rotate_y, 10) || 100,
-                            mirrorPrevRotateZ  = parseInt(options.creative_mirror_prev_rotate_z, 10) || 0,
-                            mirrorNextOrigin   = options.creative_mirror_next_origin || 'right center',
-                            mirrorNextX        = formatTranslateValue(options.creative_mirror_next_x, 'creative_mirror_next_x', 'percent'),
-                            mirrorNextY        = formatTranslateValue(options.creative_mirror_next_y, 'creative_mirror_next_y', 'px'),
-                            mirrorNextZ        = formatTranslateValue(options.creative_mirror_next_z, 'creative_mirror_next_z', 'px'),
-                            mirrorNextRotateX  = parseInt(options.creative_mirror_next_rotate_x, 10) || 0,
-                            mirrorNextRotateY  = parseInt(options.creative_mirror_next_rotate_y, 10) || -100,
-                            mirrorNextRotateZ  = parseInt(options.creative_mirror_next_rotate_z, 10) || 0;
+                            mirrorPrevOrigin = options.creative_mirror_prev_origin || 'left center',
+                            mirrorPrevX = formatTranslateValue(options.creative_mirror_prev_x, 'creative_mirror_prev_x', 'percent'),
+                            mirrorPrevY = formatTranslateValue(options.creative_mirror_prev_y, 'creative_mirror_prev_y', 'px'),
+                            mirrorPrevZ = formatTranslateValue(options.creative_mirror_prev_z, 'creative_mirror_prev_z', 'px'),
+                            mirrorPrevRotateX = parseInt(options.creative_mirror_prev_rotate_x, 10) || 0,
+                            mirrorPrevRotateY = parseInt(options.creative_mirror_prev_rotate_y, 10) || 100,
+                            mirrorPrevRotateZ = parseInt(options.creative_mirror_prev_rotate_z, 10) || 0,
+                            mirrorNextOrigin = options.creative_mirror_next_origin || 'right center',
+                            mirrorNextX = formatTranslateValue(options.creative_mirror_next_x, 'creative_mirror_next_x', 'percent'),
+                            mirrorNextY = formatTranslateValue(options.creative_mirror_next_y, 'creative_mirror_next_y', 'px'),
+                            mirrorNextZ = formatTranslateValue(options.creative_mirror_next_z, 'creative_mirror_next_z', 'px'),
+                            mirrorNextRotateX = parseInt(options.creative_mirror_next_rotate_x, 10) || 0,
+                            mirrorNextRotateY = parseInt(options.creative_mirror_next_rotate_y, 10) || -100,
+                            mirrorNextRotateZ = parseInt(options.creative_mirror_next_rotate_z, 10) || 0;
 
                         baseOptions.creativeEffect = {
                             prev: {
@@ -453,5 +458,6 @@ jQuery(function ($) {
     }
 
     new WPSP_Frontend();
+    window.WPSP_Frontend = WPSP_Frontend;
 
 });
