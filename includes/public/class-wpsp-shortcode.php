@@ -35,17 +35,29 @@ if( ! class_exists( 'WPSP_Shortcode' ) ) :
          * @return string Slider HTML.
          */
         public function genrate_slider_Shortcode( $args ) {
-            $wpsp_slideshow_ID = !empty( $args['id'] ) ? $args['id'] : '';
-            $this->slider_ID   = $wpsp_slideshow_ID;
-    
-            if ( empty( $wpsp_slideshow_ID ) ) :
+            $slider_id = ! empty( $args['id'] ) ? $args['id'] : '';
+            if ( empty( $slider_id ) ) :
                 return '<p>' . esc_html__( "Error: Slideshow ID not found!", 'sliderpress' ) . '</p>';
+            endif;
+
+            unset( $args['id'] );
+
+            return self::render_slider( $slider_id, $args );
+        }
+
+        public static function render_slider( $wpsp_slideshow_ID, $override_options = array() ) {
+            if ( empty( $wpsp_slideshow_ID ) || ! is_numeric( $wpsp_slideshow_ID ) ) :
+                return '<p>' . esc_html__( "No slides are available. Please add at least one image to proceed.", 'sliderpress' ) . '</p>';
             endif;
     
             $imageIDs      = json_decode( get_post_meta( $wpsp_slideshow_ID, 'wpsp_slider_image_ids', true ), true );
             $wpspOptions   = get_post_meta( $wpsp_slideshow_ID, 'wpsp_slider_option', true );
 
-            // Collect child slides (Gutenberg content)
+            if ( ! is_array( $wpspOptions ) ) :
+                $wpspOptions = get_post_meta( $wpsp_slideshow_ID, 'wpsp', true );
+                if ( ! is_array( $wpspOptions ) ) $wpspOptions = array();
+            endif;
+
             $child_slides = get_children( array(
                 'post_parent' => $wpsp_slideshow_ID,
                 'post_type'   => 'wpsp_slide',
@@ -54,46 +66,46 @@ if( ! class_exists( 'WPSP_Shortcode' ) ) :
                 'order'       => 'ASC',
             ) );
 
-            if ( empty( $wpsp_slideshow_ID ) || ! is_numeric( $wpsp_slideshow_ID ) ) :
-                return '<p>' . esc_html__( "No slides are available. Please add at least one image to proceed.", 'sliderpress' ) . '</p>';
-            endif;
-
             $slides = array();
+            $background_settings = array();
             if ( $child_slides ) :
                 foreach ( $child_slides as $slide ) :
-                    // Store slide content with slide ID as key
                     $slides[ $slide->ID ] = $slide->post_content;
                     $background_settings[ $slide->ID ] = WPSP_Helper::wpsp_get_background_settings( $slide->ID );
                 endforeach;
             endif;
     
             $attr_defaults = array(
-                'navigation_arrow_style'                => '',
-                'bullets_navigation_style'              => '',
-                'custom_navigation_style'               => '',
+                'navigation_arrow_style'                => 'style1',
+                'bullets_navigation_style'              => 'style1',
+                'custom_navigation_style'               => 'style1',
                 'control_lazyload_images'               => '',
-                'pagination_type'                       => '',
-                'progress_bar_position'                 => '',
+                'pagination_type'                       => 'bullets',
+                'progress_bar_position'                 => 'bottom',
                 'control_slider_vertical'               => '',
                 'thumb_gallery'                         => '',
-                'thumb_gallery_width'                   => '',
-                'thumb_gallery_height'                  => '',
-                'width_image'                           => '',
-                'height_image'                          => '',
-                'image_unit'                            => '',
+                'thumb_gallery_width'                   => '70',
+                'thumb_gallery_height'                  => '70',
+                'width_image'                           => '500',
+                'height_image'                          => '500',
+                'image_unit'                            => 'px',
                 'control_autoplay'                      => '',
                 'control_autoplay_timeleft'             => '',
-                'control_autoplay_timeleft_position'    => '',
-                'control_autoplay_timeleft_font_size'   => '',
+                'control_autoplay_timeleft_position'    => 'bottom-right',
+                'control_autoplay_timeleft_font_size'   => '5',
+                'zoom_images'                           => '',
+                'custom_class'                     => '',
             );
      
-            $attrs = shortcode_atts( $attr_defaults, $args );
+            $wpspOptions = wp_parse_args( $wpspOptions, $attr_defaults );
      
-            foreach ( $attrs as $key => $value ) :
-                if ( $value !== '' ) :
-                    $wpspOptions[ $key ] = $value;
-                endif;
-            endforeach;
+            if ( ! empty( $override_options ) && is_array( $override_options ) ) :
+                foreach ( $override_options as $key => $value ) :
+                    if ( $value !== '' ) :
+                        $wpspOptions[ $key ] = $value;
+                    endif;
+                endforeach;
+            endif;
     
             $arrow_style                    = isset($wpspOptions['navigation_arrow_style']) ? $wpspOptions['navigation_arrow_style'] : 'style1';
             $bullets_style                  = isset($wpspOptions['bullets_navigation_style']) ? $wpspOptions['bullets_navigation_style'] : 'style1';
@@ -119,9 +131,7 @@ if( ! class_exists( 'WPSP_Shortcode' ) ) :
             $timeleft_class = 'wpsp-timeleft-' . esc_attr($timeleft_position);
             $hasSlides      = !empty($slides) && is_array($slides);
             $hasImages      = !empty($imageIDs) && is_array($imageIDs);
-    
-            // Get custom class name
-            $custom_class_name = isset($wpspOptions['custom_class_name']) ? trim($wpspOptions['custom_class_name']) : '';
+            $custom_class   = isset($wpspOptions['custom_class']) ? trim($wpspOptions['custom_class']) : '';
             
             $slideshow_main_class = trim(
                 'wpsp_slider--' . $wpsp_slideshow_ID .
@@ -131,10 +141,23 @@ if( ! class_exists( 'WPSP_Shortcode' ) ) :
                 ' wpsp-pagination-' . esc_attr($pagination_type) .
                 ' wpsp-progress-' . esc_attr($progress_position) .
                 ' wpsp-timeleft-' . esc_attr($timeleft_position) .
-                (!empty($custom_class_name) ? ' ' . esc_attr(sanitize_html_class($custom_class_name)) : '')
+                (!empty($custom_class) ? ' ' . esc_attr(sanitize_html_class($custom_class)) : '')
             );
-
+ 
             $slider_background_settings = WPSP_Helper::wpsp_get_background_settings( $wpsp_slideshow_ID );
+ 
+            // Handle background settings overrides
+            $bg_keys = array( 'background_size', 'background_position', 'background_repeat', 'background_color' );
+            foreach ( $bg_keys as $bg_key ) :
+                if ( isset( $override_options[ $bg_key ] ) && $override_options[ $bg_key ] !== '' ) :
+                    $slider_background_settings[ $bg_key ] = $override_options[ $bg_key ];
+                endif;
+            endforeach;
+
+            if ( isset( $override_options['background_id'] ) && $override_options['background_id'] !== '' ) :
+                $slider_background_settings['background_id']  = absint( $override_options['background_id'] );
+                $slider_background_settings['background_url'] = wp_get_attachment_image_url( $slider_background_settings['background_id'], 'full' );
+            endif;
 
             $wpsp_css = WPSP_Public::dynamic_wpsp_css($wpspOptions, $wpsp_slideshow_ID,
                 array_merge(
@@ -172,9 +195,9 @@ if( ! class_exists( 'WPSP_Shortcode' ) ) :
     
                 )
             );
+
             return ob_get_clean();
         }
-
     }
 
     new WPSP_Shortcode();

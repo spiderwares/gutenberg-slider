@@ -22,68 +22,6 @@ jQuery(function ($) {
             });
         }
 
-        initLivePreview() {
-            this.$previewContainer = $('#wpsp_live_preview');
-            if (!this.$previewContainer.length) return;
-
-            let timeout;
-            $('#wpsp_slider_options').on('change input', 'input, select, textarea', (e) => {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => this.updatePreview(), 500);
-            });
-        }
-
-        updatePreview() {
-            const inputs = $('#wpsp_slider_options').find('[name^="wpsp_slider_option"]');
-            const options = {};
-            const postId = $('#post_ID').val();
-
-            if (!postId) return;
-
-            inputs.each((i, el) => {
-                const $el = $(el);
-                const nameMatch = $el.attr('name').match(/wpsp_slider_option\[(.*?)\]/);
-                if (!nameMatch) return;
-                const key = nameMatch[1];
-
-                if ($el.is(':checkbox')) {
-                    options[key] = $el.is(':checked') ? '1' : '';
-                } else if ($el.is(':radio')) {
-                    if ($el.is(':checked')) {
-                        options[key] = $el.val();
-                    }
-                } else {
-                    options[key] = $el.val();
-                }
-            });
-
-            this.$previewContainer.css('opacity', '0.5');
-
-            $.ajax({
-                type: 'POST',
-                url: wpsp_admin.ajaxurl,
-                data: {
-                    action: 'wpsp_preview_refresh',
-                    post_id: postId,
-                    wpsp_slider_option: options,
-                    nonce: wpsp_admin.nonce
-                },
-                success: (response) => {
-                    this.$previewContainer.replaceWith(response);
-                    this.$previewContainer = $('#wpsp_live_preview');
-
-                    if (window.WPSP_Frontend) {
-                        try {
-                            new window.WPSP_Frontend().initializeSliders();
-                        } catch (e) { console.log(e); }
-                    }
-                },
-                complete: () => {
-                    this.$previewContainer.css('opacity', '1');
-                }
-            });
-        }
-
         cacheSelectors() {
             this.$slideContainer = $('.wpsp_slides');
         }
@@ -119,18 +57,18 @@ jQuery(function ($) {
             const __this = $(e.currentTarget);
 
             if (__this.is('select')) {
-                const target = __this.find(':selected').data('show'),
+                const target    = __this.find(':selected').data('show'),
                     hideElement = __this.data('hide');
                 $(document.body).find(hideElement).hide();
                 $(document.body).find(target).show();
 
                 if (__this.is('[name="wpsp_slider_option[pagination_type]"]')) {
-                    const progressbar = __this.val() === 'progressbar',
+                    const progressbar    = __this.val() === 'progressbar',
                         autoplayProgress = $('[name="wpsp_slider_option[control_progress_bar]"]').is(':checked');
                     $(document.body).find('.wpsp_progress_bar').toggle(progressbar && autoplayProgress);
                 }
             } else if (__this.is('input[type="checkbox"]')) {
-                const target = __this.data('show'),
+                const target    = __this.data('show'),
                     progressbar = $('[name="wpsp_slider_option[pagination_type]"]').val() === 'progressbar';
                 if (target === '.wpsp_progress_bar') {
                     $(document.body).find(target).toggle(__this.is(':checked') && progressbar);
@@ -138,8 +76,8 @@ jQuery(function ($) {
                     $(document.body).find(target).toggle(__this.is(':checked'));
                 }
             } else if (__this.is('input[type="radio"]')) {
-                const radio = __this.closest('.wpsp_radio_field'),
-                    target = __this.data('show'),
+                const radio     = __this.closest('.wpsp_radio_field'),
+                    target      = __this.data('show'),
                     hideElement = radio.data('hide');
 
                 if (hideElement) {
@@ -208,6 +146,98 @@ jQuery(function ($) {
 
                 updateNumber();
                 textarea.on('input', updateNumber);
+            });
+        }
+
+        initLivePreview() {
+            this.$previewContainer = $('#wpsp_live_preview_container');
+            if (!this.$previewContainer.length) return;
+
+            let timeout;
+            $('#wpsp_slider_options, #wpsp_slider_background_settings, #wpsp_background_settings, #postimagediv').on('change input', 'input, select, textarea', (e) => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => this.updatePreview(), 500);
+            });
+
+            const postImageDiv = document.getElementById('postimagediv');
+            if (postImageDiv) {
+                const observer = new MutationObserver(() => {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => this.updatePreview(), 500);
+                });
+                observer.observe(postImageDiv, { childList: true, subtree: true });
+            }
+        }
+
+        updatePreview() {
+            const inputs = $('#wpsp_slider_options').find('[name^="wpsp_slider_option"]'),
+                options  = {},
+                postId   = $('#post_ID').val();
+
+            if (!postId) return;
+
+            inputs.each((i, el) => {
+                const $el = $(el);
+                const nameMatch = $el.attr('name').match(/wpsp_slider_option\[(.*?)\]/);
+                if (!nameMatch) return;
+                const key = nameMatch[1];
+
+                if ($el.is(':checkbox')) {
+                    options[key] = $el.is(':checked') ? '1' : '';
+                } else if ($el.is(':radio')) {
+                    if ($el.is(':checked')) {
+                        options[key] = $el.val();
+                    }
+                } else {
+                    options[key] = $el.val();
+                }
+            });
+
+            // Add background settings
+            const bgContainer = $('#wpsp_slider_background_settings, #wpsp_background_settings');
+            if (bgContainer.length) {
+                bgContainer.find('select, input').each((i, el) => {
+                    const $el = $(el);
+                    const name = $el.attr('name');
+                    if (name && name.startsWith('wpsp_background_')) {
+                        const key = name.replace('wpsp_', '');
+                        options[key] = $el.val();
+                    }
+                });
+            }
+
+            // Featured image (Background ID)
+            const thumbnailId = $('#_thumbnail_id').val();
+            if (thumbnailId && thumbnailId !== '-1') {
+                options['background_id'] = thumbnailId;
+            }
+
+            this.$previewContainer.css('opacity', '0.5');
+
+            $.ajax({
+                type: 'POST',
+                url: wpsp_admin.ajaxurl,
+                data: {
+                    action: 'wpsp_preview_refresh',
+                    post_id: postId,
+                    wpsp_slider_option: options,
+                    nonce: wpsp_admin.nonce
+                },
+                success: (response) => {
+                    this.$previewContainer.replaceWith(response);
+                    this.$previewContainer = $('#wpsp_live_preview_container');
+
+                    if (window.WPSP_Frontend) {
+                        try {
+                            new window.WPSP_Frontend().initializeSliders();
+                        } catch (e) { 
+                            console.log(e); 
+                        }
+                    }
+                },
+                complete: () => {
+                    this.$previewContainer.css('opacity', '1');
+                }
             });
         }
 

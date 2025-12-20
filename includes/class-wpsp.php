@@ -76,6 +76,8 @@ if ( ! class_exists( 'WPSP' ) ) :
             require_once WPSP_PATH . 'includes/wpsp-core-functions.php';
             require_once WPSP_PATH . 'includes/admin/settings/class-wpsp-cpt.php';
             require_once WPSP_PATH . 'includes/admin/settings/class-wpsp-helper.php';
+            require_once WPSP_PATH . 'includes/public/class-wpsp-shortcode.php';
+            require_once WPSP_PATH . 'includes/public/class-wpsp-public.php';
         }
         
         /**
@@ -84,6 +86,7 @@ if ( ! class_exists( 'WPSP' ) ) :
         public function includes_admin() {
             require_once WPSP_PATH . 'includes/class-wpsp-install.php';
             require_once WPSP_PATH . 'includes/admin/tab/class-wpsp-tab.php';
+            require_once WPSP_PATH . 'includes/admin/settings/class-wpsp-admin-menu.php';
             require_once WPSP_PATH . 'includes/admin/settings/class-wpsp-manage-metadata.php';
             require_once WPSP_PATH . 'includes/admin/settings/class-wpsp-settings-field.php';
         }
@@ -92,8 +95,6 @@ if ( ! class_exists( 'WPSP' ) ) :
          * Include Public required files.
          */
         public function includes_public() {
-            require_once WPSP_PATH . 'includes/public/class-wpsp-public.php';
-            require_once WPSP_PATH . 'includes/public/class-wpsp-shortcode.php';
 		}
     }
 

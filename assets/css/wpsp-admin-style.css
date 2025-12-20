@@ -460,3 +460,9 @@ ul.wpsp_slides li .wpsp_slide_actions a span:before {
 }
 
 /*--------------------------- End Features Comparison ---------------------------*/
+
+#wpsp_live_preview_container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}

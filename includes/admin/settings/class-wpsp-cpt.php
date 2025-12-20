@@ -27,13 +27,10 @@ if( ! class_exists( 'WPSP_CPT' ) ) :
             add_action( 'init', [ __CLASS__, 'wpsp_register_post_type' ], 10 );
             add_action( 'init', [ __CLASS__, 'wpsp_register_slide_post_type' ], 10 );
             add_action( 'add_meta_boxes', [ $this, 'wpsp_add_meta_boxes' ] );
-
             add_filter( 'manage_wpsp_slider_posts_columns', [ $this, 'add_columns' ] );
             add_action( 'manage_wpsp_slider_posts_custom_column', [ $this, 'render_shortcode_column' ], 10, 2 );
-
             add_action( 'save_post', [ $this, 'save_slideshow_metadata' ] );
             add_action( 'save_post', [ $this, 'save_slide_images_to_parent' ], 10, 2 );
-
         }
 
         /**
@@ -44,7 +41,7 @@ if( ! class_exists( 'WPSP_CPT' ) ) :
             add_meta_box(
                 'wpsp_slider_shortcode',
                 esc_html__( 'WPSP Slider Shortcode', 'sliderpress' ),
-                [ $this, 'render_slider_shortcode_metabox' ],
+                array( $this, 'render_slider_shortcode_metabox' ),
                 'wpsp_slider',
                 'side',
                 'default'
@@ -118,7 +115,7 @@ if( ! class_exists( 'WPSP_CPT' ) ) :
          */
         public function render_wpsp_parent_slider( $post ) {
 
-            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading GET parameter for display purposes only, not processing form data.
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             $parent_slider = isset( $_GET['parent_slider'] ) ? absint( wp_unslash( $_GET['parent_slider'] ) ) : false;
 
             wpsp_get_template( 
@@ -305,15 +302,15 @@ if( ! class_exists( 'WPSP_CPT' ) ) :
 
             if ( isset( $_POST['wpsp_slider_option'] ) && is_array( $_POST['wpsp_slider_option'] ) ) :
                 $slider_options = array();
-                $post_data = wp_unslash( $_POST['wpsp_slider_option'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-                foreach ( $post_data as $key => $value ) {
-                    // Preserve line breaks for custom_css field
+                $post_data = wp_unslash( $_POST['wpsp_slider_option'] ); 
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+                foreach ( $post_data as $key => $value ) :
                     if ( $key === 'custom_css' ) :
                         $slider_options[ $key ] = sanitize_textarea_field( $value );
                     else :
                         $slider_options[ $key ] = sanitize_text_field( $value );
                     endif;
-                }
+                endforeach;
                 update_post_meta( $wpsp_slideshow_ID, 'wpsp_slider_option', $slider_options );
             endif;
 
@@ -336,7 +333,6 @@ if( ! class_exists( 'WPSP_CPT' ) ) :
                 return;
             endif;
 
-            // Save background settings using common method
             $this->save_background_settings( $post_id );
         }
 
@@ -394,10 +390,8 @@ if( ! class_exists( 'WPSP_CPT' ) ) :
         }
 
         /**
-         * Sanitize color value (supports hex and RGBA)
+         * Sanitize color value
          *
-         * @param string $color Color value to sanitize.
-         * @return string|false Sanitized color value or false on failure.
          */
         private function sanitize_color_value( $color ) {
 

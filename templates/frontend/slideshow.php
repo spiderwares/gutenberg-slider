@@ -5,7 +5,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( $hasSlides || $hasImages ) :
     if ( ! empty( $wpsp_css ) ) : ?>
-        <style><?php echo esc_html( $wpsp_css ); ?></style>
+        <style>
+        <?php 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo wp_strip_all_tags( $wpsp_css ); ?>
+        </style>
     <?php endif; ?>
 
     <div class="wpsp-swiper swiper swiper-slider-wrapper <?php echo esc_attr($slideshow_main_class); ?>"

@@ -877,7 +877,6 @@ if ( ! class_exists( 'WPSP_Settings_Fields' ) ) :
                     ),
                     'unit_selected' => 'px',
                 ),
-
             );
 
             return apply_filters( 'wpsp_transition_fields', $fields );
@@ -1016,7 +1015,6 @@ if ( ! class_exists( 'WPSP_Settings_Fields' ) ) :
                     'desc'        => esc_html__( 'Distance from the right.', 'sliderpress' ),
                     'extra_class' => 'wpsp_arrow_position',
                 ),
-
             );
 
             return apply_filters( 'wpsp_navigation_fields', $fields );
@@ -1200,7 +1198,6 @@ if ( ! class_exists( 'WPSP_Settings_Fields' ) ) :
                     'extra_class'   => 'wpsp_custom_style',
                     'desc'          => esc_html__( 'Set the background color for inactive pagination bullets.', 'sliderpress' ),
                 ),
-
             );
 
             return apply_filters( 'wpsp_pagination_fields', $fields );
@@ -1289,7 +1286,6 @@ if ( ! class_exists( 'WPSP_Settings_Fields' ) ) :
                     'default'     =>  'no',
                     'desc'        =>  esc_html__( 'Enable slide centered for the slider.', 'sliderpress' ),
                 ),
-
             );
 
             return apply_filters( 'wpsp_responsive_fields', $fields );
@@ -1366,7 +1362,6 @@ if ( ! class_exists( 'WPSP_Settings_Fields' ) ) :
                     'desc'          => esc_html__( 'Set border radius of thumbnail images.', 'sliderpress' ),
                     'extra_class'   => 'wpsp_thumb_gallery',
                 ),
-
             );
 
             return apply_filters( 'wpsp_thumbnail_gallery_fields', $fields );
@@ -1439,7 +1434,6 @@ if ( ! class_exists( 'WPSP_Settings_Fields' ) ) :
                     'unit_disabled' => 'yes',
                     'extra_class'   => 'wpsp_autoplay_time',
                 ),
-
             );
 
             return apply_filters( 'wpsp_autoplay_fields', $fields );    
@@ -1487,7 +1481,6 @@ if ( ! class_exists( 'WPSP_Settings_Fields' ) ) :
                     'extra_class' => 'wpsp_scrollbar_wrapper',
                     'desc'        => esc_html__('Enable draggable scrollbar.', 'sliderpress'),
                 ),
-
             );
             
             return apply_filters( 'wpsp_scrollbar_fields', $fields );
@@ -1652,7 +1645,6 @@ if ( ! class_exists( 'WPSP_Settings_Fields' ) ) :
                     'desc'        => esc_html__( 'Skip the number of slides from the beginning before grouping starts. Useful when first slide is featured.', 'sliderpress' ),
                     'extra_class' => 'wpsp_slides_group',
                 ),
-
             );
 
             return apply_filters( 'wpsp_other_options_fields', $fields );
@@ -1667,7 +1659,7 @@ if ( ! class_exists( 'WPSP_Settings_Fields' ) ) :
 
             $fields = array(
 
-                'custom_class_name' => array(
+                'custom_class' => array(
                     'title'       => esc_html__( 'Custom Class Name', 'sliderpress' ),
                     'field_type'  => 'wpsptext',
                     'default'     => '',
@@ -1683,7 +1675,6 @@ if ( ! class_exists( 'WPSP_Settings_Fields' ) ) :
                     'placeholder' => esc_html__( '/* Add your custom CSS here */', 'sliderpress' ),
                     'desc'        => esc_html__( 'Add your custom CSS here. This CSS will apply globally to the slider and its elements.', 'sliderpress' ),
                 ),
-
             );
 
             return apply_filters( 'wpsp_custom_css_fields', $fields );
