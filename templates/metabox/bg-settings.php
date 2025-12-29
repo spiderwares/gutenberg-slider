@@ -12,7 +12,7 @@ wp_nonce_field( 'wpss_slideshow_metabox_data', 'wpss_slideshow_metabox_nonce' );
         <?php echo esc_html__( 'Background size', 'slider-studio' ); ?>
     </label>
 
-    <select name="wpss_background_size" id="wpss_background_size" style="width: 100%;">
+    <select name="wpss_background_size" id="wpss_background_size" style="width: 90%;">
         <option value="cover" <?php selected( 'cover', $background_size ); ?>>
             <?php echo esc_html__( 'Cover', 'slider-studio' ); ?>
         </option>
@@ -30,7 +30,7 @@ wp_nonce_field( 'wpss_slideshow_metabox_data', 'wpss_slideshow_metabox_nonce' );
         <?php echo esc_html__( 'Background position', 'slider-studio' ); ?>
     </label>
 
-    <select name="wpss_background_position" id="wpss_background_position" style="width: 100%;">
+    <select name="wpss_background_position" id="wpss_background_position" style="width: 90%;">
         <option value="center" <?php selected( 'center', $background_position ); ?>>
             <?php echo esc_html__( 'Center', 'slider-studio' ); ?>
         </option>
@@ -66,7 +66,7 @@ wp_nonce_field( 'wpss_slideshow_metabox_data', 'wpss_slideshow_metabox_nonce' );
         <?php echo esc_html__( 'Background repeat', 'slider-studio' ); ?>
     </label>
 
-    <select name="wpss_background_repeat" id="wpss_background_repeat" style="width: 100%;">
+    <select name="wpss_background_repeat" id="wpss_background_repeat" style="width: 90%;">
         <option value="no-repeat" <?php selected( 'no-repeat', $background_repeat ); ?>>
             <?php echo esc_html__( 'No Repeat', 'slider-studio' ); ?>
         </option>

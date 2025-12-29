@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Slider Studio
- * Description:       Create stunning, fully responsive sliders using the Gutenberg block editor with customizable navigation, autoplay, and animation effects.
+ * Description:       Build beautiful, fully responsive sliders in Gutenberg with customizable navigation, autoplay, and animation effects.
  * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.4

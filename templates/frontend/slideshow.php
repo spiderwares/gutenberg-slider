@@ -110,4 +110,11 @@ if ( $hasSlides || $hasImages ) :
         </div>
     <?php endif;
 
+else :
+    if ( is_admin() ) : ?>
+        <div class="wpss_no_slides_preview">
+            <p><?php echo esc_html__( 'No slides found. Please add slides to preview.', 'slider-studio' ); ?></p>
+        </div>
+    <?php endif; 
+
 endif; ?> 

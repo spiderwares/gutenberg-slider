@@ -395,13 +395,11 @@ ul.wpss_slides li .wpss_slide_actions a span:before {
 #wpss_live_preview_container .wpss-slide-content ul {
     list-style: disc !important;
     margin: 1em 0 1em 2em !important;
-    padding: 0 !important;
 }
 
 #wpss_live_preview_container .wpss-slide-content ol {
     list-style: decimal !important;
     margin: 1em 0 1em 2em !important;
-    padding: 0 !important;
 }
 
 #wpss_live_preview_container .wpss-slide-content li {
@@ -411,8 +409,16 @@ ul.wpss_slides li .wpss_slide_actions a span:before {
 
 #wpss_live_preview_container .wpss-slide-content p {
     margin: 1em 0 !important;
+    font-size: 20px;
 }
 
 #wpss_live_preview_container h2.has-background {
     padding: 20px;
+}
+
+/*--------------------------- No Slides Preview Msg ---------------------------*/
+
+.wpss_no_slides_preview p {
+    margin: 0 !important;
+    font-size: 14px;
 }

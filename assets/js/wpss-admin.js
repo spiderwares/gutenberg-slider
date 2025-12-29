@@ -107,6 +107,7 @@ jQuery(function ($) {
         handleRemoveSlide(e) {
             e.preventDefault();
             $(e.currentTarget).closest('li').remove();
+            this.updatePreview();
         }
 
         initSortable() {

@@ -84,6 +84,9 @@ jQuery(function ($) {
                     delay: parseInt(options.autoplay_timing, 10) || 3000,
                     disableOnInteraction: false,
                 } : false,
+                fadeEffect: {
+                    crossFade: true
+                },
                 pagination: paginationType !== 'none' ? {
                     el: slider.find('.swiper-pagination')[0],
                     clickable: options.bullets_click == '1' || options.bullets_click === true,

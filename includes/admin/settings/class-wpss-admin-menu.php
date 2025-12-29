@@ -97,6 +97,16 @@ if( ! class_exists( 'WPSS_Admin_Menu' ) ) :
                 wp_enqueue_style( 'wp-block-library' );
                 wp_enqueue_style( 'wp-block-library-theme' );
 
+                // if ( function_exists( 'wp_get_global_stylesheet' ) ) {
+                //     wp_enqueue_global_styles();
+                // }
+
+                // if ( function_exists( 'wp_get_global_stylesheet' ) ) {
+                //     $global_css = wp_get_global_stylesheet();
+                //     $scoped_css = str_replace( 'body', '#wpss_live_preview_container', $global_css );
+                //     wp_add_inline_style( 'wpss-admin-style', $scoped_css );
+                // }
+
                 wp_localize_script(
                     'wpss-admin',
                     'wpss_admin',

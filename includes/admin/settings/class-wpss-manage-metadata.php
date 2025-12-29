@@ -176,12 +176,42 @@ if( ! class_exists( 'WPSS_Manage_Metadata' ) ) :
          */
         public function generate_preview( $wpss_slideshow_ID, $override_options = null ) {
 
+            $scoped_global_css = '';
+            if ( function_exists( 'wp_get_global_stylesheet' ) ) :
+                $global_css = wp_get_global_stylesheet();
+                if ( ! empty( $global_css ) ) :
+                    $scoped_global_css = self::wpss_scope_css_to_container( $global_css, '#wpss_live_preview_container' );
+                endif;
+            endif;
+
             echo '<div id="wpss_live_preview_container">';
+            
+            // Add scoped global stylesheet CSS
+            if ( ! empty( $scoped_global_css ) ) :
+                echo '<style id="wpss-preview-global-styles">' . wp_strip_all_tags( $scoped_global_css ) . '</style>';
+            endif;
+            
             if ( class_exists( 'WPSS_Shortcode' ) ) :
                 // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo WPSS_Shortcode::render_slider( $wpss_slideshow_ID, $override_options );
             endif;
             echo '</div>';
+        }
+
+        /**
+         * Scope CSS to a specific container
+         * 
+         */
+        private static function wpss_scope_css_to_container( $css, $container_selector ) {
+            if ( empty( $css ) || empty( $container_selector ) ) :
+                return $css;
+            endif;
+
+            $css = preg_replace( '/\bbody\b(?=\s*\{)/', $container_selector, $css );
+            $css = preg_replace( '/:root\s*\{/', $container_selector . ' {', $css );
+            $css = preg_replace( '/\bhtml\b(?=\s*\{)/', $container_selector, $css );
+            
+            return $css;
         }
 
     }
