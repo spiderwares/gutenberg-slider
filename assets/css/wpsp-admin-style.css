@@ -385,84 +385,34 @@ ul.wpsp_slides li .wpsp_slide_actions a span:before {
 
 /*--------------------------- End Slider Settings ---------------------------*/
 
-/*--------------------------- Features Comparison ---------------------------*/
-
-.wpsp-features-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.wpsp-features-table .wpsp-free-version {
-    background: #cff5d2;
-    color: #000000;
-    padding: 15px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 18px;
-}
-
-.wpsp-features-table .wpsp-pro-version {
-    background: #2E7D32;
-    color: #fff;
-    padding: 15px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 18px;
-}
-
-.wpsp-features-table .wpsp-feature {
-    background: #F5F5F5;
-    color: #1d2327;
-    text-align: left;
-    width: 30%;
-    font-weight: 600;
-    font-size: 18px;
-}
-
-.wpsp-features-table td:first-child {
-    text-align: left;
-}
-
-.wpsp-features-table td {
-    padding: 12px 15px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-}
-
-.wpsp-features-header {
-    padding: 20px;
-    background: #fff;
-    border-left: 2px solid #000000;
-}
-
-.wpsp-features-header h2 {
-    margin: 0 0 10px 0;
-    color: #1d2327;
-}
-
-.wpsp-features-header p {
-    margin: 0;
-    color: #646970;
-}
-
-.wpsp-features-table tbody tr td {
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.wpsp-message {
-    margin-top: 20px;
-    padding: 20px;
-    background: #fff3cd;
-    border-left: 4px solid #ffc107;
-}
-
-/*--------------------------- End Features Comparison ---------------------------*/
-
 #wpsp_live_preview_container {
     position: relative;
     width: 100%;
     overflow: hidden;
+    background-color: #fff;
+}
+
+#wpsp_live_preview_container .wpsp-slide-content ul {
+    list-style: disc !important;
+    margin: 1em 0 1em 2em !important;
+    padding: 0 !important;
+}
+
+#wpsp_live_preview_container .wpsp-slide-content ol {
+    list-style: decimal !important;
+    margin: 1em 0 1em 2em !important;
+    padding: 0 !important;
+}
+
+#wpsp_live_preview_container .wpsp-slide-content li {
+    margin-bottom: 0.5em !important;
+    display: list-item !important;
+}
+
+#wpsp_live_preview_container .wpsp-slide-content p {
+    margin: 1em 0 !important;
+}
+
+#wpsp_live_preview_container h2.has-background {
+    padding: 20px;
 }

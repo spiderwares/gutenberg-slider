@@ -20,17 +20,22 @@ if ( $hasSlides || $hasImages ) :
                     <div class="swiper-slide wpsp-slide-<?php echo esc_attr( $slide_id ); ?>">
                         <div class="wpsp-slide-content">
                             <?php 
-                            $rendered_html = function_exists( 'do_blocks' ) ? do_blocks( $html ) : $html;
-                            $slide_content = ( ! empty( $lazy_load ) && ( $lazy_load == '1' || $lazy_load === true ) ) 
-                                ? WPSP_Helper::wpsp_lazy_load_images( $rendered_html ) 
-                                : $rendered_html;
+                            $slide_content = $html;
+                            if ( has_blocks( $slide_content ) ) :
+                                $slide_content = do_blocks( $slide_content );
+                            endif;
+                            $slide_content = do_shortcode( $slide_content );
+                            
+                            if ( ! empty( $lazy_load ) && ( $lazy_load == '1' || $lazy_load === true ) ) :
+                                $slide_content = WPSP_Helper::wpsp_lazy_load_images( $slide_content );
+                            endif;
                         
                             if ( ! empty( $zoom_enabled ) ) : ?>
                                 <div class="swiper-zoom-container">
-                                    <?php echo wp_kses_post( $slide_content ); ?>
+                                    <?php echo $slide_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                                 </div>
                             <?php else :
-                                echo wp_kses_post( $slide_content );
+                                echo $slide_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                             endif; ?>
                         </div>
                     </div>

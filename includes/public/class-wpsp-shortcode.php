@@ -58,13 +58,22 @@ if( ! class_exists( 'WPSP_Shortcode' ) ) :
                 if ( ! is_array( $wpspOptions ) ) $wpspOptions = array();
             endif;
 
-            $child_slides = get_children( array(
-                'post_parent' => $wpsp_slideshow_ID,
-                'post_type'   => 'wpsp_slide',
-                'numberposts' => -1,
-                'orderby'     => 'menu_order',
-                'order'       => 'ASC',
-            ) );
+            if ( ! empty( $override_options['wpsp_slide_ids'] ) && is_array( $override_options['wpsp_slide_ids'] ) ) :
+                $child_slides = get_posts( array(
+                    'post_type'      => 'wpsp_slide',
+                    'post__in'       => $override_options['wpsp_slide_ids'],
+                    'orderby'        => 'post__in',
+                    'posts_per_page' => -1,
+                ) );
+            else :
+                $child_slides = get_children( array(
+                    'post_parent' => $wpsp_slideshow_ID,
+                    'post_type'   => 'wpsp_slide',
+                    'numberposts' => -1,
+                    'orderby'     => 'menu_order',
+                    'order'       => 'ASC',
+                ) );
+            endif;
 
             $slides = array();
             $background_settings = array();

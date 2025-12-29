@@ -57,18 +57,18 @@ jQuery(function ($) {
             const __this = $(e.currentTarget);
 
             if (__this.is('select')) {
-                const target    = __this.find(':selected').data('show'),
+                const target = __this.find(':selected').data('show'),
                     hideElement = __this.data('hide');
                 $(document.body).find(hideElement).hide();
                 $(document.body).find(target).show();
 
                 if (__this.is('[name="wpsp_slider_option[pagination_type]"]')) {
-                    const progressbar    = __this.val() === 'progressbar',
+                    const progressbar = __this.val() === 'progressbar',
                         autoplayProgress = $('[name="wpsp_slider_option[control_progress_bar]"]').is(':checked');
                     $(document.body).find('.wpsp_progress_bar').toggle(progressbar && autoplayProgress);
                 }
             } else if (__this.is('input[type="checkbox"]')) {
-                const target    = __this.data('show'),
+                const target = __this.data('show'),
                     progressbar = $('[name="wpsp_slider_option[pagination_type]"]').val() === 'progressbar';
                 if (target === '.wpsp_progress_bar') {
                     $(document.body).find(target).toggle(__this.is(':checked') && progressbar);
@@ -76,8 +76,8 @@ jQuery(function ($) {
                     $(document.body).find(target).toggle(__this.is(':checked'));
                 }
             } else if (__this.is('input[type="radio"]')) {
-                const radio     = __this.closest('.wpsp_radio_field'),
-                    target      = __this.data('show'),
+                const radio = __this.closest('.wpsp_radio_field'),
+                    target = __this.data('show'),
                     hideElement = radio.data('hide');
 
                 if (hideElement) {
@@ -116,6 +116,7 @@ jQuery(function ($) {
                 cursor: '-webkit-grabbing',
                 stop: (event, ui) => {
                     ui.item.removeAttr('style');
+                    this.updatePreview();
                 }
             });
         }
@@ -150,8 +151,8 @@ jQuery(function ($) {
         }
 
         initLivePreview() {
-            this.$previewContainer = $('#wpsp_live_preview_container');
-            if (!this.$previewContainer.length) return;
+            this.previewContainer = $('#wpsp_live_preview_container');
+            if (!this.previewContainer.length) return;
 
             let timeout;
             $('#wpsp_slider_options, #wpsp_slider_background_settings, #wpsp_background_settings, #postimagediv').on('change input', 'input, select, textarea', (e) => {
@@ -167,29 +168,33 @@ jQuery(function ($) {
                 });
                 observer.observe(postImageDiv, { childList: true, subtree: true });
             }
+
+            this.updatePreview();
         }
 
         updatePreview() {
             const inputs = $('#wpsp_slider_options').find('[name^="wpsp_slider_option"]'),
-                options  = {},
-                postId   = $('#post_ID').val();
+                options = {},
+                postId = $('#post_ID').val();
+
+            const slideIds = this.$slideContainer.find('li[data-slide-id]').map((i, el) => $(el).data('slide-id')).get();
 
             if (!postId) return;
 
             inputs.each((i, el) => {
-                const $el = $(el);
-                const nameMatch = $el.attr('name').match(/wpsp_slider_option\[(.*?)\]/);
+                const __this = $(el);
+                const nameMatch = __this.attr('name').match(/wpsp_slider_option\[(.*?)\]/);
                 if (!nameMatch) return;
                 const key = nameMatch[1];
 
-                if ($el.is(':checkbox')) {
-                    options[key] = $el.is(':checked') ? '1' : '';
-                } else if ($el.is(':radio')) {
-                    if ($el.is(':checked')) {
-                        options[key] = $el.val();
+                if (__this.is(':checkbox')) {
+                    options[key] = __this.is(':checked') ? '1' : '';
+                } else if (__this.is(':radio')) {
+                    if (__this.is(':checked')) {
+                        options[key] = __this.val();
                     }
                 } else {
-                    options[key] = $el.val();
+                    options[key] = __this.val();
                 }
             });
 
@@ -197,11 +202,11 @@ jQuery(function ($) {
             const bgContainer = $('#wpsp_slider_background_settings, #wpsp_background_settings');
             if (bgContainer.length) {
                 bgContainer.find('select, input').each((i, el) => {
-                    const $el = $(el);
-                    const name = $el.attr('name');
+                    const __this = $(el);
+                    const name = __this.attr('name');
                     if (name && name.startsWith('wpsp_background_')) {
                         const key = name.replace('wpsp_', '');
-                        options[key] = $el.val();
+                        options[key] = __this.val();
                     }
                 });
             }
@@ -212,7 +217,7 @@ jQuery(function ($) {
                 options['background_id'] = thumbnailId;
             }
 
-            this.$previewContainer.css('opacity', '0.5');
+            this.previewContainer.css('opacity', '0.5');
 
             $.ajax({
                 type: 'POST',
@@ -221,22 +226,23 @@ jQuery(function ($) {
                     action: 'wpsp_preview_refresh',
                     post_id: postId,
                     wpsp_slider_option: options,
+                    wpsp_slide_ids: slideIds,
                     nonce: wpsp_admin.nonce
                 },
                 success: (response) => {
-                    this.$previewContainer.replaceWith(response);
-                    this.$previewContainer = $('#wpsp_live_preview_container');
+                    this.previewContainer.replaceWith(response);
+                    this.previewContainer = $('#wpsp_live_preview_container');
 
                     if (window.WPSP_Frontend) {
                         try {
-                            new window.WPSP_Frontend().initializeSliders();
-                        } catch (e) { 
-                            console.log(e); 
+                            new window.WPSP_Frontend();
+                        } catch (e) {
+                            console.log(e);
                         }
                     }
                 },
                 complete: () => {
-                    this.$previewContainer.css('opacity', '1');
+                    this.previewContainer.css('opacity', '1');
                 }
             });
         }

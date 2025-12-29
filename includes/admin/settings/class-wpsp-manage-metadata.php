@@ -25,6 +25,7 @@ if( ! class_exists( 'WPSP_Manage_Metadata' ) ) :
         public function events_handler(){
             add_action( 'add_meta_boxes', [ $this, 'add_meta_boxes' ] );
             add_action( 'wp_ajax_wpsp_preview_refresh', [ $this, 'wpsp_get_preview' ] );
+            add_action( 'wp_ajax_nopriv_wpsp_preview_refresh', [ $this, 'wpsp_get_preview' ] );
         }
 
         /**
@@ -159,6 +160,10 @@ if( ! class_exists( 'WPSP_Manage_Metadata' ) ) :
                 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
                 $raw_settings = wp_unslash( $_POST['wpsp_slider_option'] );
                 $settings = map_deep( $raw_settings, 'sanitize_text_field' );
+            endif;
+
+            if ( isset( $_POST['wpsp_slide_ids'] ) && is_array( $_POST['wpsp_slide_ids'] ) ) :
+                $settings['wpsp_slide_ids'] = array_map( 'absint', wp_unslash( $_POST['wpsp_slide_ids'] ) );
             endif;
 
             $this->generate_preview( $post_id, $settings );
