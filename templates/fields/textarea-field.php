@@ -8,14 +8,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
 <td>
-    <div class="wpsp-textarea-wrapper">
-        <div class="wpsp-line-numbers"></div>
+    <div class="wpss-textarea-wrapper">
+        <div class="wpss-line-numbers"></div>
         <textarea 
             id="<?php echo esc_attr( $field_Key ); ?>"
-            name="wpsp_slider_option[<?php echo esc_attr( $field_Key ); ?>]"
+            name="wpss_slider_option[<?php echo esc_attr( $field_Key ); ?>]"
             rows="<?php echo isset( $field['rows'] ) ? esc_attr( $field['rows'] ) : '10'; ?>"
             cols="<?php echo isset( $field['cols'] ) ? esc_attr( $field['cols'] ) : '50'; ?>"
-            class="wpsp_textarea wpsp_input wpsp_custom_textarea"
+            class="wpss_textarea wpss_input wpss_custom_textarea"
             placeholder="<?php echo isset( $field['placeholder'] ) ? esc_attr( $field['placeholder'] ) : ''; ?>"
         ><?php echo esc_textarea( $field_Val ); ?></textarea>
     </div>

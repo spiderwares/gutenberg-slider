@@ -3,14 +3,14 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( ! class_exists( 'WPSP_Admin_Menu' ) ) :
+if( ! class_exists( 'WPSS_Admin_Menu' ) ) :
 
     /**
-     * Class WPSP_Admin_Menu
+     * Class WPSS_Admin_Menu
      *
      * Handles the registration of the Spin Metabox.
      */
-    class WPSP_Admin_Menu {
+    class WPSS_Admin_Menu {
 
          /**
          * Constructor for the class.
@@ -32,7 +32,7 @@ if( ! class_exists( 'WPSP_Admin_Menu' ) ) :
         public function enqueue_scripts() {
 
             $screen = get_current_screen();
-            if ( in_array( $screen->post_type, ['wpsp_slider', 'wpsp_slide'], true ) ) :
+            if ( in_array( $screen->post_type, ['wpss_slider', 'wpss_slide'], true ) ) :
                 wp_enqueue_script( 'jquery-ui-core' );
                 wp_enqueue_script( 'jquery-ui-widget' );
                 wp_enqueue_script( 'jquery-ui-sortable' );
@@ -41,68 +41,68 @@ if( ! class_exists( 'WPSP_Admin_Menu' ) ) :
 
                 wp_enqueue_script( 
                     'wp-color-picker-alpha', 
-                    WPSP_URL . 'assets/lib/wp-color-picker-alpha.js', 
+                    WPSS_URL . 'assets/lib/wp-color-picker-alpha.js', 
                     array( 'jquery', 'wp-color-picker' ), 
-                    WPSP_VERSION,
+                    WPSS_VERSION,
                     true
                 );
                 
                 wp_enqueue_script( 
-                    'wpsp-admin', 
-                    WPSP_URL . 'assets/js/wpsp-admin.js', 
+                    'wpss-admin', 
+                    WPSS_URL . 'assets/js/wpss-admin.js', 
                     array( 'jquery', 'wp-color-picker-alpha' ), 
-                    WPSP_VERSION, 
+                    WPSS_VERSION, 
                     true 
                 );
 
                 wp_enqueue_style( 
-                    'wpsp-admin-style', 
-                    WPSP_URL . 'assets/css/wpsp-admin-style.css', 
+                    'wpss-admin-style', 
+                    WPSS_URL . 'assets/css/wpss-admin-style.css', 
                     array(), 
-                    WPSP_VERSION 
+                    WPSS_VERSION 
                 );
 
                 wp_enqueue_script( 
                     'swiper-bundle.min--js', 
-                    WPSP_URL . 'assets/lib/swiper-bundle.min.js', 
+                    WPSS_URL . 'assets/lib/swiper-bundle.min.js', 
                     array(), 
-                    WPSP_VERSION, 
+                    WPSS_VERSION, 
                     true 
                 );
     
                 wp_enqueue_style( 
                     'swiper-bundle.min--css', 
-                    WPSP_URL . 'assets/lib/swiper-bundle.min.css', 
+                    WPSS_URL . 'assets/lib/swiper-bundle.min.css', 
                     array(), 
-                    WPSP_VERSION
+                    WPSS_VERSION
                 );
     
                 wp_enqueue_script( 'wp-hooks' );
                 
                 wp_enqueue_script(
-                    'wpsp-frontend',
-                    WPSP_URL . 'assets/js/wpsp-frontend.js',
+                    'wpss-frontend',
+                    WPSS_URL . 'assets/js/wpss-frontend.js',
                     array( 'jquery' , 'wp-hooks' ),
-                    WPSP_VERSION,
+                    WPSS_VERSION,
                     true
                 );
     
                 wp_enqueue_style(
-                    'wpsp-frontend-style',
-                    WPSP_URL . 'assets/css/wpsp-frontend-style.css',
+                    'wpss-frontend-style',
+                    WPSS_URL . 'assets/css/wpss-frontend-style.css',
                     array(),    
-                    WPSP_VERSION,
+                    WPSS_VERSION,
                 );
 
                 wp_enqueue_style( 'wp-block-library' );
                 wp_enqueue_style( 'wp-block-library-theme' );
 
                 wp_localize_script(
-                    'wpsp-admin',
-                    'wpsp_admin',
+                    'wpss-admin',
+                    'wpss_admin',
                     array(
                         'ajaxurl' => admin_url( 'admin-ajax.php' ),
-                        'nonce'   => wp_create_nonce( 'wpsp_admin_nonce' ),
+                        'nonce'   => wp_create_nonce( 'wpss_admin_nonce' ),
                     )
                 );
 
@@ -111,5 +111,5 @@ if( ! class_exists( 'WPSP_Admin_Menu' ) ) :
 
     }
 
-    new WPSP_Admin_Menu();
+    new WPSS_Admin_Menu();
 endif;

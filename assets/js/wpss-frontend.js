@@ -2,7 +2,7 @@
 
 jQuery(function ($) {
 
-    class WPSP_Frontend {
+    class WPSS_Frontend {
 
         constructor() {
             this.init();
@@ -13,7 +13,7 @@ jQuery(function ($) {
         }
 
         initializeSliders() {
-            $('.wpsp-swiper').each((index, element) => {
+            $('.wpss-swiper').each((index, element) => {
                 const slider = $(element),
                     rawOptions = slider.attr('data-options');
 
@@ -23,13 +23,13 @@ jQuery(function ($) {
                 if (!options) return;
 
                 if (options.slide_control_view_auto == '1' || options.slide_control_view_auto === true) {
-                    slider.addClass('wpsp-auto-slides');
+                    slider.addClass('wpss-auto-slides');
                 }
 
                 // Thumbs gallery
                 let thumbsSwiper = null;
                 if (options.thumb_gallery == '1' || options.thumb_gallery === true) {
-                    const thumbsGallery = slider.siblings('.wpsp-swiper-thumbs-gallery');
+                    const thumbsGallery = slider.siblings('.wpss-swiper-thumbs-gallery');
                     if (thumbsGallery.length) {
                         if (thumbsGallery[0].swiper) {
                             thumbsGallery[0].swiper.destroy(true, true);
@@ -90,7 +90,7 @@ jQuery(function ($) {
                     dynamicBullets: options.dynamic_bullets == '1' || options.dynamic_bullets === true,
                     renderBullet: function (index, className) {
                         if (paginationType === 'custom') {
-                            return `<span class="${className} wpsp-swiper-custom-${customStyle}">${index + 1}</span>`;
+                            return `<span class="${className} wpss-swiper-custom-${customStyle}">${index + 1}</span>`;
                         }
                         return `<span class="${className}"></span>`;
                     },
@@ -122,7 +122,7 @@ jQuery(function ($) {
                 on: {
                     init: function () {
                         if (options.control_progress_bar == '1' && options.pagination_type == 'progressbar' && options.progress_bar_color) {
-                            const progressbar = slider.find('.swiper-pagination-progressbar-fill').addClass('wpsp-progressbar-fill');
+                            const progressbar = slider.find('.swiper-pagination-progressbar-fill').addClass('wpss-progressbar-fill');
                             progressbar.css({ background: options.progress_bar_color });
                         }
 
@@ -136,17 +136,17 @@ jQuery(function ($) {
                             }
 
                             if (options.fraction_position) {
-                                fraction.removeClass('wpsp-fraction-top-left wpsp-fraction-top-right wpsp-fraction-bottom-left wpsp-fraction-bottom-right wpsp-fraction-center')
-                                    .addClass(`wpsp-fraction-${options.fraction_position}`);
+                                fraction.removeClass('wpss-fraction-top-left wpss-fraction-top-right wpss-fraction-bottom-left wpss-fraction-bottom-right wpss-fraction-center')
+                                    .addClass(`wpss-fraction-${options.fraction_position}`);
                             }
                         }
 
                         if (paginationType === 'custom') {
                             slider.find('.swiper-pagination').css({
-                                '--wpsp-custom-text-color': customTextColor,
-                                '--wpsp-custom-bg-color': customBackgroundColor,
-                                '--wpsp-custom-active-text-color': customActiveTextColor,
-                                '--wpsp-custom-active-bg-color': customActiveBgColor
+                                '--wpss-custom-text-color': customTextColor,
+                                '--wpss-custom-bg-color': customBackgroundColor,
+                                '--wpss-custom-active-text-color': customActiveTextColor,
+                                '--wpss-custom-active-bg-color': customActiveBgColor
                             });
                         }
 
@@ -226,17 +226,17 @@ jQuery(function ($) {
 
             // Scrollbar position
             const scrollbar = slider.find('.swiper-scrollbar');
-            slider.removeClass('wpsp-scrollbar-top wpsp-scrollbar-left wpsp-scrollbar-right');
+            slider.removeClass('wpss-scrollbar-top wpss-scrollbar-left wpss-scrollbar-right');
 
             if (options.scrollbar_position === 'top') {
                 scrollbar.prependTo(slider);
-                slider.addClass('wpsp-scrollbar-top');
+                slider.addClass('wpss-scrollbar-top');
             } else if (options.scrollbar_position === 'left' && baseOptions.direction === 'vertical') {
                 scrollbar.appendTo(slider);
-                slider.addClass('wpsp-scrollbar-left');
+                slider.addClass('wpss-scrollbar-left');
             } else if (options.scrollbar_position === 'right' && baseOptions.direction === 'vertical') {
                 scrollbar.appendTo(slider);
-                slider.addClass('wpsp-scrollbar-right');
+                slider.addClass('wpss-scrollbar-right');
             }
 
             // Vertical direction height and width
@@ -455,7 +455,7 @@ jQuery(function ($) {
 
     }
 
-    window.WPSP_Frontend = WPSP_Frontend;
-    new WPSP_Frontend();
+    window.WPSS_Frontend = WPSS_Frontend;
+    new WPSS_Frontend();
 
 });

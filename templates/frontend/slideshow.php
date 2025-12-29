@@ -4,21 +4,21 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( $hasSlides || $hasImages ) :
-    if ( ! empty( $wpsp_css ) ) : ?>
+    if ( ! empty( $wpss_css ) ) : ?>
         <style>
         <?php 
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo wp_strip_all_tags( $wpsp_css ); ?>
+        echo wp_strip_all_tags( $wpss_css ); ?>
         </style>
     <?php endif; ?>
 
-    <div class="wpsp-swiper swiper swiper-slider-wrapper <?php echo esc_attr($slideshow_main_class); ?>"
+    <div class="wpss-swiper swiper swiper-slider-wrapper <?php echo esc_attr($slideshow_main_class); ?>"
     data-options='<?php echo esc_attr( $options );?>'>
         <div class="swiper-wrapper">
             <?php if ( $hasSlides ) :
                 foreach ( $slides as $slide_id => $html ) : ?>
-                    <div class="swiper-slide wpsp-slide-<?php echo esc_attr( $slide_id ); ?>">
-                        <div class="wpsp-slide-content">
+                    <div class="swiper-slide wpss-slide-<?php echo esc_attr( $slide_id ); ?>">
+                        <div class="wpss-slide-content">
                             <?php 
                             $slide_content = $html;
                             if ( has_blocks( $slide_content ) ) :
@@ -27,7 +27,7 @@ if ( $hasSlides || $hasImages ) :
                             $slide_content = do_shortcode( $slide_content );
                             
                             if ( ! empty( $lazy_load ) && ( $lazy_load == '1' || $lazy_load === true ) ) :
-                                $slide_content = WPSP_Helper::wpsp_lazy_load_images( $slide_content );
+                                $slide_content = WPSS_Helper::wpss_lazy_load_images( $slide_content );
                             endif;
                         
                             if ( ! empty( $zoom_enabled ) ) : ?>
@@ -67,7 +67,7 @@ if ( $hasSlides || $hasImages ) :
 
     <!-- Swiper Thumbs Gallery -->
     <?php if ( ! empty( $thumb_gallery ) && ( $hasSlides || $hasImages ) ) : ?>
-        <div class="wpsp-swiper-thumbs-gallery swiper">
+        <div class="wpss-swiper-thumbs-gallery swiper">
             <div class="swiper-wrapper">
 
                 <?php if ( $hasSlides ) :

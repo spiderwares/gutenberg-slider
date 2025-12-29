@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     <?php endif; ?>
     <tr>
     <?php
-        wpsp_get_template(
+        wpss_get_template(
             'fields/manage-fields.php',
             array(
                 'fields'  => $fields,

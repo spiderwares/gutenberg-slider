@@ -1,4 +1,4 @@
-=== Sliderpress ===
+=== Slider Studio ===
 Contributors: cosmicinfosoftware
 Requires at least: 5.2
 Tested up to: 6.9
@@ -12,9 +12,9 @@ Create stunning, fully responsive sliders using the Gutenberg block editor with 
 
 == Description ==
 
-Sliderpress is a powerful and feature-rich WordPress slider plugin powered by [Swiper.js](https://swiperjs.com/), the most modern mobile touch slider library. This plugin seamlessly integrates with the WordPress Gutenberg block editor, allowing you to create beautiful, responsive sliders with rich content using blocks.
+Slider Studio is a powerful and feature-rich WordPress slider plugin powered by [Swiper.js](https://swiperjs.com/), the most modern mobile touch slider library. This plugin seamlessly integrates with the WordPress Gutenberg block editor, allowing you to create beautiful, responsive sliders with rich content using blocks.
 
-Unlike traditional image-only sliders, Sliderpress lets you build slides using the full power of Gutenberg blocks - add images, text, headings, videos, galleries, and any other block content to create engaging, interactive sliders.
+Unlike traditional image-only sliders, Slider Studio lets you build slides using the full power of Gutenberg blocks - add images, text, headings, videos, galleries, and any other block content to create engaging, interactive sliders.
 
 == External Services ==
 
@@ -43,7 +43,7 @@ This plugin includes the following open-source libraries:
 ⭐ Background settings for both slider container and individual slides
 ⭐ Lazy loading images for better performance
 ⭐ Drag & drop to reorder slides
-⭐ Shortcode support: `[wpsp_slider id="123"]`
+⭐ Shortcode support: `[wpss_slider id="123"]`
 ⭐ Grid layout support with customizable rows and columns
 ⭐ Compatible with all major themes and page builders
 ⭐ Thumbnail Gallery – Display thumbnail gallery below the main slider with customizable size and spacing
@@ -63,17 +63,17 @@ This plugin includes the following open-source libraries:
 
 == Installation ==
 
-1. Upload the plugin to the `/wp-content/plugins/sliderpress/` directory or install it via Plugins > Add New.
+1. Upload the plugin to the `/wp-content/plugins/slider-studio/` directory or install it via Plugins > Add New.
 2. Activate the plugin through the Plugins menu in WordPress.
-3. Navigate to Sliderpress in the WordPress admin menu to create a new slider.
+3. Navigate to Slider Studio in the WordPress admin menu to create a new slider.
 4. Add slides using the Gutenberg block editor - each slide can contain any combination of blocks (images, text, videos, etc.).
 5. Configure slider options in the settings tabs: Transition, Navigation, Pagination, Autoplay, Responsive, and Other Options.
-6. Use the shortcode `[wpsp_slider id="SLIDER_ID"]` to display the slider anywhere on your site, where `SLIDER_ID` is the ID of your slider.
+6. Use the shortcode `[wpss_slider id="SLIDER_ID"]` to display the slider anywhere on your site, where `SLIDER_ID` is the ID of your slider.
 
 == Frequently Asked Questions ==
 
 = How do I add a slider to my page? =
-Use the shortcode `[wpsp_slider id="SLIDER_ID"]` where `SLIDER_ID` is the ID of the slider post. You can find the shortcode in the slider edit screen sidebar.
+Use the shortcode `[wpss_slider id="SLIDER_ID"]` where `SLIDER_ID` is the ID of the slider post. You can find the shortcode in the slider edit screen sidebar.
 
 = Can I use Gutenberg blocks in slides? =
 Yes! That's one of the main features. Each slide is a Gutenberg post where you can add any blocks - images, text, headings, videos, galleries, buttons, and more.
@@ -119,7 +119,7 @@ The plugin includes 10+ transition effects: Slide, Fade, Flip etc. You can choos
 * Background settings for slider and slides
 * Lazy loading support
 * Drag & drop slide reordering
-* Shortcode output: `[wpsp_slider id="123"]`
+* Shortcode output: `[wpss_slider id="123"]`
 * Responsive design with mobile touch support
 
 == Upgrade Notice ==

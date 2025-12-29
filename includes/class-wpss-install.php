@@ -7,21 +7,21 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Installation related functions and actions.
  */
 
-if ( ! class_exists( 'WPSP_Install' ) ) :
+if ( ! class_exists( 'WPSS_Install' ) ) :
 
     /**
-     * WPSP_Install Class
+     * WPSS_Install Class
      *
      * Handles installation processes like creating database tables,
      * setting up roles, and creating necessary pages on plugin activation.
      */
-    class WPSP_Install {
+    class WPSS_Install {
 
         /**
          * Hook into WordPress actions and filters.
          */
         public static function init() {
-            add_filter( 'plugin_action_links_' . plugin_basename( WPSP_FILE ), array( __CLASS__, 'plugin_action_links' ) );
+            add_filter( 'plugin_action_links_' . plugin_basename( WPSS_FILE ), array( __CLASS__, 'plugin_action_links' ) );
             add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
         }
 
@@ -42,8 +42,8 @@ if ( ! class_exists( 'WPSP_Install' ) ) :
          * @return array Modified array of action links.
          */
         public static function plugin_row_meta( $links, $file ) {
-            if ( plugin_basename( WPSP_FILE ) === $file ) :
-                $doc_url   = esc_url( 'https://documentation.cosmicinfosoftware.com/sliderpress/documents/getting-started/introduction/' );
+            if ( plugin_basename( WPSS_FILE ) === $file ) :
+                $doc_url   = esc_url( 'https://documentation.cosmicinfosoftware.com/slider-studio/documents/getting-started/introduction/' );
                 $doc_label = esc_html( 'Documentation' );
         
                 $new_links = array(
@@ -66,15 +66,15 @@ if ( ! class_exists( 'WPSP_Install' ) ) :
             $action_links = array(
                 'manage_sldier' => sprintf(
                     '<a href="%s" aria-label="%s">%s</a>',
-                    admin_url( 'edit.php?post_type=wpsp_slider' ),
-                    esc_attr__( 'Manage Sliders', 'sliderpress' ),
-                    esc_html__( 'Manage Sliders', 'sliderpress' )
+                    admin_url( 'edit.php?post_type=wpss_slider' ),
+                    esc_attr__( 'Manage Sliders', 'slider-studio' ),
+                    esc_html__( 'Manage Sliders', 'slider-studio' )
                 ),
             );
             return array_merge( $action_links, $links );
         }
     }
 
-    WPSP_Install::init();
+    WPSS_Install::init();
 
 endif;

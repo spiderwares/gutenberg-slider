@@ -9,23 +9,23 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Retrieve the animation settings fields from the WPSP_Settings_Fields class.
+ * Retrieve the animation settings fields from the WPSS_Settings_Fields class.
  * @var array $fields Array of animation settings fields.
  * 
  */
-$fields  = WPSP_Settings_Fields::transition_field();
+$fields  = WPSS_Settings_Fields::transition_field();
 
 /**
  * Fetch the saved slider settings from the WordPress options table.
  * 
  */
-$options = get_post_meta( $post->ID, 'wpsp_slider_option', true );
+$options = get_post_meta( $post->ID, 'wpss_slider_option', true );
 
 ?>
 
-<div id="transition-tab" class="wpsp-tab-content">
+<div id="transition-tab" class="wpss-tab-content">
     <?php
-    wpsp_get_template( 
+    wpss_get_template( 
         'fields/settings-forms.php', 
         array(
             'fields'  => $fields,     // Field definitions.

@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
 <td>
-    <select name="wpsp_slider_option[<?php echo esc_attr($field_Key); ?>]"
-            class="wpsp_select wpsp_select_field"
+    <select name="wpss_slider_option[<?php echo esc_attr($field_Key); ?>]"
+            class="wpss_select wpss_select_field"
             <?php if (!empty($field['data_hide'])) : ?>
                 data-hide="<?php echo esc_attr($field['data_hide']); ?>"
             <?php endif; ?>>

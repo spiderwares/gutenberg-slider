@@ -1,32 +1,32 @@
 /*--------------------------- Arrow Style ---------------------------*/
 
-.wpsp-swiper.swiper-vertical .swiper-button-next,
-.wpsp-swiper.swiper-vertical .swiper-button-prev {
+.wpss-swiper.swiper-vertical .swiper-button-next,
+.wpss-swiper.swiper-vertical .swiper-button-prev {
     left: 50%;
     right: auto;
     transform: translateX(-50%);
 }
 
-.wpsp-swiper.swiper-vertical .swiper-button-prev {
+.wpss-swiper.swiper-vertical .swiper-button-prev {
     top: 10px;
     bottom: auto;
 }
 
-.wpsp-swiper.swiper-vertical .swiper-button-next {
+.wpss-swiper.swiper-vertical .swiper-button-next {
     top: auto;
     bottom: 10px;
 }
 
 /* === Style 1 === */
-.wpsp-swiper-arrow-style1 .swiper-button-next:after,
-.wpsp-swiper-arrow-style1 .swiper-button-prev:after {
+.wpss-swiper-arrow-style1 .swiper-button-next:after,
+.wpss-swiper-arrow-style1 .swiper-button-prev:after {
     font-size: inherit;
     opacity: unset;
 }
 
 /* === Style 2 === */
-.wpsp-swiper-arrow-style2 .swiper-button-next,
-.wpsp-swiper-arrow-style2 .swiper-button-prev {
+.wpss-swiper-arrow-style2 .swiper-button-next,
+.wpss-swiper-arrow-style2 .swiper-button-prev {
     border: 2px solid #555;
     border-radius: inherit;
     width: 33px;
@@ -37,18 +37,18 @@
     opacity: unset;
 }
 
-.wpsp-swiper-arrow-style2 .swiper-button-next:after,
-.wpsp-swiper-arrow-style2 .swiper-button-prev:after {
+.wpss-swiper-arrow-style2 .swiper-button-next:after,
+.wpss-swiper-arrow-style2 .swiper-button-prev:after {
     font-size: inherit;
 }
 
 /* === Style 3 === */
-.wpsp-swiper-arrow-style3 {
+.wpss-swiper-arrow-style3 {
     position: relative;
 }
 
-.wpsp-swiper-arrow-style3 .swiper-button-prev,
-.wpsp-swiper-arrow-style3 .swiper-button-next {
+.wpss-swiper-arrow-style3 .swiper-button-prev,
+.wpss-swiper-arrow-style3 .swiper-button-next {
     position: absolute;
     top: -1px;
     bottom: 0;
@@ -66,42 +66,42 @@
     cursor: pointer;
 }
 
-.wpsp-swiper-arrow-style3 .swiper-button-prev {
+.wpss-swiper-arrow-style3 .swiper-button-prev {
     left: 0;
 }
 
-.wpsp-swiper-arrow-style3 .swiper-button-next {
+.wpss-swiper-arrow-style3 .swiper-button-next {
     right: 0;
 }
 
-.wpsp-swiper-arrow-style3 .swiper-button-prev:after,
-.wpsp-swiper-arrow-style3 .swiper-button-next:after {
+.wpss-swiper-arrow-style3 .swiper-button-prev:after,
+.wpss-swiper-arrow-style3 .swiper-button-next:after {
     font-size: inherit;
 }
 
 /* === Style 3 Vertical Mode === */
-.wpsp-swiper.swiper-vertical.wpsp-swiper-arrow-style3 .swiper-button-prev,
-.wpsp-swiper.swiper-vertical.wpsp-swiper-arrow-style3 .swiper-button-next {
+.wpss-swiper.swiper-vertical.wpss-swiper-arrow-style3 .swiper-button-prev,
+.wpss-swiper.swiper-vertical.wpss-swiper-arrow-style3 .swiper-button-next {
     width: 100%;
     height: 9%;
     left: 50%;
     right: 0;
 }
 
-.wpsp-swiper.swiper-vertical.wpsp-swiper-arrow-style3 .swiper-button-prev {
+.wpss-swiper.swiper-vertical.wpss-swiper-arrow-style3 .swiper-button-prev {
     top: 0;
     bottom: auto;
 }
 
-.wpsp-swiper.swiper-vertical.wpsp-swiper-arrow-style3 .swiper-button-next {
+.wpss-swiper.swiper-vertical.wpss-swiper-arrow-style3 .swiper-button-next {
     top: auto;
     bottom: 0;
 }
 
 
 /* === Style 4 === */
-.wpsp-swiper-arrow-style4 .swiper-button-next,
-.wpsp-swiper-arrow-style4 .swiper-button-prev {
+.wpss-swiper-arrow-style4 .swiper-button-next,
+.wpss-swiper-arrow-style4 .swiper-button-prev {
     width: 40px;
     height: 40px;
     color: #ffffff;
@@ -117,36 +117,36 @@
     transition: all 0.3s ease;
 }
 
-.wpsp-swiper-arrow-style4 .swiper-button-next::after,
-.wpsp-swiper-arrow-style4 .swiper-button-prev::after {
+.wpss-swiper-arrow-style4 .swiper-button-next::after,
+.wpss-swiper-arrow-style4 .swiper-button-prev::after {
     font-size: inherit;
     content: '\27A1';
     display: block;
 }
 
-.wpsp-swiper-arrow-style4 .swiper-button-prev::after {
+.wpss-swiper-arrow-style4 .swiper-button-prev::after {
     content: '\2B05';
 }
 
-.wpsp-swiper-arrow-style4 .swiper-button-next:hover,
-.wpsp-swiper-arrow-style4 .swiper-button-prev:hover {
+.wpss-swiper-arrow-style4 .swiper-button-next:hover,
+.wpss-swiper-arrow-style4 .swiper-button-prev:hover {
     color: #ffffff;
     border-color: #ffffff;
 }
 
 /* === Style 4 Vertical Mode === */
-.wpsp-swiper.swiper-vertical.wpsp-swiper-arrow-style4 .swiper-button-prev::after {
+.wpss-swiper.swiper-vertical.wpss-swiper-arrow-style4 .swiper-button-prev::after {
     content: '\2B06';
 }
 
-.wpsp-swiper.swiper-vertical.wpsp-swiper-arrow-style4 .swiper-button-next::after {
+.wpss-swiper.swiper-vertical.wpss-swiper-arrow-style4 .swiper-button-next::after {
     content: '\2B07';
 }
 
 
 /* === Style 5 === */
-.wpsp-swiper-arrow-style5 .swiper-button-next,
-.wpsp-swiper-arrow-style5 .swiper-button-prev {
+.wpss-swiper-arrow-style5 .swiper-button-next,
+.wpss-swiper-arrow-style5 .swiper-button-prev {
     width: 40px;
     height: 40px;
     display: flex;
@@ -161,37 +161,37 @@
     transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-.wpsp-swiper-arrow-style5 .swiper-button-prev::after,
-.wpsp-swiper-arrow-style5 .swiper-button-next::after {
+.wpss-swiper-arrow-style5 .swiper-button-prev::after,
+.wpss-swiper-arrow-style5 .swiper-button-next::after {
     font-weight: bold;
     font-size: inherit;
 }
 
-.wpsp-swiper-arrow-style5 .swiper-button-prev::after {
+.wpss-swiper-arrow-style5 .swiper-button-prev::after {
     content: '\2190';
 }
 
-.wpsp-swiper-arrow-style5 .swiper-button-next::after {
+.wpss-swiper-arrow-style5 .swiper-button-next::after {
     content: '\2192';
 }
 
-.wpsp-swiper-arrow-style5 .swiper-button-prev:hover,
-.wpsp-swiper-arrow-style5 .swiper-button-next:hover {
+.wpss-swiper-arrow-style5 .swiper-button-prev:hover,
+.wpss-swiper-arrow-style5 .swiper-button-next:hover {
     color: #333;
 }
 
 /* === Style 5 Vertical Mode === */
-.wpsp-swiper.swiper-vertical.wpsp-swiper-arrow-style5 .swiper-button-prev::after {
+.wpss-swiper.swiper-vertical.wpss-swiper-arrow-style5 .swiper-button-prev::after {
     content: '\2191';
 }
 
-.wpsp-swiper.swiper-vertical.wpsp-swiper-arrow-style5 .swiper-button-next::after {
+.wpss-swiper.swiper-vertical.wpss-swiper-arrow-style5 .swiper-button-next::after {
     content: '\2193';
 }
 
 /* === Custom Arrow === */
-.wpsp-swiper-arrow-custom .swiper-button-next,
-.wpsp-swiper-arrow-custom .swiper-button-prev {
+.wpss-swiper-arrow-custom .swiper-button-next,
+.wpss-swiper-arrow-custom .swiper-button-prev {
     border: 2px solid #fff;
     border-radius: inherit;
     width: 33px;
@@ -201,8 +201,8 @@
     justify-content: center;
 }
 
-.wpsp-swiper-arrow-custom .swiper-button-next:after,
-.wpsp-swiper-arrow-custom .swiper-button-prev:after {
+.wpss-swiper-arrow-custom .swiper-button-next:after,
+.wpss-swiper-arrow-custom .swiper-button-prev:after {
     font-size: inherit;
 }
 
@@ -210,13 +210,13 @@
 
 /*--------------------------- Dot Pagination Style ---------------------------*/
 
-.wpsp-swiper *:focus {
+.wpss-swiper *:focus {
     outline-width: 2px;
     outline-style: none;
 }
 
 /* === Style 1  === */
-.wpsp-swiper-dot-style1 .swiper-pagination-bullet {
+.wpss-swiper-dot-style1 .swiper-pagination-bullet {
     background: transparent;
     border: 1px solid #fff;
     width: 10px;
@@ -225,12 +225,12 @@
     opacity: 1;
 }
 
-.wpsp-swiper-dot-style1 .swiper-pagination-bullet-active {
+.wpss-swiper-dot-style1 .swiper-pagination-bullet-active {
     background: #fff;
 }
 
 /* === Style 2 === */
-.wpsp-swiper-dot-style2 .swiper-pagination-bullet {
+.wpss-swiper-dot-style2 .swiper-pagination-bullet {
     background: transparent;
     border: 1px solid #fff;
     width: 10px;
@@ -239,12 +239,12 @@
     opacity: 1;
 }
 
-.wpsp-swiper-dot-style2 .swiper-pagination-bullet-active {
+.wpss-swiper-dot-style2 .swiper-pagination-bullet-active {
     background: #fff;
 }
 
 /* === Style 3 === */
-.wpsp-swiper-dot-style3 .swiper-pagination-bullet {
+.wpss-swiper-dot-style3 .swiper-pagination-bullet {
     background: #999;
     border-radius: 0;
     width: 20px;
@@ -252,13 +252,13 @@
     opacity: 0.6;
 }
 
-.wpsp-swiper-dot-style3 .swiper-pagination-bullet-active {
+.wpss-swiper-dot-style3 .swiper-pagination-bullet-active {
     background: #fff;
     opacity: 1;
 }
 
 /* === Style 4 === */
-.wpsp-swiper-dot-style4 .swiper-pagination-bullet {
+.wpss-swiper-dot-style4 .swiper-pagination-bullet {
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -269,7 +269,7 @@
     opacity: 0.8;
 }
 
-.wpsp-swiper-dot-style4 .swiper-pagination-bullet-active {
+.wpss-swiper-dot-style4 .swiper-pagination-bullet-active {
     width: 28px;
     border-radius: 999px;
     background: #fff;
@@ -280,11 +280,11 @@
 
 /*--------------------------- Grab Cursor ---------------------------*/
 
-.wpsp-swiper-grab-cursor {
+.wpss-swiper-grab-cursor {
     cursor: grab;
 }
 
-.wpsp-swiper-grab-cursor:active {
+.wpss-swiper-grab-cursor:active {
     cursor: grabbing;
 }
 
@@ -292,21 +292,21 @@
 
 /*--------------------------- Progress Bar ---------------------------*/
 
-.wpsp-progress-top .swiper-pagination-progressbar {
+.wpss-progress-top .swiper-pagination-progressbar {
     top: 0;
     bottom: auto !important;
     z-index: 99;
     height: 6px !important;
 }
 
-.wpsp-progress-bottom .swiper-pagination-progressbar {
+.wpss-progress-bottom .swiper-pagination-progressbar {
     bottom: 0;
     top: auto !important;
     z-index: 99;
     height: 6px !important;
 }
 
-.wpsp-progress-left .swiper-pagination-progressbar {
+.wpss-progress-left .swiper-pagination-progressbar {
     left: 0;
     top: 0;
     bottom: 0;
@@ -315,7 +315,7 @@
     width: 6px;
 }
 
-.wpsp-progress-right .swiper-pagination-progressbar {
+.wpss-progress-right .swiper-pagination-progressbar {
     right: 0;
     top: 0;
     bottom: 0;
@@ -324,7 +324,7 @@
     z-index: 99;
 }
 
-.wpsp-progressbar-fill {
+.wpss-progressbar-fill {
     width: 100%;
     height: 100%;
 }
@@ -333,7 +333,7 @@
 
 /*--------------------------- Autoplay Porgress ---------------------------*/
 
-.wpsp-swiper .autoplay-progress {
+.wpss-swiper .autoplay-progress {
     position: absolute;
     z-index: 10;
     width: 48px;
@@ -344,27 +344,27 @@
     font-weight: bold;
 }
 
-.wpsp-swiper .wpsp-timeleft-top-left {
+.wpss-swiper .wpss-timeleft-top-left {
     top: 16px;
     left: 16px;
 }
 
-.wpsp-swiper .wpsp-timeleft-top-right {
+.wpss-swiper .wpss-timeleft-top-right {
     top: 16px;
     right: 16px;
 }
 
-.wpsp-swiper .wpsp-timeleft-bottom-left {
+.wpss-swiper .wpss-timeleft-bottom-left {
     bottom: 16px;
     left: 16px;
 }
 
-.wpsp-swiper .wpsp-timeleft-bottom-right {
+.wpss-swiper .wpss-timeleft-bottom-right {
     bottom: 16px;
     right: 16px;
 }
 
-.wpsp-swiper .autoplay-progress svg {
+.wpss-swiper .autoplay-progress svg {
     position: absolute;
     left: 0;
     top: 0;
@@ -381,41 +381,41 @@
 
 /*--------------------------- Scrollbar Control ---------------------------*/
 
-.wpsp-scrollbar.swiper-scrollbar {
+.wpss-scrollbar.swiper-scrollbar {
     background-color: #fff;
     height: 8px;
     border-radius: 4px;
 }
 
-.wpsp-scrollbar-drag.swiper-scrollbar-drag {
+.wpss-scrollbar-drag.swiper-scrollbar-drag {
     background: #999999;
     border-radius: 4px;
     cursor: pointer;
 }
 
-.wpsp-scrollbar-wrapper {
+.wpss-scrollbar-wrapper {
     margin-top: 10px;
 }
 
-.wpsp-scrollbar-top .swiper-scrollbar {
+.wpss-scrollbar-top .swiper-scrollbar {
     top: 0 !important;
     bottom: auto !important;
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.wpsp-scrollbar-left .swiper-scrollbar {
+.wpss-scrollbar-left .swiper-scrollbar {
     left: 0 !important;
     right: auto !important;
 }
 
-.wpsp-scrollbar-right .swiper-scrollbar {
+.wpss-scrollbar-right .swiper-scrollbar {
     right: 0 !important;
     left: auto !important;
 }
 
-.wpsp-scrollbar-left .swiper-scrollbar-drag,
-.wpsp-scrollbar-right .swiper-scrollbar-drag {
+.wpss-scrollbar-left .swiper-scrollbar-drag,
+.wpss-scrollbar-right .swiper-scrollbar-drag {
     width: 100%;
 }
 
@@ -423,12 +423,12 @@
 
 /*--------------------------- RTL ---------------------------*/
 
-.wpsp-swiper[dir="rtl"] .swiper-button-next {
+.wpss-swiper[dir="rtl"] .swiper-button-next {
     left: 0;
     right: auto;
 }
 
-.wpsp-swiper[dir="rtl"] .swiper-button-prev {
+.wpss-swiper[dir="rtl"] .swiper-button-prev {
     right: 0;
     left: auto;
 }
@@ -437,11 +437,11 @@
 
 /*--------------------------- Thumbs Gallery ---------------------------*/
 
-.wpsp-swiper-thumbs-gallery {
+.wpss-swiper-thumbs-gallery {
     overflow: hidden;
 }
 
-.wpsp-swiper-thumbs-gallery .swiper-wrapper {
+.wpss-swiper-thumbs-gallery .swiper-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -449,7 +449,7 @@
     margin: 0;
 }
 
-.wpsp-swiper-thumbs-gallery .swiper-slide {
+.wpss-swiper-thumbs-gallery .swiper-slide {
     opacity: 0.5;
     border: 2px solid transparent;
     width: auto !important;
@@ -461,11 +461,11 @@
     box-sizing: border-box;
 }
 
-.wpsp-swiper-thumbs-gallery .swiper-slide-thumb-active {
+.wpss-swiper-thumbs-gallery .swiper-slide-thumb-active {
     opacity: 1;
 }
 
-.wpsp-swiper-thumbs-gallery img {
+.wpss-swiper-thumbs-gallery img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -477,28 +477,28 @@
 
 /*--------------------------- Effect Fraction ---------------------------*/
 
-.wpsp-swiper .wpsp-fraction-top-left {
+.wpss-swiper .wpss-fraction-top-left {
     position: absolute;
     top: 10px;
     left: 10px;
     text-align: left;
 }
 
-.wpsp-swiper .wpsp-fraction-top-right {
+.wpss-swiper .wpss-fraction-top-right {
     position: absolute;
     top: 10px;
     right: 10px;
     text-align: right;
 }
 
-.wpsp-swiper .wpsp-fraction-bottom-left {
+.wpss-swiper .wpss-fraction-bottom-left {
     position: absolute;
     bottom: 10px;
     left: 10px;
     text-align: left;
 }
 
-.wpsp-swiper .wpsp-fraction-bottom-right {
+.wpss-swiper .wpss-fraction-bottom-right {
     position: absolute;
     bottom: 10px;
     right: 10px;
@@ -509,27 +509,27 @@
 
 /* --------------------------- Custom Pagination Style --------------------------- */
 
-.wpsp-pagination-custom.wpsp-swiper-custom-style1 .swiper-pagination-bullet {
+.wpss-pagination-custom.wpss-swiper-custom-style1 .swiper-pagination-bullet {
     width: 20px;
     height: 20px;
     text-align: center;
     line-height: 20px;
-    font-size: var(--wpsp-custom-font-size, 14px);
-    color: var(--wpsp-custom-active-text-color, #0a0607);
+    font-size: var(--wpss-custom-font-size, 14px);
+    color: var(--wpss-custom-active-text-color, #0a0607);
     opacity: 1;
-    background: var(--wpsp-custom-active-bg-color, #0a0607);
+    background: var(--wpss-custom-active-bg-color, #0a0607);
 }
 
-.wpsp-pagination-custom.wpsp-swiper-custom-style1 .swiper-pagination-bullet-active {
-    color: var(--wpsp-custom-text-color, #ff0000);
-    background: var(--wpsp-custom-bg-color, #007aff);
+.wpss-pagination-custom.wpss-swiper-custom-style1 .swiper-pagination-bullet-active {
+    color: var(--wpss-custom-text-color, #ff0000);
+    background: var(--wpss-custom-bg-color, #007aff);
 }
 
 /*--------------------------- End Custom Pagination Style ---------------------------*/
 
 /*--------------------------- Slide Content Layout ---------------------------*/
 
-.wpsp-swiper .swiper-zoom-container {
+.wpss-swiper .swiper-zoom-container {
     width: auto !important;
     height: auto !important;
     display: block !important;
