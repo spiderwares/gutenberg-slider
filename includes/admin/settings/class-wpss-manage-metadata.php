@@ -180,15 +180,14 @@ if( ! class_exists( 'WPSS_Manage_Metadata' ) ) :
             if ( function_exists( 'wp_get_global_stylesheet' ) ) :
                 $global_css = wp_get_global_stylesheet();
                 if ( ! empty( $global_css ) ) :
-                    $scoped_global_css = self::wpss_scope_css_to_container( $global_css, '#wpss_live_preview_container' );
+                    $scoped_global_css = self::wpss_scope_css( $global_css, '#wpss_live_preview_container' );
                 endif;
             endif;
 
             echo '<div id="wpss_live_preview_container">';
             
-            // Add scoped global stylesheet CSS
             if ( ! empty( $scoped_global_css ) ) :
-                echo '<style id="wpss-preview-global-styles">' . wp_strip_all_tags( $scoped_global_css ) . '</style>';
+                echo '<style id="wpss-preview-global-styles">' . esc_html( $scoped_global_css ) . '</style>';
             endif;
             
             if ( class_exists( 'WPSS_Shortcode' ) ) :
@@ -202,7 +201,7 @@ if( ! class_exists( 'WPSS_Manage_Metadata' ) ) :
          * Scope CSS to a specific container
          * 
          */
-        private static function wpss_scope_css_to_container( $css, $container_selector ) {
+        private static function wpss_scope_css( $css, $container_selector ) {
             if ( empty( $css ) || empty( $container_selector ) ) :
                 return $css;
             endif;

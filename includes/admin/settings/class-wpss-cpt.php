@@ -300,9 +300,10 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
                 update_post_meta( $wpss_slideshow_ID, 'wpss_slider_image_ids', wp_json_encode( $image_ids ) );
             endif;
 
-            if ( isset( $_POST['wpss_slider_option'] ) && is_array( $_POST['wpss_slider_option'] ) ) :
+            if ( ! empty( $_POST['wpss_slider_option'] ) && is_array( $_POST['wpss_slider_option'] ) ) :
                 $slider_options = array();
                 $post_data = wp_unslash( $_POST['wpss_slider_option'] ); 
+
                 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
                 foreach ( $post_data as $key => $value ) :
                     if ( $key === 'custom_css' ) :
@@ -311,7 +312,9 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
                         $slider_options[ $key ] = sanitize_text_field( $value );
                     endif;
                 endforeach;
+
                 update_post_meta( $wpss_slideshow_ID, 'wpss_slider_option', $slider_options );
+                
             endif;
 
             $this->save_background_settings( $wpss_slideshow_ID );

@@ -57,18 +57,18 @@ jQuery(function ($) {
             const __this = $(e.currentTarget);
 
             if (__this.is('select')) {
-                const target = __this.find(':selected').data('show'),
+                const target    = __this.find(':selected').data('show'),
                     hideElement = __this.data('hide');
                 $(document.body).find(hideElement).hide();
                 $(document.body).find(target).show();
 
                 if (__this.is('[name="wpss_slider_option[pagination_type]"]')) {
-                    const progressbar = __this.val() === 'progressbar',
+                    const progressbar    = __this.val() === 'progressbar',
                         autoplayProgress = $('[name="wpss_slider_option[control_progress_bar]"]').is(':checked');
                     $(document.body).find('.wpss_progress_bar').toggle(progressbar && autoplayProgress);
                 }
             } else if (__this.is('input[type="checkbox"]')) {
-                const target = __this.data('show'),
+                const target    = __this.data('show'),
                     progressbar = $('[name="wpss_slider_option[pagination_type]"]').val() === 'progressbar';
                 if (target === '.wpss_progress_bar') {
                     $(document.body).find(target).toggle(__this.is(':checked') && progressbar);
@@ -76,8 +76,8 @@ jQuery(function ($) {
                     $(document.body).find(target).toggle(__this.is(':checked'));
                 }
             } else if (__this.is('input[type="radio"]')) {
-                const radio = __this.closest('.wpss_radio_field'),
-                    target = __this.data('show'),
+                const radio     = __this.closest('.wpss_radio_field'),
+                    target      = __this.data('show'),
                     hideElement = radio.data('hide');
 
                 if (hideElement) {
@@ -175,8 +175,8 @@ jQuery(function ($) {
 
         updatePreview() {
             const inputs = $('#wpss_slider_options').find('[name^="wpss_slider_option"]'),
-                options = {},
-                postId = $('#post_ID').val();
+                options  = {},
+                postId   = $('#post_ID').val();
 
             const slideIds = this.$slideContainer.find('li[data-slide-id]').map((i, el) => $(el).data('slide-id')).get();
 
@@ -203,8 +203,8 @@ jQuery(function ($) {
             const bgContainer = $('#wpss_slider_background_settings, #wpss_background_settings');
             if (bgContainer.length) {
                 bgContainer.find('select, input').each((i, el) => {
-                    const __this = $(el);
-                    const name = __this.attr('name');
+                    const __this = $(el),
+                        name     = __this.attr('name');
                     if (name && name.startsWith('wpss_background_')) {
                         const key = name.replace('wpss_', '');
                         options[key] = __this.val();
