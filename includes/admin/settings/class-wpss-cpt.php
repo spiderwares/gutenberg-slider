@@ -302,9 +302,9 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
 
             if ( ! empty( $_POST['wpss_slider_option'] ) && is_array( $_POST['wpss_slider_option'] ) ) :
                 $slider_options = array();
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
                 $post_data = wp_unslash( $_POST['wpss_slider_option'] ); 
 
-                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
                 foreach ( $post_data as $key => $value ) :
                     if ( $key === 'custom_css' ) :
                         $slider_options[ $key ] = sanitize_textarea_field( $value );
@@ -414,9 +414,7 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
         
                 if ( $a < 0 || $a > 1 ) return false;
         
-                return ($a < 1)
-                    ? "rgba($r, $g, $b, $a)"
-                    : "rgb($r, $g, $b)";
+                return ($a < 1) ? "rgba($r, $g, $b, $a)" : "rgb($r, $g, $b)";
             endif;
         
             return false;
