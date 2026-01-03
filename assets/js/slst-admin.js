@@ -2,7 +2,7 @@
 
 jQuery(function ($) {
 
-    class WPSS_Admin {
+    class SLST_Admin {
 
         constructor() {
             this.init();
@@ -17,28 +17,28 @@ jQuery(function ($) {
             this.bindEvents();
             this.initLivePreview();
 
-            $('.wpss_switch_field input[type="checkbox"]:checked, .wpss_select_field, .wpss_radio_field input[type="radio"]:checked').each((i, el) => {
+            $('.slst_switch_field input[type="checkbox"]:checked, .slst_select_field, .slst_radio_field input[type="radio"]:checked').each((i, el) => {
                 this.toggleVisibility({ currentTarget: el });
             });
         }
 
         cacheSelectors() {
-            this.$slideContainer = $('.wpss_slides');
+            this.$slideContainer = $('.slst_slides');
         }
 
         bindEvents() {
-            $(document.body).on('click', '.wpss-tab-wrapper a', this.changeTab.bind(this));
-            $(document.body).on('click', '.wpss_upload_slide ', this.handleUploadSlide.bind(this));
-            $(document.body).on('click', '.wpss_slide_remove ', this.handleRemoveSlide.bind(this));
-            $(document.body).on('change', '.wpss_switch_field input[type="checkbox"], .wpss_select_field, .wpss_radio_field input[type="radio"] ', this.toggleVisibility.bind(this));
+            $(document.body).on('click', '.slst-tab-wrapper a', this.changeTab.bind(this));
+            $(document.body).on('click', '.slst_upload_slide ', this.handleUploadSlide.bind(this));
+            $(document.body).on('click', '.slst_slide_remove ', this.handleRemoveSlide.bind(this));
+            $(document.body).on('change', '.slst_switch_field input[type="checkbox"], .slst_select_field, .slst_radio_field input[type="radio"] ', this.toggleVisibility.bind(this));
         }
 
         setInitialState() {
-            $('.wpss-tab-content').hide();
-            const active = $('.wpss-tab.wpss-tab-active'),
-                target = active.attr('href') || $('.wpss-tab-content').first().show().attr('id');
+            $('.slst-tab-content').hide();
+            const active = $('.slst-tab.slst-tab-active'),
+                target = active.attr('href') || $('.slst-tab-content').first().show().attr('id');
 
-            if (!active.length) $('.wpss-tab').first().addClass('wpss-tab-active');
+            if (!active.length) $('.slst-tab').first().addClass('slst-tab-active');
             $(target).show();
         }
 
@@ -46,10 +46,10 @@ jQuery(function ($) {
             e.preventDefault();
             var __this = $(e.currentTarget);
 
-            $('.wpss-tab').removeClass('wpss-tab-active');
-            $('.wpss-tab-content').hide();
+            $('.slst-tab').removeClass('slst-tab-active');
+            $('.slst-tab-content').hide();
 
-            __this.addClass('wpss-tab-active');
+            __this.addClass('slst-tab-active');
             $(__this.attr('href')).show();
         }
 
@@ -62,21 +62,21 @@ jQuery(function ($) {
                 $(document.body).find(hideElement).hide();
                 $(document.body).find(target).show();
 
-                if (__this.is('[name="wpss_slider_option[pagination_type]"]')) {
+                if (__this.is('[name="slst_slider_option[pagination_type]"]')) {
                     const progressbar    = __this.val() === 'progressbar',
-                        autoplayProgress = $('[name="wpss_slider_option[control_progress_bar]"]').is(':checked');
-                    $(document.body).find('.wpss_progress_bar').toggle(progressbar && autoplayProgress);
+                        autoplayProgress = $('[name="slst_slider_option[control_progress_bar]"]').is(':checked');
+                    $(document.body).find('.slst_progress_bar').toggle(progressbar && autoplayProgress);
                 }
             } else if (__this.is('input[type="checkbox"]')) {
                 const target    = __this.data('show'),
-                    progressbar = $('[name="wpss_slider_option[pagination_type]"]').val() === 'progressbar';
-                if (target === '.wpss_progress_bar') {
+                    progressbar = $('[name="slst_slider_option[pagination_type]"]').val() === 'progressbar';
+                if (target === '.slst_progress_bar') {
                     $(document.body).find(target).toggle(__this.is(':checked') && progressbar);
                 } else {
                     $(document.body).find(target).toggle(__this.is(':checked'));
                 }
             } else if (__this.is('input[type="radio"]')) {
-                const radio     = __this.closest('.wpss_radio_field'),
+                const radio     = __this.closest('.slst_radio_field'),
                     target      = __this.data('show'),
                     hideElement = radio.data('hide');
 
@@ -113,7 +113,7 @@ jQuery(function ($) {
         initSortable() {
             this.$slideContainer.sortable({
                 items: 'li',
-                handle: '.wpss_slide_move',
+                handle: '.slst_slide_move',
                 cursor: '-webkit-grabbing',
                 stop: (event, ui) => {
                     ui.item.removeAttr('style');
@@ -124,7 +124,7 @@ jQuery(function ($) {
 
         initColorPickers() {
             if ($.fn.wpColorPicker) {
-                $('.wpss-color-picker').wpColorPicker({
+                $('.slst-color-picker').wpColorPicker({
                     change: (event, ui) => {
                         setTimeout(() => {
                             $(event.target).trigger('change');
@@ -138,8 +138,8 @@ jQuery(function ($) {
         }
 
         initLineNumbers() {
-            $('.wpss_custom_textarea').each(function () {
-                const textarea = $(this), lineNumber = textarea.siblings('.wpss-line-numbers');
+            $('.slst_custom_textarea').each(function () {
+                const textarea = $(this), lineNumber = textarea.siblings('.slst-line-numbers');
 
                 const updateNumber = () => {
                     const count = textarea.val().split('\n').length;
@@ -152,11 +152,11 @@ jQuery(function ($) {
         }
 
         initLivePreview() {
-            this.previewContainer = $('#wpss_live_preview_container');
+            this.previewContainer = $('#slst_live_preview_container');
             if (!this.previewContainer.length) return;
 
             let timeout;
-            $('#wpss_slider_options, #wpss_slider_background_settings, #wpss_background_settings, #postimagediv').on('change input', 'input, select, textarea', (e) => {
+            $('#slst_slider_options, #slst_slider_background_settings, #slst_background_settings, #postimagediv').on('change input', 'input, select, textarea', (e) => {
                 clearTimeout(timeout);
                 timeout = setTimeout(() => this.updatePreview(), 500);
             });
@@ -174,7 +174,7 @@ jQuery(function ($) {
         }
 
         updatePreview() {
-            const inputs = $('#wpss_slider_options').find('[name^="wpss_slider_option"]'),
+            const inputs = $('#slst_slider_options').find('[name^="slst_slider_option"]'),
                 options  = {},
                 postId   = $('#post_ID').val();
 
@@ -184,7 +184,7 @@ jQuery(function ($) {
 
             inputs.each((i, el) => {
                 const __this = $(el);
-                const nameMatch = __this.attr('name').match(/wpss_slider_option\[(.*?)\]/);
+                const nameMatch = __this.attr('name').match(/slst_slider_option\[(.*?)\]/);
                 if (!nameMatch) return;
                 const key = nameMatch[1];
 
@@ -200,13 +200,13 @@ jQuery(function ($) {
             });
 
             // Add background settings
-            const bgContainer = $('#wpss_slider_background_settings, #wpss_background_settings');
+            const bgContainer = $('#slst_slider_background_settings, #slst_background_settings');
             if (bgContainer.length) {
                 bgContainer.find('select, input').each((i, el) => {
                     const __this = $(el),
                         name     = __this.attr('name');
-                    if (name && name.startsWith('wpss_background_')) {
-                        const key = name.replace('wpss_', '');
+                    if (name && name.startsWith('slst_background_')) {
+                        const key = name.replace('slst_', '');
                         options[key] = __this.val();
                     }
                 });
@@ -222,21 +222,21 @@ jQuery(function ($) {
 
             $.ajax({
                 type: 'POST',
-                url: wpss_admin.ajaxurl,
+                url: slst_admin.ajaxurl,
                 data: {
-                    action: 'wpss_preview_refresh',
+                    action: 'slst_preview_refresh',
                     post_id: postId,
-                    wpss_slider_option: options,
-                    wpss_slide_ids: slideIds,
-                    nonce: wpss_admin.nonce
+                    slst_slider_option: options,
+                    slst_slide_ids: slideIds,
+                    nonce: slst_admin.nonce
                 },
                 success: (response) => {
                     this.previewContainer.replaceWith(response);
-                    this.previewContainer = $('#wpss_live_preview_container');
+                    this.previewContainer = $('#slst_live_preview_container');
 
-                    if (window.WPSS_Frontend) {
+                    if (window.SLST_Frontend) {
                         try {
-                            new window.WPSS_Frontend();
+                            new window.SLST_Frontend();
                         } catch (e) {
                             console.log(e);
                         }
@@ -250,5 +250,5 @@ jQuery(function ($) {
 
     }
 
-    new WPSS_Admin();
+    new SLST_Admin();
 });

@@ -2,7 +2,7 @@
 
 jQuery(function ($) {
 
-    class WPSS_Frontend {
+    class SLST_Frontend {
 
         constructor() {
             this.init();
@@ -13,7 +13,7 @@ jQuery(function ($) {
         }
 
         initializeSliders() {
-            $('.wpss-swiper').each((index, element) => {
+            $('.slst-swiper').each((index, element) => {
                 const slider = $(element),
                     rawOptions = slider.attr('data-options');
 
@@ -23,13 +23,13 @@ jQuery(function ($) {
                 if (!options) return;
 
                 if (options.slide_control_view_auto == '1' || options.slide_control_view_auto === true) {
-                    slider.addClass('wpss-auto-slides');
+                    slider.addClass('slst-auto-slides');
                 }
 
                 // Thumbs gallery
                 let thumbsSwiper = null;
                 if (options.thumb_gallery == '1' || options.thumb_gallery === true) {
-                    const thumbsGallery = slider.siblings('.wpss-swiper-thumbs-gallery');
+                    const thumbsGallery = slider.siblings('.slst-swiper-thumbs-gallery');
                     if (thumbsGallery.length) {
                         if (thumbsGallery[0].swiper) {
                             thumbsGallery[0].swiper.destroy(true, true);
@@ -93,7 +93,7 @@ jQuery(function ($) {
                     dynamicBullets: options.dynamic_bullets == '1' || options.dynamic_bullets === true,
                     renderBullet: function (index, className) {
                         if (paginationType === 'custom') {
-                            return `<span class="${className} wpss-swiper-custom-${customStyle}">${index + 1}</span>`;
+                            return `<span class="${className} slst-swiper-custom-${customStyle}">${index + 1}</span>`;
                         }
                         return `<span class="${className}"></span>`;
                     },
@@ -125,7 +125,7 @@ jQuery(function ($) {
                 on: {
                     init: function () {
                         if (options.control_progress_bar == '1' && options.pagination_type == 'progressbar' && options.progress_bar_color) {
-                            const progressbar = slider.find('.swiper-pagination-progressbar-fill').addClass('wpss-progressbar-fill');
+                            const progressbar = slider.find('.swiper-pagination-progressbar-fill').addClass('slst-progressbar-fill');
                             progressbar.css({ background: options.progress_bar_color });
                         }
 
@@ -139,17 +139,17 @@ jQuery(function ($) {
                             }
 
                             if (options.fraction_position) {
-                                fraction.removeClass('wpss-fraction-top-left wpss-fraction-top-right wpss-fraction-bottom-left wpss-fraction-bottom-right wpss-fraction-center')
-                                    .addClass(`wpss-fraction-${options.fraction_position}`);
+                                fraction.removeClass('slst-fraction-top-left slst-fraction-top-right slst-fraction-bottom-left slst-fraction-bottom-right slst-fraction-center')
+                                    .addClass(`slst-fraction-${options.fraction_position}`);
                             }
                         }
 
                         if (paginationType === 'custom') {
                             slider.find('.swiper-pagination').css({
-                                '--wpss-custom-text-color': customTextColor,
-                                '--wpss-custom-bg-color': customBackgroundColor,
-                                '--wpss-custom-active-text-color': customActiveTextColor,
-                                '--wpss-custom-active-bg-color': customActiveBgColor
+                                '--slst-custom-text-color': customTextColor,
+                                '--slst-custom-bg-color': customBackgroundColor,
+                                '--slst-custom-active-text-color': customActiveTextColor,
+                                '--slst-custom-active-bg-color': customActiveBgColor
                             });
                         }
 
@@ -229,17 +229,17 @@ jQuery(function ($) {
 
             // Scrollbar position
             const scrollbar = slider.find('.swiper-scrollbar');
-            slider.removeClass('wpss-scrollbar-top wpss-scrollbar-left wpss-scrollbar-right');
+            slider.removeClass('slst-scrollbar-top slst-scrollbar-left slst-scrollbar-right');
 
             if (options.scrollbar_position === 'top') {
                 scrollbar.prependTo(slider);
-                slider.addClass('wpss-scrollbar-top');
+                slider.addClass('slst-scrollbar-top');
             } else if (options.scrollbar_position === 'left' && baseOptions.direction === 'vertical') {
                 scrollbar.appendTo(slider);
-                slider.addClass('wpss-scrollbar-left');
+                slider.addClass('slst-scrollbar-left');
             } else if (options.scrollbar_position === 'right' && baseOptions.direction === 'vertical') {
                 scrollbar.appendTo(slider);
-                slider.addClass('wpss-scrollbar-right');
+                slider.addClass('slst-scrollbar-right');
             }
 
             // Vertical direction height and width
@@ -458,7 +458,7 @@ jQuery(function ($) {
 
     }
 
-    window.WPSS_Frontend = WPSS_Frontend;
-    new WPSS_Frontend()
+    window.SLST_Frontend = SLST_Frontend;
+    new SLST_Frontend()
 
 });

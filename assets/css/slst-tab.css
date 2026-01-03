@@ -1,16 +1,16 @@
-/*--------------------------- WPSS Tab ---------------------------*/
+/*--------------------------- SLST Tab ---------------------------*/
 
-.wpss_page .card {
+.slst_page .card {
     border-color: #eee;
     max-width: 100%;
 }
 
-.wpss_settings_page .wpss_settings_page_nav .wpss-tab-wrapper {
+.slst_settings_page .slst_settings_page_nav .slst-tab-wrapper {
     border-color: #eee;
     padding-top: 0;
 }
 
-.wpss_settings_page .wpss_settings_page_nav .wpss-tab-wrapper a.wpss-tab-active {
+.slst_settings_page .slst_settings_page_nav .slst-tab-wrapper a.slst-tab-active {
     border-color: #7f54b3;
     border-bottom-color: #ffffff;
     color: #000000 !important;
@@ -19,11 +19,11 @@
     background-color: #ffffff;
 }
 
-.wpss_settings_page_nav .wpss-tab-wrapper {
+.slst_settings_page_nav .slst-tab-wrapper {
     border-bottom: 0 !important;
 }
 
-.wpss_settings_page .wpss_settings_page_nav .wpss-tab-wrapper a {
+.slst_settings_page .slst_settings_page_nav .slst-tab-wrapper a {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -40,7 +40,7 @@
     border-radius: 5px 5px 0px 0px;
 }
 
-.wpss-tab-wrapper {
+.slst-tab-wrapper {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -51,7 +51,7 @@
     font-weight: 600;
 }
 
-.wpss-tab-wrapper .wpss-tab {
+.slst-tab-wrapper .slst-tab {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -65,7 +65,7 @@
     cursor: pointer;
 }
 
-.wpss_settings_page .wpss_settings_page_content {
+.slst_settings_page .slst_settings_page_content {
     border-width: 0 1px 1px 1px;
     border-color: #eee;
     background-color: #fff;
@@ -74,41 +74,41 @@
     margin: 0;
 }
 
-.wpss_settings_page .wpss_settings_page_content table tr.heading {
+.slst_settings_page .slst_settings_page_content table tr.heading {
     border-bottom: 1px dashed #eeeeee;
 }
 
-.wpss_settings_page .wpss_settings_page_content table {
+.slst_settings_page .slst_settings_page_content table {
     margin: 0;
     padding: 0;
     border-spacing: 0;
     border-collapse: unset;
 }
 
-.wpss_settings_page .wpss_settings_page_content table tr th,
-.wpss_settings_page .wpss_settings_page_content table tr td {
+.slst_settings_page .slst_settings_page_content table tr th,
+.slst_settings_page .slst_settings_page_content table tr td {
     padding: 15px 20px;
     border-bottom: 1px dashed #eee;
 }
 
-.wpss_settings_page .wpss_settings_page_content table tr.submit p {
+.slst_settings_page .slst_settings_page_content table tr.submit p {
     margin: 0;
     padding: 0;
 }
 
 
-.wpss_settings_page .wpss_settings_page_content table .wpss_select select,
-.wpss_settings_page .wpss_settings_page_content table .wpss_number_field input[type="number"],
-.wpss_settings_page .wpss_settings_page_content table .wpss_text_field input[type="text"] {
+.slst_settings_page .slst_settings_page_content table .slst_select select,
+.slst_settings_page .slst_settings_page_content table .slst_number_field input[type="number"],
+.slst_settings_page .slst_settings_page_content table .slst_text_field input[type="text"] {
     min-width: 350px;
     padding: 3px 10px;
     border-radius: 2px;
 }
 
-.wpss_settings_page .wpss_settings_page_content table .heading th {
+.slst_settings_page .slst_settings_page_content table .heading th {
     border-left: 2px solid black;
     font-size: 16px;
     padding: 12px 20px;
 }
 
-/*--------------------------- End WPSS Tab ---------------------------*/
+/*--------------------------- End SLST Tab ---------------------------*/

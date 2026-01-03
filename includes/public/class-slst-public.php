@@ -3,13 +3,13 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( ! class_exists( 'WPSS_Public' ) ) :
+if( ! class_exists( 'SLST_Public' ) ) :
 
     /**
-     * Class WPSS_Public
+     * Class SLST_Public
      *
      */
-    class WPSS_Public {
+    class SLST_Public {
 
         /**
          * Settings array.
@@ -46,41 +46,41 @@ if( ! class_exists( 'WPSS_Public' ) ) :
             
             wp_enqueue_script( 
                 'swiper-bundle.min--js', 
-                WPSS_URL . 'assets/lib/swiper-bundle.min.js', 
+                SLST_URL . 'assets/lib/swiper-bundle.min.js', 
                 array(), 
-                WPSS_VERSION, 
+                SLST_VERSION, 
                 true 
             );
 
             wp_enqueue_style( 
                 'swiper-bundle.min--css', 
-                WPSS_URL . 'assets/lib/swiper-bundle.min.css', 
+                SLST_URL . 'assets/lib/swiper-bundle.min.css', 
                 array(), 
-                WPSS_VERSION
+                SLST_VERSION
             );
 
             // Enqueue WordPress hooks library for frontend
             wp_enqueue_script( 'wp-hooks' );
             
             wp_enqueue_script(
-                'wpss-frontend',
-                WPSS_URL . 'assets/js/wpss-frontend.js',
+                'slst-frontend',
+                SLST_URL . 'assets/js/slst-frontend.js',
                 array( 'jquery' , 'wp-hooks' ),
-                WPSS_VERSION,
+                SLST_VERSION,
                 true
             );
 
             wp_enqueue_style(
-                'wpss-frontend-style',
-                WPSS_URL . 'assets/css/wpss-frontend-style.css',
+                'slst-frontend-style',
+                SLST_URL . 'assets/css/slst-frontend-style.css',
                 array(),    
-                WPSS_VERSION,
+                SLST_VERSION,
             );
 
-            $wpss_css = $this->dynamic_wpss_css( $this->settings, $this->slider_ID );
+            $slst_css = $this->dynamic_slst_css( $this->settings, $this->slider_ID );
 
-            if ( ! empty( $wpss_css ) ) :
-                wp_add_inline_style( 'wpss-frontend-style', $wpss_css );
+            if ( ! empty( $slst_css ) ) :
+                wp_add_inline_style( 'slst-frontend-style', $slst_css );
             endif;
         }
 
@@ -88,7 +88,7 @@ if( ! class_exists( 'WPSS_Public' ) ) :
          * Generate CSS for the slider.
          *
          */
-        public static function dynamic_wpss_css( $settings, $slider_ID, $background_settings = array() ) {
+        public static function dynamic_slst_css( $settings, $slider_ID, $background_settings = array() ) {
             ob_start();
 
             $background_size     = isset( $background_settings['background_size'] ) ? $background_settings['background_size'] : '';
@@ -98,7 +98,7 @@ if( ! class_exists( 'WPSS_Public' ) ) :
             $background_url      = isset( $background_settings['background_url'] ) ? $background_settings['background_url'] : '';
             $background_settings = isset( $background_settings['background_settings'] ) ? $background_settings['background_settings'] : array();
 
-            wpss_get_template(
+            slst_get_template(
                 'fields/dynamic-style.php',
                 array(
                     'settings'                => $settings,
@@ -117,5 +117,5 @@ if( ! class_exists( 'WPSS_Public' ) ) :
 
     }
 
-    new WPSS_Public();
+    new SLST_Public();
 endif;

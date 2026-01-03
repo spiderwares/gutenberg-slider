@@ -3,27 +3,27 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! class_exists( 'WPSS' ) ) :
+if ( ! class_exists( 'SLST' ) ) :
 
     /**
-     * Main WPSS Class
+     * Main SLST Class
      *
-     * @class WPSS   
+     * @class SLST   
      * @version 1.0.0
      */
-    final class WPSS {
+    final class SLST {
 
         /**
          * The single instance of the class.
          *
-         * @var WPSS
+         * @var SLST
          */
         protected static $instance = null;
 
         /**
          * The public class instance.
          *
-         * @var WPSS
+         * @var SLST
          */
         public $public = null;
 
@@ -43,12 +43,12 @@ if ( ! class_exists( 'WPSS' ) ) :
         }
 
         /**
-         * Main WPSS Instance.
+         * Main SLST Instance.
          *
-         * Ensures only one instance of WPSS is loaded or can be loaded.
+         * Ensures only one instance of SLST is loaded or can be loaded.
          *
          * @static
-         * @return WPSS - Main instance.
+         * @return SLST - Main instance.
          */
         public static function instance() {
             if ( is_null( self::$instance ) ) :
@@ -58,7 +58,7 @@ if ( ! class_exists( 'WPSS' ) ) :
                  * Fire a custom action to allow dependencies
                  * after the successful plugin setup
                  */
-                do_action( 'wpss_plugin_loaded' );
+                do_action( 'slst_plugin_loaded' );
             endif;
             return self::$instance;
         }
@@ -73,22 +73,21 @@ if ( ! class_exists( 'WPSS' ) ) :
                 $this->includes_public();
             endif;
             
-            require_once WPSS_PATH . 'includes/wpss-core-functions.php';
-            require_once WPSS_PATH . 'includes/admin/settings/class-wpss-cpt.php';
-            require_once WPSS_PATH . 'includes/admin/settings/class-wpss-helper.php';
-            require_once WPSS_PATH . 'includes/public/class-wpss-shortcode.php';
-            require_once WPSS_PATH . 'includes/public/class-wpss-public.php';
+            require_once SLST_PATH . 'includes/slst-core-functions.php';
+            require_once SLST_PATH . 'includes/admin/settings/class-slst-cpt.php';
+            require_once SLST_PATH . 'includes/admin/settings/class-slst-helper.php';
+            require_once SLST_PATH . 'includes/public/class-slst-shortcode.php';
+            require_once SLST_PATH . 'includes/public/class-slst-public.php';
         }
         
         /**
          * Include Admin required files.
          */
         public function includes_admin() {
-            require_once WPSS_PATH . 'includes/class-wpss-install.php';
-            require_once WPSS_PATH . 'includes/admin/tab/class-wpss-tab.php';
-            require_once WPSS_PATH . 'includes/admin/settings/class-wpss-admin-menu.php';
-            require_once WPSS_PATH . 'includes/admin/settings/class-wpss-manage-metadata.php';
-            require_once WPSS_PATH . 'includes/admin/settings/class-wpss-settings-field.php';
+            require_once SLST_PATH . 'includes/class-slst-install.php';
+            require_once SLST_PATH . 'includes/admin/settings/class-slst-admin-menu.php';
+            require_once SLST_PATH . 'includes/admin/settings/class-slst-manage-metadata.php';
+            require_once SLST_PATH . 'includes/admin/settings/class-slst-settings-field.php';
         }
         
         /**

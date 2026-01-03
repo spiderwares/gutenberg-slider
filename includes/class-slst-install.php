@@ -7,21 +7,21 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Installation related functions and actions.
  */
 
-if ( ! class_exists( 'WPSS_Install' ) ) :
+if ( ! class_exists( 'SLST_Install' ) ) :
 
     /**
-     * WPSS_Install Class
+     * SLST_Install Class
      *
      * Handles installation processes like creating database tables,
      * setting up roles, and creating necessary pages on plugin activation.
      */
-    class WPSS_Install {
+    class SLST_Install {
 
         /**
          * Hook into WordPress actions and filters.
          */
         public static function init() {
-            add_filter( 'plugin_action_links_' . plugin_basename( WPSS_FILE ), array( __CLASS__, 'plugin_action_links' ) );
+            add_filter( 'plugin_action_links_' . plugin_basename( SLST_FILE ), array( __CLASS__, 'plugin_action_links' ) );
             add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
         }
 
@@ -42,7 +42,7 @@ if ( ! class_exists( 'WPSS_Install' ) ) :
          * @return array Modified array of action links.
          */
         public static function plugin_row_meta( $links, $file ) {
-            if ( plugin_basename( WPSS_FILE ) === $file ) :
+            if ( plugin_basename( SLST_FILE ) === $file ) :
                 $doc_url   = esc_url( 'https://documentation.cosmicinfosoftware.com/slider-studio/documents/getting-started/introduction/' );
                 $doc_label = esc_html( 'Documentation' );
         
@@ -66,7 +66,7 @@ if ( ! class_exists( 'WPSS_Install' ) ) :
             $action_links = array(
                 'manage_sldier' => sprintf(
                     '<a href="%s" aria-label="%s">%s</a>',
-                    admin_url( 'edit.php?post_type=wpss_slider' ),
+                    admin_url( 'edit.php?post_type=slst_slider' ),
                     esc_attr__( 'Manage Sliders', 'slider-studio' ),
                     esc_html__( 'Manage Sliders', 'slider-studio' )
                 ),
@@ -75,6 +75,6 @@ if ( ! class_exists( 'WPSS_Install' ) ) :
         }
     }
 
-    WPSS_Install::init();
+    SLST_Install::init();
 
 endif;

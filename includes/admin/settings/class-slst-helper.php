@@ -6,13 +6,13 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( ! class_exists( 'WPSS_Helper' ) ) :
+if( ! class_exists( 'SLST_Helper' ) ) :
 
     /**
-     * Class WPSS_Helper
+     * Class SLST_Helper
      *
      */
-    class WPSS_Helper {
+    class SLST_Helper {
 
         /**
          * Get slide preview data
@@ -23,7 +23,7 @@ if( ! class_exists( 'WPSS_Helper' ) ) :
             $preview = ['type' => 'text', 'thumb' => null];
 
             if ($thumb_id = get_post_thumbnail_id($post->ID)) :
-                if ($url = wp_get_attachment_image_url($thumb_id, 'wpss_slideshow_thumbnail')) :        
+                if ($url = wp_get_attachment_image_url($thumb_id, 'slst_slideshow_thumbnail')) :        
                     return ['type' => 'image', 'thumb' => $url];
                 endif;
             endif;
@@ -54,7 +54,7 @@ if( ! class_exists( 'WPSS_Helper' ) ) :
                 $attrs  = isset($block['attrs']) ? $block['attrs'] : [];
                 $img_id = isset($attrs['id']) ? $attrs['id'] : (isset($attrs['mediaId']) ? $attrs['mediaId'] : (isset($attrs['ids'][0]) ? $attrs['ids'][0] : 0));
         
-                if ($img_id && ($url = wp_get_attachment_image_url((int) $img_id, 'wpss_slideshow_thumbnail'))) :
+                if ($img_id && ($url = wp_get_attachment_image_url((int) $img_id, 'slst_slideshow_thumbnail'))) :
                     return ['type' => 'image', 'thumb' => $url];
                 endif;
         
@@ -74,13 +74,13 @@ if( ! class_exists( 'WPSS_Helper' ) ) :
             return $preview;
         }
 
-        public static function wpss_get_background_settings( $post_id ) {
+        public static function slst_get_background_settings( $post_id ) {
             if ( empty( $post_id ) ) return array();
     
-            $background_size     = get_post_meta( $post_id, 'wpss_background_size', true );
-            $background_position = get_post_meta( $post_id, 'wpss_background_position', true );
-            $background_repeat   = get_post_meta( $post_id, 'wpss_background_repeat', true );
-            $background_color    = get_post_meta( $post_id, 'wpss_background_color', true );
+            $background_size     = get_post_meta( $post_id, 'slst_background_size', true );
+            $background_position = get_post_meta( $post_id, 'slst_background_position', true );
+            $background_repeat   = get_post_meta( $post_id, 'slst_background_repeat', true );
+            $background_color    = get_post_meta( $post_id, 'slst_background_color', true );
     
             // Get featured image URL
             $background_id   = get_post_thumbnail_id( $post_id );
@@ -109,7 +109,7 @@ if( ! class_exists( 'WPSS_Helper' ) ) :
          * Add lazy loading attributes to images in HTML content
          *
          */
-        public static function wpss_lazy_load_images( $html ) {
+        public static function slst_lazy_load_images( $html ) {
 
             return preg_replace_callback('/<img(.*?)>/i', function($m){
 

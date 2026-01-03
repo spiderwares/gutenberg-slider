@@ -3,14 +3,14 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( ! class_exists( 'WPSS_Admin_Menu' ) ) :
+if( ! class_exists( 'SLST_Admin_Menu' ) ) :
 
     /**
-     * Class WPSS_Admin_Menu
+     * Class SLST_Admin_Menu
      *
      * Handles the registration of the Spin Metabox.
      */
-    class WPSS_Admin_Menu {
+    class SLST_Admin_Menu {
 
          /**
          * Constructor for the class.
@@ -32,7 +32,7 @@ if( ! class_exists( 'WPSS_Admin_Menu' ) ) :
         public function enqueue_scripts() {
 
             $screen = get_current_screen();
-            if ( in_array( $screen->post_type, ['wpss_slider', 'wpss_slide'], true ) ) :
+            if ( in_array( $screen->post_type, ['slst_slider', 'slst_slide'], true ) ) :
                 wp_enqueue_script( 'jquery-ui-core' );
                 wp_enqueue_script( 'jquery-ui-widget' );
                 wp_enqueue_script( 'jquery-ui-sortable' );
@@ -41,68 +41,75 @@ if( ! class_exists( 'WPSS_Admin_Menu' ) ) :
 
                 wp_enqueue_script( 
                     'wp-color-picker-alpha', 
-                    WPSS_URL . 'assets/lib/wp-color-picker-alpha.js', 
+                    SLST_URL . 'assets/lib/wp-color-picker-alpha.js', 
                     array( 'jquery', 'wp-color-picker' ), 
-                    WPSS_VERSION,
+                    SLST_VERSION,
                     true
                 );
                 
                 wp_enqueue_script( 
-                    'wpss-admin', 
-                    WPSS_URL . 'assets/js/wpss-admin.js', 
+                    'slst-admin', 
+                    SLST_URL . 'assets/js/slst-admin.js', 
                     array( 'jquery', 'wp-color-picker-alpha' ), 
-                    WPSS_VERSION, 
+                    SLST_VERSION, 
                     true 
                 );
 
                 wp_enqueue_style( 
-                    'wpss-admin-style', 
-                    WPSS_URL . 'assets/css/wpss-admin-style.css', 
+                    'slst-admin-style', 
+                    SLST_URL . 'assets/css/slst-admin-style.css', 
                     array(), 
-                    WPSS_VERSION 
+                    SLST_VERSION 
                 );
 
                 wp_enqueue_script( 
                     'swiper-bundle.min--js', 
-                    WPSS_URL . 'assets/lib/swiper-bundle.min.js', 
+                    SLST_URL . 'assets/lib/swiper-bundle.min.js', 
                     array(), 
-                    WPSS_VERSION, 
+                    SLST_VERSION, 
                     true 
                 );
     
                 wp_enqueue_style( 
                     'swiper-bundle.min--css', 
-                    WPSS_URL . 'assets/lib/swiper-bundle.min.css', 
+                    SLST_URL . 'assets/lib/swiper-bundle.min.css', 
                     array(), 
-                    WPSS_VERSION
+                    SLST_VERSION
                 );
     
                 wp_enqueue_script( 'wp-hooks' );
                 
                 wp_enqueue_script(
-                    'wpss-frontend',
-                    WPSS_URL . 'assets/js/wpss-frontend.js',
+                    'slst-frontend',
+                    SLST_URL . 'assets/js/slst-frontend.js',
                     array( 'jquery' , 'wp-hooks' ),
-                    WPSS_VERSION,
+                    SLST_VERSION,
                     true
                 );
     
                 wp_enqueue_style(
-                    'wpss-frontend-style',
-                    WPSS_URL . 'assets/css/wpss-frontend-style.css',
+                    'slst-frontend-style',
+                    SLST_URL . 'assets/css/slst-frontend-style.css',
                     array(),    
-                    WPSS_VERSION,
+                    SLST_VERSION,
+                );
+
+                wp_enqueue_style(
+                    'slst-tab',
+                    SLST_URL . 'assets/css/slst-tab.css',
+                    array(),
+                    SLST_VERSION 
                 );
 
                 wp_enqueue_style( 'wp-block-library' );
                 wp_enqueue_style( 'wp-block-library-theme' );
 
                 wp_localize_script(
-                    'wpss-admin',
-                    'wpss_admin',
+                    'slst-admin',
+                    'slst_admin',
                     array(
                         'ajaxurl' => admin_url( 'admin-ajax.php' ),
-                        'nonce'   => wp_create_nonce( 'wpss_admin_nonce' ),
+                        'nonce'   => wp_create_nonce( 'slst_admin_nonce' ),
                     )
                 );
 
@@ -111,5 +118,5 @@ if( ! class_exists( 'WPSS_Admin_Menu' ) ) :
 
     }
 
-    new WPSS_Admin_Menu();
+    new SLST_Admin_Menu();
 endif;

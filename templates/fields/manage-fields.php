@@ -17,8 +17,8 @@ foreach( $fields as $field_Key => $field ) :
         <?php 
         switch( $field['field_type'] ) :
             
-            case "wpssradio" : 
-                wpss_get_template(
+            case "slstradio" : 
+                slst_get_template(
                     'fields/radio-field.php',
                     array(
                         'field'     => $field,
@@ -28,8 +28,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
 
-            case "wpssswitch" : 
-                wpss_get_template( 
+            case "slstswitch" : 
+                slst_get_template( 
                     'fields/switch-field.php',
                     array(
                         'field'     => $field,
@@ -39,8 +39,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
 
-            case "wpssnumber":
-                wpss_get_template( 
+            case "slstnumber":
+                slst_get_template( 
                     'fields/number-field.php', 
                     array(
                         'field'     => $field,
@@ -51,8 +51,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
                 
-            case "wpsscolor":
-                wpss_get_template( 
+            case "slstcolor":
+                slst_get_template( 
                     'fields/color-field.php', 
                     array(
                         'field'     => $field,
@@ -62,8 +62,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
 
-            case "wpssselect":
-                wpss_get_template( 
+            case "slstselect":
+                slst_get_template( 
                     'fields/select-field.php', 
                     array(
                         'field'     => $field,
@@ -73,8 +73,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
 
-            case "wpsstextarea":
-                wpss_get_template(
+            case "slsttextarea":
+                slst_get_template(
                     'fields/textarea-field.php',
                     array(
                         'field'     => $field,
@@ -84,8 +84,8 @@ foreach( $fields as $field_Key => $field ) :
                 );
                 break;
 
-            case "wpsstext":
-                wpss_get_template(
+            case "slsttext":
+                slst_get_template(
                     'fields/text-field.php',
                     array(
                         'field'     => $field,

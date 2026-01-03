@@ -16,30 +16,30 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! defined( 'WPSS_FILE' ) ) :
-    define( 'WPSS_FILE', __FILE__ ); // Define the plugin file path.
+if ( ! defined( 'SLST_FILE' ) ) :
+    define( 'SLST_FILE', __FILE__ ); // Define the plugin file path.
 endif;
 
-if ( ! defined( 'WPSS_BASENAME' ) ) :
-    define( 'WPSS_BASENAME', plugin_basename( WPSS_FILE ) ); // Define the plugin basename.
+if ( ! defined( 'SLST_BASENAME' ) ) :
+    define( 'SLST_BASENAME', plugin_basename( SLST_FILE ) ); // Define the plugin basename.
 endif;
 
-if ( ! defined( 'WPSS_VERSION' ) ) :
-    define( 'WPSS_VERSION', '1.0.0' ); // Define the plugin version.
+if ( ! defined( 'SLST_VERSION' ) ) :
+    define( 'SLST_VERSION', '1.0.0' ); // Define the plugin version.
 endif;
 
-if ( ! defined( 'WPSS_PATH' ) ) :
-    define( 'WPSS_PATH', plugin_dir_path( __FILE__ ) ); // Define the plugin directory path.
+if ( ! defined( 'SLST_PATH' ) ) :
+    define( 'SLST_PATH', plugin_dir_path( __FILE__ ) ); // Define the plugin directory path.
 endif;
 
-if ( ! defined( 'WPSS_URL' ) ) :
-    define( 'WPSS_URL', plugin_dir_url( __FILE__ ) ); // Define the plugin directory URL.
+if ( ! defined( 'SLST_URL' ) ) :
+    define( 'SLST_URL', plugin_dir_url( __FILE__ ) ); // Define the plugin directory URL.
 endif;
 
-if ( ! class_exists( 'WPSS', false ) ) :
-    include_once WPSS_PATH . 'includes/class-wpss.php';
+if ( ! class_exists( 'SLST', false ) ) :
+    include_once SLST_PATH . 'includes/class-slst.php';
 endif;
 
-register_activation_hook( __FILE__, array( 'WPSS_Install', 'install' ) ); // set activation hook
+register_activation_hook( __FILE__, array( 'SLST_Install', 'install' ) ); // set activation hook
 
-WPSS::instance();
+SLST::instance();

@@ -8,7 +8,7 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( !function_exists( 'wpss_get_template' ) ) :
+if( !function_exists( 'slst_get_template' ) ) :
     /**
      * Loads a template from the version template directory.
      *
@@ -19,9 +19,9 @@ if( !function_exists( 'wpss_get_template' ) ) :
      * @return void|WP_Error
      */ 
    
-    function wpss_get_template( $template_name, $args = array(), $template_path = '' ) {
+    function slst_get_template( $template_name, $args = array(), $template_path = '' ) {
         if( empty( $template_path ) ) :
-            $template_path = WPSS_PATH . 'templates/';
+            $template_path = SLST_PATH . 'templates/';
         endif;        
         
         $template = $template_path . $template_name;
@@ -36,14 +36,14 @@ if( !function_exists( 'wpss_get_template' ) ) :
             );
         endif;
 
-        do_action( 'wpss_before_template_part', $template, $args, $template_path );
+        do_action( 'slst_before_template_part', $template, $args, $template_path );
 
         if ( ! empty( $args ) && is_array( $args ) ) :
             extract( $args );
         endif;
         include $template;
 
-        do_action( 'wpss_after_template_part', $template, $args, $template_path );
+        do_action( 'slst_after_template_part', $template, $args, $template_path );
     }
     
 endif;

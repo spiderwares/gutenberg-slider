@@ -8,13 +8,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
 <td>
-    <div class="wpss_text_field">
+    <div class="slst_text_field">
     <input 
         type="text"
         id="<?php echo esc_attr( $field_Key ); ?>"
-        name="wpss_slider_option[<?php echo esc_attr( $field_Key ); ?>]"
+        name="slst_slider_option[<?php echo esc_attr( $field_Key ); ?>]"
         value="<?php echo esc_attr( $field_Val ); ?>"
-        class="wpss_input"
+        class="slst_input"
         placeholder="<?php echo isset( $field['placeholder'] ) ? esc_attr( $field['placeholder'] ) : ''; ?>"
     />
     </div>

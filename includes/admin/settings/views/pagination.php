@@ -9,23 +9,23 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Retrieve the pagination settings fields from the WPSS_Settings_Fields class.
+ * Retrieve the pagination settings fields from the SLST_Settings_Fields class.
  * @var array $fields Array of pagination settings fields.
  * 
  */
-$fields  = WPSS_Settings_Fields::pagination_field();
+$fields  = SLST_Settings_Fields::pagination_field();
 
 /**
  * Fetch the saved slider settings from the WordPress options table.
  * 
  */
-$options = get_post_meta( $post->ID, 'wpss_slider_option', true );
+$options = get_post_meta( $post->ID, 'slst_slider_option', true );
 
 ?>
 
-<div id="pagination-tab" class="wpss-tab-content">
+<div id="pagination-tab" class="slst-tab-content">
     <?php 
-    wpss_get_template( 
+    slst_get_template( 
         'fields/settings-forms.php', 
         array(
             'fields'  => $fields,     // Field definitions.

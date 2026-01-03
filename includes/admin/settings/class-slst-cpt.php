@@ -6,12 +6,12 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( ! class_exists( 'WPSS_CPT' ) ) :
+if( ! class_exists( 'SLST_CPT' ) ) :
     /**
-     * Class WPSS_CPT
+     * Class SLST_CPT
      *
      */
-    class WPSS_CPT {
+    class SLST_CPT {
 
         /**
          * Constructor for the class.
@@ -24,11 +24,11 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
          * Initialize hooks and filters.
          */
         public function events_handler() {
-            add_action( 'init', [ __CLASS__, 'wpss_register_post_type' ], 10 );
-            add_action( 'init', [ __CLASS__, 'wpss_register_slide_post_type' ], 10 );
-            add_action( 'add_meta_boxes', [ $this, 'wpss_add_meta_boxes' ] );
-            add_filter( 'manage_wpss_slider_posts_columns', [ $this, 'add_columns' ] );
-            add_action( 'manage_wpss_slider_posts_custom_column', [ $this, 'render_shortcode_column' ], 10, 2 );
+            add_action( 'init', [ __CLASS__, 'slst_register_post_type' ], 10 );
+            add_action( 'init', [ __CLASS__, 'slst_register_slide_post_type' ], 10 );
+            add_action( 'add_meta_boxes', [ $this, 'slst_add_meta_boxes' ] );
+            add_filter( 'manage_slst_slider_posts_columns', [ $this, 'add_columns' ] );
+            add_action( 'manage_slst_slider_posts_custom_column', [ $this, 'render_shortcode_column' ], 10, 2 );
             add_action( 'save_post', [ $this, 'save_slideshow_metadata' ] );
             add_action( 'save_post', [ $this, 'save_slide_images_to_parent' ], 10, 2 );
         }
@@ -36,40 +36,40 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
         /**
          * Add meta boxes for the slider.
          */
-        public function wpss_add_meta_boxes() {
+        public function slst_add_meta_boxes() {
 
             add_meta_box(
-                'wpss_slider_shortcode',
-                esc_html__( 'WPSS Slider Shortcode', 'slider-studio' ),
+                'slst_slider_shortcode',
+                esc_html__( 'SLST Slider Shortcode', 'slider-studio' ),
                 array( $this, 'render_slider_shortcode_metabox' ),
-                'wpss_slider',
+                'slst_slider',
                 'side',
                 'default'
             );
 
             add_meta_box(
-				'wpss_slider_background_settings',
+				'slst_slider_background_settings',
 				esc_html__( 'Background Settings', 'slider-studio' ),
-				array( $this, 'render_wpss_background_settings' ),
-				'wpss_slider',
+				array( $this, 'render_slst_background_settings' ),
+				'slst_slider',
 				'side',
 				'low'
 			);
 
             add_meta_box(
-                'wpss_background_settings',
+                'slst_background_settings',
                 esc_html__( 'Background settings', 'slider-studio' ),
-                array( $this, 'render_wpss_background_settings' ),
-                'wpss_slide',
+                array( $this, 'render_slst_background_settings' ),
+                'slst_slide',
                 'side',
                 'default'
             );
 
             add_meta_box(
-                'wpss_parent_slider',
+                'slst_parent_slider',
                 esc_html__( 'Parent slider', 'slider-studio' ),
-                array( $this, 'render_wpss_parent_slider' ),
-                'wpss_slide',
+                array( $this, 'render_slst_parent_slider' ),
+                'slst_slide',
                 'side',
                 'default'
             );
@@ -81,7 +81,7 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
          */
         public function render_slider_shortcode_metabox( $post ) {
             printf( 
-                '<p>%s</p><hr><code>[wpss_slider id="%d"]</code>', 
+                '<p>%s</p><hr><code>[slst_slider id="%d"]</code>', 
                 esc_html__( 'Use the shortcode below to display the slider.', 'slider-studio' ), 
                 esc_attr( $post->ID ) 
             );
@@ -91,14 +91,14 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
          * Render the background settings metabox.
          *
          */
-        public function render_wpss_background_settings( $post ) {
+        public function render_slst_background_settings( $post ) {
 
-            $background_size     = get_post_meta( $post->ID, 'wpss_background_size', true );
-            $background_position = get_post_meta( $post->ID, 'wpss_background_position', true );
-            $background_repeat   = get_post_meta( $post->ID, 'wpss_background_repeat', true );
-            $background_color    = get_post_meta( $post->ID, 'wpss_background_color', true );
+            $background_size     = get_post_meta( $post->ID, 'slst_background_size', true );
+            $background_position = get_post_meta( $post->ID, 'slst_background_position', true );
+            $background_repeat   = get_post_meta( $post->ID, 'slst_background_repeat', true );
+            $background_color    = get_post_meta( $post->ID, 'slst_background_color', true );
 
-            wpss_get_template( 
+            slst_get_template( 
                 'metabox/bg-settings.php', 
                 array(
                     'background_size'     => $background_size,
@@ -113,12 +113,12 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
          * Render the parent slider metabox.
          *
          */
-        public function render_wpss_parent_slider( $post ) {
+        public function render_slst_parent_slider( $post ) {
 
             // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             $parent_slider = isset( $_GET['parent_slider'] ) ? absint( wp_unslash( $_GET['parent_slider'] ) ) : false;
 
-            wpss_get_template( 
+            slst_get_template( 
                 'metabox/parent-slider.php', 
                 array(
                     'parent_slider' => $parent_slider,
@@ -134,7 +134,7 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
                 $new_columns[ $key ] = $value;
 
                 if ( $key === 'title' ) :
-                    $new_columns['WPSS_Shortcode'] = esc_html__( 'Shortcode', 'slider-studio' );
+                    $new_columns['SLST_Shortcode'] = esc_html__( 'Shortcode', 'slider-studio' );
                 endif;
             endforeach;
 
@@ -142,8 +142,8 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
         }
 
         public function render_shortcode_column( $column, $post_id ) {
-            if ( $column === 'WPSS_Shortcode' ) :
-                printf( '<code>[wpss_slider id="%d"]</code>', 
+            if ( $column === 'SLST_Shortcode' ) :
+                printf( '<code>[slst_slider id="%d"]</code>', 
                 esc_attr( $post_id ) 
             );
             endif;
@@ -152,7 +152,7 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
         /**
          * Register the slider post type.
          */
-        public static function wpss_register_post_type() {
+        public static function slst_register_post_type() {
             $labels = array(
 				'name'               => esc_html__( 'Slider Studio', 'slider-studio' ),
 				'singular_name'      => esc_html__( 'Slider Studio', 'slider-studio' ),
@@ -193,13 +193,13 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
                 'capability_type'     => 'page',
             );
 
-            register_post_type( 'wpss_slider', $args );
+            register_post_type( 'slst_slider', $args );
         }
 
         /**
          * Register the slide post type.
          */
-        public static function wpss_register_slide_post_type() {
+        public static function slst_register_slide_post_type() {
 
             $labels = array(
                 'name'               => esc_html__( 'Slider Studio', 'slider-studio' ),
@@ -243,31 +243,31 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
                 'capability_type'     => 'page',
             );
 
-            register_post_type( 'wpss_slide', $args );
+            register_post_type( 'slst_slide', $args );
         }
 
         /**
          * Save the slideshow metadata.
          *
          */
-        public function save_slideshow_metadata( $wpss_slideshow_ID ) {
+        public function save_slideshow_metadata( $slst_slideshow_ID ) {
 
-            if ( ! isset( $_POST['wpss_slideshow_metabox_nonce'] ) || ! 
+            if ( ! isset( $_POST['slst_slideshow_metabox_nonce'] ) || ! 
                 wp_verify_nonce( 
-                    sanitize_text_field( wp_unslash( $_POST['wpss_slideshow_metabox_nonce'] ) ),
-                    'wpss_slideshow_metabox_data' 
+                    sanitize_text_field( wp_unslash( $_POST['slst_slideshow_metabox_nonce'] ) ),
+                    'slst_slideshow_metabox_data' 
                 )
             ) :
                 return;
             endif;
 
-            if (get_post_type($wpss_slideshow_ID) !== 'wpss_slider') return $wpss_slideshow_ID;
+            if (get_post_type($slst_slideshow_ID) !== 'slst_slider') return $slst_slideshow_ID;
 
-            $submitted = isset($_POST['wpss_slide_ids']) ? array_map('absint', (array) $_POST['wpss_slide_ids']) : [];
+            $submitted = isset($_POST['slst_slide_ids']) ? array_map('absint', (array) $_POST['slst_slide_ids']) : [];
             $existing  = get_children(
                 array(
-                    'post_parent' => $wpss_slideshow_ID, 
-                    'post_type'   => 'wpss_slide', 
+                    'post_parent' => $slst_slideshow_ID, 
+                    'post_type'   => 'slst_slide', 
                     'fields'      => 'ids'
                 )
             );
@@ -275,14 +275,14 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
             $deleted   = array_diff((array) $existing, $submitted);
 
             if ($deleted) :
-                $map = json_decode(get_post_meta($wpss_slideshow_ID, 'wpss_slide_images', true), true) ?: [];
+                $map = json_decode(get_post_meta($slst_slideshow_ID, 'slst_slide_images', true), true) ?: [];
 
                 foreach ($deleted as $slide_id) :
                     unset($map[$slide_id]);
                     wp_delete_post($slide_id, true);
                 endforeach; 
 
-                update_post_meta($wpss_slideshow_ID, 'wpss_slide_images', wp_json_encode($map));
+                update_post_meta($slst_slideshow_ID, 'slst_slide_images', wp_json_encode($map));
             endif;
 
             // Update menu_order based on submitted order
@@ -295,15 +295,15 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
                 endforeach;
             endif;
 
-            if ( isset( $_POST['wpss_slider_image_ids'] ) && is_array( $_POST['wpss_slider_image_ids'] ) ) :
-                $image_ids = array_map( 'absint', wp_unslash( $_POST['wpss_slider_image_ids'] ) ); 
-                update_post_meta( $wpss_slideshow_ID, 'wpss_slider_image_ids', wp_json_encode( $image_ids ) );
+            if ( isset( $_POST['slst_slider_image_ids'] ) && is_array( $_POST['slst_slider_image_ids'] ) ) :
+                $image_ids = array_map( 'absint', wp_unslash( $_POST['slst_slider_image_ids'] ) ); 
+                update_post_meta( $slst_slideshow_ID, 'slst_slider_image_ids', wp_json_encode( $image_ids ) );
             endif;
 
-            if ( ! empty( $_POST['wpss_slider_option'] ) && is_array( $_POST['wpss_slider_option'] ) ) :
+            if ( ! empty( $_POST['slst_slider_option'] ) && is_array( $_POST['slst_slider_option'] ) ) :
                 $slider_options = array();
                 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-                $post_data = wp_unslash( $_POST['wpss_slider_option'] ); 
+                $post_data = wp_unslash( $_POST['slst_slider_option'] ); 
 
                 foreach ( $post_data as $key => $value ) :
                     if ( $key === 'custom_css' ) :
@@ -313,13 +313,13 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
                     endif;
                 endforeach;
 
-                update_post_meta( $wpss_slideshow_ID, 'wpss_slider_option', $slider_options );
+                update_post_meta( $slst_slideshow_ID, 'slst_slider_option', $slider_options );
                 
             endif;
 
-            $this->save_background_settings( $wpss_slideshow_ID );
+            $this->save_background_settings( $slst_slideshow_ID );
 
-            return $wpss_slideshow_ID;
+            return $slst_slideshow_ID;
         }
 
         /**
@@ -327,10 +327,10 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
          */
         public function save_slide_images_to_parent( $post_id, $post ) {
 
-            if ( ! isset( $_POST['wpss_slideshow_metabox_nonce'] ) || ! 
+            if ( ! isset( $_POST['slst_slideshow_metabox_nonce'] ) || ! 
                 wp_verify_nonce( 
-                    sanitize_text_field( wp_unslash( $_POST['wpss_slideshow_metabox_nonce'] ) ),
-                    'wpss_slideshow_metabox_data' 
+                    sanitize_text_field( wp_unslash( $_POST['slst_slideshow_metabox_nonce'] ) ),
+                    'slst_slideshow_metabox_data' 
                 )
             ) :
                 return;
@@ -340,15 +340,15 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
         }
 
         /**
-         * Save background settings for both wpss_slider and wpss_slide post types
+         * Save background settings for both slst_slider and slst_slide post types
          *
          */
         private function save_background_settings( $post_id ) {
 
-            if ( ! isset( $_POST['wpss_slideshow_metabox_nonce'] ) || ! 
+            if ( ! isset( $_POST['slst_slideshow_metabox_nonce'] ) || ! 
                 wp_verify_nonce( 
-                    sanitize_text_field( wp_unslash( $_POST['wpss_slideshow_metabox_nonce'] ) ),
-                    'wpss_slideshow_metabox_data' 
+                    sanitize_text_field( wp_unslash( $_POST['slst_slideshow_metabox_nonce'] ) ),
+                    'slst_slideshow_metabox_data' 
                 )
             ) :
                 return;
@@ -363,31 +363,31 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
 
             $allowed_repeats = array( 'no-repeat', 'repeat', 'repeat-x', 'repeat-y' );
 
-            if ( isset( $_POST['wpss_background_size'] ) ) :
-                $background_size = sanitize_text_field( wp_unslash( $_POST['wpss_background_size'] ) );
+            if ( isset( $_POST['slst_background_size'] ) ) :
+                $background_size = sanitize_text_field( wp_unslash( $_POST['slst_background_size'] ) );
                 if ( in_array( $background_size, $allowed_sizes, true ) ) :
-                    update_post_meta( $post_id, 'wpss_background_size', $background_size );
+                    update_post_meta( $post_id, 'slst_background_size', $background_size );
                 endif;
             endif;
 
-            if ( isset( $_POST['wpss_background_position'] ) ) :
-                $background_position = sanitize_text_field( wp_unslash( $_POST['wpss_background_position'] ) );
+            if ( isset( $_POST['slst_background_position'] ) ) :
+                $background_position = sanitize_text_field( wp_unslash( $_POST['slst_background_position'] ) );
                 if ( in_array( $background_position, $allowed_positions, true ) ) :
-                    update_post_meta( $post_id, 'wpss_background_position', $background_position );
+                    update_post_meta( $post_id, 'slst_background_position', $background_position );
                 endif;
             endif;
 
-            if ( isset( $_POST['wpss_background_repeat'] ) ) :
-                $background_repeat = sanitize_text_field( wp_unslash( $_POST['wpss_background_repeat'] ) );
+            if ( isset( $_POST['slst_background_repeat'] ) ) :
+                $background_repeat = sanitize_text_field( wp_unslash( $_POST['slst_background_repeat'] ) );
                 if ( in_array( $background_repeat, $allowed_repeats, true ) ) :
-                    update_post_meta( $post_id, 'wpss_background_repeat', $background_repeat );
+                    update_post_meta( $post_id, 'slst_background_repeat', $background_repeat );
                 endif;
             endif;
 
-            if ( isset( $_POST['wpss_background_color'] ) ) :
-                $color = $this->sanitize_color_value( sanitize_text_field( wp_unslash( $_POST['wpss_background_color'] ) ) );
+            if ( isset( $_POST['slst_background_color'] ) ) :
+                $color = $this->sanitize_color_value( sanitize_text_field( wp_unslash( $_POST['slst_background_color'] ) ) );
                 if ( $color ) :
-                    update_post_meta( $post_id, 'wpss_background_color', $color );
+                    update_post_meta( $post_id, 'slst_background_color', $color );
                 endif;
             endif;
         }
@@ -422,6 +422,6 @@ if( ! class_exists( 'WPSS_CPT' ) ) :
 
     }
 
-    new WPSS_CPT();
+    new SLST_CPT();
 
 endif;
