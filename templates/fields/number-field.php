@@ -31,17 +31,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                     </span>
                 <?php else :
                     // Use passed options or fallback to get_option
-                    $saved_options = isset( $options ) ? $options : get_option( 'slst_slider_option', array() );
-                    $selected_unit = isset( $saved_options[ $field_Key . '_unit' ] ) ? $saved_options[ $field_Key . '_unit' ] : ( $field['unit_selected'] ?? '' );
+                    $slst_saved_options = isset( $options ) ? $options : get_option( 'slst_slider_option', array() );
+                    $slst_selected_unit = isset( $slst_saved_options[ $field_Key . '_unit' ] ) ? $slst_saved_options[ $field_Key . '_unit' ] : ( $field['unit_selected'] ?? '' );
                     ?>
                     <select 
                         name="slst_slider_option[<?php echo esc_attr( $field_Key . '_unit' ); ?>]"
                         class="slst_select"
                         id="<?php echo esc_attr( $field_Key . '_unit' ); ?>"
                     >
-                        <?php foreach ( $field['unit'] as $key => $label ) : ?>
-                            <option value="<?php echo esc_attr( $key ); ?>" <?php selected( $selected_unit, $key ); ?>>
-                                <?php echo esc_html( $label ); ?>
+                        <?php foreach ( $field['unit'] as $slst_key => $slst_label ) : ?>
+                            <option value="<?php echo esc_attr( $slst_key ); ?>" <?php selected( $slst_selected_unit, $slst_key ); ?>>
+                                <?php echo esc_html( $slst_label ); ?>
                             </option>
                         <?php endforeach; ?>
                     </select>

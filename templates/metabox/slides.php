@@ -9,32 +9,32 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         <?php
         if ( isset( $slidesData ) && is_array( $slidesData ) && ! empty( $slidesData ) ) :
 
-            foreach ( $slidesData as $slide ) :
-                $has_thumb  = ! empty( $slide['thumb'] );
-                $slide_id   = isset( $slide['id'] ) ? absint( $slide['id'] ) : 0;
-                $slide_type = isset( $slide['type'] ) ? $slide['type'] : 'text';
-                $edit_url   = isset( $slide['edit'] ) ? $slide['edit'] : '#';
+            foreach ( $slidesData as $slst_slide ) :
+                $slst_has_thumb  = ! empty( $slst_slide['thumb'] );
+                $slst_slide_id   = isset( $slst_slide['id'] ) ? absint( $slst_slide['id'] ) : 0;
+                $slst_slide_type = isset( $slst_slide['type'] ) ? $slst_slide['type'] : 'text';
+                $slst_edit_url   = isset( $slst_slide['edit'] ) ? $slst_slide['edit'] : '#';
                 ?>
                 
-                <li data-slide-id="<?php echo esc_attr( $slide_id ); ?>">
+                <li data-slide-id="<?php echo esc_attr( $slst_slide_id ); ?>">
 
-                    <?php if ( $has_thumb ) :
+                    <?php if ( $slst_has_thumb ) :
                         // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage -- Static plugin asset, not a WordPress media library attachment. ?>
-                        <img width="250" src="<?php echo esc_url( $slide['thumb'] ); ?>" alt="Slide Image" />
+                        <img width="250" src="<?php echo esc_url( $slst_slide['thumb'] ); ?>" alt="Slide Image" />
 
                     <?php else : 
                         // Placeholder for non-image slides
-                        $icon = 'dashicons-align-left';
-                        if ( $slide_type === 'video' ) $icon = 'dashicons-video-alt3';
-                        if ( $slide_type === 'list' )  $icon = 'dashicons-editor-ul';
+                        $slst_icon = 'dashicons-align-left';
+                        if ( $slst_slide_type === 'video' ) $slst_icon = 'dashicons-video-alt3';
+                        if ( $slst_slide_type === 'list' )  $slst_icon = 'dashicons-editor-ul';
                     ?>
                         <div class="slst_slide_placeholder">
-                            <span class="dashicons <?php echo esc_attr( $icon ); ?>"></span>
+                            <span class="dashicons <?php echo esc_attr( $slst_icon ); ?>"></span>
                         </div>
                     <?php endif; ?>
 
                     <div class="slst_slide_actions">
-                        <a href="<?php echo esc_url( $edit_url ); ?>" class="slst_slide_edit" target="_blank">
+                        <a href="<?php echo esc_url( $slst_edit_url ); ?>" class="slst_slide_edit" target="_blank">
                             <span class="tooltip"><?php echo esc_html__( 'Edit', 'slider-studio' ); ?></span>
                             <i class="dashicons dashicons-edit"></i>
                         </a>
@@ -50,7 +50,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                         </a>
                     </div>
 
-                    <input type="hidden" name="slst_slide_ids[]" value="<?php echo esc_attr( $slide_id ); ?>" />
+                    <input type="hidden" name="slst_slide_ids[]" value="<?php echo esc_attr( $slst_slide_id ); ?>" />
                 </li>
             <?php
             endforeach;
@@ -60,18 +60,18 @@ if ( ! defined( 'ABSPATH' ) ) exit;
          */
         elseif ( isset( $imageIDs ) && ! empty( $imageIDs ) && is_array( $imageIDs ) ) :
 
-            foreach ( $imageIDs as $imageID ) :
-                $image_src = wp_get_attachment_image_src( $imageID, 'slst_slideshow_thumbnail' )[0] ?? '';
-                $slide_id  = isset( $imageSlide[ $imageID ] ) ? absint( $imageSlide[ $imageID ] ) : 0;
+            foreach ( $imageIDs as $slst_imageID ) :
+                $slst_image_src = wp_get_attachment_image_src( $slst_imageID, 'slst_slideshow_thumbnail' )[0] ?? '';
+                $slst_slide_id  = isset( $imageSlide[ $slst_imageID ] ) ? absint( $imageSlide[ $slst_imageID ] ) : 0;
 
-                if ( $slide_id ) :
-                    $edit_url  = admin_url( "post.php?post=$slide_id&action=edit" );
+                if ( $slst_slide_id ) :
+                    $slst_edit_url  = admin_url( "post.php?post=$slst_slide_id&action=edit" );
                 else :
-                    $slider_id = isset( $slider_id ) ? $slider_id : get_the_ID();
-                    $edit_url  = add_query_arg(
+                    $slst_slider_id = isset( $slst_slider_id ) ? $slst_slider_id : get_the_ID();
+                    $slst_edit_url  = add_query_arg(
                         array(
                             'post_type'     => 'slst_slide',
-                            'parent_slider' => $slider_id,
+                            'parent_slider' => $slst_slider_id,
                         ),
                         admin_url( 'post-new.php' )
                     );

@@ -10,26 +10,26 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 <td>
     <?php if ( isset( $field['options'] ) ) : ?>
         <div class="slst_radio_field" <?php echo isset( $field['data_hide'] ) ? 'data-hide="' . esc_attr( $field['data_hide'] ) . '"' : ''; ?>>
-            <?php foreach ( $field['options'] as $optionKey => $optionImg ) : ?>
-                <p class="slst_image_control <?php echo in_array( $optionKey, $field['disabled_options'] ?? array() ) ? 'slst_disabled_option' : ''; ?>">
+            <?php foreach ( $field['options'] as $slst_optionKey => $slst_optionImg ) : ?>
+                <p class="slst_image_control <?php echo in_array( $slst_optionKey, $field['disabled_options'] ?? array() ) ? 'slst_disabled_option' : ''; ?>">
                     <input 
                         type="radio" 
                         name="slst_slider_option[<?php echo esc_attr( $field_Key ); ?>]"
-                        value="<?php echo esc_attr( $optionKey ); ?>"
-                        id="<?php echo esc_attr( $field_Key . '_' . $optionKey ); ?>"
-                        <?php checked( $optionKey, $field_Val ); ?>
-                        <?php echo in_array( $optionKey, $field['disabled_options'] ?? array() ) ? 'disabled' : ''; ?>
-                        data-show="<?php echo esc_attr( $field['data_show'][ $optionKey ] ?? '' ); ?>"
+                        value="<?php echo esc_attr( $slst_optionKey ); ?>"
+                        id="<?php echo esc_attr( $field_Key . '_' . $slst_optionKey ); ?>"
+                        <?php checked( $slst_optionKey, $field_Val ); ?>
+                        <?php echo in_array( $slst_optionKey, $field['disabled_options'] ?? array() ) ? 'disabled' : ''; ?>
+                        data-show="<?php echo esc_attr( $field['data_show'][ $slst_optionKey ] ?? '' ); ?>"
                     >
 
-                    <label for="<?php echo esc_attr( $field_Key . '_' . $optionKey ); ?>">
+                    <label for="<?php echo esc_attr( $field_Key . '_' . $slst_optionKey ); ?>">
                         <img 
                             width="150" 
-                            src="<?php echo esc_url( SLST_URL . 'assets/images/options/' . $optionImg ); ?>" 
-                            alt="<?php echo esc_attr( $optionKey ); ?>"
-                            style="<?php echo in_array( $optionKey, $field['disabled_options'] ?? array() ) ? 'opacity: 0.5; cursor: not-allowed;' : ''; ?>"
+                            src="<?php echo esc_url( SLST_URL . 'assets/images/options/' . $slst_optionImg ); ?>" 
+                            alt="<?php echo esc_attr( $slst_optionKey ); ?>"
+                            style="<?php echo in_array( $slst_optionKey, $field['disabled_options'] ?? array() ) ? 'opacity: 0.5; cursor: not-allowed;' : ''; ?>"
                         >
-                        <?php echo esc_html( $optionKey ); ?>
+                        <?php echo esc_html( $slst_optionKey ); ?>
                     </label>
                 </p>
             <?php endforeach; ?>

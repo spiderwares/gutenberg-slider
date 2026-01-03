@@ -5,37 +5,33 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( $hasSlides || $hasImages ) :
     if ( ! empty( $slst_css ) ) : ?>
-        <style>
-        <?php 
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo wp_strip_all_tags( $slst_css ); ?>
-        </style>
+        <style><?php echo esc_html( $slst_css ); ?></style>
     <?php endif; ?>
 
     <div class="slst-swiper swiper swiper-slider-wrapper <?php echo esc_attr($slideshow_main_class); ?>"
     data-options='<?php echo esc_attr( $options );?>'>
         <div class="swiper-wrapper">
             <?php if ( $hasSlides ) :
-                foreach ( $slides as $slide_id => $html ) : ?>
-                    <div class="swiper-slide slst-slide-<?php echo esc_attr( $slide_id ); ?>">
+                foreach ( $slides as $slst_slide_id => $slst_html ) : ?>
+                    <div class="swiper-slide slst-slide-<?php echo esc_attr( $slst_slide_id ); ?>">
                         <div class="slst-slide-content">
                             <?php 
-                            $slide_content = $html;
-                            if ( has_blocks( $slide_content ) ) :
-                                $slide_content = do_blocks( $slide_content );
+                            $slst_slide_content = $slst_html;
+                            if ( has_blocks( $slst_slide_content ) ) :
+                                $slst_slide_content = do_blocks( $slst_slide_content );
                             endif;
-                            $slide_content = do_shortcode( $slide_content );
+                            $slst_slide_content = do_shortcode( $slst_slide_content );
                             
                             if ( ! empty( $lazy_load ) && ( $lazy_load == '1' || $lazy_load === true ) ) :
-                                $slide_content = SLST_Helper::slst_lazy_load_images( $slide_content );
+                                $slst_slide_content = SLST_Helper::slst_lazy_load_images( $slst_slide_content );
                             endif;
                         
                             if ( ! empty( $zoom_enabled ) ) : ?>
                                 <div class="swiper-zoom-container">
-                                    <?php echo $slide_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                                    <?php echo wp_kses_post( $slst_slide_content ); ?>
                                 </div>
                             <?php else :
-                                echo $slide_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                echo wp_kses_post( $slst_slide_content );
                             endif; ?>
                         </div>
                     </div>
@@ -71,23 +67,23 @@ if ( $hasSlides || $hasImages ) :
             <div class="swiper-wrapper">
 
                 <?php if ( $hasSlides ) :
-                    foreach ( $slides as $slide_id => $html ) :
-                        $thumb_image_id = get_post_thumbnail_id( $slide_id );
-                        $thumb_url      = $thumb_image_id ? wp_get_attachment_image_url( $thumb_image_id, array( $thumb_width, $thumb_height ) ) : '';
+                    foreach ( $slides as $slst_slide_id => $slst_html ) :
+                        $slst_thumb_image_id = get_post_thumbnail_id( $slst_slide_id );
+                        $slst_thumb_url      = $slst_thumb_image_id ? wp_get_attachment_image_url( $slst_thumb_image_id, array( $thumb_width, $thumb_height ) ) : '';
 
-                        if ( ! $thumb_url ) :
-                            $blocks = parse_blocks( $html );
-                            foreach ( $blocks as $block ) :
-                                if ( isset( $block['attrs']['id'] ) ) :
-                                    $thumb_url = wp_get_attachment_image_url( $block['attrs']['id'], array( $thumb_width, $thumb_height ) );
-                                    if ( $thumb_url ) break;
+                        if ( ! $slst_thumb_url ) :
+                            $slst_blocks = parse_blocks( $slst_html );
+                            foreach ( $slst_blocks as $slst_block ) :
+                                if ( isset( $slst_block['attrs']['id'] ) ) :
+                                    $slst_thumb_url = wp_get_attachment_image_url( $slst_block['attrs']['id'], array( $thumb_width, $thumb_height ) );
+                                    if ( $slst_thumb_url ) break;
                                 endif;
                             endforeach;
                         endif;
 
-                        if ( $thumb_url ) : ?>
+                        if ( $slst_thumb_url ) : ?>
                             <div class="swiper-slide">
-                                <img src="<?php echo esc_url( $thumb_url ); ?>" 
+                                <img src="<?php echo esc_url( $slst_thumb_url ); ?>" 
                                     alt="" 
                                     style="width: <?php echo esc_attr( $thumb_width ); ?>px; 
                                             height: <?php echo esc_attr( $thumb_height ); ?>px; 
@@ -96,9 +92,9 @@ if ( $hasSlides || $hasImages ) :
                         <?php endif;
                     endforeach;
                 elseif ( $hasImages ) :
-                    foreach ( $imageIDs as $imageID ) : ?>
+                    foreach ( $slst_imageIDs as $slst_imageID ) : ?>
                         <div class="swiper-slide">
-                            <img src="<?php echo esc_url( wp_get_attachment_image_url( $imageID, array( $thumb_width, $thumb_height ) ) ); ?>" 
+                            <img src="<?php echo esc_url( wp_get_attachment_image_url( $slst_imageID, array( $thumb_width, $thumb_height ) ) ); ?>" 
                                 alt="" 
                                 style="width: <?php echo esc_attr( $thumb_width ); ?>px; 
                                         height: <?php echo esc_attr( $thumb_height ); ?>px; 

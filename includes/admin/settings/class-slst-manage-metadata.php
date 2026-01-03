@@ -47,7 +47,7 @@ if( ! class_exists( 'SLST_Manage_Metadata' ) ) :
                 esc_html__( 'Live Preview', 'slider-studio' ),
                 array( $this, 'render_live_preview' ),
                 'slst_slider',
-                'side',
+                'normal',
                 'high'
             );
 
@@ -157,9 +157,7 @@ if( ! class_exists( 'SLST_Manage_Metadata' ) ) :
 
             $settings = array();
             if ( isset( $_POST['slst_slider_option'] ) && is_array( $_POST['slst_slider_option'] ) ) :
-                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-                $raw_settings = wp_unslash( $_POST['slst_slider_option'] );
-                $settings = map_deep( $raw_settings, 'sanitize_text_field' );
+                $settings = map_deep( wp_unslash( $_POST['slst_slider_option'] ), 'sanitize_text_field' );
             endif;
 
             if ( isset( $_POST['slst_slide_ids'] ) && is_array( $_POST['slst_slide_ids'] ) ) :

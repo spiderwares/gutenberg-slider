@@ -301,19 +301,13 @@ if( ! class_exists( 'SLST_CPT' ) ) :
             endif;
 
             if ( ! empty( $_POST['slst_slider_option'] ) && is_array( $_POST['slst_slider_option'] ) ) :
-                $slider_options = array();
-                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-                $post_data = wp_unslash( $_POST['slst_slider_option'] ); 
+                $post_data = map_deep( wp_unslash( $_POST['slst_slider_option'] ), 'sanitize_text_field' ); 
 
-                foreach ( $post_data as $key => $value ) :
-                    if ( $key === 'custom_css' ) :
-                        $slider_options[ $key ] = sanitize_textarea_field( $value );
-                    else :
-                        $slider_options[ $key ] = sanitize_text_field( $value );
-                    endif;
-                endforeach;
+                if ( isset( $_POST['slst_slider_option']['custom_css'] ) ) :
+                    $post_data['custom_css'] = sanitize_textarea_field( wp_unslash( $_POST['slst_slider_option']['custom_css'] ) );
+                endif;
 
-                update_post_meta( $slst_slideshow_ID, 'slst_slider_option', $slider_options );
+                update_post_meta( $slst_slideshow_ID, 'slst_slider_option', $post_data );
                 
             endif;
 

@@ -14,16 +14,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                 data-hide="<?php echo esc_attr($field['data_hide']); ?>"
             <?php endif; ?>>
 
-        <?php foreach ($field['options'] as $option_value => $option_label) : 
-            $data_show = isset($field['data_show'][$option_value]) ? $field['data_show'][$option_value] : ''; ?>
+        <?php foreach ($field['options'] as $slst_option_value => $slst_option_label) : 
+            $slst_data_show = isset($field['data_show'][$slst_option_value]) ? $field['data_show'][$slst_option_value] : ''; ?>
             <option
-                value="<?php echo esc_attr($option_value); ?>"
-                <?php if ($data_show) : ?>
-                    data-show="<?php echo esc_attr($data_show); ?>"
+                value="<?php echo esc_attr($slst_option_value); ?>"
+                <?php if ($slst_data_show) : ?>
+                    data-show="<?php echo esc_attr($slst_data_show); ?>"
                 <?php endif; ?>
-                <?php selected($field_Val, $option_value); ?>
-               <?php echo in_array($option_value, isset($field['disabled_options']) ? $field['disabled_options'] : [], true) ? 'disabled' : ''; ?>>
-                <?php echo esc_html($option_label); ?>
+                <?php selected($field_Val, $slst_option_value); ?>
+               <?php echo in_array($slst_option_value, isset($field['disabled_options']) ? $field['disabled_options'] : [], true) ? 'disabled' : ''; ?>>
+                <?php echo esc_html($slst_option_label); ?>
             </option>
         <?php endforeach; ?>
     </select>

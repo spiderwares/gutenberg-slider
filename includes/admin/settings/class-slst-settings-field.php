@@ -18,7 +18,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
          */
         public static function transition_field(){
 
-            $fields = array(
+            $slst_fields = array(
 
                 'animation'  => array(
                     'title'         => esc_html__( 'Transition type', 'slider-studio' ),
@@ -874,7 +874,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
                 ),
             );
 
-            return apply_filters( 'slst_transition_fields', $fields );
+            return apply_filters( 'slst_transition_fields', $slst_fields );
         }
 
         /**
@@ -884,7 +884,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
          */
         public static function navigation_field(){
 
-            $fields = array(
+            $slst_fields = array(
 
                 'navigation_arrow_style' => array(
                     'title'         => esc_html__( 'Navigation arrows style', 'slider-studio' ),
@@ -1002,7 +1002,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
                 ),
             );
 
-            return apply_filters( 'slst_navigation_fields', $fields );
+            return apply_filters( 'slst_navigation_fields', $slst_fields );
         }
 
         /**
@@ -1012,7 +1012,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
          */
         public static function pagination_field(){
 
-            $fields = array(
+            $slst_fields = array(
 
                 'pagination_type' => array(
                     'title'       => esc_html__( 'Pagination Type', 'slider-studio' ),
@@ -1180,7 +1180,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
                 ),
             );
 
-            return apply_filters( 'slst_pagination_fields', $fields );
+            return apply_filters( 'slst_pagination_fields', $slst_fields );
         }
 
         /**
@@ -1190,7 +1190,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
          */
         public static function responsive_field(){
 
-            $fields = array(
+            $slst_fields = array(
 
                 'control_enable_responsive'   => array(
                     'title'         => esc_html__( 'Enable Responsive', 'slider-studio' ),
@@ -1253,7 +1253,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
                 ),
             );
 
-            return apply_filters( 'slst_responsive_fields', $fields );
+            return apply_filters( 'slst_responsive_fields', $slst_fields );
         }
 
         /**
@@ -1263,7 +1263,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
          */
         public static function thumbnail_gallery_field(){
 
-            $fields = array(
+            $slst_fields = array(
 
                 'thumb_gallery' => array(
                     'title'       => esc_html__( 'Show Thumbnail Gallery', 'slider-studio' ),
@@ -1309,7 +1309,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
                 ),
             );
 
-            return apply_filters( 'slst_thumbnail_gallery_fields', $fields );
+            return apply_filters( 'slst_thumbnail_gallery_fields', $slst_fields );
         }
 
         /**
@@ -1319,7 +1319,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
          */
         public static function autoplay_field(){
 
-            $fields = array(
+            $slst_fields = array(
 
                 'control_autoplay'  => array(
                     'title'         => esc_html__( 'Autoplay', 'slider-studio' ),
@@ -1371,7 +1371,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
                 ),
             );
 
-            return apply_filters( 'slst_autoplay_fields', $fields );    
+            return apply_filters( 'slst_autoplay_fields', $slst_fields );    
         }
 
         /**
@@ -1381,7 +1381,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
          */
         public static function scrollbar_field(){
 
-            $fields = array(
+            $slst_fields = array(
 
                 'control_scrollbar' => array(
                     'title'       =>  esc_html__( 'Scrollbar Control', 'slider-studio' ),
@@ -1418,7 +1418,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
                 ),
             );
             
-            return apply_filters( 'slst_scrollbar_fields', $fields );
+            return apply_filters( 'slst_scrollbar_fields', $slst_fields );
         }
 
         /**
@@ -1428,7 +1428,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
          */
         public static function other_options_field(){
 
-            $fields = array(
+            $slst_fields = array(
 
                 'image_unit' => array(
                     'title'       => esc_html__( 'Set Width & Height', 'slider-studio' ),
@@ -1568,7 +1568,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
                 ),
             );
 
-            return apply_filters( 'slst_other_options_fields', $fields );
+            return apply_filters( 'slst_other_options_fields', $slst_fields );
         }
 
         /**
@@ -1578,7 +1578,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
          */
         public static function custom_css_field(){
 
-            $fields = array(
+            $slst_fields = array(
 
                 'custom_class' => array(
                     'title'       => esc_html__( 'Custom Class Name', 'slider-studio' ),
@@ -1598,7 +1598,7 @@ if ( ! class_exists( 'SLST_Settings_Fields' ) ) :
                 ),
             );
 
-            return apply_filters( 'slst_custom_css_fields', $fields );
+            return apply_filters( 'slst_custom_css_fields', $slst_fields );
         }
     }
 

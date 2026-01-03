@@ -122,7 +122,7 @@ if( ! class_exists( 'SLST_Shortcode' ) ) :
             $lazy_load                      = isset($slstOptions['control_lazyload_images']) ? $slstOptions['control_lazyload_images'] : '';
             $pagination_type                = isset($slstOptions['pagination_type']) ? $slstOptions['pagination_type'] : 'bullets';
             $progress_position              = isset($slstOptions['progress_bar_position']) ? $slstOptions['progress_bar_position'] : 'bottom';
-            $is_vertical                    = isset($slstOptions['control_slider_vertical']) && ($slstOptions['control_slider_vertical'] == '1' || $slstOptions['control_slider_vertical'] === true);
+            $slst_is_vertical                    = isset($slstOptions['control_slider_vertical']) && ($slstOptions['control_slider_vertical'] == '1' || $slstOptions['control_slider_vertical'] === true);
             $thumb_gallery                  = isset($slstOptions['thumb_gallery']) && ($slstOptions['thumb_gallery'] == '1' || $slstOptions['thumb_gallery'] === true);
             $thumb_width                    = !empty($slstOptions['thumb_gallery_width']) ? (int)$slstOptions['thumb_gallery_width'] : 70;
             $thumb_height                   = !empty($slstOptions['thumb_gallery_height']) ? (int)$slstOptions['thumb_gallery_height'] : 70;
